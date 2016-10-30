@@ -5,13 +5,8 @@
  */
 package accounting.software;
 
-import java.awt.Component;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLayer;
-import javax.swing.JPanel;
-import javax.swing.plaf.LayerUI;
 
 /**
  *
