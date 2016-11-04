@@ -10,9 +10,8 @@ package accounting.software;
  * @author Ahmet Alperen Bulut
  */
 public class Fuel {
-
-
-
+/* fuelType - gasoline - diesel - autogas
+    */
  private String fuelType;
  private double fuelCapacity;
  private double  fuelAmount;
@@ -21,6 +20,7 @@ public class Fuel {
  private double tax;
  
  public  Fuel(String fuelType,double fuelCapacity,double fuelAmount){
+     
     this.fuelCapacity=fuelCapacity;
     this.fuelAmount=fuelAmount;
     this.fuelType=fuelType;
@@ -29,50 +29,50 @@ public class Fuel {
  public Fuel(){
  
  }
-     public String getFuelType() {
+    public String getFuelType() {
         return fuelType;
     }
 
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    } 
+        
     public double getFuelCapacity() {
         return fuelCapacity;
     }
-
+    
+    public void setFuelCapacity(double fuelCapacity) {
+        this.fuelCapacity = fuelCapacity;
+    }
+    
     public double getFuelAmount() {
         return fuelAmount;
     }
-
+    
+    public void setFuelAmount(double fuelAmount) {
+        this.fuelAmount = fuelAmount;
+    }
+    
     public double getBuyingPrice() {
         return buyingPrice;
     }
-
+    
+    public void setBuyingPrice(double buyingPrice) {
+        this.buyingPrice = buyingPrice;
+    }
+    
     public double getSalePrice() {
         return salePrice;
+    }
+    
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
     }
 
     public double getTax() {
         return tax;
     }
-
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public void setFuelCapacity(double fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
-    }
-
-    public void setFuelAmount(double fuelAmount) {
-        this.fuelAmount = fuelAmount;
-    }
-
-    public void setBuyingPrice(double buyingPrice) {
-        this.buyingPrice = buyingPrice;
-    }
-
-    public void setSalePrice(double salePrice) {
-        this.salePrice = salePrice;
-    }
-
+    
     public void setTax(double tax) {
         this.tax = tax;
     }
