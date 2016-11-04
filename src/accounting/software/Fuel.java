@@ -76,7 +76,12 @@ public class Fuel {
     public void setTax(double tax) {
         this.tax = tax;
     }
- 	
+
+    @Override
+    public String toString() {
+        return "Fuel{ " + "fuelType= " + fuelType + ", fuelCapacity= " + fuelCapacity + ", fuelAmount= " + fuelAmount + ", buyingPrice= " + buyingPrice + ", salePrice= " + salePrice + ", tax= " + tax + " }";
+    }
+   
 }
 
 
