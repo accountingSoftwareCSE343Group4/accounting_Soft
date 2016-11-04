@@ -57,7 +57,5 @@ public class MyJsonParser {
 
     public void setPersonalJsonArr(JsonArray personalJson) {
         this.personalJsonArr = personalJson;
-    }
-    
-    
+    }   
 }

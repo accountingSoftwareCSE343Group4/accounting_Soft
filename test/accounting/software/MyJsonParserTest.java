@@ -58,6 +58,7 @@ public class MyJsonParserTest {
     @Test
     public void testJSONEncode() {
         System.out.println("JSONEncode");
+<<<<<<< 81401e09448c2a40e3a3e07a42d0197efb2f1102
         MyJsonParser tempJson = new MyJsonParser();
         
         MyJsonParser jsonParser = new MyJsonParser();
@@ -75,6 +76,16 @@ public class MyJsonParserTest {
         jsonParser.getJsonObj().append("Personal", jsonParser.getPersonalJsonArr());
         
         System.out.println(jsonParser.getJsonObj());
+=======
+        MyJsonParser jsonParser = new MyJsonParser();
+        List<Personal> personalList = new ArrayList<Personal>();
+        
+        for(Personal person: personalList) {
+            jsonParser.getPersonalJson().put(person);
+        }
+        
+        
+>>>>>>> add JSON generator and decoder
     }
     
 }
