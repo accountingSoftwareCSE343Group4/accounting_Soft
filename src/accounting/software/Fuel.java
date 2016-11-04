@@ -19,6 +19,14 @@ public class Fuel {
  private double salePrice;
  private double tax;
  
+ public Fuel(){
+    this.fuelType="";
+    this.fuelCapacity=0;
+    this.fuelAmount=0;
+    this.buyingPrice=0;
+    this.salePrice=0;
+    this.tax=0;
+ }
  public  Fuel(String fuelType,double fuelCapacity,double fuelAmount){
      
     this.fuelCapacity=fuelCapacity;
@@ -26,14 +34,7 @@ public class Fuel {
     this.fuelType=fuelType;
  
  }
- public Fuel(){
- this.fuelType="";
- this.fuelCapacity=0;
- this.fuelAmount=0;
- this.buyingPrice=0;
- this.salePrice=0;
- this.tax=0;
- }
+
     public String getFuelType() {
         return fuelType;
     }
