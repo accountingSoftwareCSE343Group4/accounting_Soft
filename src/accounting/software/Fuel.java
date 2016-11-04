@@ -27,7 +27,12 @@ public class Fuel {
  
  }
  public Fuel(){
- 
+ this.fuelType="";
+ this.fuelCapacity=0;
+ this.fuelAmount=0;
+ this.buyingPrice=0;
+ this.salePrice=0;
+ this.tax=0;
  }
     public String getFuelType() {
         return fuelType;
