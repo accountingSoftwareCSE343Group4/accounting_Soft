@@ -80,7 +80,7 @@ public class Fuel {
     }
 
     @Override
-    public String toString() {
+    public String toString() {//added
         return "Fuel{ " + "fuelType= " + fuelType + ", fuelCapacity= " + fuelCapacity + ", fuelAmount= " + fuelAmount + ", buyingPrice= " + buyingPrice + ", salePrice= " + salePrice + ", tax= " + tax + " }";
     }
    
