@@ -15,7 +15,15 @@ public class Personal {
     private String lastName;
     private String address;
     private String phoneNumber;
-    
+
+    public Personal(int id, String name, String lastName, String address, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+   
     public int getId() {
         return id;
     }
@@ -58,6 +66,6 @@ public class Personal {
 
     @Override
     public String toString() {
-        return "Personal{" + "id=" + id + ", name=" + name + ", lastName=" + lastName + ", address=" + address + ", phoneNumber=" + phoneNumber + '}';
+        return "id:" + id + "name:" + name + "lastName:" + lastName + "address:" + address + "phoneNumber:" + phoneNumber;
     }
 }

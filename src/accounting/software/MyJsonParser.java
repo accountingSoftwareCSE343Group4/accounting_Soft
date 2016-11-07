@@ -6,21 +6,25 @@
 package accounting.software;
 
 import java.io.StringWriter;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+//import org.json.JSONArray;
+//import org.json.JSONObject;
+import javax.json.*;
 
 /**
  *
  * @author gurol
  */
 public class MyJsonParser {
-    JSONObject jsonObj;
-    JSONArray personalJson;
+    //JSONObject jsonObj;
+    //JSONArray personalJsonArr;
+    JsonObject jsonObject;
+    JsonArray personalJsonArr;
     
     public MyJsonParser(){
-        jsonObj = new JSONObject();
-        personalJson = new JSONArray();
+//        jsonObj = new JSONObject();
+//        personalJsonArr = new JSONArray();
+        jsonObject = new JsonObject();
+        personalJsonArr = new JsonArray();
     }
     
     public void JSONDecode(){
@@ -30,29 +34,29 @@ public class MyJsonParser {
     
     public void JSONEncode(Object obj){
         if(obj instanceof Personal){
-            jsonObj.put("id", ((Personal) obj).getId());
-            jsonObj.put("name", ((Personal) obj).getName());
-            jsonObj.put("lastName", ((Personal) obj).getLastName());           
-            jsonObj.put("address", ((Personal) obj).getAddress());
-            jsonObj.put("phoneNumber",((Personal) obj).getPhoneNumber());
+//            jsonObj.put("id", ((Personal) obj).getId());
+//            jsonObj.put("name", ((Personal) obj).getName());
+//            jsonObj.put("lastName", ((Personal) obj).getLastName());           
+//            jsonObj.put("address", ((Personal) obj).getAddress());
+//            jsonObj.put("phoneNumber",((Personal) obj).getPhoneNumber());
         } else 
             System.out.println("Error: object is not instance of Personal class");
     }
 
-    public JSONObject getJsonObj() {
-        return jsonObj;
+    public JsonObject getJsonObj() {
+        return jsonObject;
     }
 
-    public void setJsonObj(JSONObject jsonObj) {
-        this.jsonObj = jsonObj;
+    public void setJsonObj(JsonObject jsonObj) {
+        this.jsonObject = jsonObj;
     }
 
-    public JSONArray getPersonalJson() {
-        return personalJson;
+    public JsonArray getPersonalJsonArr() {
+        return personalJsonArr;
     }
 
-    public void setPersonalJson(JSONArray personalJson) {
-        this.personalJson = personalJson;
+    public void setPersonalJsonArr(JsonArray personalJson) {
+        this.personalJsonArr = personalJson;
     }
     
     
