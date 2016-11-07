@@ -17,7 +17,7 @@ public class Fuel {
 
 
  public Fuel(){
-    this.fuelType="";
+    this.fuelType= " ";
     this.fuelCapacity=0;
     this.fuelAmount=0;
     this.buyingPrice=0;
@@ -85,10 +85,6 @@ public class Fuel {
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
     }
-
- 
-
-   
 }
 
 
