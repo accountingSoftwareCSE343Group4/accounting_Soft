@@ -57,5 +57,12 @@ public class MyJsonParser {
 
     public void setPersonalJsonArr(JsonArray personalJson) {
         this.personalJsonArr = personalJson;
+<<<<<<< 7babab5f5d917e27b81af84f7e853cc6877462ba
     }   
 }
+=======
+    }
+    
+    
+}
+>>>>>>> initialize json parser
