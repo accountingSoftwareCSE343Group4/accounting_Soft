@@ -33,12 +33,11 @@ public class MainFrame extends javax.swing.JFrame {
         temp3.setBounds(50, 190, 283, 60);
         this.add(persframe);
         persframe.setVisible(false);
-        
-
- 
- 
+        this.add(financeframe);
+        financeframe.setVisible(false);
     }
-
+    
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -519,7 +518,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
         if(!persframe.isVisible())
         {
-            //finance tab visible false
+            financeframe.setVisible(false);
             sumPane.setVisible(false);
             persframe.setVisible(true);
         }
@@ -528,17 +527,17 @@ public class MainFrame extends javax.swing.JFrame {
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
         if(!sumPane.isVisible()){
             persframe.setVisible(false);
-            //finance tab visible false
+            financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-       // if(!FInanceTab.isVisible()){
+       if(!financeframe.isVisible()){
             persframe.setVisible(false);
             sumPane.setVisible(false);
-            // finance tab set visible
-        //}
+            financeframe.setVisible(true);   
+        }
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     /**
