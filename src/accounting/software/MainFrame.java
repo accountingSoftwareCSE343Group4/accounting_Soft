@@ -45,8 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanel7.add(temp3);
         temp3.setBounds(0, 160, 283, 60); 
         
-        this.add(persframe);
-        persframe.setVisible(false);
+        
 //        
 //        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
 //        this.revalidate();
@@ -70,6 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
         
     }
 
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -634,28 +634,35 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
-        if(!persframe.isVisible())
-        {
-            //finance tab visible false
+                        
+            if(financeframe.isVisible())
+            {
+                sumPane.setVisible(true);
+                this.remove(financeframe);
+            }
             sumPane.setVisible(false);
+            this.add(persframe);
             persframe.setVisible(true);
-        }
+           
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
         if(!sumPane.isVisible()){
             persframe.setVisible(false);
-            //finance tab visible false
+            financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-       // if(!FInanceTab.isVisible()){
-            persframe.setVisible(false);
-            sumPane.setVisible(false);
-            // finance tab set visible
-        //}
+        if(persframe.isVisible())
+        {
+            sumPane.setVisible(true);
+            this.remove(persframe);
+        }
+        sumPane.setVisible(false);
+         this.add(financeframe);
+         financeframe.setVisible(true);
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
