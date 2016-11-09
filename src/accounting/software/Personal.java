@@ -9,7 +9,7 @@ package accounting.software;
  *
  * @author Arif Dogru
  */
-public class Personal{
+public class Personal implements Expenses{
     int id;
     String name;
     String lastName;
