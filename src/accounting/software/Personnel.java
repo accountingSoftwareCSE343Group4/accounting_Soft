@@ -9,7 +9,7 @@ package accounting.software;
  *
  * @author Arif Dogru
  */
-public class Personal implements Expenses{
+public class Personnel implements Expenses{
     int id;
     String name;
     String lastName;
@@ -19,7 +19,7 @@ public class Personal implements Expenses{
     double salary;
     double sskBonus;
 
-    public Personal(String name, int id, String lastName, String address, String phoneNumber, String job, double salary, double sskprim) {
+    public Personnel(String name, int id, String lastName, String address, String phoneNumber, String job, double salary, double sskprim) {
         this.name = name;
         this.id = id;
         this.lastName = lastName;
@@ -30,11 +30,11 @@ public class Personal implements Expenses{
         this.sskBonus = sskprim;
     }
 
-    public Personal(int id) {
+    public Personnel(int id) {
         this.id = id;
     }
     
-    public Personal(){
+    public Personnel(){
         this.id = -1;
     }
 
