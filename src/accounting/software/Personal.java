@@ -94,11 +94,11 @@ public class Personal{
         this.job = jop;
     }
 
-    public double getSskprim() {
+    public double getSskBonus() {
         return sskBonus;
     }
 
-    public void setSskprim(double sskprim) {
-        this.sskBonus = sskprim;
+    public void setSskBonus(double sskbonus) {
+        this.sskBonus = sskbonus;
     }
 }
