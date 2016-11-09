@@ -5,13 +5,14 @@
  */
 package accounting.software;
 
-import java.util.List;
-
 /**
  *
- * @author gurol
+ * @author Arif Dogru
  */
-public abstract class AccountingSystem {
-    private List<Personnel> personnelList;
-    private List<Fuel> fuelList;
+public class AccountingSystem {
+    /* Members */
+    
+    
+    /* Methods */
+    
 }
