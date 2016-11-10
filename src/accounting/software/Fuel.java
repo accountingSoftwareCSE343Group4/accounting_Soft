@@ -5,7 +5,7 @@ package accounting.software;
  *
  * @author Ahmet Alperen Bulut
  */
-public class Fuel implements Expenses{
+public class Fuel implements Expenses,Income{
 
  private String fuelType;
  private double fuelCapacity;
