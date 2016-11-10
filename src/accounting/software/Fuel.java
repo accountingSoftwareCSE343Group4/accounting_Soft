@@ -4,7 +4,7 @@ package accounting.software;
  *
  * @author Ahmet Alperen Bulut
  */
-public class Fuel implements Expenses{
+public class Fuel implements Expenses,Income{
 
  private String fuelType;
  private double fuelCapacity;
@@ -13,8 +13,6 @@ public class Fuel implements Expenses{
  private double salePrice;
  private double tax;
  
-
-
  public Fuel(){
     this.fuelType="";
     this.fuelCapacity=0;
@@ -23,9 +21,9 @@ public class Fuel implements Expenses{
     this.salePrice=0;
     this.tax=0;
  }
+ 
  public  Fuel(String fuelType,double fuelCapacity,double fuelAmount){
      
-
     this.fuelCapacity=fuelCapacity;
     this.fuelAmount=fuelAmount;
     this.fuelType=fuelType;
@@ -83,5 +81,5 @@ public class Fuel implements Expenses{
     @Override
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
-    }   
+    }
 }
