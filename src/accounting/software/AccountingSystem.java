@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package accounting.software;
 
 import java.util.ArrayList;
@@ -6,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Ahmet Alperen Bulut
+ * @author Arif Dogru
  */
 public class AccountingSystem {
     List<Personnel> personnelList;
