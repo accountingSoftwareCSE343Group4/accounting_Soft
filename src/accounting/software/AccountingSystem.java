@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Arif Dogru
+ * @author Ahmet Alperen Bulut
  */
 public class AccountingSystem {
     List<Personnel> personnelList;
