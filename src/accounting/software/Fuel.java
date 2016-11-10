@@ -1,4 +1,3 @@
-
 package accounting.software;
 
 /**
@@ -84,11 +83,7 @@ public class Fuel {
     @Override
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
-    }
-
- 
-
-   
+    }   
 }
 
 
