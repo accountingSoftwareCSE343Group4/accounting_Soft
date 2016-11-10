@@ -20,6 +20,22 @@ public class AccountingSystem {
     public static AccountingSystem getInstance(){
         return INSTANCE;
     }
+    public Personnel getPerson(int id){
+         for(int i=0;i<personnelList.size();++i)
+        {
+            if(personnelList.get(i).getId()==id)
+                return personnelList.get(i);
+        }
+        return null;
+    }
+    public Fuel getFuel(String fuelType){
+        for(int i=0;i<fuelList.size();++i)
+         {
+             if(fuelList.get(i).getFuelType().equals(fuelType))
+                 return fuelList.get(i);
+         }
+         return null;
+     }
     public void addPerson(Personnel newPerson)
     {
         boolean duplicate=false;
