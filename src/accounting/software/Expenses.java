@@ -9,10 +9,6 @@ package accounting.software;
  *
  * @author Arif Dogru
  */
-public class AccountingSystem {
-    /* Members */
-    
-    
-    /* Methods */
+public interface Expenses {
     
 }
