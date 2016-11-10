@@ -21,7 +21,7 @@ public class AccountingSystem {
         return INSTANCE;
     }
     public Personnel getPerson(int id){
-        for(int i=0;i<personnelList.size();++i)
+         for(int i=0;i<personnelList.size();++i)
         {
             if(personnelList.get(i).getId()==id)
                 return personnelList.get(i);
@@ -30,12 +30,12 @@ public class AccountingSystem {
     }
     public Fuel getFuel(String fuelType){
         for(int i=0;i<fuelList.size();++i)
-        {
-            if(fuelList.get(i).getFuelType().equals(fuelType))
-                return fuelList.get(i);
-        }
-        return null;
-    }
+         {
+             if(fuelList.get(i).getFuelType().equals(fuelType))
+                 return fuelList.get(i);
+         }
+         return null;
+     }
     public void addPerson(Personnel newPerson)
     {
         boolean duplicate=false;
