@@ -14,7 +14,7 @@ public class Fuel implements Expenses,Income{
  private double tax;
  
  public Fuel(){
-    this.fuelType="";
+    this.fuelType= " ";
     this.fuelCapacity=0;
     this.fuelAmount=0;
     this.buyingPrice=0;
