@@ -6,6 +6,11 @@
 package accounting.software;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -22,6 +27,8 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static MainFrame mainFrame;
     DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    
+    private static Font newFont;
     
     /**
      * Creates new form MainFrame
@@ -70,6 +77,7 @@ public class MainFrame extends javax.swing.JFrame {
         
     }
 
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,7 +258,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("AVAILABLE AMOUNT (LT) = 20");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -634,12 +641,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
-        if(!persframe.isVisible())
-        {
-            //finance tab visible false
+        System.out.println("Personnel Tab is clicked");
+            System.out.println("Personnel Tab is activating");
+            
+            if(financeframe.isVisible())
+            {
+                sumPane.setVisible(true);
+                this.remove(financeframe);
+            }
             sumPane.setVisible(false);
+            this.add(persframe);
             persframe.setVisible(true);
-        }
+            System.out.println("activated ");
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -651,11 +664,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-       // if(!FInanceTab.isVisible()){
-            persframe.setVisible(false);
-            sumPane.setVisible(false);
-            // finance tab set visible
-        //}
+       System.out.println("Finance Tab is clicked");
+           System.out.println("Finance Tab is activating");
+           if(persframe.isVisible())
+           {
+               sumPane.setVisible(true);
+               this.remove(persframe);
+           }
+           sumPane.setVisible(false);
+            this.add(financeframe);
+            financeframe.setVisible(true);
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
@@ -692,6 +710,16 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                try {
+                    newFont = Font.createFont(Font.TRUETYPE_FONT, new File("font/Myriad-Pro_31655.ttf"));
+                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                    ge.registerFont(newFont);
+                } catch (IOException | FontFormatException e) {
+                    // Handle exception
+                    System.err.println("Error loading font: " + e.getMessage());
+                }
+                
                 new MainFrame().setVisible(true);
             }
         });
