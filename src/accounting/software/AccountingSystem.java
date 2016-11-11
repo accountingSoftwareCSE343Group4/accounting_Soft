@@ -20,22 +20,23 @@ public class AccountingSystem {
     public static AccountingSystem getInstance(){
         return INSTANCE;
     }
-    public Personnel getPerson(int id){
-         for(int i=0;i<personnelList.size();++i)
-        {
-            if(personnelList.get(i).getId()==id)
-                return personnelList.get(i);
-        }
-        return null;
+   
+    public Personnel getPerson(int index){
+        if(index>=personnelList.size())
+            return null;
+        return personnelList.get(index);
     }
-    public Fuel getFuel(String fuelType){
-        for(int i=0;i<fuelList.size();++i)
-         {
-             if(fuelList.get(i).getFuelType().equals(fuelType))
-                 return fuelList.get(i);
-         }
-         return null;
+    public Fuel getFuel(int index){
+        if(index>=fuelList.size())
+            return null;
+        return fuelList.get(index);
      }
+    public int getPersonnelSize(){
+        return personnelList.size();
+    }
+    public int getFuelSize(){
+        return fuelList.size();
+    }
     public void addPerson(Personnel newPerson)
     {
         boolean duplicate=false;
