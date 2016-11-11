@@ -23,9 +23,11 @@ public class FinanceFrame extends javax.swing.JPanel {
         
         temp.setTextName("deneme");
         temp2.setAmount("10 Tl");
-        giderler.add(temp);
-        gelirler.add(temp2);
         
+        giderler.add(temp);
+        temp.setBounds(0,0,300,47);
+        gelirler.add(temp2);
+        temp2.setBounds(0,0, 300, 47);
         for (gider elem : giderler) {
             GiderSection.add(elem);
         }
@@ -60,7 +62,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         );
         GelirSectionLayout.setVerticalGroup(
             GelirSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout GiderSectionLayout = new javax.swing.GroupLayout(GiderSection);
@@ -71,7 +73,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         );
         GiderSectionLayout.setVerticalGroup(
             GiderSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -104,9 +106,10 @@ public class FinanceFrame extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(GelirSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(GiderSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(GiderSection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
