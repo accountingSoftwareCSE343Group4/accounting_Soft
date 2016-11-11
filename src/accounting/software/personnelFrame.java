@@ -5,6 +5,9 @@
  */
 package accounting.software;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author emre
@@ -48,8 +51,6 @@ public class personnelFrame extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1149, 580));
 
-        selectPersonnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectPersonnel.setSelectedIndex(-1);
         selectPersonnel.setName(""); // NOI18N
         selectPersonnel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,9 +209,15 @@ public class personnelFrame extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void fillSelectPersonnel(){
+        List<Personnel> personnels = AccountingSystem.getInstance().personnelList;
+        for (Personnel elem : personnels){
+            selectPersonnel.addItem(elem.getName());            
+        }
+    }
     private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
