@@ -7,24 +7,41 @@ package accounting.software;
 
 /**
  *
- * @author zozge
+ * @author zubeyde ozge yilmaz
  */
 import java.util.ArrayList;
+import java.util.List;
 
 public class BillAndTax {
     
-    double getPersonelExpenses(ArrayList<Personnel> personelList){
+    double getPersonelExpenses(ArrayList<Personnel> personnelList){
         double sum=0;
-        for(int i=0; i <= personelList.size(); i++){
-            sum = personelList.get(i).getSalary() + personelList.get(i).getSskBonus();
+        for(int i=0; i < personnelList.size(); i++){
+            sum = personnelList.get(i).getSalary() + personnelList.get(i).getSskBonus();
         }
         return sum;
-    }   
-    int getExpenses(){
-        return 0;
+    } 
+    // fuelExpenses + PersonelExpenses 
+    double getExpenses(){
+        List<Personnel> personnelList = new ArrayList();
+        personnelList = AccountingSystem.getInstance().personnelList;
+        double sum=0;
+        for(int i=0; i < personnelList.size(); i++){
+            sum = personnelList.get(i).getSalary() + personnelList.get(i).getSskBonus();
+        }
+        sum += getFuelExpenses();
+        return sum;
     }
-    int getFuelExpenses(){
-        return 0;
+    double getFuelExpenses(){
+        Fuel fuel;
+        double totalExpenses=0;
+        for(int i=0; i < AccountingSystem.getInstance().fuelList.size() ; i++){
+           
+               fuel = AccountingSystem.getInstance().fuelList.get(i);
+               totalExpenses += ( (fuel.getBuyingPrice() * fuel.getFuelCapacity()) + fuel.getTax());        
+               
+        }        
+        return totalExpenses;
     }
     
 }
