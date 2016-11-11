@@ -10,20 +10,32 @@ import java.util.List;
 
 /**
  *
- * @author Arif Dogru
+ * @author Ahmet Alperen Bulut
  */
 public class AccountingSystem {
-    List<Personnel> personnelList;
-    List<Fuel> fuelList;
-    
-    public AccountingSystem(){
-        personnelList=new ArrayList();
-        fuelList=new ArrayList();
+    private List<Personnel> personnelList=new ArrayList();
+    private List<Fuel> fuelList=new ArrayList();
+    private static final AccountingSystem INSTANCE = new AccountingSystem();
+    private AccountingSystem(){}
+    public static AccountingSystem getInstance(){
+        return INSTANCE;
     }
-    /* Members */
-    
-    
-    /* Methods */
+    public Personnel getPerson(int id){
+         for(int i=0;i<personnelList.size();++i)
+        {
+            if(personnelList.get(i).getId()==id)
+                return personnelList.get(i);
+        }
+        return null;
+    }
+    public Fuel getFuel(String fuelType){
+        for(int i=0;i<fuelList.size();++i)
+         {
+             if(fuelList.get(i).getFuelType().equals(fuelType))
+                 return fuelList.get(i);
+         }
+         return null;
+     }
     public void addPerson(Personnel newPerson)
     {
         boolean duplicate=false;

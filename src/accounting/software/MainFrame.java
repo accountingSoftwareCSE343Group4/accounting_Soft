@@ -5,8 +5,17 @@
  */
 package accounting.software;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
+
+
 
 /**
  *
@@ -14,6 +23,13 @@ import javax.swing.ImageIcon;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    
+    
+    public static MainFrame mainFrame;
+    DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    
+    private static Font newFont;
+    
     /**
      * Creates new form MainFrame
      */
@@ -25,20 +41,43 @@ public class MainFrame extends javax.swing.JFrame {
         PersonnelPanel temp2 = new PersonnelPanel();
         PersonnelPanel temp3 = new PersonnelPanel();
         
-        this.jPanel4.add(temp);
-        temp.setBounds(50, 30, 283, 60);
-        this.jPanel4.add(temp2);
-        temp2.setBounds(50, 110, 283, 60);
-        this.jPanel4.add(temp3);
-        temp3.setBounds(50, 190, 283, 60);
+        
+        mainFrame = this;
+        
+        
+        this.jPanel7.add(temp);
+        temp.setBounds(0, 0, 283, 60);
+        this.jPanel7.add(temp2);
+        temp2.setBounds(0, 80, 283, 60);
+        this.jPanel7.add(temp3);
+        temp3.setBounds(0, 160, 283, 60); 
+        
         this.add(persframe);
         persframe.setVisible(false);
-        
+//        
+//        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
+//        this.revalidate();
+//        this.repaint();
+    //     this.jPanel7.setSize(283, 180);
 
  
  
     }
+    
+    
+    private void updatePersonelPannel(){
+        
+    }
+    
+    private void updateExpensesPannel(){
+        
+    }
+    
+    private void updateIncomesPannel(){
+        
+    }
 
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,13 +109,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         ManagePersonelBut = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel7 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         ManageFinanceBut = new javax.swing.JButton();
         ExpensesBut = new javax.swing.JButton();
         IncomesBut = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
@@ -182,6 +224,11 @@ public class MainFrame extends javax.swing.JFrame {
                 DieselButMouseExited(evt);
             }
         });
+        DieselBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DieselButActionPerformed(evt);
+            }
+        });
 
         GasolineBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 13.png"))); // NOI18N
         GasolineBut.setBorderPainted(false);
@@ -211,7 +258,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("AVAILABLE AMOUNT (LT) = 20");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -316,40 +362,44 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setOpaque(false);
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(283, 100));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+        jPanel7.setBackground(new java.awt.Color(176, 190, 197));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 284, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
+
+        jScrollPane2.setViewportView(jPanel7);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(ManagePersonelBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(70, 70, 70)
+                .addComponent(ManagePersonelBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(ManagePersonelBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -401,9 +451,39 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 45.png"))); // NOI18N
+        jScrollPane1.setBorder(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 47.png"))); // NOI18N
+        jPanel4.setBackground(new java.awt.Color(176, 190, 197));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 345, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 243, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jScrollPane3.setBorder(null);
+
+        jPanel8.setBackground(new java.awt.Color(176, 190, 197));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 345, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setViewportView(jPanel8);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -421,11 +501,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(ManageFinanceBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,12 +513,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                .addGap(25, 25, 25)
-                .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(ManageFinanceBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -561,12 +641,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
-        if(!persframe.isVisible())
-        {
-            //finance tab visible false
+        System.out.println("Personnel Tab is clicked");
+            System.out.println("Personnel Tab is activating");
+            
+            if(financeframe.isVisible())
+            {
+                sumPane.setVisible(true);
+                this.remove(financeframe);
+            }
             sumPane.setVisible(false);
+            this.add(persframe);
             persframe.setVisible(true);
-        }
+            System.out.println("activated ");
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -578,12 +664,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-       // if(!FInanceTab.isVisible()){
-            persframe.setVisible(false);
-            sumPane.setVisible(false);
-            // finance tab set visible
-        //}
+       System.out.println("Finance Tab is clicked");
+           System.out.println("Finance Tab is activating");
+           if(persframe.isVisible())
+           {
+               sumPane.setVisible(true);
+               this.remove(persframe);
+           }
+           sumPane.setVisible(false);
+            this.add(financeframe);
+            financeframe.setVisible(true);
     }//GEN-LAST:event_FInanceTabMouseClicked
+
+    private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
+        dieselDialog.setVisible(true);
+    }//GEN-LAST:event_DieselButActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,6 +710,16 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                try {
+                    newFont = Font.createFont(Font.TRUETYPE_FONT, new File("font/Myriad-Pro_31655.ttf"));
+                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                    ge.registerFont(newFont);
+                } catch (IOException | FontFormatException e) {
+                    // Handle exception
+                    System.err.println("Error loading font: " + e.getMessage());
+                }
+                
                 new MainFrame().setVisible(true);
             }
         });
@@ -636,8 +741,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -647,6 +750,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLayeredPane sumPane;
     private javax.swing.JLabel sumTab;
     // End of variables declaration//GEN-END:variables
