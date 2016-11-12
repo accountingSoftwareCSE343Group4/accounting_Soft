@@ -12,9 +12,6 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
