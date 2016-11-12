@@ -50,10 +50,16 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanel7.add(temp2);
         temp2.setBounds(0, 80, 283, 60);
         this.jPanel7.add(temp3);
+<<<<<<< HEAD
         temp3.setBounds(0, 160, 283, 60);
 
         this.add(persframe);
         persframe.setVisible(false);
+=======
+        temp3.setBounds(0, 160, 283, 60); 
+        
+        
+>>>>>>> 215d5893a5bdb9e6a8a7ab7e1eb12127f5400c45
 //        
 //        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
 //        this.revalidate();
@@ -74,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     }
 
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
 
     /**
@@ -384,6 +391,23 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(176, 190, 197));
         jPanel3.setPreferredSize(new java.awt.Dimension(383, 580));
 
+<<<<<<< HEAD
+=======
+        ManageFinanceBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 11.png"))); // NOI18N
+        ManageFinanceBut.setBorderPainted(false);
+        ManageFinanceBut.setContentAreaFilled(false);
+        ManageFinanceBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ManageFinanceBut.setPreferredSize(new java.awt.Dimension(245, 52));
+        ManageFinanceBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ManageFinanceButMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ManageFinanceButMouseEntered(evt);
+            }
+        });
+
+>>>>>>> 215d5893a5bdb9e6a8a7ab7e1eb12127f5400c45
         ExpensesBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 39.png"))); // NOI18N
         ExpensesBut.setBorderPainted(false);
         ExpensesBut.setContentAreaFilled(false);
@@ -584,6 +608,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
+<<<<<<< HEAD
         if (!persframe.isVisible()) {
 
             Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
@@ -601,9 +626,18 @@ public class MainFrame extends javax.swing.JFrame {
             FInanceTab.setIcon(img);
 
             //finance tab visible false
+=======
+                        
+            if(financeframe.isVisible())
+            {
+                sumPane.setVisible(true);
+                this.remove(financeframe);
+            }
+>>>>>>> 215d5893a5bdb9e6a8a7ab7e1eb12127f5400c45
             sumPane.setVisible(false);
+            this.add(persframe);
             persframe.setVisible(true);
-        }
+           
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -623,12 +657,13 @@ public class MainFrame extends javax.swing.JFrame {
             FInanceTab.setIcon(img);
 
             persframe.setVisible(false);
-            //finance tab visible false
+            financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
+<<<<<<< HEAD
         // if(!FInanceTab.isVisible()){
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
@@ -648,6 +683,16 @@ public class MainFrame extends javax.swing.JFrame {
         sumPane.setVisible(false);
         // finance tab set visible
         //}
+=======
+        if(persframe.isVisible())
+        {
+            sumPane.setVisible(true);
+            this.remove(persframe);
+        }
+        sumPane.setVisible(false);
+         this.add(financeframe);
+         financeframe.setVisible(true);
+>>>>>>> 215d5893a5bdb9e6a8a7ab7e1eb12127f5400c45
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed

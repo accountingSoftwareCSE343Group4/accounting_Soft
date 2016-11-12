@@ -5,6 +5,8 @@
  */
 package accounting.software;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Furkan
@@ -16,6 +18,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
      */
     public PersonnelPanel() {
         initComponents();
+
     }
 
     /**
