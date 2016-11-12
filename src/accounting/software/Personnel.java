@@ -10,14 +10,14 @@ package accounting.software;
  * @author Arif Dogru
  */
 public class Personnel implements Expenses{
-    int id;
-    String name;
-    String lastName;
-    String address;
-    String phoneNumber;
-    String job;
-    double salary;
-    double sskBonus;
+    private int id;
+    private String name;
+    private String lastName;
+    private String address;
+    private String phoneNumber;
+    private String job;
+    private double salary;
+    private double sskBonus;
 
     public Personnel(String name, int id, String lastName, String address, String phoneNumber, String job, double salary, double sskprim) {
         this.name = name;
