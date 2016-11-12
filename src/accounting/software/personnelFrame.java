@@ -5,8 +5,11 @@
  */
 package accounting.software;
 
+import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListDataEvent;
 
 /**
  *
@@ -14,11 +17,15 @@ import java.util.List;
  */
 public class personnelFrame extends javax.swing.JPanel {
 
+    //Personnel List
+    List<Personnel> personnels;
+    
     /**
      * Creates new form personnelFrame
      */
     public personnelFrame() {
-        initComponents();
+        fillPersonnelComboBox();
+        initComponents(); 
     }
 
     /**
@@ -52,6 +59,11 @@ public class personnelFrame extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1149, 580));
 
         selectPersonnel.setName(""); // NOI18N
+        selectPersonnel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectPersonnelİtemStateChanged(evt);
+            }
+        });
         selectPersonnel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectPersonnelActionPerformed(evt);
@@ -133,6 +145,11 @@ public class personnelFrame extends javax.swing.JPanel {
         removeButton.setText("Delete");
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -209,19 +226,48 @@ public class personnelFrame extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void fillSelectPersonnel(){
-        List<Personnel> personnels = AccountingSystem.getInstance().personnelList;
+    /**
+     * Finds a given name in list
+     * @param name
+     * @return returns index of founded otherwise -1
+     */
+    private int findIndexinList(String name){
+        if(personnels == null)
+            return -1;
+        if(personnels.isEmpty())
+            return -1;
+        for(int i = 0 ; i < personnels.size(); ++i){
+            if(personnels.get(i).getName().equals(name)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    private void fillPersonnelComboBox(){
+        personnels = AccountingSystem.getInstance().personnelList;
         for (Personnel elem : personnels){
             selectPersonnel.addItem(elem.getName());            
         }
     }
+    
     private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
         // TODO add your handling code here:
-        
+        String name = (String)selectPersonnel.getSelectedItem();
+        int index = findIndexinList(name);
+        if(index == -1)
+            return;
+        Personnel pers= personnels.get(index);
+        idTextBox.setText(String.valueOf(pers.getId()));
+        nameTextBox.setText(pers.getName());
+        surnameTextBox.setText(pers.getLastName());
+        phoneTextBox.setText(pers.getPhoneNumber());
+        addressField.setText(pers.getAddress());
+        sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
+        salaryTextBox.setText(Double.toString(pers.getSalary()));
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(editButton.getText() == "Edit"){
+        if(editButton.getText().equals( "Edit")){
             editButton.setText("Done");
             idTextBox.setEditable(true);
             nameTextBox.setEditable(true);
@@ -240,7 +286,25 @@ public class personnelFrame extends javax.swing.JPanel {
             addressField.setEditable(false);
             sskPrimTextBox.setEditable(false);
             salaryTextBox.setEditable(false);
-
+            String name = (String)selectPersonnel.getSelectedItem();
+            int index = findIndexinList(name);
+            Personnel pers;
+            if(index != -1)
+                pers= personnels.get(index);
+            else 
+                return;
+            try{
+                pers.setId(Integer.parseInt(idTextBox.getText()));
+                pers.setAddress(addressField.getText());
+                pers.setLastName(surnameTextBox.getText());
+                pers.setName(nameTextBox.getText());
+                pers.setPhoneNumber(phoneTextBox.getText());
+                pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
+                pers.setSskBonus(Double.parseDouble(salaryTextBox.getText()));
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
@@ -248,6 +312,30 @@ public class personnelFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTextBoxActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        Personnel pers = new Personnel();
+        try{
+            pers.setId(Integer.parseInt(idTextBox.getText()));
+            pers.setAddress(addressField.getText());
+            pers.setLastName(surnameTextBox.getText());
+            pers.setName(nameTextBox.getText());
+            pers.setPhoneNumber(phoneTextBox.getText());
+            pers.setSalary(Integer.parseInt(salaryTextBox.getText()));
+            pers.setSskBonus(Double.parseDouble(salaryTextBox.getText()));
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+        }
+        int size1 = AccountingSystem.getInstance().personnelList.size();
+        AccountingSystem.getInstance().addPerson(pers);
+        if(size1 != AccountingSystem.getInstance().personnelList.size())
+            selectPersonnel.addItem(pers.getName());
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void selectPersonnelİtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectPersonnelİtemStateChanged
+        
+    }//GEN-LAST:event_selectPersonnelİtemStateChanged
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
