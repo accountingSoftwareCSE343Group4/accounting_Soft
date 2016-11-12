@@ -200,6 +200,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
+        setResizable(false);
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
         jLayeredPane1.setAlignmentX(0.0F);
@@ -750,6 +751,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
+        
+        dieselDialog.setGui();
+        
         dieselDialog.setVisible(true);
     }//GEN-LAST:event_DieselButActionPerformed
 
