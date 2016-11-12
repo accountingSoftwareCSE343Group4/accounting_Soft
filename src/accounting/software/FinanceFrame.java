@@ -12,18 +12,24 @@ import java.util.ArrayList;
  * @author emre
  */
 public class FinanceFrame extends javax.swing.JPanel {
-
+    
+    //Dialogs
+    AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
+    EditFinanceDialog editDialog  = new EditFinanceDialog(MainFrame.mainFrame, true);
+    DeleteFinanceDialog deleteDialog = new DeleteFinanceDialog(MainFrame.mainFrame, true);
+    
     /**
      * Creates new form FinanceFrame
      */
+    
+    private int freeIncomeX = 0;
+    private int freeIncomeY = 0;
+    private int freeOutcomeX = 0;
+    private int freeOutcomeY = 0;
+    
     public FinanceFrame() {
         initComponents();
-        gider temp = new gider();
-        gelir temp2 = new gelir();
-        giderler.add(temp);
-        gelirler.add(temp2);
-
-        for (gider elem : giderler) {
+        /*        for (gider elem : giderler) {
             elem.setBounds(0, 0, 500 , 50);
             outcomePanel.add(elem);
         }
@@ -31,6 +37,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             elem.setBounds(0, 0, 500 , 50);
             incomePanel.add(elem);
         }
+*/
     }
    
     private ArrayList<gider> giderler = new ArrayList<gider>();
@@ -66,8 +73,18 @@ public class FinanceFrame extends javax.swing.JPanel {
         jLabel2.setText("OUTCOMES");
 
         AddIncomeBut.setText("Add");
+        AddIncomeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddIncomeButActionPerformed(evt);
+            }
+        });
 
         EditIncomeBut.setText("Edit");
+        EditIncomeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditIncomeButActionPerformed(evt);
+            }
+        });
 
         DeleteIncomeBut.setText("Delete");
 
@@ -137,7 +154,7 @@ public class FinanceFrame extends javax.swing.JPanel {
                         .addComponent(EditOutcomeBut)
                         .addGap(18, 18, 18)
                         .addComponent(DeleteOutcomeBut)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +179,46 @@ public class FinanceFrame extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AddIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIncomeButActionPerformed
+        addDialog.setVisible(true);
+        
+        if(addDialog.getReturnStatus() == AddFinanceDialog.RET_OK){
+            String[] s = new String[3];
+            s = addDialog.GetValues();
+            gelir g = new gelir();
+            g.setTextName(s[0]);
+            g.setDesc(s[1]);
+            g.setAmount(s[2]);
+            updateIncome(0, g);
+        }
+    }//GEN-LAST:event_AddIncomeButActionPerformed
+
+    private void EditIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditIncomeButActionPerformed
+        editDialog.setVisible(true);
+        
+        if(editDialog.getReturnStatus() == EditFinanceDialog.RET_OK){
+            
+        }
+    }//GEN-LAST:event_EditIncomeButActionPerformed
+    private void updateIncome(int op,gelir g){
+        if(op == 0)
+        {
+            g.setBounds(freeIncomeX, freeIncomeY, 530, 50);
+            incomePanel.add(g);
+            gelirler.add(g);
+            freeIncomeY += 50;   
+        }
+        else if(op == 1){
+            //edit
+        }
+        else {
+/*            String inp = deleteDialog.getSelecteditem();
+            for(int i = 0; i < gelirler.size(); ++i){
+                gelirler.get(i)
+            }*/
+        }
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddIncomeBut;

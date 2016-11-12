@@ -11,6 +11,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 /**
@@ -156,7 +157,13 @@ public class AddFinanceDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        doClose(RET_OK);
+        try{
+            Integer.parseInt(AmountField.getText());
+            doClose(RET_OK);
+        }
+        catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -174,6 +181,13 @@ public class AddFinanceDialog extends javax.swing.JDialog {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
+    }
+    public String[] GetValues(){
+        String[] Values = new String[3];
+        Values[0] = NameField.getText();
+        Values[1] = DescripField.getText();
+        Values[2] = AmountField.getText();
+        return Values;
     }
 
     /**

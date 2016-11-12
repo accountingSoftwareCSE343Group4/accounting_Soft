@@ -72,7 +72,8 @@ public class gelir extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-        public void setTextName(String text){
+    
+    public void setTextName(String text){
         name.setText(text);
     }
     

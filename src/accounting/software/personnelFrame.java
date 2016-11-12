@@ -21,16 +21,18 @@ public class personnelFrame extends javax.swing.JPanel {
     //Personnel Frame
     public static personnelFrame persFrame;
     //Add Button Dialog
-    AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);;
+    AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);
     
     //Personnel List
-    List<Personnel> personnels = AccountingSystem.getInstance().personnelList;
+    List<Personnel> personnels = new ArrayList<Personnel>();
     
     /**
      * Creates new form personnelFrame
      */
     public personnelFrame() {
         persFrame = this;
+        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
+            personnels.add(AccountingSystem.getInstance().getPerson(i));
         fillPersonnelComboBox();
         initComponents(); 
     }
