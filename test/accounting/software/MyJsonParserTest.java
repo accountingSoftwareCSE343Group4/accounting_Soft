@@ -5,9 +5,9 @@
  */
 package accounting.software;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +49,7 @@ public class MyJsonParserTest {
         MyJsonParser instance = new MyJsonParser();
         instance.JSONDecode();
         // TODO review the generated test code and remove the default call to fail.
-        
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,23 +58,40 @@ public class MyJsonParserTest {
     @Test
     public void testJSONEncode() {
         System.out.println("JSONEncode");
-        MyJsonParser tempJson = new MyJsonParser();
-        
+        Personnel person = new Personnel();
+        List personnelList = new ArrayList<Personnel>();
         MyJsonParser jsonParser = new MyJsonParser();
-        List<Personal> personalList = new ArrayList<Personal>();
-        personalList.add(new Personal(121044029,"gurol","cay","null","05422387568"));
         
-        System.out.println(personalList.get(0));
-        
-        for(Personal person: personalList) {
-            jsonParser.getPersonalJsonArr().put(person);
-            
-        }
-        //System.out.println(jsonParser.getJsonObj());
-        
-        jsonParser.getJsonObj().append("Personal", jsonParser.getPersonalJsonArr());
-        
-        System.out.println(jsonParser.getJsonObj());
+        jsonParser.JSONEncode(personnelList);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getJsonObject method, of class MyJsonParser.
+     */
+    @Test
+    public void testGetJsonObject() {
+        System.out.println("getJsonObject");
+        MyJsonParser instance = new MyJsonParser();
+        JSONObject expResult = null;
+        JSONObject result = instance.getJsonObject();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setJsonObject method, of class MyJsonParser.
+     */
+    @Test
+    public void testSetJsonObject() {
+        System.out.println("setJsonObject");
+        JSONObject jsonObject = null;
+        MyJsonParser instance = new MyJsonParser();
+        instance.setJsonObject(jsonObject);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
