@@ -23,7 +23,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
     DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
-
+    GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
+    LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
 
     private static Font newFont;
 
@@ -315,11 +316,16 @@ public class MainFrame extends javax.swing.JFrame {
         GasolineBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         GasolineBut.setPreferredSize(new java.awt.Dimension(122, 32));
         GasolineBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GasolineButMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 GasolineButMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GasolineButMouseEntered(evt);
+        });
+        GasolineBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GasolineButActionPerformed(evt);
             }
         });
 
@@ -329,11 +335,16 @@ public class MainFrame extends javax.swing.JFrame {
         LpgBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LpgBut.setPreferredSize(new java.awt.Dimension(122, 32));
         LpgBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LpgButMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 LpgButMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                LpgButMouseEntered(evt);
+        });
+        LpgBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LpgButActionPerformed(evt);
             }
         });
 
@@ -761,6 +772,18 @@ public class MainFrame extends javax.swing.JFrame {
         
         dieselDialog.setVisible(true);
     }//GEN-LAST:event_DieselButActionPerformed
+
+    private void GasolineButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GasolineButActionPerformed
+        gasolineDialog.setGui();
+        
+        gasolineDialog.setVisible(true);
+    }//GEN-LAST:event_GasolineButActionPerformed
+
+    private void LpgButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LpgButActionPerformed
+        lpgDialog.setGui();
+        
+        lpgDialog.setVisible(true);
+    }//GEN-LAST:event_LpgButActionPerformed
 
     /**
      * @param args the command line arguments
