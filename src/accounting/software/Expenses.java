@@ -10,5 +10,5 @@ package accounting.software;
  * @author Arif Dogru
  */
 public interface Expenses {
-    
+
 }

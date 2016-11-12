@@ -408,11 +408,11 @@ public class MainFrame extends javax.swing.JFrame {
         ManageFinanceBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ManageFinanceBut.setPreferredSize(new java.awt.Dimension(245, 52));
         ManageFinanceBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ManageFinanceButMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ManageFinanceButMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ManageFinanceButMouseEntered(evt);
             }
         });
 
