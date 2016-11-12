@@ -15,9 +15,11 @@ import java.util.List;
 public class AccountingSystem {
     private List<Personnel> personnelList=new ArrayList();
     private List<Fuel> fuelList=new ArrayList();
+
     
     private List<PersonnelPanel> personnelPanelList = new ArrayList();
     
+
     private static final AccountingSystem INSTANCE = new AccountingSystem();
     
     private AccountingSystem(){}
@@ -30,6 +32,7 @@ public class AccountingSystem {
         if(index>=personnelList.size())
             return null;
         return personnelList.get(index);
+
     }
     
     public Personnel getPersonById(int personId){
@@ -57,6 +60,7 @@ public class AccountingSystem {
         return fuelList.size();
     }
     
+
     public void addPerson(Personnel newPerson)
     {
         boolean duplicate=false;
