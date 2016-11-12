@@ -14,71 +14,68 @@ import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-
-
-
 /**
  *
  * @author Furkan
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    
-    
     public static MainFrame mainFrame;
     DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
-    
+
     private static Font newFont;
-    
+
+    private boolean sumOpen = true;
+    private boolean personnelOpen = false;
+    private boolean financeOpen = false;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
+        Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
+        sumTab.setIcon(img);
+
         PersonnelPanel temp = new PersonnelPanel();
         PersonnelPanel temp2 = new PersonnelPanel();
         PersonnelPanel temp3 = new PersonnelPanel();
-        
-        
+
         mainFrame = this;
-        
-        
+
         this.jPanel7.add(temp);
         temp.setBounds(0, 0, 283, 60);
         this.jPanel7.add(temp2);
         temp2.setBounds(0, 80, 283, 60);
         this.jPanel7.add(temp3);
-        temp3.setBounds(0, 160, 283, 60); 
-        
+        temp3.setBounds(0, 160, 283, 60);
+
         this.add(persframe);
         persframe.setVisible(false);
 //        
 //        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
 //        this.revalidate();
 //        this.repaint();
-    //     this.jPanel7.setSize(283, 180);
+        //     this.jPanel7.setSize(283, 180);
 
- 
- 
-    }
-    
-    
-    private void updatePersonelPannel(){
-        
-    }
-    
-    private void updateExpensesPannel(){
-        
-    }
-    
-    private void updateIncomesPannel(){
-        
     }
 
-    FinanceFrame financeframe = new FinanceFrame();
+    private void updatePersonelPannel() {
+
+    }
+
+    private void updateExpensesPannel() {
+
+    }
+
+    private void updateIncomesPannel() {
+
+    }
+
     personnelFrame persframe = new personnelFrame();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,11 +105,9 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        ManagePersonelBut = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        ManageFinanceBut = new javax.swing.JButton();
         ExpensesBut = new javax.swing.JButton();
         IncomesBut = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -348,20 +343,6 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(176, 190, 197));
         jPanel2.setPreferredSize(new java.awt.Dimension(383, 580));
 
-        ManagePersonelBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 10.png"))); // NOI18N
-        ManagePersonelBut.setBorderPainted(false);
-        ManagePersonelBut.setContentAreaFilled(false);
-        ManagePersonelBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ManagePersonelBut.setPreferredSize(new java.awt.Dimension(245, 52));
-        ManagePersonelBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ManagePersonelButMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ManagePersonelButMouseEntered(evt);
-            }
-        });
-
         jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setPreferredSize(new java.awt.Dimension(283, 100));
@@ -385,10 +366,6 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(ManagePersonelBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,29 +376,13 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ManagePersonelBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(96, 96, 96))
         );
 
         sumPane.add(jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(176, 190, 197));
         jPanel3.setPreferredSize(new java.awt.Dimension(383, 580));
-
-        ManageFinanceBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 11.png"))); // NOI18N
-        ManageFinanceBut.setBorderPainted(false);
-        ManageFinanceBut.setContentAreaFilled(false);
-        ManageFinanceBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ManageFinanceBut.setPreferredSize(new java.awt.Dimension(245, 52));
-        ManageFinanceBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ManageFinanceButMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ManageFinanceButMouseExited(evt);
-            }
-        });
 
         ExpensesBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 39.png"))); // NOI18N
         ExpensesBut.setBorderPainted(false);
@@ -480,7 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 187, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(jPanel8);
@@ -496,16 +457,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(ManageFinanceBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,9 +473,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(ManageFinanceBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -532,131 +486,142 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void sumTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
-                sumTab.setIcon(img);
+        sumTab.setIcon(img);
     }//GEN-LAST:event_sumTabMouseEntered
 
     private void sumTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
-                sumTab.setIcon(img);
+        if (!sumOpen) {
+            Icon img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
+            sumTab.setIcon(img);
+        }
+
     }//GEN-LAST:event_sumTabMouseExited
 
     private void PersonnelTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
-                PersonnelTab.setIcon(img);
+        PersonnelTab.setIcon(img);
     }//GEN-LAST:event_PersonnelTabMouseEntered
 
     private void PersonnelTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
-                PersonnelTab.setIcon(img);
+        if (!personnelOpen) {
+            Icon img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
+            PersonnelTab.setIcon(img);
+        }
+
     }//GEN-LAST:event_PersonnelTabMouseExited
 
     private void FInanceTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
-                FInanceTab.setIcon(img);
+        FInanceTab.setIcon(img);
     }//GEN-LAST:event_FInanceTabMouseEntered
 
     private void FInanceTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
-                FInanceTab.setIcon(img);
+        if (!financeOpen) {
+            Icon img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
+            FInanceTab.setIcon(img);
+        }
+
     }//GEN-LAST:event_FInanceTabMouseExited
-
-    private void ManagePersonelButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManagePersonelButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 25.png"));
-                ManagePersonelBut.setIcon(img);
-    }//GEN-LAST:event_ManagePersonelButMouseEntered
-
-    private void ManagePersonelButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManagePersonelButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 10.png"));
-                ManagePersonelBut.setIcon(img);
-    }//GEN-LAST:event_ManagePersonelButMouseExited
-
-    private void ManageFinanceButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageFinanceButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 28.png"));
-                ManageFinanceBut.setIcon(img);
-    }//GEN-LAST:event_ManageFinanceButMouseEntered
-
-    private void ManageFinanceButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageFinanceButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/Asset 11.png"));
-                ManageFinanceBut.setIcon(img);
-    }//GEN-LAST:event_ManageFinanceButMouseExited
 
     private void ReportButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 29.png"));
-                ReportBut.setIcon(img);
+        ReportBut.setIcon(img);
     }//GEN-LAST:event_ReportButMouseEntered
 
     private void ReportButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 9.png"));
-                ReportBut.setIcon(img);
+        ReportBut.setIcon(img);
     }//GEN-LAST:event_ReportButMouseExited
 
     private void DieselButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 30.png"));
-                DieselBut.setIcon(img);
+        DieselBut.setIcon(img);
     }//GEN-LAST:event_DieselButMouseEntered
 
     private void DieselButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 12.png"));
-                DieselBut.setIcon(img);
+        DieselBut.setIcon(img);
     }//GEN-LAST:event_DieselButMouseExited
 
     private void GasolineButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 32.png"));
-                GasolineBut.setIcon(img);
+        GasolineBut.setIcon(img);
     }//GEN-LAST:event_GasolineButMouseEntered
 
     private void GasolineButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 13.png"));
-                GasolineBut.setIcon(img);
+        GasolineBut.setIcon(img);
     }//GEN-LAST:event_GasolineButMouseExited
 
     private void LpgButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 33.png"));
-                LpgBut.setIcon(img);
+        LpgBut.setIcon(img);
     }//GEN-LAST:event_LpgButMouseEntered
 
     private void LpgButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 14.png"));
-                LpgBut.setIcon(img);
+        LpgBut.setIcon(img);
     }//GEN-LAST:event_LpgButMouseExited
 
     private void ExpensesButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 41.png"));
-                ExpensesBut.setIcon(img);
+        ExpensesBut.setIcon(img);
     }//GEN-LAST:event_ExpensesButMouseEntered
 
     private void ExpensesButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 39.png"));
-                ExpensesBut.setIcon(img);
+        ExpensesBut.setIcon(img);
     }//GEN-LAST:event_ExpensesButMouseExited
 
     private void IncomesButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 42.png"));
-                IncomesBut.setIcon(img);
+        IncomesBut.setIcon(img);
     }//GEN-LAST:event_IncomesButMouseEntered
 
     private void IncomesButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 40.png"));
-                IncomesBut.setIcon(img);
+        IncomesBut.setIcon(img);
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
-        System.out.println("Personnel Tab is clicked");
-            System.out.println("Personnel Tab is activating");
-            
-            if(financeframe.isVisible())
-            {
-                sumPane.setVisible(true);
-                this.remove(financeframe);
-            }
+        if (!persframe.isVisible()) {
+
+            Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
+            PersonnelTab.setIcon(img);
+            personnelOpen = true;
+
+            sumOpen = false;
+
+            financeOpen = false;
+
+            img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
+            sumTab.setIcon(img);
+
+            img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
+            FInanceTab.setIcon(img);
+
+            //finance tab visible false
             sumPane.setVisible(false);
-            this.add(persframe);
             persframe.setVisible(true);
-            System.out.println("activated ");
+        }
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
-        if(!sumPane.isVisible()){
+        if (!sumPane.isVisible()) {
+
+            Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
+            sumTab.setIcon(img);
+
+            sumOpen = true;
+            personnelOpen = false;
+            financeOpen = false;
+
+            img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
+            PersonnelTab.setIcon(img);
+
+            img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
+            FInanceTab.setIcon(img);
+
             persframe.setVisible(false);
             //finance tab visible false
             sumPane.setVisible(true);
@@ -664,16 +629,25 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-       System.out.println("Finance Tab is clicked");
-           System.out.println("Finance Tab is activating");
-           if(persframe.isVisible())
-           {
-               sumPane.setVisible(true);
-               this.remove(persframe);
-           }
-           sumPane.setVisible(false);
-            this.add(financeframe);
-            financeframe.setVisible(true);
+        // if(!FInanceTab.isVisible()){
+
+        Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
+        FInanceTab.setIcon(img);
+
+        financeOpen = true;
+        sumOpen = false;
+        personnelOpen = false;
+
+        img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
+        sumTab.setIcon(img);
+
+        img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
+        PersonnelTab.setIcon(img);
+
+        persframe.setVisible(false);
+        sumPane.setVisible(false);
+        // finance tab set visible
+        //}
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
@@ -710,7 +684,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 try {
                     newFont = Font.createFont(Font.TRUETYPE_FONT, new File("font/Myriad-Pro_31655.ttf"));
                     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -719,7 +693,7 @@ public class MainFrame extends javax.swing.JFrame {
                     // Handle exception
                     System.err.println("Error loading font: " + e.getMessage());
                 }
-                
+
                 new MainFrame().setVisible(true);
             }
         });
@@ -732,8 +706,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton GasolineBut;
     private javax.swing.JButton IncomesBut;
     private javax.swing.JButton LpgBut;
-    private javax.swing.JButton ManageFinanceBut;
-    private javax.swing.JButton ManagePersonelBut;
     private javax.swing.JLabel PersonnelTab;
     private javax.swing.JButton ReportBut;
     private javax.swing.JLabel jLabel10;
