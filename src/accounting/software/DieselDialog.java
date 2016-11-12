@@ -34,6 +34,12 @@ public class DieselDialog extends javax.swing.JDialog {
         
     }
     
+    public void setGui(){
+        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getFuelAmount()));
+        jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getBuyingPrice()));
+        jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getSalePrice()));
+    }
+    
     public String checkInputValidity() {
         if(jTextField1.getText().isEmpty()){
             return "Available amount cannot be empty!";
