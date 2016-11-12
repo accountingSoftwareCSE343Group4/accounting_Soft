@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class FinanceFrame extends javax.swing.JPanel {
     
     //lists   
-    private ArrayList<gider> giderler = new ArrayList<gider>();
-    private ArrayList<gelir> gelirler = new ArrayList<gelir>();
+    private static ArrayList<gider> giderler = new ArrayList<gider>();
+    private static ArrayList<gelir> gelirler = new ArrayList<gelir>();
     
     //Dialogs
     AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
@@ -23,16 +23,20 @@ public class FinanceFrame extends javax.swing.JPanel {
     DeleteFinanceDialog deleteDialog = new DeleteFinanceDialog(MainFrame.mainFrame, true);
     
         
-    private int freeIncomeX = 0;
-    private int freeIncomeY = 0;
-    private int freeOutcomeX = 0;
-    private int freeOutcomeY = 0;
+    private static int freeIncomeX = 0;
+    private static int freeIncomeY = 0;
+    private static int freeOutcomeX = 0;
+    private static int freeOutcomeY = 0;
     
     /**
      * Creates new form FinanceFrame
      */
     public FinanceFrame() {
         initComponents();
+        UpdateMe();
+    }
+    
+    public static void UpdateMe(){
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
             giderler.add(new gider(AccountingSystem.getInstance().getPerson(i)));
         
@@ -43,15 +47,17 @@ public class FinanceFrame extends javax.swing.JPanel {
             gelirler.add(new gelir(AccountingSystem.getInstance().getFuel(i)));
 
         for (gider elem : giderler) {
-            elem.setBounds(0, 0, 500 , 50);
+            elem.setBounds(freeOutcomeX,freeOutcomeY, 500 , 50);
             outcomePanel.add(elem);
+            freeOutcomeY += 50;  
         }
         for (gelir elem : gelirler) {
-            elem.setBounds(0, 0, 500 , 50);
+            elem.setBounds(freeIncomeX,freeIncomeY, 500 , 50);
             incomePanel.add(elem);
+            freeIncomeY += 50;
         }
-        
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +81,11 @@ public class FinanceFrame extends javax.swing.JPanel {
         outcomePanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1149, 580));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("INCOMES");
@@ -104,6 +115,9 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         DeleteOutcomeBut.setText("Delete");
 
+        leftPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        leftPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         incomePanel.setPreferredSize(new java.awt.Dimension(530, 435));
 
         javax.swing.GroupLayout incomePanelLayout = new javax.swing.GroupLayout(incomePanel);
@@ -119,13 +133,16 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         leftPane.setViewportView(incomePanel);
 
+        rightPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        rightPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         outcomePanel.setPreferredSize(new java.awt.Dimension(530, 435));
 
         javax.swing.GroupLayout outcomePanelLayout = new javax.swing.GroupLayout(outcomePanel);
         outcomePanel.setLayout(outcomePanelLayout);
         outcomePanelLayout.setHorizontalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
         outcomePanelLayout.setVerticalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +164,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addContainerGap()
                         .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +181,7 @@ public class FinanceFrame extends javax.swing.JPanel {
                         .addComponent(EditOutcomeBut)
                         .addGap(18, 18, 18)
                         .addComponent(DeleteOutcomeBut)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +202,7 @@ public class FinanceFrame extends javax.swing.JPanel {
                     .addComponent(AddOutcomeBut)
                     .addComponent(EditOutcomeBut)
                     .addComponent(DeleteOutcomeBut))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,6 +228,10 @@ public class FinanceFrame extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_EditIncomeButActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        
+    }//GEN-LAST:event_formFocusGained
     private void updateIncome(int op,gelir g){
         if(op == 0)
         {
@@ -230,6 +251,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         }
             
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddIncomeBut;
@@ -238,11 +260,11 @@ public class FinanceFrame extends javax.swing.JPanel {
     private javax.swing.JButton DeleteOutcomeBut;
     private javax.swing.JButton EditIncomeBut;
     private javax.swing.JButton EditOutcomeBut;
-    private javax.swing.JPanel incomePanel;
+    private static javax.swing.JPanel incomePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane leftPane;
-    private javax.swing.JPanel outcomePanel;
+    private static javax.swing.JPanel outcomePanel;
     private javax.swing.JScrollPane rightPane;
     // End of variables declaration//GEN-END:variables
 }
