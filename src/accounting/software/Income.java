@@ -10,4 +10,20 @@ package accounting.software;
  * @author Arif Dogru
  */
 public interface Income {
+    
+        /**
+     * Miktarı return eder
+     * @return 
+     */
+    Double getIncome();
+    /**
+     * Income Adını Return eder
+     * @return 
+     */
+    String getName();
+    /**
+     * Descrition return eder
+     * @return 
+     */
+    String getDescription();
 }

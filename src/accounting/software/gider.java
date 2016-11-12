@@ -10,11 +10,19 @@ package accounting.software;
  * @author emre
  */
 public class gider extends javax.swing.JPanel {
-
+    Expenses exp;
     /**
      * Creates new form gider
      */
-    public gider() {
+    public gider(Expenses expe) {
+        initComponents();
+        exp = expe;
+        Name.setText(exp.getName());
+        amount.setText(exp.getExpense().toString());
+        desc.setText(exp.getDescription());
+    }
+    
+    public gider(){
         initComponents();
     }
 

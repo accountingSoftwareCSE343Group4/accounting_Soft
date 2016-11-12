@@ -10,11 +10,19 @@ package accounting.software;
  * @author emre
  */
 public class gelir extends javax.swing.JPanel {
-
+    
+    private Income inc;
     /**
      * Creates new form gelir
      */
-    public gelir() {
+    public gelir(Income inc) {
+        initComponents();
+        this.inc = inc;
+        name.setText(inc.getName());
+        amount.setText(inc.getIncome().toString());
+        jLabel2.setText(inc.getDescription());
+    }
+    public gelir(){
         initComponents();
     }
 

@@ -13,23 +13,36 @@ import java.util.ArrayList;
  */
 public class FinanceFrame extends javax.swing.JPanel {
     
+    //lists   
+    private ArrayList<gider> giderler = new ArrayList<gider>();
+    private ArrayList<gelir> gelirler = new ArrayList<gelir>();
+    
     //Dialogs
     AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
     EditFinanceDialog editDialog  = new EditFinanceDialog(MainFrame.mainFrame, true);
     DeleteFinanceDialog deleteDialog = new DeleteFinanceDialog(MainFrame.mainFrame, true);
     
-    /**
-     * Creates new form FinanceFrame
-     */
-    
+        
     private int freeIncomeX = 0;
     private int freeIncomeY = 0;
     private int freeOutcomeX = 0;
     private int freeOutcomeY = 0;
     
+    /**
+     * Creates new form FinanceFrame
+     */
     public FinanceFrame() {
         initComponents();
-        /*        for (gider elem : giderler) {
+        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
+            giderler.add(new gider(AccountingSystem.getInstance().getPerson(i)));
+        
+        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
+            giderler.add(new gider(AccountingSystem.getInstance().getFuel(i)));
+        
+        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
+            gelirler.add(new gelir(AccountingSystem.getInstance().getFuel(i)));
+
+        for (gider elem : giderler) {
             elem.setBounds(0, 0, 500 , 50);
             outcomePanel.add(elem);
         }
@@ -37,11 +50,8 @@ public class FinanceFrame extends javax.swing.JPanel {
             elem.setBounds(0, 0, 500 , 50);
             incomePanel.add(elem);
         }
-*/
+        
     }
-   
-    private ArrayList<gider> giderler = new ArrayList<gider>();
-    private ArrayList<gelir> gelirler = new ArrayList<gelir>();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,6 +203,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_AddIncomeButActionPerformed
 
+    
     private void EditIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditIncomeButActionPerformed
         editDialog.setVisible(true);
         
