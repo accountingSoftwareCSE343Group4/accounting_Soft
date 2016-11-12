@@ -45,7 +45,8 @@ public class FinanceFrame extends javax.swing.JPanel {
         
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
             gelirler.add(new gelir(AccountingSystem.getInstance().getFuel(i)));
-
+        
+       /*Add Sales*/
         for (gider elem : giderler) {
             elem.setBounds(freeOutcomeX,freeOutcomeY, 500 , 50);
             outcomePanel.add(elem);
