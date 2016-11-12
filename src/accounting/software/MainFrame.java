@@ -50,10 +50,12 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanel7.add(temp2);
         temp2.setBounds(0, 80, 283, 60);
         this.jPanel7.add(temp3);
+
         temp3.setBounds(0, 160, 283, 60);
 
         this.add(persframe);
         persframe.setVisible(false);
+
 //        
 //        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
 //        this.revalidate();
@@ -74,6 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     }
 
+    FinanceFrame financeframe = new FinanceFrame();
     personnelFrame persframe = new personnelFrame();
 
     /**
@@ -584,7 +587,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_IncomesButMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
-        if (!persframe.isVisible()) {
+
+      
 
             Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
             PersonnelTab.setIcon(img);
@@ -600,10 +604,19 @@ public class MainFrame extends javax.swing.JFrame {
             img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
             FInanceTab.setIcon(img);
 
-            //finance tab visible false
+           
+
+                        
+            if(financeframe.isVisible())
+            {
+                sumPane.setVisible(true);
+                this.remove(financeframe);
+            }
+
             sumPane.setVisible(false);
+            this.add(persframe);
             persframe.setVisible(true);
-        }
+           
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -623,13 +636,13 @@ public class MainFrame extends javax.swing.JFrame {
             FInanceTab.setIcon(img);
 
             persframe.setVisible(false);
-            //finance tab visible false
+            financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-        // if(!FInanceTab.isVisible()){
+
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
         FInanceTab.setIcon(img);
@@ -644,10 +657,17 @@ public class MainFrame extends javax.swing.JFrame {
         img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
         PersonnelTab.setIcon(img);
 
-        persframe.setVisible(false);
+       
+
+        if(persframe.isVisible())
+        {
+            sumPane.setVisible(true);
+            this.remove(persframe);
+        }
         sumPane.setVisible(false);
-        // finance tab set visible
-        //}
+         this.add(financeframe);
+         financeframe.setVisible(true);
+
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
