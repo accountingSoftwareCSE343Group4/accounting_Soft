@@ -13,20 +13,17 @@ import java.util.ArrayList;
 
 public class BillAndTax {
     
-    double getPersonelExpenses(ArrayList<Personnel> personnelList){
+    double getPersonelExpenses(){
         double sum=0;
-        for(int i=0; i < personnelList.size(); i++){
-            sum = personnelList.get(i).getSalary() + personnelList.get(i).getSskBonus();
+        for(int i=0; i < AccountingSystem.getInstance().getPersonnelSize(); i++){
+            sum = AccountingSystem.getInstance().getPerson(i).getSalary() + AccountingSystem.getInstance().getPerson(i).getSskBonus();
         }
         return sum;
     } 
     // fuelExpenses + PersonelExpenses 
     double getExpenses(){
-
         double sum=0;
-        for(int i=0; i < AccountingSystem.getInstance().getPersonnelSize(); i++){
-            sum = AccountingSystem.getInstance().getPerson(i).getSalary() + AccountingSystem.getInstance().getPerson(i).getSskBonus();
-        }
+        sum += getPersonelExpenses();
         sum += getFuelExpenses();
         return sum;
     }
