@@ -8,6 +8,8 @@ package accounting.software;
 import static java.lang.System.exit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,10 +25,53 @@ public class DieselDialog extends javax.swing.JDialog {
         initComponents();
         
         this.getContentPane().setBackground(jLabel1.getBackground());
+       
         
         this.setLocationRelativeTo(MainFrame.mainFrame);
         
         this.setTitle("Configure Diesel");
+        
+        
+    }
+    
+    public String checkInputValidity() {
+        if(jTextField1.getText().isEmpty()){
+            return "Available amount cannot be empty!";
+        }else {
+            
+            try{
+                Double.parseDouble(jTextField1.getText());
+            }catch(NumberFormatException ex){
+                return "Available amount must be a number!";
+            }
+            
+        }
+        
+        if(jTextField2.getText().isEmpty()){
+            return "Purchase price cannot be empty!";
+        }else {
+            
+            try{
+                Double.parseDouble(jTextField2.getText());
+            }catch(NumberFormatException ex){
+                return "Purchase price must be a number!";
+            }
+            
+        }
+        
+        if(jTextField3.getText().isEmpty()){
+            return "Current price cannot be empty!";
+        }else {
+            
+            try{
+                Double.parseDouble(jTextField3.getText());
+            }catch(NumberFormatException ex){
+                return "Current price must be a number!";
+            }
+            
+        }
+        
+        return "";
     }
 
     /**
@@ -110,6 +155,11 @@ public class DieselDialog extends javax.swing.JDialog {
                 jButton1MouseExited(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +218,27 @@ public class DieselDialog extends javax.swing.JDialog {
         Icon img = new ImageIcon(getClass().getResource("images/exit.png"));
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        String error = checkInputValidity();
+        
+        if (!error.isEmpty()) {
+            JOptionPane.showMessageDialog(this, error);
+            return;
+        }
+        
+        AccountingSystem.getInstance().getFuel(0).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
+        AccountingSystem.getInstance().getFuel(0).setSalePrice(Double.parseDouble(jTextField3.getText()));
+        AccountingSystem.getInstance().getFuel(0).setFuelAmount(Double.parseDouble(jTextField1.getText()));
+        
+       MainFrame.mainFrame.updateFuels();
+       
+       this.setVisible(false);
+       
+       
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

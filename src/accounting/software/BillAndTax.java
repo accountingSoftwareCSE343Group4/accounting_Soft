@@ -10,7 +10,6 @@ package accounting.software;
  * @author zubeyde ozge yilmaz
  */
 import java.util.ArrayList;
-import java.util.List;
 
 public class BillAndTax {
     
@@ -23,11 +22,10 @@ public class BillAndTax {
     } 
     // fuelExpenses + PersonelExpenses 
     double getExpenses(){
-        List<Personnel> personnelList = new ArrayList();
-        //personnelList = AccountingSystem.getInstance().personnelList;
+
         double sum=0;
         for(int i=0; i < AccountingSystem.getInstance().getPersonnelSize(); i++){
-            sum = AccountingSystem.getInstance().getPerson(i).getSalary() + personnelList.get(i).getSskBonus();
+            sum = AccountingSystem.getInstance().getPerson(i).getSalary() + AccountingSystem.getInstance().getPerson(i).getSskBonus();
         }
         sum += getFuelExpenses();
         return sum;
