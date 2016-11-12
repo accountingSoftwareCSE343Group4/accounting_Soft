@@ -1,3 +1,4 @@
+
 package accounting.software;
 
 /**
@@ -13,17 +14,19 @@ public class Fuel implements Expenses,Income{
  private double salePrice;
  private double tax;
  
+
+
  public Fuel(){
-    this.fuelType= " ";
+    this.fuelType="";
     this.fuelCapacity=0;
     this.fuelAmount=0;
     this.buyingPrice=0;
     this.salePrice=0;
     this.tax=0;
  }
- 
  public  Fuel(String fuelType,double fuelCapacity,double fuelAmount){
      
+
     this.fuelCapacity=fuelCapacity;
     this.fuelAmount=fuelAmount;
     this.fuelType=fuelType;
@@ -82,4 +85,25 @@ public class Fuel implements Expenses,Income{
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
     }
+
+    @Override
+    public Double getExpense() {
+        return getBuyingPrice();
+    }
+
+    @Override
+    public String getName() {
+        return getFuelType();
+    }
+
+    @Override
+    public String getDescription() {
+        return "Fuel";
+    }
+
+ 
+
+   
 }
+
+

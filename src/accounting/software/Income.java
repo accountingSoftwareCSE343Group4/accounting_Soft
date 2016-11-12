@@ -11,4 +11,20 @@ package accounting.software;
  */
 public interface Income {
     
+    /**
+     * Miktarı return eder
+     * @return 
+     */
+    Double getExpense();
+    /**
+     * Income Adını Return eder
+     * @return 
+     */
+    String getName();
+    /**
+     * Descrition return eder
+     * @return 
+     */
+    String getDescription();
+    
 }

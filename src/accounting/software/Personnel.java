@@ -101,4 +101,14 @@ public class Personnel implements Expenses{
     public void setSskBonus(double sskbonus) {
         this.sskBonus = sskbonus;
     }
+
+    @Override
+    public Double getExpense() {
+        return getSalary() + getSskBonus();
+    }
+
+    @Override
+    public String getDescription() {
+        return "Employee_" + getName();
+    }
 }
