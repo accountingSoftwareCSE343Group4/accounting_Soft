@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class BillAndTax {
     
+
     double getPersonelExpenses(){
         double sum=0;
         for(int i=0; i < AccountingSystem.getInstance().getPersonnelSize(); i++){
