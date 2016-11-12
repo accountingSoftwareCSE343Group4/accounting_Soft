@@ -165,6 +165,7 @@ public class personnelFrame extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         jLabel2.setText("Job                           :");
 
         JobField.setText("Job");
