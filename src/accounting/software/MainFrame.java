@@ -5,13 +5,14 @@
  */
 package accounting.software;
 
+
+
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -22,7 +23,12 @@ import javax.swing.ImageIcon;
 public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
-    DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
+    private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
+    
+    private FinanceFrame financeframe = new FinanceFrame();
+    private personnelFrame persframe = new personnelFrame();
 
     private static Font newFont;
 
@@ -42,30 +48,13 @@ public class MainFrame extends javax.swing.JFrame {
         
         mainFrame = this;
 
-//        PersonnelPanel temp = new PersonnelPanel();
-//        PersonnelPanel temp2 = new PersonnelPanel();
-//        PersonnelPanel temp3 = new PersonnelPanel();
-//
-//        mainFrame = this;
-//
-//        this.jPanel7.add(temp);
-//        temp.setBounds(0, 0, 283, 60);
-//        this.jPanel7.add(temp2);
-//        temp2.setBounds(0, 80, 283, 60);
-//        this.jPanel7.add(temp3);
-//
-//        temp3.setBounds(0, 160, 283, 60);
 
         this.add(persframe);
         persframe.setVisible(false);
         
         temp();
 
-//        
-//        jPanel7.setPreferredSize(new Dimension(283, jPanel7.getHeight() + 180));
-//        this.revalidate();
-//        this.repaint();
-        //     this.jPanel7.setSize(283, 180);
+
 
     }
 
@@ -81,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
             
            PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName(), personnel.getSalary(), personnel.getId());
            
-           //add accounting system panel
+           AccountingSystem.getInstance().addPersonnelPanel(temp);
             
             jPanel7.add(temp);
             temp.setBounds(0, bound, 283, 60);
@@ -96,9 +85,34 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
+        
     }
 
     private void updateIncomesPannel() {
+        
+        jPanel8.removeAll();
+        
+        int bound = 0;
+        
+        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
+           
+            SalesClass sale = AccountingSystem.getInstance().getSale(i);
+            
+           incomePanel temp = new incomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           
+           //add accounting system panel
+           AccountingSystem.getInstance().addIncomePanel(temp);
+            
+            jPanel8.add(temp);
+            temp.setBounds(0, bound, 300, 40);
+            
+            bound += 40;
+           
+        }
+        
+        this.revalidate();
+        this.repaint();
+        
 
     }
     
@@ -152,12 +166,19 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
         
         
+        AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 0, 5200));
+         AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 1, 5200));
+          AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
+           AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
+            AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        
+        
         updatePersonelPannel();
         updateFuels();
+        updateIncomesPannel();
     }
 
-    FinanceFrame financeframe = new FinanceFrame();
-    personnelFrame persframe = new personnelFrame();
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -314,11 +335,16 @@ public class MainFrame extends javax.swing.JFrame {
         GasolineBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         GasolineBut.setPreferredSize(new java.awt.Dimension(122, 32));
         GasolineBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GasolineButMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 GasolineButMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GasolineButMouseEntered(evt);
+        });
+        GasolineBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GasolineButActionPerformed(evt);
             }
         });
 
@@ -328,38 +354,44 @@ public class MainFrame extends javax.swing.JFrame {
         LpgBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LpgBut.setPreferredSize(new java.awt.Dimension(122, 32));
         LpgBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                LpgButMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 LpgButMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LpgButMouseExited(evt);
+            }
+        });
+        LpgBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LpgButActionPerformed(evt);
+            }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("CURRENT PRICE (LT)         = 5.2");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("CURRENT PRICE (LT)         = 5.2");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("CURRENT PRICE (LT)         = 5.2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -378,15 +410,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -533,18 +565,20 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,9 +589,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(29, 29, 29))
         );
 
         sumPane.add(jPanel3);
@@ -668,6 +702,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
 
+
       
 
             Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
@@ -692,6 +727,7 @@ public class MainFrame extends javax.swing.JFrame {
                 sumPane.setVisible(true);
                 this.remove(financeframe);
             }
+
 
             sumPane.setVisible(false);
             this.add(persframe);
@@ -724,6 +760,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
 
 
+
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
         FInanceTab.setIcon(img);
 
@@ -748,6 +785,7 @@ public class MainFrame extends javax.swing.JFrame {
          this.add(financeframe);
          financeframe.setVisible(true);
 
+
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
@@ -756,6 +794,18 @@ public class MainFrame extends javax.swing.JFrame {
         
         dieselDialog.setVisible(true);
     }//GEN-LAST:event_DieselButActionPerformed
+
+    private void GasolineButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GasolineButActionPerformed
+        gasolineDialog.setGui();
+        
+        gasolineDialog.setVisible(true);
+    }//GEN-LAST:event_GasolineButActionPerformed
+
+    private void LpgButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LpgButActionPerformed
+        lpgDialog.setGui();
+        
+        lpgDialog.setVisible(true);
+    }//GEN-LAST:event_LpgButActionPerformed
 
     /**
      * @param args the command line arguments
