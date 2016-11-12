@@ -7,6 +7,7 @@ package accounting.software;
 
 
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -22,9 +23,12 @@ import javax.swing.ImageIcon;
 public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
-    DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
-    GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
-    LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
+    private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
+    private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
+    
+    private FinanceFrame financeframe = new FinanceFrame();
+    private personnelFrame persframe = new personnelFrame();
 
     private static Font newFont;
 
@@ -66,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
             
            PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName(), personnel.getSalary(), personnel.getId());
            
-           //add accounting system panel
+           AccountingSystem.getInstance().addPersonnelPanel(temp);
             
             jPanel7.add(temp);
             temp.setBounds(0, bound, 283, 60);
@@ -81,9 +85,34 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
+        
     }
 
     private void updateIncomesPannel() {
+        
+        jPanel8.removeAll();
+        
+        int bound = 0;
+        
+        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
+           
+            SalesClass sale = AccountingSystem.getInstance().getSale(i);
+            
+           incomePanel temp = new incomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           
+           //add accounting system panel
+           AccountingSystem.getInstance().addIncomePanel(temp);
+            
+            jPanel8.add(temp);
+            temp.setBounds(0, bound, 300, 40);
+            
+            bound += 40;
+           
+        }
+        
+        this.revalidate();
+        this.repaint();
+        
 
     }
     
@@ -137,12 +166,19 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
         
         
+        AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 0, 5200));
+         AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 1, 5200));
+          AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
+           AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
+            AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        
+        
         updatePersonelPannel();
         updateFuels();
+        updateIncomesPannel();
     }
 
-    FinanceFrame financeframe = new FinanceFrame();
-    personnelFrame persframe = new personnelFrame();
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -529,18 +565,20 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,9 +589,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(29, 29, 29))
         );
 
         sumPane.add(jPanel3);
