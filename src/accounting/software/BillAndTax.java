@@ -9,9 +9,9 @@ package accounting.software;
  *
  * @author zubeyde ozge yilmaz
  */
-import java.util.ArrayList;
 
-public class BillAndTax {
+
+public class BillAndTax implements Expenses{
     
     double getPersonelExpenses(){
         double sum=0;
