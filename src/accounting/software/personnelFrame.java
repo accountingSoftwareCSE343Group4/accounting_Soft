@@ -5,17 +5,34 @@
  */
 package accounting.software;
 
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListDataEvent;
+
 /**
  *
  * @author emre
  */
 public class personnelFrame extends javax.swing.JPanel {
 
+    //Personnel Frame
+    public static personnelFrame persFrame;
+    //Add Button Dialog
+    AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);;
+    
+    //Personnel List
+    List<Personnel> personnels = AccountingSystem.getInstance().personnelList;
+    
     /**
      * Creates new form personnelFrame
      */
     public personnelFrame() {
-        initComponents();
+        persFrame = this;
+        fillPersonnelComboBox();
+        initComponents(); 
     }
 
     /**
@@ -45,12 +62,17 @@ public class personnelFrame extends javax.swing.JPanel {
         editButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        JobField = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1149, 580));
 
-        selectPersonnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectPersonnel.setSelectedIndex(-1);
         selectPersonnel.setName(""); // NOI18N
+        selectPersonnel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectPersonnelİtemStateChanged(evt);
+            }
+        });
         selectPersonnel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectPersonnelActionPerformed(evt);
@@ -73,10 +95,10 @@ public class personnelFrame extends javax.swing.JPanel {
         jLabel10.setText("Address             :");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        jLabel11.setText("SSk Primi         :");
+        jLabel11.setText("SSk Primi          :");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        jLabel12.setText("Salary              :");
+        jLabel12.setText("Salary               :");
 
         idTextBox.setEditable(false);
         idTextBox.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
@@ -89,6 +111,11 @@ public class personnelFrame extends javax.swing.JPanel {
         nameTextBox.setText("Name");
         nameTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nameTextBox.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        nameTextBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextBoxActionPerformed(evt);
+            }
+        });
 
         surnameTextBox.setEditable(false);
         surnameTextBox.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
@@ -125,8 +152,28 @@ public class personnelFrame extends javax.swing.JPanel {
         });
 
         removeButton.setText("Delete");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel2.setText("Job                           :");
+
+        JobField.setText("Job");
+        JobField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JobFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -134,15 +181,17 @@ public class personnelFrame extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(selectPersonnel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(selectPersonnel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                    .addComponent(jLabel2))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nameTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
@@ -151,10 +200,11 @@ public class personnelFrame extends javax.swing.JPanel {
                     .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(idTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(sskPrimTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(salaryTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
-                .addContainerGap(606, Short.MAX_VALUE))
+                    .addComponent(salaryTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(JobField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(611, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,9 +234,13 @@ public class personnelFrame extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(phoneTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(JobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -200,16 +254,51 @@ public class personnelFrame extends javax.swing.JPanel {
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Finds a given name in list
+     * @param name
+     * @return returns index of founded otherwise -1
+     */
+    private Personnel findinList(String name){
+        if(personnels == null)
+            return null;
+        if(personnels.isEmpty())
+            return null;
+        for(int i = 0 ; i < personnels.size(); ++i){
+            if(personnels.get(i).getName().equals(name)){
+                return personnels.get(i);
+            }
+        }
+        return null;
+    }
+    private void fillPersonnelComboBox(){
+        for (Personnel elem : personnels){
+            selectPersonnel.addItem(elem.getName());            
+        }
+    }
+    
     private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
         // TODO add your handling code here:
+        String name = (String)selectPersonnel.getSelectedItem();
+        Personnel pers = findinList(name);
+        if(pers == null)
+            return;
+        
+        idTextBox.setText(String.valueOf(pers.getId()));
+        nameTextBox.setText(pers.getName());
+        surnameTextBox.setText(pers.getLastName());
+        phoneTextBox.setText(pers.getPhoneNumber());
+        addressField.setText(pers.getAddress());
+        sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
+        salaryTextBox.setText(Double.toString(pers.getSalary()));
+        JobField.setText(pers.getJop());
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(editButton.getText() == "Edit"){
+        if(editButton.getText().equals( "Edit")){
             editButton.setText("Done");
             idTextBox.setEditable(true);
             nameTextBox.setEditable(true);
@@ -218,9 +307,11 @@ public class personnelFrame extends javax.swing.JPanel {
             addressField.setEditable(true);
             sskPrimTextBox.setEditable(true);
             salaryTextBox.setEditable(true);
+            JobField.setEditable(true);
         }
         else{
             editButton.setText("Edit");
+            JobField.setEditable(false);
             idTextBox.setEditable(false);
             nameTextBox.setEditable(false);
             surnameTextBox.setEditable(false);
@@ -228,12 +319,67 @@ public class personnelFrame extends javax.swing.JPanel {
             addressField.setEditable(false);
             sskPrimTextBox.setEditable(false);
             salaryTextBox.setEditable(false);
-
+            String name = (String)selectPersonnel.getSelectedItem();
+          
+            Personnel pers = findinList(name);
+            if(pers == null)
+                return;
+            try{
+                
+                pers.setId(Integer.parseInt(idTextBox.getText()));
+                pers.setAddress(addressField.getText());
+                pers.setLastName(surnameTextBox.getText());
+                pers.setName(nameTextBox.getText());
+                pers.setPhoneNumber(phoneTextBox.getText());
+                pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
+                pers.setSskBonus(Double.parseDouble(salaryTextBox.getText()));
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_editButtonActionPerformed
+    
+    private void nameTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextBoxActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        Personnel pers = new Personnel();
+        addDialog.setVisible(true);
+        if(addDialog.getReturnStatus() == AddPersonnelDialog.RET_OK){
+            String Values[] = addDialog.GetValues();
+            pers.setId(Integer.parseInt(Values[0]));
+            pers.setName(Values[1]);
+            pers.setLastName(Values[2]);
+            pers.setPhoneNumber(Values[3]);
+            pers.setAddress(Values[4]);
+            pers.setJop(Values[5]);
+            pers.setSalary(Double.parseDouble(Values[6]));
+            pers.setSskBonus(Double.parseDouble(Values[7]));
+            personnels.add(pers);
+            selectPersonnel.addItem(pers.getName());
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void selectPersonnelİtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectPersonnelİtemStateChanged
+        
+    }//GEN-LAST:event_selectPersonnelİtemStateChanged
+
+    private void JobFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JobFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JobFieldActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        if(personnels.isEmpty())
+            return;
+        AccountingSystem.getInstance().removePerson(findinList((String)selectPersonnel.getSelectedItem()).getId());
+        selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
+    }//GEN-LAST:event_removeButtonActionPerformed
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JobField;
     private javax.swing.JButton addButton;
     private javax.swing.JTextField addressField;
     private javax.swing.JButton editButton;
@@ -242,6 +388,7 @@ public class personnelFrame extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

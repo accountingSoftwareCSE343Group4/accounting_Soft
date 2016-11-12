@@ -10,5 +10,4 @@ package accounting.software;
  * @author Arif Dogru
  */
 public interface Income {
-    
 }

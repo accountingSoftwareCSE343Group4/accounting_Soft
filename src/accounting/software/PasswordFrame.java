@@ -69,9 +69,9 @@ public class PasswordFrame extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyPressed(evt);
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
             }
         });
 
@@ -157,15 +157,6 @@ public class PasswordFrame extends javax.swing.JFrame {
         exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-        String a = new String(jPasswordField1.getPassword());
-        
-        if(a.equals("123")){
-            this.setVisible(false);
-            new MainFrame().setVisible(true);
-        }
-    }//GEN-LAST:event_jPasswordField1KeyPressed
-
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/enter2.png"));
                 jButton1.setIcon(img);
@@ -185,6 +176,15 @@ public class PasswordFrame extends javax.swing.JFrame {
         Icon img = new ImageIcon(getClass().getResource("images/exit.png"));
                 jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseExited
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+          String a = new String(jPasswordField1.getPassword());
+        
+        if(a.equals("123")){
+            this.setVisible(false);
+            new MainFrame().setVisible(true);
+        } 
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
