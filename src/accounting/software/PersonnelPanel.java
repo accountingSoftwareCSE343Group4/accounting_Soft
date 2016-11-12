@@ -5,17 +5,30 @@
  */
 package accounting.software;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Furkan
  */
 public class PersonnelPanel extends javax.swing.JPanel {
 
+    private int panelID;
+    
     /**
      * Creates new form PersonnelPanel
      */
-    public PersonnelPanel() {
+    public PersonnelPanel(String personName, double personSalary, int personID) {
         initComponents();
+        
+        this.jButton1.setText(personName);
+        this.jLabel1.setText("SALARY (TL) = " + personSalary);
+        this.panelID = personID;
+
+    }
+    
+    public int getPersonnelPanelID(){
+        return panelID;
     }
 
     /**

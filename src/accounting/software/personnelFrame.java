@@ -89,6 +89,11 @@ public class personnelFrame extends javax.swing.JPanel {
         nameTextBox.setText("Name");
         nameTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nameTextBox.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        nameTextBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextBoxActionPerformed(evt);
+            }
+        });
 
         surnameTextBox.setEditable(false);
         surnameTextBox.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
@@ -231,6 +236,10 @@ public class personnelFrame extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void nameTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
