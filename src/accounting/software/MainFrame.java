@@ -144,7 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
          
          AccountingSystem.getInstance().addPerson(new Personnel(1));
          AccountingSystem.getInstance().getPerson(1).setName("FURKAN");
-         AccountingSystem.getInstance().getPerson(1).setLastName("ERDÖL");
+         AccountingSystem.getInstance().getPerson(1).setLastName("emre");
          AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
          
          AccountingSystem.getInstance().addPerson(new Personnel(2));
@@ -732,7 +732,7 @@ public class MainFrame extends javax.swing.JFrame {
             sumPane.setVisible(false);
             this.add(persframe);
             persframe.setVisible(true);
-           
+           persframe.updateMe();
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -759,7 +759,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
 
-        FinanceFrame.UpdateMe();
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
         FInanceTab.setIcon(img);
@@ -785,7 +784,7 @@ public class MainFrame extends javax.swing.JFrame {
          this.add(financeframe);
          financeframe.setVisible(true);
 
-
+         financeframe.UpdateMe();
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed

@@ -17,9 +17,14 @@ import javax.swing.ListModel;
  */
 public class FinanceFrame extends javax.swing.JPanel {
     
+    //Kaldırılacak
+    private ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
+    
     //lists   
-    private static Vector<String> giderler = new Vector<String>();
-    private static Vector<String> gelirler = new Vector<String>();
+    private Vector<String> giderler = new Vector<String>();
+    private Vector<String> gelirler = new Vector<String>();
+    private Vector<Integer> gelirIDs = new Vector<Integer>();
+    private Vector<Integer> giderIDs = new Vector<Integer>();
     
     //Dialogs
     AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
@@ -35,7 +40,7 @@ public class FinanceFrame extends javax.swing.JPanel {
     }
     static int temp = 10;
     
-    public static void UpdateMe(){
+    public void UpdateMe(){
         outcomePanel.removeAll();
         incomePanel.removeAll();
         gelirler.clear();
@@ -46,7 +51,6 @@ public class FinanceFrame extends javax.swing.JPanel {
         int freeIncomeY = 0;
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
         {
-            giderler.add(AccountingSystem.getInstance().getPerson(i).getName());
             ++count_out;
             outcomePanel.add(new gider(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
             freeOutcomeY += 50;
@@ -54,8 +58,6 @@ public class FinanceFrame extends javax.swing.JPanel {
         
         for(int i = 0 ; i < AccountingSystem.getInstance().getFuelSize(); ++i )
         {
-            giderler.add(AccountingSystem.getInstance().getFuel(i).getDescription());
-            gelirler.add(AccountingSystem.getInstance().getFuel(i).getDescription());
             ++count_in;
             ++count_out;
             outcomePanel.add(new gider(AccountingSystem.getInstance().getFuel(i), freeOutcomeY));
@@ -67,17 +69,26 @@ public class FinanceFrame extends javax.swing.JPanel {
        
         for(int i = 0 ; i < AccountingSystem.getInstance().getSalesListSize(); ++i )
         {
-            gelirler.add(AccountingSystem.getInstance().getSale(i).getDescription());
+            gelirler.add(AccountingSystem.getInstance().getSale(i).toString());
+            gelirIDs.add(AccountingSystem.getInstance().getSale(i).getID());
             ++count_in;
             incomePanel.add(new gelir(AccountingSystem.getInstance().getSale(i),freeIncomeY));
             freeIncomeY += 50;
+        }
+        // TODO :
+        for(int i = 0; i < others.size(); ++i){
+            giderler.add(others.get(i).getName());
+            outcomePanel.add(new gider(others.get(i), freeOutcomeY));
+            ++count_out;
+            freeOutcomeY += 50;
         }
         
         if(count_in*50 >= 450)
             incomePanel.setPreferredSize(new Dimension(530, freeIncomeY + 50));
         if(count_out*50 >= 450)
             outcomePanel.setPreferredSize(new Dimension(530, freeOutcomeY + 50));
-
+        this.revalidate();
+        this.repaint();
     }
     
     /**
@@ -92,10 +103,8 @@ public class FinanceFrame extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         AddIncomeBut = new javax.swing.JButton();
-        EditIncomeBut = new javax.swing.JButton();
         DeleteIncomeBut = new javax.swing.JButton();
         AddOutcomeBut = new javax.swing.JButton();
-        EditOutcomeBut = new javax.swing.JButton();
         DeleteOutcomeBut = new javax.swing.JButton();
         leftPane = new javax.swing.JScrollPane();
         incomePanel = new javax.swing.JPanel();
@@ -122,20 +131,26 @@ public class FinanceFrame extends javax.swing.JPanel {
             }
         });
 
-        EditIncomeBut.setText("Edit");
-        EditIncomeBut.addActionListener(new java.awt.event.ActionListener() {
+        DeleteIncomeBut.setText("Delete");
+        DeleteIncomeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditIncomeButActionPerformed(evt);
+                DeleteIncomeButActionPerformed(evt);
             }
         });
 
-        DeleteIncomeBut.setText("Delete");
-
         AddOutcomeBut.setText("Add");
-
-        EditOutcomeBut.setText("Edit");
+        AddOutcomeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddOutcomeButActionPerformed(evt);
+            }
+        });
 
         DeleteOutcomeBut.setText("Delete");
+        DeleteOutcomeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteOutcomeButActionPerformed(evt);
+            }
+        });
 
         leftPane.setPreferredSize(new java.awt.Dimension(548, 430));
 
@@ -188,15 +203,11 @@ public class FinanceFrame extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(AddIncomeBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditIncomeBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(73, 73, 73)
                 .addComponent(DeleteIncomeBut)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(AddOutcomeBut)
-                .addGap(18, 18, 18)
-                .addComponent(EditOutcomeBut)
-                .addGap(18, 18, 18)
+                .addGap(97, 97, 97)
                 .addComponent(DeleteOutcomeBut)
                 .addGap(194, 194, 194))
         );
@@ -215,11 +226,9 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AddOutcomeBut)
-                        .addComponent(EditOutcomeBut)
                         .addComponent(DeleteOutcomeBut))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AddIncomeBut)
-                        .addComponent(EditIncomeBut)
                         .addComponent(DeleteIncomeBut)))
                 .addGap(0, 31, Short.MAX_VALUE))
         );
@@ -240,17 +249,61 @@ public class FinanceFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_AddIncomeButActionPerformed
 
     
-    private void EditIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditIncomeButActionPerformed
-        editDialog.setVisible(true);
-        editDialog.list.setListData(gelirler);
-        if(editDialog.getReturnStatus() == EditFinanceDialog.RET_OK){
-            
-        }
-    }//GEN-LAST:event_EditIncomeButActionPerformed
-
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         
     }//GEN-LAST:event_formFocusGained
+
+    private void DeleteIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteIncomeButActionPerformed
+        deleteDialog.setItems(gelirler);
+        deleteDialog.setVisible(true);
+        
+        if(deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK){
+            String delete = deleteDialog.getSelecteditem();
+            for(int i = 0; i < gelirler.size(); ++i){
+                if(delete.equals(gelirler.get(i))){
+                    AccountingSystem.getInstance().removeSale(gelirIDs.elementAt(i));
+                    gelirler.remove(i);
+                    gelirIDs.remove(i);
+                }
+            }
+            UpdateMe();
+        }
+    }//GEN-LAST:event_DeleteIncomeButActionPerformed
+
+    private void AddOutcomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddOutcomeButActionPerformed
+        addDialog.setVisible(true);
+        
+        if(addDialog.getReturnStatus() == AddFinanceDialog.RET_OK){
+            String[] s = new String[3];
+            s = addDialog.GetValues();
+            
+            OtherExpense other = new OtherExpense(s[0],s[1], Double.parseDouble(s[2]));
+            others.add(other);
+            giderler.add(s[0] + "_" + s[1]);
+            giderIDs.add(other.getID());
+            //SalesClass sale = new SalesClass(s[1],temp,Integer.parseInt(s[2]));
+            //AccountingSystem.getInstance().addSale(sale);
+            UpdateMe();
+        }
+
+    }//GEN-LAST:event_AddOutcomeButActionPerformed
+
+    private void DeleteOutcomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteOutcomeButActionPerformed
+        deleteDialog.setItems(giderler);
+        deleteDialog.setVisible(true);
+        
+        if(deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK){
+            String delete = deleteDialog.getSelecteditem();
+            for(int i = 0; i < giderler.size(); ++i){
+                if(delete.equals(giderler.get(i))){
+                    others.remove(i);
+                    giderler.remove(i);
+                    giderIDs.remove(i);
+                }
+            }
+            UpdateMe();
+        }
+    }//GEN-LAST:event_DeleteOutcomeButActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,8 +311,6 @@ public class FinanceFrame extends javax.swing.JPanel {
     private javax.swing.JButton AddOutcomeBut;
     private javax.swing.JButton DeleteIncomeBut;
     private javax.swing.JButton DeleteOutcomeBut;
-    private javax.swing.JButton EditIncomeBut;
-    private javax.swing.JButton EditOutcomeBut;
     private static javax.swing.JPanel incomePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

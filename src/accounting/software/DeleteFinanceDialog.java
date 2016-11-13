@@ -7,6 +7,7 @@ package accounting.software;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -88,11 +89,7 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
             }
         });
 
-        items.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        items.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(items);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,7 +150,14 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
+    
+    public void setItems(String[] arr){
+        items.setListData(arr);
+    }
 
+    public void setItems(Vector arr){
+        items.setListData(arr);
+    }
     /**
      * @param args the command line arguments
      */

@@ -37,7 +37,6 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
         initComponents();
         
         this.getContentPane().setBackground(jLabel1.getBackground());
-        this.setLocationRelativeTo(personnelFrame.persFrame);
         
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";

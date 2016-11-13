@@ -9,6 +9,8 @@ import java.awt.Dialog;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListDataEvent;
 
@@ -18,22 +20,13 @@ import javax.swing.event.ListDataEvent;
  */
 public class personnelFrame extends javax.swing.JPanel {
 
-    //Personnel Frame
-    public static personnelFrame persFrame;
     //Add Button Dialog
     AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);
-    
-    //Personnel List
-    List<Personnel> personnels = new ArrayList<Personnel>();
     
     /**
      * Creates new form personnelFrame
      */
     public personnelFrame() {
-        persFrame = this;
-        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
-            personnels.add(AccountingSystem.getInstance().getPerson(i));
-        fillPersonnelComboBox();
         initComponents(); 
     }
 
@@ -264,30 +257,22 @@ public class personnelFrame extends javax.swing.JPanel {
      * @param name
      * @return returns index of founded otherwise -1
      */
-    private Personnel findinList(String name){
-        if(personnels == null)
-            return null;
-        if(personnels.isEmpty())
-            return null;
-        for(int i = 0 ; i < personnels.size(); ++i){
-            if(personnels.get(i).getName().equals(name)){
-                return personnels.get(i);
+    private Personnel findinList(int id){
+        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i){
+            if((AccountingSystem.getInstance().getPerson(i).getId() == id)){
+                return AccountingSystem.getInstance().getPerson(i);
             }
         }
         return null;
     }
-    private void fillPersonnelComboBox(){
-        for (Personnel elem : personnels){
-            selectPersonnel.addItem(elem.getName());            
+
+    public void updateMe(){
+        selectPersonnel.removeAllItems();
+        for(int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i){
+            selectPersonnel.addItem(Integer.toString(AccountingSystem.getInstance().getPerson(i).getId()));
         }
-    }
-    
-    private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
-        // TODO add your handling code here:
-        String name = (String)selectPersonnel.getSelectedItem();
-        Personnel pers = findinList(name);
-        if(pers == null)
-            return;
+        selectPersonnel.setSelectedIndex(0);
+        Personnel pers = AccountingSystem.getInstance().getPerson(0);
         
         idTextBox.setText(String.valueOf(pers.getId()));
         nameTextBox.setText(pers.getName());
@@ -296,7 +281,11 @@ public class personnelFrame extends javax.swing.JPanel {
         addressField.setText(pers.getAddress());
         sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
         salaryTextBox.setText(Double.toString(pers.getSalary()));
-        JobField.setText(pers.getJop());
+        JobField.setText(pers.getJop());        
+    }
+    private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
+        // TODO add your handling code here:
+
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -321,9 +310,9 @@ public class personnelFrame extends javax.swing.JPanel {
             addressField.setEditable(false);
             sskPrimTextBox.setEditable(false);
             salaryTextBox.setEditable(false);
-            String name = (String)selectPersonnel.getSelectedItem();
+            String id = (String)selectPersonnel.getSelectedItem();
           
-            Personnel pers = findinList(name);
+            Personnel pers = findinList(Integer.parseInt(id));
             if(pers == null)
                 return;
             try{
@@ -334,7 +323,7 @@ public class personnelFrame extends javax.swing.JPanel {
                 pers.setName(nameTextBox.getText());
                 pers.setPhoneNumber(phoneTextBox.getText());
                 pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
-                pers.setSskBonus(Double.parseDouble(salaryTextBox.getText()));
+                pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
             }
             catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
@@ -359,15 +348,27 @@ public class personnelFrame extends javax.swing.JPanel {
             pers.setJop(Values[5]);
             pers.setSalary(Double.parseDouble(Values[6]));
             pers.setSskBonus(Double.parseDouble(Values[7]));
-            personnels.add(pers);
-            selectPersonnel.addItem(pers.getName());
+            selectPersonnel.addItem(Values[0]);
             AccountingSystem.getInstance().addPerson(pers);
-            FinanceFrame.UpdateMe();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void selectPersonnelİtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectPersonnelİtemStateChanged
-        
+        String id = (String)selectPersonnel.getSelectedItem();
+        if(id == null)
+            return;
+        Personnel pers = findinList(Integer.parseInt(id));
+        if(pers == null)
+            return;
+       
+        idTextBox.setText(String.valueOf(pers.getId()));
+        nameTextBox.setText(pers.getName());
+        surnameTextBox.setText(pers.getLastName());
+        phoneTextBox.setText(pers.getPhoneNumber());
+        addressField.setText(pers.getAddress());
+        sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
+        salaryTextBox.setText(Double.toString(pers.getSalary()));
+        JobField.setText(pers.getJop());
     }//GEN-LAST:event_selectPersonnelİtemStateChanged
 
     private void JobFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JobFieldActionPerformed
@@ -375,10 +376,9 @@ public class personnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_JobFieldActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        if(personnels.isEmpty())
-            return;
-        AccountingSystem.getInstance().removePerson(findinList((String)selectPersonnel.getSelectedItem()).getId());
+        AccountingSystem.getInstance().removePerson(Integer.parseInt((String)selectPersonnel.getSelectedItem()));
         selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
+        
     }//GEN-LAST:event_removeButtonActionPerformed
    
 
