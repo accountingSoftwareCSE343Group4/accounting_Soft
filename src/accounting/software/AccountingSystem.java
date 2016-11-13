@@ -23,7 +23,8 @@ public class AccountingSystem {
 
     // For Gui
     private List<PersonnelPanel> personnelPanelList = new ArrayList();
-    private List<incomePanel> incomePanelList = new ArrayList();
+    private List<IncomePanel> incomePanelList = new ArrayList();
+    private List<ExpensePanel> expensePanelList = new ArrayList();
 
     private static final AccountingSystem INSTANCE = new AccountingSystem();
 
@@ -187,28 +188,55 @@ public class AccountingSystem {
 
     }
 
-    public incomePanel getincomePanel(int index) {
+    public IncomePanel getIncomePanel(int index) {
         if (index >= incomePanelList.size()) {
             return null;
         }
         return incomePanelList.get(index);
     }
 
-    public void addIncomePanel(incomePanel newincomePanel) {
+    public void addIncomePanel(IncomePanel newIncomePanel) {
         boolean duplicate = false;
         for (int i = 0; i < incomePanelList.size(); ++i) {
-            if (incomePanelList.get(i).getIncomePanelID() == newincomePanel.getIncomePanelID()) {
+            if (incomePanelList.get(i).getIncomePanelID() == newIncomePanel.getIncomePanelID()) {
                 duplicate = true;
             }
         }
         if (!duplicate) {
-            incomePanelList.add(newincomePanel);
+            incomePanelList.add(newIncomePanel);
         }
     }
 
     public void removeIncomePanel(int index) {
         for (int i = 0; i < incomePanelList.size(); ++i) {
             incomePanelList.remove(i);
+        }
+
+    }
+    
+    
+    public ExpensePanel getExpensePanel(int index) {
+        if (index >= expensePanelList.size()) {
+            return null;
+        }
+        return expensePanelList.get(index);
+    }
+
+    public void addExpensePanel(ExpensePanel newExpensePanel) {
+        boolean duplicate = false;
+        for (int i = 0; i < expensePanelList.size(); ++i) {
+            if (expensePanelList.get(i).getExpensePanelID() == newExpensePanel.getExpensePanelID()) {
+                duplicate = true;
+            }
+        }
+        if (!duplicate) {
+            expensePanelList.add(newExpensePanel);
+        }
+    }
+
+    public void removeExpensePanel(int index) {
+        for (int i = 0; i < expensePanelList.size(); ++i) {
+            expensePanelList.remove(i);
         }
 
     }

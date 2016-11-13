@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
     
     private FinanceFrame financeframe = new FinanceFrame();
-    private personnelFrame persframe = new personnelFrame();
+    private PersonnelFrame persframe = new PersonnelFrame();
 
     private static Font newFont;
 
@@ -85,6 +85,29 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
+        jPanel4.removeAll();
+        
+        int bound = 0;
+        
+        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
+           
+            SalesClass sale = AccountingSystem.getInstance().getSale(i);
+            
+           //ExpensePanel temp = new ExpensePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           
+           //add accounting system panel
+//           AccountingSystem.getInstance().addExpensePanel(temp);
+//            
+//            jPanel4.add(temp);
+//            temp.setBounds(0, bound, 320, 40);
+            
+            bound += 40;
+           
+        }
+        
+        this.revalidate();
+        this.repaint();
+        
         
     }
 
@@ -98,13 +121,13 @@ public class MainFrame extends javax.swing.JFrame {
            
             SalesClass sale = AccountingSystem.getInstance().getSale(i);
             
-           incomePanel temp = new incomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
            
            //add accounting system panel
            AccountingSystem.getInstance().addIncomePanel(temp);
             
             jPanel8.add(temp);
-            temp.setBounds(0, bound, 300, 40);
+            temp.setBounds(0, bound, 320, 40);
             
             bound += 40;
            
@@ -144,7 +167,7 @@ public class MainFrame extends javax.swing.JFrame {
          
          AccountingSystem.getInstance().addPerson(new Personnel(1));
          AccountingSystem.getInstance().getPerson(1).setName("FURKAN");
-         AccountingSystem.getInstance().getPerson(1).setLastName("ERDÖL");
+         AccountingSystem.getInstance().getPerson(1).setLastName("emre");
          AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
          
          AccountingSystem.getInstance().addPerson(new Personnel(2));
@@ -166,10 +189,13 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
         
         
-        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
-         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 1, 5200));
-          AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 2, 5200));
-           AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 3, 5200));
+
+        AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 0, 5200));
+         AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 1, 5200));
+          AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
+        //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
+          //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+
         
         
         updatePersonelPannel();
@@ -424,32 +450,32 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(30, 30, 30)
-                .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addGap(30, 30, 30)
-                .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addGap(72, 72, 72)
+                .addGap(51, 51, 51)
                 .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(55, 55, 55))
         );
 
         sumPane.add(jPanel1);
@@ -518,11 +544,11 @@ public class MainFrame extends javax.swing.JFrame {
         IncomesBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         IncomesBut.setPreferredSize(new java.awt.Dimension(122, 32));
         IncomesBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                IncomesButMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 IncomesButMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                IncomesButMouseExited(evt);
             }
         });
 
@@ -731,7 +757,7 @@ public class MainFrame extends javax.swing.JFrame {
             sumPane.setVisible(false);
             this.add(persframe);
             persframe.setVisible(true);
-           
+           persframe.updateMe();
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -754,10 +780,14 @@ public class MainFrame extends javax.swing.JFrame {
             financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
+        
+        updatePersonelPannel();
+        updateFuels();
+        updateIncomesPannel();
+        
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
-
 
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
@@ -784,7 +814,7 @@ public class MainFrame extends javax.swing.JFrame {
          this.add(financeframe);
          financeframe.setVisible(true);
 
-
+         financeframe.UpdateMe();
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed

@@ -10,7 +10,7 @@ package accounting.software;
  *
  * @author zozge
  */
-public class SalesClass /*implements Income*/{
+public class SalesClass implements Income{
     String description;
     int ID;
     int price;
@@ -44,4 +44,14 @@ public class SalesClass /*implements Income*/{
     public void setPrice(int price) {
         this.price = price;
     } 
+
+    @Override
+    public Double getIncome() {
+        return new Double(getPrice());
+    }
+
+    @Override
+    public String getName() {
+        return "Sale";
+    }
 }

@@ -10,14 +10,14 @@ package accounting.software;
  *
  * @author Furkan
  */
-public class incomePanel extends javax.swing.JPanel {
+public class IncomePanel extends javax.swing.JPanel {
 
     private int incomeID;
     
     /**
      * Creates new form incomePanel
      */
-    public incomePanel(String income, int newID) {
+    public IncomePanel(String income, int newID) {
         initComponents();
         
         jLabel1.setText(income);
