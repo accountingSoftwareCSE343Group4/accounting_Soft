@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
     
     private FinanceFrame financeframe = new FinanceFrame();
-    private PersonnelFrame persframe = new PersonnelFrame();
+    private personnelFrame persframe = new personnelFrame();
 
     private static Font newFont;
 
