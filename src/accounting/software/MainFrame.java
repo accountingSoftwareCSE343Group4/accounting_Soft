@@ -166,11 +166,10 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
         
         
-        AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 0, 5200));
-         AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 1, 5200));
-          AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
-           AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
-            AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
+         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 1, 5200));
+          AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 2, 5200));
+           AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 3, 5200));
         
         
         updatePersonelPannel();
