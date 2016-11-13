@@ -14,12 +14,13 @@ public class gider extends javax.swing.JPanel {
     /**
      * Creates new form gider
      */
-    public gider(Expenses expe) {
+    public gider(Expenses expe,int Y) {
         initComponents();
         exp = expe;
         Name.setText(exp.getName());
         amount.setText(exp.getExpense().toString());
         desc.setText(exp.getDescription());
+        setBounds(0, Y, 500, 50);
     }
     
     public gider(){

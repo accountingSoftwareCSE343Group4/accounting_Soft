@@ -361,6 +361,7 @@ public class personnelFrame extends javax.swing.JPanel {
             pers.setSskBonus(Double.parseDouble(Values[7]));
             personnels.add(pers);
             selectPersonnel.addItem(pers.getName());
+            AccountingSystem.getInstance().addPerson(pers);
             FinanceFrame.UpdateMe();
         }
     }//GEN-LAST:event_addButtonActionPerformed

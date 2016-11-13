@@ -759,7 +759,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
 
-
+        FinanceFrame.UpdateMe();
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
         FInanceTab.setIcon(img);

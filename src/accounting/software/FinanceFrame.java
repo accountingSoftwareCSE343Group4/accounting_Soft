@@ -5,7 +5,11 @@
  */
 package accounting.software;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.AbstractListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -14,19 +18,13 @@ import java.util.ArrayList;
 public class FinanceFrame extends javax.swing.JPanel {
     
     //lists   
-    private static ArrayList<gider> giderler = new ArrayList<gider>();
-    private static ArrayList<gelir> gelirler = new ArrayList<gelir>();
+    private static Vector<String> giderler = new Vector<String>();
+    private static Vector<String> gelirler = new Vector<String>();
     
     //Dialogs
     AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
     EditFinanceDialog editDialog  = new EditFinanceDialog(MainFrame.mainFrame, true);
     DeleteFinanceDialog deleteDialog = new DeleteFinanceDialog(MainFrame.mainFrame, true);
-    
-        
-    private static int freeIncomeX = 0;
-    private static int freeIncomeY = 0;
-    private static int freeOutcomeX = 0;
-    private static int freeOutcomeY = 0;
     
     /**
      * Creates new form FinanceFrame
@@ -35,28 +33,51 @@ public class FinanceFrame extends javax.swing.JPanel {
         initComponents();
         UpdateMe();
     }
+    static int temp = 10;
     
     public static void UpdateMe(){
-        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
-            giderler.add(new gider(AccountingSystem.getInstance().getPerson(i)));
+        outcomePanel.removeAll();
+        incomePanel.removeAll();
+        gelirler.clear();
+        giderler.clear();
         
+        int count_in = 0 , count_out = 0;
+        int freeOutcomeY = 0;
+        int freeIncomeY = 0;
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
-            giderler.add(new gider(AccountingSystem.getInstance().getFuel(i)));
-        
-        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
-            gelirler.add(new gelir(AccountingSystem.getInstance().getFuel(i)));
-        
-       /*Add Sales*/
-        for (gider elem : giderler) {
-            elem.setBounds(freeOutcomeX,freeOutcomeY, 500 , 50);
-            outcomePanel.add(elem);
-            freeOutcomeY += 50;  
+        {
+            giderler.add(AccountingSystem.getInstance().getPerson(i).getName());
+            ++count_out;
+            outcomePanel.add(new gider(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
+            freeOutcomeY += 50;
         }
-        for (gelir elem : gelirler) {
-            elem.setBounds(freeIncomeX,freeIncomeY, 500 , 50);
-            incomePanel.add(elem);
+        
+        for(int i = 0 ; i < AccountingSystem.getInstance().getFuelSize(); ++i )
+        {
+            giderler.add(AccountingSystem.getInstance().getFuel(i).getDescription());
+            gelirler.add(AccountingSystem.getInstance().getFuel(i).getDescription());
+            ++count_in;
+            ++count_out;
+            outcomePanel.add(new gider(AccountingSystem.getInstance().getFuel(i), freeOutcomeY));
+            freeOutcomeY += 50;
+            incomePanel.add(new gelir(AccountingSystem.getInstance().getFuel(i), freeIncomeY));
+            freeIncomeY += 50;
+           
+        }
+       
+        for(int i = 0 ; i < AccountingSystem.getInstance().getSalesListSize(); ++i )
+        {
+            gelirler.add(AccountingSystem.getInstance().getSale(i).getDescription());
+            ++count_in;
+            incomePanel.add(new gelir(AccountingSystem.getInstance().getSale(i),freeIncomeY));
             freeIncomeY += 50;
         }
+        
+        if(count_in*50 >= 450)
+            incomePanel.setPreferredSize(new Dimension(530, freeIncomeY + 50));
+        if(count_out*50 >= 450)
+            outcomePanel.setPreferredSize(new Dimension(530, freeOutcomeY + 50));
+
     }
     
     /**
@@ -116,38 +137,34 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         DeleteOutcomeBut.setText("Delete");
 
-        leftPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        leftPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        leftPane.setPreferredSize(new java.awt.Dimension(548, 430));
 
-        incomePanel.setPreferredSize(new java.awt.Dimension(530, 435));
+        incomePanel.setPreferredSize(new java.awt.Dimension(530, 450));
 
         javax.swing.GroupLayout incomePanelLayout = new javax.swing.GroupLayout(incomePanel);
         incomePanel.setLayout(incomePanelLayout);
         incomePanelLayout.setHorizontalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         incomePanelLayout.setVerticalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         leftPane.setViewportView(incomePanel);
 
-        rightPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        rightPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        outcomePanel.setPreferredSize(new java.awt.Dimension(530, 435));
+        outcomePanel.setPreferredSize(new java.awt.Dimension(530, 450));
 
         javax.swing.GroupLayout outcomePanelLayout = new javax.swing.GroupLayout(outcomePanel);
         outcomePanel.setLayout(outcomePanelLayout);
         outcomePanelLayout.setHorizontalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
         );
         outcomePanelLayout.setVerticalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         rightPane.setViewportView(outcomePanel);
@@ -163,47 +180,48 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(269, 269, 269))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(AddIncomeBut)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditIncomeBut)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeleteIncomeBut)
-                        .addGap(334, 334, 334)
-                        .addComponent(AddOutcomeBut)
-                        .addGap(18, 18, 18)
-                        .addComponent(EditOutcomeBut)
-                        .addGap(18, 18, 18)
-                        .addComponent(DeleteOutcomeBut)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(AddIncomeBut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditIncomeBut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeleteIncomeBut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddOutcomeBut)
+                .addGap(18, 18, 18)
+                .addComponent(EditOutcomeBut)
+                .addGap(18, 18, 18)
+                .addComponent(DeleteOutcomeBut)
+                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(leftPane)
-                    .addComponent(rightPane))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddIncomeBut)
-                    .addComponent(EditIncomeBut)
-                    .addComponent(DeleteIncomeBut)
-                    .addComponent(AddOutcomeBut)
-                    .addComponent(EditOutcomeBut)
-                    .addComponent(DeleteOutcomeBut))
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AddOutcomeBut)
+                        .addComponent(EditOutcomeBut)
+                        .addComponent(DeleteOutcomeBut))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AddIncomeBut)
+                        .addComponent(EditIncomeBut)
+                        .addComponent(DeleteIncomeBut)))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,18 +231,18 @@ public class FinanceFrame extends javax.swing.JPanel {
         if(addDialog.getReturnStatus() == AddFinanceDialog.RET_OK){
             String[] s = new String[3];
             s = addDialog.GetValues();
-            gelir g = new gelir();
-            g.setTextName(s[0]);
-            g.setDesc(s[1]);
-            g.setAmount(s[2]);
-            updateIncome(0, g);
+            
+            SalesClass sale = new SalesClass(s[1],temp,Integer.parseInt(s[2]));
+            AccountingSystem.getInstance().addSale(sale);
+            UpdateMe();
+            temp++;
         }
     }//GEN-LAST:event_AddIncomeButActionPerformed
 
     
     private void EditIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditIncomeButActionPerformed
         editDialog.setVisible(true);
-        
+        editDialog.list.setListData(gelirler);
         if(editDialog.getReturnStatus() == EditFinanceDialog.RET_OK){
             
         }
@@ -233,25 +251,6 @@ public class FinanceFrame extends javax.swing.JPanel {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         
     }//GEN-LAST:event_formFocusGained
-    private void updateIncome(int op,gelir g){
-        if(op == 0)
-        {
-            g.setBounds(freeIncomeX, freeIncomeY, 530, 50);
-            incomePanel.add(g);
-            gelirler.add(g);
-            freeIncomeY += 50;   
-        }
-        else if(op == 1){
-            //edit
-        }
-        else {
-/*            String inp = deleteDialog.getSelecteditem();
-            for(int i = 0; i < gelirler.size(); ++i){
-                gelirler.get(i)
-            }*/
-        }
-            
-    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

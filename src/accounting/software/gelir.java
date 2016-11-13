@@ -15,12 +15,13 @@ public class gelir extends javax.swing.JPanel {
     /**
      * Creates new form gelir
      */
-    public gelir(Income inc) {
+    public gelir(Income inc,int Y) {
         initComponents();
         this.inc = inc;
         name.setText(inc.getName());
         amount.setText(inc.getIncome().toString());
         jLabel2.setText(inc.getDescription());
+        setBounds(0, Y, 500, 50);
     }
     public gelir(){
         initComponents();
