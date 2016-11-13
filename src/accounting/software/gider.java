@@ -40,13 +40,13 @@ public class gider extends javax.swing.JPanel {
         desc = new javax.swing.JLabel();
         amount = new javax.swing.JLabel();
 
-        Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        Name.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         Name.setText("Name");
 
         desc.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         desc.setText("Description");
 
-        amount.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        amount.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         amount.setText("Amount");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -58,7 +58,7 @@ public class gider extends javax.swing.JPanel {
                 .addComponent(Name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(desc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(amount)
                 .addContainerGap())
         );
