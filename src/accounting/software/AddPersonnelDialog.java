@@ -49,6 +49,9 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
             }
         });
         
+        
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**

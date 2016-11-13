@@ -46,6 +46,8 @@ public class AddFinanceDialog extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**

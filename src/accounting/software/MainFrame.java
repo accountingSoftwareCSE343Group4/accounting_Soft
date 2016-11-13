@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
     
     private FinanceFrame financeframe = new FinanceFrame();
-    private personnelFrame persframe = new personnelFrame();
+    private PersonnelFrame persframe = new PersonnelFrame();
 
     private static Font newFont;
 
@@ -104,7 +104,7 @@ public class MainFrame extends javax.swing.JFrame {
            AccountingSystem.getInstance().addIncomePanel(temp);
             
             jPanel8.add(temp);
-            temp.setBounds(0, bound, 300, 40);
+            temp.setBounds(0, bound, 320, 40);
             
             bound += 40;
            
@@ -169,8 +169,8 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 0, 5200));
          AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 1, 5200));
           AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
-           AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
-            AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
+          //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
         
         
         updatePersonelPannel();
@@ -755,6 +755,11 @@ public class MainFrame extends javax.swing.JFrame {
             financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
+        
+        updatePersonelPannel();
+        updateFuels();
+        updateIncomesPannel();
+        
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked

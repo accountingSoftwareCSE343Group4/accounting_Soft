@@ -44,7 +44,7 @@ public class incomePanel extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jLabel1.setBackground(new java.awt.Color(176, 190, 197));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ful income = 10000");
         jLabel1.setOpaque(true);

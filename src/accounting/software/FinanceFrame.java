@@ -111,6 +111,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         rightPane = new javax.swing.JScrollPane();
         outcomePanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(176, 190, 197));
         setPreferredSize(new java.awt.Dimension(1149, 580));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -160,7 +161,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         incomePanel.setLayout(incomePanelLayout);
         incomePanelLayout.setHorizontalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
         incomePanelLayout.setVerticalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +176,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         outcomePanel.setLayout(outcomePanelLayout);
         outcomePanelLayout.setHorizontalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
         outcomePanelLayout.setVerticalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,16 +197,16 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addGap(269, 269, 269))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(rightPane)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(AddIncomeBut)
                 .addGap(73, 73, 73)
                 .addComponent(DeleteIncomeBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addComponent(AddOutcomeBut)
                 .addGap(97, 97, 97)
                 .addComponent(DeleteOutcomeBut)
@@ -219,9 +220,9 @@ public class FinanceFrame extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(leftPane, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rightPane)
+                    .addComponent(leftPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -230,7 +231,7 @@ public class FinanceFrame extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AddIncomeBut)
                         .addComponent(DeleteIncomeBut)))
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
