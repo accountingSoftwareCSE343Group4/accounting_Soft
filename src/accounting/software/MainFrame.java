@@ -85,6 +85,29 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
+        jPanel4.removeAll();
+        
+        int bound = 0;
+        
+        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
+           
+            SalesClass sale = AccountingSystem.getInstance().getSale(i);
+            
+           //ExpensePanel temp = new ExpensePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           
+           //add accounting system panel
+//           AccountingSystem.getInstance().addExpensePanel(temp);
+//            
+//            jPanel4.add(temp);
+//            temp.setBounds(0, bound, 320, 40);
+            
+            bound += 40;
+           
+        }
+        
+        this.revalidate();
+        this.repaint();
+        
         
     }
 
@@ -98,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
            
             SalesClass sale = AccountingSystem.getInstance().getSale(i);
             
-           incomePanel temp = new incomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+           IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
            
            //add accounting system panel
            AccountingSystem.getInstance().addIncomePanel(temp);
@@ -448,9 +471,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addGap(72, 72, 72)
+                .addGap(51, 51, 51)
                 .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(55, 55, 55))
         );
 
         sumPane.add(jPanel1);
