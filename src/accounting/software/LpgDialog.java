@@ -16,12 +16,12 @@ import javax.swing.UIManager;
  *
  * @author Furkan
  */
-public class DieselDialog extends javax.swing.JDialog {
+public class LpgDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DieselDialog
      */
-    public DieselDialog(java.awt.Frame parent, boolean modal) {
+    public LpgDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -30,15 +30,15 @@ public class DieselDialog extends javax.swing.JDialog {
         
         this.setLocationRelativeTo(MainFrame.mainFrame);
         
-        this.setTitle("Configure Diesel");
+        this.setTitle("Configure Lpg");
         
         
     }
     
     public void setGui(){
-        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getFuelAmount()));
-        jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getBuyingPrice()));
-        jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getSalePrice()));
+        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getFuelAmount()));
+        jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getBuyingPrice()));
+        jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getSalePrice()));
     }
     
     public String checkInputValidity() {
@@ -149,13 +149,11 @@ public class DieselDialog extends javax.swing.JDialog {
             }
         });
 
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/enter.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 42));
-
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
@@ -181,7 +179,6 @@ public class DieselDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -201,7 +198,7 @@ public class DieselDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
 
         // TODO add your handling code here:
     }                                           
@@ -242,9 +239,9 @@ public class DieselDialog extends javax.swing.JDialog {
             return;
         }
         
-        AccountingSystem.getInstance().getFuel(0).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
-        AccountingSystem.getInstance().getFuel(0).setSalePrice(Double.parseDouble(jTextField3.getText()));
-        AccountingSystem.getInstance().getFuel(0).setFuelAmount(Double.parseDouble(jTextField1.getText()));
+        AccountingSystem.getInstance().getFuel(2).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
+        AccountingSystem.getInstance().getFuel(2).setSalePrice(Double.parseDouble(jTextField3.getText()));
+        AccountingSystem.getInstance().getFuel(2).setFuelAmount(Double.parseDouble(jTextField1.getText()));
         
        MainFrame.mainFrame.updateFuels();
        
@@ -271,20 +268,21 @@ public class DieselDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DieselDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LpgDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DieselDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LpgDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DieselDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LpgDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DieselDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LpgDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DieselDialog dialog = new DieselDialog(new javax.swing.JFrame(), true);
+                LpgDialog dialog = new LpgDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
