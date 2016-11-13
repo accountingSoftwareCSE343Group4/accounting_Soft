@@ -237,7 +237,7 @@ public class AccountingSystemTest {
     @Test
     public void testGenerateJson() {
         System.out.println("generateJson");
-        AccountingSystem acSystem = new AccountingSystem();
+        AccountingSystem acSystem = AccountingSystem.getInstance();
         
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

@@ -7,6 +7,7 @@ package accounting.software;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.*;
 
 /**
  *
@@ -26,6 +27,9 @@ public class AccountingSystem {
     private List<IncomePanel> incomePanelList = new ArrayList();
     private List<ExpensePanel> expensePanelList = new ArrayList();
 
+    private JsonParser jsonParser = new JsonParser();
+    private JSONObject jsonObject = new JSONObject();
+    
     private static final AccountingSystem INSTANCE = new AccountingSystem();
 
     private AccountingSystem() {
