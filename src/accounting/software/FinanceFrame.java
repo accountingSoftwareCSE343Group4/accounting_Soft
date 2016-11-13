@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.AbstractListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.ListModel;
 
 /**
@@ -119,34 +121,74 @@ public class FinanceFrame extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("INCOMES");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("OUTCOMES");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("EXPENSES");
 
-        AddIncomeBut.setText("Add");
+        AddIncomeBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/addButton.png"))); // NOI18N
+        AddIncomeBut.setContentAreaFilled(false);
+        AddIncomeBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AddIncomeBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddIncomeButMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AddIncomeButMouseExited(evt);
+            }
+        });
         AddIncomeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddIncomeButActionPerformed(evt);
             }
         });
 
-        DeleteIncomeBut.setText("Delete");
+        DeleteIncomeBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/deleteButton.png"))); // NOI18N
+        DeleteIncomeBut.setContentAreaFilled(false);
+        DeleteIncomeBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DeleteIncomeBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteIncomeButMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeleteIncomeButMouseExited(evt);
+            }
+        });
         DeleteIncomeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteIncomeButActionPerformed(evt);
             }
         });
 
-        AddOutcomeBut.setText("Add");
+        AddOutcomeBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/addButton.png"))); // NOI18N
+        AddOutcomeBut.setContentAreaFilled(false);
+        AddOutcomeBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AddOutcomeBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddOutcomeButMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AddOutcomeButMouseExited(evt);
+            }
+        });
         AddOutcomeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddOutcomeButActionPerformed(evt);
             }
         });
 
-        DeleteOutcomeBut.setText("Delete");
+        DeleteOutcomeBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/deleteButton.png"))); // NOI18N
+        DeleteOutcomeBut.setContentAreaFilled(false);
+        DeleteOutcomeBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DeleteOutcomeBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteOutcomeButMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeleteOutcomeButMouseExited(evt);
+            }
+        });
         DeleteOutcomeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteOutcomeButActionPerformed(evt);
@@ -190,27 +232,27 @@ public class FinanceFrame extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addGap(200, 200, 200)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(269, 269, 269))
+                .addGap(245, 245, 245))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(leftPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rightPane)
+                .addComponent(rightPane, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(AddIncomeBut)
-                .addGap(73, 73, 73)
-                .addComponent(DeleteIncomeBut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
-                .addComponent(AddOutcomeBut)
-                .addGap(97, 97, 97)
-                .addComponent(DeleteOutcomeBut)
-                .addGap(194, 194, 194))
+                .addGap(95, 95, 95)
+                .addComponent(AddIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,15 +265,14 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(rightPane)
                     .addComponent(leftPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(AddOutcomeBut)
-                        .addComponent(DeleteOutcomeBut))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(AddIncomeBut)
-                        .addComponent(DeleteIncomeBut)))
-                .addGap(0, 33, Short.MAX_VALUE))
+                        .addComponent(AddIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,6 +310,10 @@ public class FinanceFrame extends javax.swing.JPanel {
             }
             UpdateMe();
         }
+        
+        
+        
+        
     }//GEN-LAST:event_DeleteIncomeButActionPerformed
 
     private void AddOutcomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddOutcomeButActionPerformed
@@ -305,6 +350,46 @@ public class FinanceFrame extends javax.swing.JPanel {
             UpdateMe();
         }
     }//GEN-LAST:event_DeleteOutcomeButActionPerformed
+
+    private void DeleteIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton2.png"));
+        DeleteIncomeBut.setIcon(img);
+    }//GEN-LAST:event_DeleteIncomeButMouseEntered
+
+    private void AddIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/addButton2.png"));
+        AddIncomeBut.setIcon(img);
+    }//GEN-LAST:event_AddIncomeButMouseEntered
+
+    private void AddOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/addButton2.png"));
+        AddOutcomeBut.setIcon(img);
+    }//GEN-LAST:event_AddOutcomeButMouseEntered
+
+    private void DeleteOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton2.png"));
+        DeleteOutcomeBut.setIcon(img);
+    }//GEN-LAST:event_DeleteOutcomeButMouseEntered
+
+    private void AddIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/addButton.png"));
+        AddIncomeBut.setIcon(img);
+    }//GEN-LAST:event_AddIncomeButMouseExited
+
+    private void DeleteIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton.png"));
+        DeleteIncomeBut.setIcon(img);
+    }//GEN-LAST:event_DeleteIncomeButMouseExited
+
+    private void AddOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/addButton.png"));
+        AddOutcomeBut.setIcon(img);
+    }//GEN-LAST:event_AddOutcomeButMouseExited
+
+    private void DeleteOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton.png"));
+        DeleteOutcomeBut.setIcon(img);
+    }//GEN-LAST:event_DeleteOutcomeButMouseExited
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.ComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListDataEvent;
 
@@ -18,16 +20,18 @@ import javax.swing.event.ListDataEvent;
  *
  * @author emre
  */
-public class personnelFrame extends javax.swing.JPanel {
+public class PersonnelFrame extends javax.swing.JPanel {
 
     //Add Button Dialog
     AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);
-    
+
+    private boolean edit = false;
+
     /**
      * Creates new form personnelFrame
      */
-    public personnelFrame() {
-        initComponents(); 
+    public PersonnelFrame() {
+        initComponents();
     }
 
     /**
@@ -60,6 +64,7 @@ public class personnelFrame extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         JobField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(176, 190, 197));
         setPreferredSize(new java.awt.Dimension(1149, 580));
 
         selectPersonnel.setName(""); // NOI18N
@@ -74,25 +79,25 @@ public class personnelFrame extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ID number         :");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Name                :");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Surname           :");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Phone Number  :");
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Address             :");
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("SSk Primi          :");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Salary               :");
 
         idTextBox.setEditable(false);
@@ -139,28 +144,58 @@ public class personnelFrame extends javax.swing.JPanel {
         salaryTextBox.setText("Salary");
         salaryTextBox.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
-        editButton.setText("Edit");
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/editButton.png"))); // NOI18N
+        editButton.setContentAreaFilled(false);
+        editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editButtonMouseExited(evt);
+            }
+        });
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
 
-        removeButton.setText("Delete");
+        removeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/deleteButton.png"))); // NOI18N
+        removeButton.setContentAreaFilled(false);
+        removeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeButtonMouseExited(evt);
+            }
+        });
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);
             }
         });
 
-        addButton.setText("Add");
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/addButton.png"))); // NOI18N
+        addButton.setContentAreaFilled(false);
+        addButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addButtonMouseExited(evt);
+            }
+        });
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Job                           :");
 
         JobField.setText("Job");
@@ -199,7 +234,7 @@ public class personnelFrame extends javax.swing.JPanel {
                     .addComponent(JobField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(611, Short.MAX_VALUE)
+                .addContainerGap(615, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,34 +281,35 @@ public class personnelFrame extends javax.swing.JPanel {
                     .addComponent(salaryTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Finds a given name in list
+     *
      * @param name
      * @return returns index of founded otherwise -1
      */
-    private Personnel findinList(int id){
-        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i){
-            if((AccountingSystem.getInstance().getPerson(i).getId() == id)){
+    private Personnel findinList(int id) {
+        for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {
+            if ((AccountingSystem.getInstance().getPerson(i).getId() == id)) {
                 return AccountingSystem.getInstance().getPerson(i);
             }
         }
         return null;
     }
 
-    public void updateMe(){
+    public void updateMe() {
         selectPersonnel.removeAllItems();
-        for(int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i){
+        for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {
             selectPersonnel.addItem(Integer.toString(AccountingSystem.getInstance().getPerson(i).getId()));
         }
         selectPersonnel.setSelectedIndex(0);
         Personnel pers = AccountingSystem.getInstance().getPerson(0);
-        
+
         idTextBox.setText(String.valueOf(pers.getId()));
         nameTextBox.setText(pers.getName());
         surnameTextBox.setText(pers.getLastName());
@@ -281,7 +317,7 @@ public class personnelFrame extends javax.swing.JPanel {
         addressField.setText(pers.getAddress());
         sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
         salaryTextBox.setText(Double.toString(pers.getSalary()));
-        JobField.setText(pers.getJop());        
+        JobField.setText(pers.getJop());
     }
     private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
         // TODO add your handling code here:
@@ -289,8 +325,19 @@ public class personnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(editButton.getText().equals( "Edit")){
-            editButton.setText("Done");
+        
+        edit = !edit;
+        
+                
+        if (edit) {
+            Icon img = new ImageIcon(getClass().getResource("images/doneButton2.png"));
+            editButton.setIcon(img);
+        } else {
+            Icon img = new ImageIcon(getClass().getResource("images/editButton2.png"));
+            editButton.setIcon(img);
+        }
+        
+        if (editButton.getText().equals("Edit")) {
             idTextBox.setEditable(true);
             nameTextBox.setEditable(true);
             surnameTextBox.setEditable(true);
@@ -299,9 +346,7 @@ public class personnelFrame extends javax.swing.JPanel {
             sskPrimTextBox.setEditable(true);
             salaryTextBox.setEditable(true);
             JobField.setEditable(true);
-        }
-        else{
-            editButton.setText("Edit");
+        } else {
             JobField.setEditable(false);
             idTextBox.setEditable(false);
             nameTextBox.setEditable(false);
@@ -310,13 +355,14 @@ public class personnelFrame extends javax.swing.JPanel {
             addressField.setEditable(false);
             sskPrimTextBox.setEditable(false);
             salaryTextBox.setEditable(false);
-            String id = (String)selectPersonnel.getSelectedItem();
-          
+            String id = (String) selectPersonnel.getSelectedItem();
+
             Personnel pers = findinList(Integer.parseInt(id));
-            if(pers == null)
+            if (pers == null) {
                 return;
-            try{
-                
+            }
+            try {
+
                 pers.setId(Integer.parseInt(idTextBox.getText()));
                 pers.setAddress(addressField.getText());
                 pers.setLastName(surnameTextBox.getText());
@@ -324,13 +370,12 @@ public class personnelFrame extends javax.swing.JPanel {
                 pers.setPhoneNumber(phoneTextBox.getText());
                 pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
                 pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
-            }
-            catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_editButtonActionPerformed
-    
+
     private void nameTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTextBoxActionPerformed
@@ -338,7 +383,7 @@ public class personnelFrame extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Personnel pers = new Personnel();
         addDialog.setVisible(true);
-        if(addDialog.getReturnStatus() == AddPersonnelDialog.RET_OK){
+        if (addDialog.getReturnStatus() == AddPersonnelDialog.RET_OK) {
             String Values[] = addDialog.GetValues();
             pers.setId(Integer.parseInt(Values[0]));
             pers.setName(Values[1]);
@@ -354,13 +399,15 @@ public class personnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void selectPersonnelİtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectPersonnelİtemStateChanged
-        String id = (String)selectPersonnel.getSelectedItem();
-        if(id == null)
+        String id = (String) selectPersonnel.getSelectedItem();
+        if (id == null) {
             return;
+        }
         Personnel pers = findinList(Integer.parseInt(id));
-        if(pers == null)
+        if (pers == null) {
             return;
-       
+        }
+
         idTextBox.setText(String.valueOf(pers.getId()));
         nameTextBox.setText(pers.getName());
         surnameTextBox.setText(pers.getLastName());
@@ -376,11 +423,54 @@ public class personnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_JobFieldActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        AccountingSystem.getInstance().removePerson(Integer.parseInt((String)selectPersonnel.getSelectedItem()));
-        selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
         
+        AccountingSystem.getInstance().removePerson(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
+        selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
+
     }//GEN-LAST:event_removeButtonActionPerformed
-   
+
+    private void addButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/addButton2.png"));
+        addButton.setIcon(img);
+    }//GEN-LAST:event_addButtonMouseEntered
+
+    private void addButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/addButton.png"));
+        addButton.setIcon(img);
+    }//GEN-LAST:event_addButtonMouseExited
+
+    private void editButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseEntered
+        if (edit) {
+            Icon img = new ImageIcon(getClass().getResource("images/doneButton2.png"));
+            editButton.setIcon(img);
+        } else {
+            Icon img = new ImageIcon(getClass().getResource("images/editButton2.png"));
+            editButton.setIcon(img);
+        }
+
+    }//GEN-LAST:event_editButtonMouseEntered
+
+    private void editButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseExited
+        if (edit) {
+            Icon img = new ImageIcon(getClass().getResource("images/doneButton.png"));
+            editButton.setIcon(img);
+        } else {
+            Icon img = new ImageIcon(getClass().getResource("images/editButton.png"));
+            editButton.setIcon(img);
+        }
+
+    }//GEN-LAST:event_editButtonMouseExited
+
+    private void removeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseEntered
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton2.png"));
+        removeButton.setIcon(img);
+    }//GEN-LAST:event_removeButtonMouseEntered
+
+    private void removeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseExited
+        Icon img = new ImageIcon(getClass().getResource("images/deleteButton.png"));
+        removeButton.setIcon(img);
+    }//GEN-LAST:event_removeButtonMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JobField;
