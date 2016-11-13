@@ -43,13 +43,13 @@ public class gelir extends javax.swing.JPanel {
 
         jLabel3.setText("jLabel3");
 
-        name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         name.setText("Name");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("Desc");
 
-        amount.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        amount.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         amount.setText("Amount");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,7 +61,7 @@ public class gelir extends javax.swing.JPanel {
                 .addComponent(name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(amount)
                 .addContainerGap())
         );
@@ -73,7 +73,7 @@ public class gelir extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(name)
                             .addComponent(amount))
-                        .addGap(0, 9, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
