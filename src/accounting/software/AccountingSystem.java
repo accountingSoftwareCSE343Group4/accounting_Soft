@@ -29,7 +29,7 @@ public class AccountingSystem {
 
     private JsonParser jsonParser = new JsonParser();
     private JSONObject jsonObject = new JSONObject();
-    
+
     private static final AccountingSystem INSTANCE = new AccountingSystem();
 
     private AccountingSystem() {
@@ -217,8 +217,7 @@ public class AccountingSystem {
         }
 
     }
-    
-    
+
     public ExpensePanel getExpensePanel(int index) {
         if (index >= expensePanelList.size()) {
             return null;
@@ -244,26 +243,40 @@ public class AccountingSystem {
         }
 
     }
-    
-        public JSONObject getJsonObject() {
+
+    public JSONObject getJsonObject() {
         return jsonObject;
     }
 
-    public void generateJson() throws JSONException {
-        jsonObject.put("Personel", (JSONArray)jsonParser.JSONEncode((List<Object>) (Object) personnelList));
-        
-        jsonObject.put("Fuels", (JSONArray)jsonParser.JSONEncode((List<Object>) (Object) fuelList));
+    public void generateJson() {
+        jsonObject.put("Personel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
+
+        jsonObject.put("Fuels", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) fuelList));
 
         //jsonObject.put("BillAndTax", (JSONObject)jsonParser.JSONEncode((List<Object>) (Object) billAndTaxList));
-        
-        //jsonObject.put("Sales", (JSONObject)jsonParser.JSONEncode((List<Object>)(Object) salesList));
-        
+        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesclassList));
+
         jsonParser.writeJsonToFile(jsonObject);
     }
-    
+
     public void readToJson() {
+        List<List<Object>> allList = new ArrayList();
         
+        
+        for(List<Object> anyList : allList){
+            if (anyList instanceof ArrayList){
+                for(Object obj : anyList){
+                    if(obj instanceof Personnel){
+                        
+                    }else if (obj instanceof Fuel){
+                        
+                    }else if (obj instanceof SalesClass){
+                        
+                    }else
+                        System.err.println("Unknown class type");
+                }
+            }
+        }
     }
-    
 
 }
