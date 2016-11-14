@@ -70,7 +70,7 @@ public class JsonParser {
         }
     }
     
-    public Object JSONEncode(List<Object> objList){
+    public Object JSONEncode(List<Object> objList) throws JSONException{
         JSONArray personnelArr = new JSONArray();
         JSONArray fuelArray = new JSONArray();
         JSONObject salesObj = new JSONObject();
