@@ -338,7 +338,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             editButton.setIcon(img);
         }
         
-        if (editButton.getText().equals("Edit")) {
+        if (edit) {
             idTextBox.setEditable(true);
             nameTextBox.setEditable(true);
             surnameTextBox.setEditable(true);
