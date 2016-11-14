@@ -5,16 +5,9 @@
  */
 package accounting.software;
 
-import java.awt.Dialog;
-import java.awt.Frame;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListDataEvent;
 
 /**
  *
