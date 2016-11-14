@@ -6,6 +6,7 @@
 package accounting.software;
 
 
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -235,7 +236,7 @@ public class AccountingSystemTest {
      * Test of generateJson method, of class AccountingSystem.
      */
     @Test
-    public void testGenerateJson() {
+    public void testGenerateJson() throws JSONException {
         System.out.println("generateJson");
         AccountingSystem acSystem = AccountingSystem.getInstance();
         
