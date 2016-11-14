@@ -126,16 +126,19 @@ public class PersonnelFrame extends javax.swing.JPanel {
         addressField.setEditable(false);
         addressField.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         addressField.setText("Address");
+        addressField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         addressField.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         sskPrimTextBox.setEditable(false);
         sskPrimTextBox.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         sskPrimTextBox.setText("SSK prim");
+        sskPrimTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         sskPrimTextBox.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         salaryTextBox.setEditable(false);
         salaryTextBox.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         salaryTextBox.setText("Salary");
+        salaryTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         salaryTextBox.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/editButton.png"))); // NOI18N
@@ -194,6 +197,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
         JobField.setEditable(false);
         JobField.setText("Job");
+        JobField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         JobField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JobFieldActionPerformed(evt);
