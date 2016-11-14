@@ -54,7 +54,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
         {
             ++count_out;
-            outcomePanel.add(new gider(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
+            outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
             freeOutcomeY += 50;
         }
         
@@ -62,9 +62,9 @@ public class FinanceFrame extends javax.swing.JPanel {
         {
             ++count_in;
             ++count_out;
-            outcomePanel.add(new gider(AccountingSystem.getInstance().getFuel(i), freeOutcomeY));
+            outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getFuel(i), freeOutcomeY));
             freeOutcomeY += 50;
-            incomePanel.add(new gelir(AccountingSystem.getInstance().getFuel(i), freeIncomeY));
+            incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getFuel(i), freeIncomeY));
             freeIncomeY += 50;
            
         }
@@ -74,13 +74,13 @@ public class FinanceFrame extends javax.swing.JPanel {
             gelirler.add(AccountingSystem.getInstance().getSale(i).toString());
             gelirIDs.add(AccountingSystem.getInstance().getSale(i).getID());
             ++count_in;
-            incomePanel.add(new gelir(AccountingSystem.getInstance().getSale(i),freeIncomeY));
+            incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getSale(i),freeIncomeY));
             freeIncomeY += 50;
         }
         // TODO :
         for(int i = 0; i < others.size(); ++i){
             giderler.add(others.get(i).getName());
-            outcomePanel.add(new gider(others.get(i), freeOutcomeY));
+            outcomePanel.add(new ExpensePanelFinance(others.get(i), freeOutcomeY));
             ++count_out;
             freeOutcomeY += 50;
         }

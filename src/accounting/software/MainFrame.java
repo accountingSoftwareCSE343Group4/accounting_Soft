@@ -7,7 +7,6 @@ package accounting.software;
 
 
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -53,9 +52,14 @@ public class MainFrame extends javax.swing.JFrame {
         persframe.setVisible(false);
         
         temp();
-
-
-
+         
+        
+        CreateReport createReport = new CreateReport();
+         
+        
+        
+       
+        
     }
 
     private void updatePersonelPannel() {
@@ -70,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
             
            PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName(), personnel.getSalary(), personnel.getId());
            
-           AccountingSystem.getInstance().addPersonnelPanel(temp);
+         //  AccountingSystem.getInstance().addPersonnelPanel(temp);
             
             jPanel7.add(temp);
             temp.setBounds(0, bound, 283, 60);
@@ -124,7 +128,7 @@ public class MainFrame extends javax.swing.JFrame {
            IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
            
            //add accounting system panel
-           AccountingSystem.getInstance().addIncomePanel(temp);
+        //   AccountingSystem.getInstance().addIncomePanel(temp);
             
             jPanel8.add(temp);
             temp.setBounds(0, bound, 320, 40);
