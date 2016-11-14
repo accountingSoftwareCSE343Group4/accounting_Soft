@@ -18,7 +18,7 @@ public class AccountingSystem {
     // Lists of Classes
     private List<Personnel> personnelList = new ArrayList();
     private List<Fuel> fuelList = new ArrayList();
-
+    public List<BillAndTax> billsTaxes = new ArrayList<BillAndTax>(); //deneme
     private List<SalesClass> salesclassList = new ArrayList();
 
     // For Gui
