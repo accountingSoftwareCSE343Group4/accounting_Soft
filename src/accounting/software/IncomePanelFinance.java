@@ -19,7 +19,7 @@ public class IncomePanelFinance extends javax.swing.JPanel {
         initComponents();
         this.inc = inc;
         name.setText(inc.getName());
-        amount.setText(inc.getIncome().toString());
+        amount.setText(String.format("%.2f", inc.getIncome()));
         jLabel2.setText(inc.getDescription());
         setBounds(0, Y, 500, 50);
     }

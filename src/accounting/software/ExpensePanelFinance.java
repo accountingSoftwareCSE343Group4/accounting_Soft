@@ -14,11 +14,11 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
     /**
      * Creates new form gider
      */
-    public ExpensePanelFinance(Expenses expe,int Y) {
+    public ExpensePanelFinance(Expenses expe, int Y) {
         initComponents();
         exp = expe;
         Name.setText(exp.getName());
-        amount.setText(exp.getExpense().toString());
+        amount.setText(String.format("%.2f", expe.getExpense()));
         desc.setText(exp.getDescription());
         setBounds(0, Y, 500, 50);
     }
