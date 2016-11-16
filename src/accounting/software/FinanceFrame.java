@@ -197,6 +197,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         leftPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         leftPane.setPreferredSize(new java.awt.Dimension(548, 430));
 
+
         incomePanel.setPreferredSize(new java.awt.Dimension(530, 450));
         incomePanel.setRequestFocusEnabled(false);
         incomePanel.setVerifyInputWhenFocusTarget(false);
@@ -205,11 +206,12 @@ public class FinanceFrame extends javax.swing.JPanel {
         incomePanel.setLayout(incomePanelLayout);
         incomePanelLayout.setHorizontalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGap(0, 530, Short.MAX_VALUE)
         );
         incomePanelLayout.setVerticalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         leftPane.setViewportView(incomePanel);
@@ -228,7 +230,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         );
         outcomePanelLayout.setVerticalGroup(
             outcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         rightPane.setViewportView(outcomePanel);
@@ -278,7 +280,7 @@ public class FinanceFrame extends javax.swing.JPanel {
                         .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
