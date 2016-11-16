@@ -18,8 +18,7 @@ import javax.swing.ListModel;
  * @author emre
  */
 public class FinanceFrame extends javax.swing.JPanel {
-    
-    //Kaldırılacak
+
     public ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
     
     //lists   
