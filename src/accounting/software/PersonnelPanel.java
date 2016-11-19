@@ -48,7 +48,7 @@ public class PersonnelPanel extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jButton1.setBackground(new java.awt.Color(69, 90, 100));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("NAME SURNAME");
         jButton1.setBorder(null);

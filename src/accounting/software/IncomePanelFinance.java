@@ -9,12 +9,21 @@ package accounting.software;
  *
  * @author emre
  */
-public class gider extends javax.swing.JPanel {
-
+public class IncomePanelFinance extends javax.swing.JPanel {
+    
+    private Income inc;
     /**
-     * Creates new form gider
+     * Creates new form gelir
      */
-    public gider() {
+    public IncomePanelFinance(Income inc,int Y) {
+        initComponents();
+        this.inc = inc;
+        name.setText(inc.getName());
+        amount.setText(String.format("%.2f", inc.getIncome()));
+        jLabel2.setText(inc.getDescription());
+        setBounds(0, Y, 500, 50);
+    }
+    public IncomePanelFinance(){
         initComponents();
     }
 
@@ -27,17 +36,20 @@ public class gider extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Name = new javax.swing.JLabel();
-        desc = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         amount = new javax.swing.JLabel();
 
-        Name.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        Name.setText("Name");
+        jLabel3.setText("jLabel3");
 
-        desc.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        desc.setText("Description");
+        name.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        name.setText("Name");
 
-        amount.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setText("Desc");
+
+        amount.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         amount.setText("Amount");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -46,10 +58,10 @@ public class gider extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(amount)
                 .addContainerGap())
         );
@@ -57,17 +69,21 @@ public class gider extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Name)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(desc))
-                    .addComponent(amount))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(name)
+                            .addComponent(amount))
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     public void setTextName(String text){
-        Name.setText(text);
+        name.setText(text);
     }
     
     public void setAmount(String text){
@@ -75,11 +91,13 @@ public class gider extends javax.swing.JPanel {
     }
     
     public void setDesc(String text){
-        desc.setText(text);
+        jLabel2.setText(text);
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Name;
     private javax.swing.JLabel amount;
-    private javax.swing.JLabel desc;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }
