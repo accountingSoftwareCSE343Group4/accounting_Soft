@@ -22,12 +22,9 @@ import javax.swing.ImageIcon;
 public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
-    private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
-    private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
-    private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
-    
-    private FinanceFrame financeframe = new FinanceFrame();
-    private PersonnelFrame persframe = new PersonnelFrame();
+    DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+    GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
+    LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
 
     private static Font newFont;
 
@@ -52,14 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         persframe.setVisible(false);
         
         temp();
-         
-        
-        CreateReport createReport = new CreateReport();
-         
-        
-        
-       
-        
+
+
+
     }
 
     private void updatePersonelPannel() {
@@ -72,9 +64,9 @@ public class MainFrame extends javax.swing.JFrame {
            
             Personnel personnel = AccountingSystem.getInstance().getPerson(i);
             
-           PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName() + " (" + personnel.getJop() + ")", personnel.getSalary(), personnel.getId());
+           PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName(), personnel.getSalary(), personnel.getId());
            
-         //  AccountingSystem.getInstance().addPersonnelPanel(temp);
+           //add accounting system panel
             
             jPanel7.add(temp);
             temp.setBounds(0, bound, 283, 60);
@@ -89,57 +81,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
-        jPanel4.removeAll();
-        
-        int bound = 0;
-        
-        for(int i=0; i< financeframe.others.size(); ++i){
-           
-            OtherExpense expense = financeframe.others.get(i);
-            
-           ExpensePanel temp = new ExpensePanel(expense.getName() + " (TL) = " + expense.getExpense(), expense.getID());
-           
-           //add accounting system panel
-//           AccountingSystem.getInstance().addExpensePanel(temp);
-//            
-            jPanel4.add(temp);
-           temp.setBounds(0, bound, 320, 40);
-            
-            bound += 40;
-           
-        }
-        
-        this.revalidate();
-        this.repaint();
-        
-        
     }
 
     private void updateIncomesPannel() {
-        
-        jPanel8.removeAll();
-        
-        int bound = 0;
-        
-        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
-           
-            SalesClass sale = AccountingSystem.getInstance().getSale(i);
-            
-           IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
-           
-           //add accounting system panel
-        //   AccountingSystem.getInstance().addIncomePanel(temp);
-            
-            jPanel8.add(temp);
-            temp.setBounds(0, bound, 320, 40);
-            
-            bound += 40;
-           
-        }
-        
-        this.revalidate();
-        this.repaint();
-        
 
     }
     
@@ -167,19 +111,16 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addPerson(new Personnel(0));
          AccountingSystem.getInstance().getPerson(0).setName("FURKAN");
          AccountingSystem.getInstance().getPerson(0).setLastName("ERDÖL");
-         AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
          AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
          
          AccountingSystem.getInstance().addPerson(new Personnel(1));
-         AccountingSystem.getInstance().getPerson(1).setName("Emre");
-         AccountingSystem.getInstance().getPerson(1).setLastName("Bayram");
-         AccountingSystem.getInstance().getPerson(1).setJop("CLEANER");
+         AccountingSystem.getInstance().getPerson(1).setName("FURKAN");
+         AccountingSystem.getInstance().getPerson(1).setLastName("ERDÖL");
          AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
          
          AccountingSystem.getInstance().addPerson(new Personnel(2));
-         AccountingSystem.getInstance().getPerson(2).setName("Şahin");
-         AccountingSystem.getInstance().getPerson(2).setLastName("Eğilmez");
-         AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
+         AccountingSystem.getInstance().getPerson(2).setName("FURKAN");
+         AccountingSystem.getInstance().getPerson(2).setLastName("ERDÖL");
          AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
          
          AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
@@ -196,26 +137,12 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
         
         
-
-        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
-         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
-          //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
-        //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
-          //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
-
-        financeframe.others.add(new OtherExpense("RENT " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("CLEANING TAX" ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("ELECTRICT " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("WATER " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("NATURAL GAS " ," ", 50000.0));
-        
         updatePersonelPannel();
         updateFuels();
-        updateIncomesPannel();
-        updateExpensesPannel();
     }
 
-    
+    FinanceFrame financeframe = new FinanceFrame();
+    personnelFrame persframe = new personnelFrame();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -337,7 +264,6 @@ public class MainFrame extends javax.swing.JFrame {
         ReportBut.setBorderPainted(false);
         ReportBut.setContentAreaFilled(false);
         ReportBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ReportBut.setEnabled(false);
         ReportBut.setPreferredSize(new java.awt.Dimension(245, 52));
         ReportBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -447,6 +373,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -455,42 +382,39 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(30, 30, 30)
-                .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addGap(30, 30, 30)
-                .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addGap(62, 62, 62)
+                .addGap(72, 72, 72)
                 .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(20, 20, 20))
         );
 
         sumPane.add(jPanel1);
@@ -559,11 +483,11 @@ public class MainFrame extends javax.swing.JFrame {
         IncomesBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         IncomesBut.setPreferredSize(new java.awt.Dimension(122, 32));
         IncomesBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                IncomesButMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 IncomesButMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                IncomesButMouseEntered(evt);
             }
         });
 
@@ -605,33 +529,31 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(127, 127, 127))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(20, 20, 20))
         );
 
         sumPane.add(jPanel3);
@@ -772,7 +694,7 @@ public class MainFrame extends javax.swing.JFrame {
             sumPane.setVisible(false);
             this.add(persframe);
             persframe.setVisible(true);
-           persframe.updateMe();
+           
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
     private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
@@ -795,15 +717,10 @@ public class MainFrame extends javax.swing.JFrame {
             financeframe.setVisible(false);
             sumPane.setVisible(true);
         }
-        
-        updatePersonelPannel();
-        updateFuels();
-        updateIncomesPannel();
-        updateExpensesPannel();
-        
     }//GEN-LAST:event_sumTabMouseClicked
 
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
+
 
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
@@ -830,7 +747,7 @@ public class MainFrame extends javax.swing.JFrame {
          this.add(financeframe);
          financeframe.setVisible(true);
 
-         financeframe.UpdateMe();
+
     }//GEN-LAST:event_FInanceTabMouseClicked
 
     private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed

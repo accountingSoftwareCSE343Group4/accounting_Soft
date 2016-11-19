@@ -82,25 +82,4 @@ public class Fuel implements Expenses,Income{
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
     }
-    
-    @Override
-    public Double getExpense() {
-        return getBuyingPrice()*fuelAmount;
-    }
-
-    @Override
-    public String getName() {
-        return getFuelType();
-    }
-
-    @Override
-    public String getDescription() {
-        return "Fuel";
-    }
-
-    @Override
-    public Double getIncome() {
-        return getSalePrice()*fuelAmount;
-    }
-
 }
