@@ -5,11 +5,14 @@
  */
 package accounting.software;
 
+
+
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Icon;
@@ -23,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public static MainFrame mainFrame;
     DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+
 
     private static Font newFont;
 
@@ -668,6 +672,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
 
+
       
 
             Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
@@ -692,6 +697,7 @@ public class MainFrame extends javax.swing.JFrame {
                 sumPane.setVisible(true);
                 this.remove(financeframe);
             }
+
 
             sumPane.setVisible(false);
             this.add(persframe);
@@ -724,6 +730,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
 
 
+
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
         FInanceTab.setIcon(img);
 
@@ -747,6 +754,7 @@ public class MainFrame extends javax.swing.JFrame {
         sumPane.setVisible(false);
          this.add(financeframe);
          financeframe.setVisible(true);
+
 
     }//GEN-LAST:event_FInanceTabMouseClicked
 

@@ -10,20 +10,5 @@ package accounting.software;
  * @author Arif Dogru
  */
 public interface Expenses {
-    /**
-     * Miktarı return eder
-     * @return 
-     */
-    Double getExpense();
-    /**
-     * Income Adını Return eder
-     * @return 
-     */
-    String getName();
-    /**
-     * Descrition return eder
-     * @return 
-     */
-    String getDescription();
-   
+    
 }
