@@ -56,7 +56,7 @@ public class JsonParserTest {
      * Test of JSONEncode method, of class MyJsonParser.
      */
     @Test
-    public void testJSONEncode() throws JSONException {
+    public void testJSONEncode() {
         System.out.println("JSONEncode");
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();
