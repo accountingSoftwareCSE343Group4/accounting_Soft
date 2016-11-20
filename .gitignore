@@ -61,3 +61,11 @@ nbdist/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 *.txt
+
+
+# But not these files...
+!requirements.txt
+!itextpdf-5.5.10.jar
+!json-20160810-javadoc.jar
+!json-20160810-sources.jar
+!json-20160810.jar

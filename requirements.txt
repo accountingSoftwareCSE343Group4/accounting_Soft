@@ -1,0 +1,3 @@
+For JSON class:
+    json-20160810.jar library
+    you may add your project json library from external library in project folder.
