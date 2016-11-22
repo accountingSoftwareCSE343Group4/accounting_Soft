@@ -40,5 +40,10 @@ public class OtherExpense implements Expenses{
     public String getDescription() {
         return Desc;
     }
+
+    @Override
+    public Date getDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

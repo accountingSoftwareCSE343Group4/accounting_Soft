@@ -25,5 +25,11 @@ public interface Expenses {
      * @return 
      */
     String getDescription();
+    
+    /**
+     * 
+     * @return 
+     */
+    Date getDate();
 
 }
