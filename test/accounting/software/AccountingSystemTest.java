@@ -247,6 +247,7 @@ public class AccountingSystemTest {
         Personnel person2 = new Personnel();
         Fuel fuel = new Fuel();
         
+        
         person.setId(121044029);
         person.setName("Gurol");
         person.setLastName("CAY");
@@ -276,8 +277,9 @@ public class AccountingSystemTest {
         acSystem.addPerson(person2);
         acSystem.addFuel(fuel);
         
+        
         acSystem.generateJson();
         
-        System.out.println(acSystem.getJsonObject());
+        //System.out.println(acSystem.getJsonObject());
     }
 }

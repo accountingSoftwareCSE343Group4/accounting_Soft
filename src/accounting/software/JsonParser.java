@@ -6,8 +6,6 @@
 package accounting.software;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.*;
@@ -18,6 +16,13 @@ import org.json.*;
  */
 public class JsonParser {
 
+    private Crypto crypto = new Crypto();
+    private static final String encString = "enc";
+
+    public String getEncString() {
+        return encString;
+    }
+    
     public List<List<Object>> JSONDecode() {
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -27,9 +32,9 @@ public class JsonParser {
 
         List<List<Object>> allList = new ArrayList();
 
-        List personnelList = new ArrayList<Personnel>();
-        List fuelList = new ArrayList<Fuel>();
-        List salesList = new ArrayList<SalesClass>();
+        List<Personnel> personnelList = new ArrayList();
+        List<Fuel> fuelList = new ArrayList();
+        List<SalesClass> salesList = new ArrayList();
 
         Personnel person = new Personnel();
         Fuel fuel = new Fuel();
@@ -44,24 +49,24 @@ public class JsonParser {
 
             jsonArr = jsonObj.getJSONArray("Personel");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                person.setId(jsonArr.getJSONObject(i).getInt("ID"));
-                person.setName(jsonArr.getJSONObject(i).getString("Name"));
-                person.setLastName(jsonArr.getJSONObject(i).getString("LastName"));
-                person.setAddress(jsonArr.getJSONObject(i).getString("Address"));
-                person.setPhoneNumber(jsonArr.getJSONObject(i).getString("PhoneNumber"));
-                person.setJop(jsonArr.getJSONObject(i).getString("Jop"));
-                person.setSalary(jsonArr.getJSONObject(i).getDouble("Salary"));
+                person.setId(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("ID"), getEncString()))); 
+                person.setName(crypto.decrypt(jsonArr.getJSONObject(i).getString("Name"), getEncString()));
+                person.setLastName(crypto.decrypt(jsonArr.getJSONObject(i).getString("LastName"), getEncString()));
+                person.setAddress(crypto.decrypt(jsonArr.getJSONObject(i).getString("Address"), getEncString()));
+                person.setPhoneNumber(crypto.decrypt(jsonArr.getJSONObject(i).getString("PhoneNumber"), getEncString()));
+                person.setJop(crypto.decrypt(jsonArr.getJSONObject(i).getString("Jop"), getEncString()));
+                person.setSalary(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Salary"), getEncString())));
                 personnelList.add(person);
             }
 
             jsonArr = jsonObj.getJSONArray("Fuel");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                fuel.setBuyingPrice(jsonArr.getJSONObject(i).getInt("BuyingPrice"));
-                fuel.setFuelAmount(jsonArr.getJSONObject(i).getDouble("FuelAmmount"));
-                fuel.setFuelCapacity(jsonArr.getJSONObject(i).getDouble("FuelCapacity"));
-                fuel.setFuelType(jsonArr.getJSONObject(i).getString("FuelType"));
-                fuel.setSalePrice(jsonArr.getJSONObject(i).getDouble("SalePrice"));
-                fuel.setTax(jsonArr.getJSONObject(i).getDouble("Tax"));
+                fuel.setBuyingPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("BuyingPrice"), getEncString())));
+                fuel.setFuelAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelAmmount"), getEncString())));
+                fuel.setFuelCapacity(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelCapacity"), getEncString())));
+                fuel.setFuelType(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelType"), getEncString()));
+                fuel.setSalePrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("SalePrice"), getEncString())));
+                fuel.setTax(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Tax"), getEncString())));
                 fuelList.add(fuel);
             }
 
@@ -78,11 +83,13 @@ public class JsonParser {
             System.err.println("Error: " + e);
         } catch (JSONException e) {
             System.err.println("Error Json: " + e);
+        } catch (Exception e) {
+            System.err.println("Undefined error: " + e);
         }
 
-        allList.add(personnelList);
-        allList.add(fuelList);
-        allList.add(salesList);
+        allList.add((List) personnelList);
+        allList.add((List) fuelList);
+        allList.add((List) salesList);
 
         return allList;
     }
@@ -96,23 +103,23 @@ public class JsonParser {
         for (Object obj : objList) {
             if (obj instanceof Personnel) {
                 JSONObject jo = new JSONObject();
-                jo.put("ID", ((Personnel) obj).getId());
-                jo.put("Name", ((Personnel) obj).getName());
-                jo.put("LastName", ((Personnel) obj).getLastName());
-                jo.put("Address", ((Personnel) obj).getAddress());
-                jo.put("PhoneNumber", ((Personnel) obj).getPhoneNumber());
-                jo.put("Jop", ((Personnel) obj).getJop());
-                jo.put("Salary", ((Personnel) obj).getSalary());
-                jo.put("SSKBonus", ((Personnel) obj).getSskBonus());
+                jo.put("ID", crypto.encrypt(Integer.toString(((Personnel) obj).getId()),getEncString()));
+                jo.put("Name", crypto.encrypt(((Personnel) obj).getName(),getEncString()));
+                jo.put("LastName", crypto.encrypt(((Personnel) obj).getLastName(),getEncString()));
+                jo.put("Address", crypto.encrypt(((Personnel) obj).getAddress(),getEncString()));
+                jo.put("PhoneNumber", crypto.encrypt(((Personnel) obj).getPhoneNumber(),getEncString()));
+                jo.put("Jop", crypto.encrypt(((Personnel) obj).getJop(),getEncString()));
+                jo.put("Salary", crypto.encrypt(Double.toString(((Personnel) obj).getSalary()),getEncString()));
+                jo.put("SSKBonus", crypto.encrypt(Double.toString(((Personnel) obj).getSskBonus()),getEncString()));
                 personnelArr.put(jo);
             } else if (obj instanceof Fuel) {
                 JSONObject jo2 = new JSONObject();
-                jo2.put("FuelType", ((Fuel) obj).getFuelType());
-                jo2.put("FuelCapacity", ((Fuel) obj).getFuelCapacity());
-                jo2.put("FuelAmount", ((Fuel) obj).getFuelAmount());
-                jo2.put("BuyingPrice", ((Fuel) obj).getBuyingPrice());
-                jo2.put("SalePrice", ((Fuel) obj).getSalePrice());
-                jo2.put("Tax", ((Fuel) obj).getTax());
+                jo2.put("FuelType", crypto.encrypt(((Fuel) obj).getFuelType(),getEncString()));
+                jo2.put("FuelCapacity", crypto.encrypt(Double.toString(((Fuel) obj).getFuelCapacity()),getEncString()));
+                jo2.put("FuelAmount", crypto.encrypt(Double.toString(((Fuel) obj).getFuelAmount()), getEncString()));
+                jo2.put("BuyingPrice", crypto.encrypt(Double.toString(((Fuel) obj).getBuyingPrice()),getEncString()));
+                jo2.put("SalePrice", crypto.encrypt(Double.toString(((Fuel) obj).getSalePrice()),getEncString()));
+                jo2.put("Tax", crypto.encrypt(Double.toString(((Fuel) obj).getTax()),getEncString()));
                 fuelArray.put(jo2);
             } else if (obj instanceof BillAndTax) {
                 //billAndTaxObj.put("PersonnelExp", ((BillAndTax) obj).getPersonelExpenses(personnelList));
@@ -128,27 +135,33 @@ public class JsonParser {
             }
         }
 
-        if (objList.get(0) instanceof Personnel) {
-            return personnelArr;
-        } else if (objList.get(0) instanceof Fuel) {
-            return fuelArray;
-        } else if (objList.get(0) instanceof BillAndTax) {
-            return billAndTaxObj;
-        } else if (objList.get(0) instanceof SalesClass) {
-            return salesObj;
-        } else {
+        try {
+            if (objList.get(0) instanceof Personnel) {
+                return personnelArr;
+            } else if (objList.get(0) instanceof Fuel) {
+                return fuelArray;
+            } else if (objList.get(0) instanceof BillAndTax) {
+                return billAndTaxObj;
+            } else if (objList.get(0) instanceof SalesClass) {
+                return salesObj;
+            } else {
+                return null;
+            }
+        } catch (IndexOutOfBoundsException e) {
             return null;
         }
     }
 
     public void writeJsonToFile(JSONObject jsonObj) {
-        Writer writer;
+        BufferedWriter writer;
+        System.out.println("write: "+ jsonObj.toString());
+        
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("json.txt"), "utf-8"));
-            jsonObj.write(writer);
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("json.txt"), "utf-8"));
+            writer.write(jsonObj.toString());
+            writer.close();
         } catch (Exception e) {
-            System.err.println("write to file error");
+            System.err.println("Can't write to file: " + e);
         }
     }
 }
