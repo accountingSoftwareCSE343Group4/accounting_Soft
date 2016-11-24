@@ -75,6 +75,7 @@ public class JsonParser {
                 sales.setID(jsonArr.getJSONObject(i).getInt("ID"));
                 sales.setDescription(jsonArr.getJSONObject(i).getString("Description"));
                 sales.setPrice(jsonArr.getJSONObject(i).getInt("Price"));
+                //yorum
             }
 
         } catch (FileNotFoundException e) {
