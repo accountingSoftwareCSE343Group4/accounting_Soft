@@ -291,7 +291,9 @@ public class FinanceFrame extends javax.swing.JPanel {
             String[] s = new String[3];
             s = addDialog.GetValues();
             
-            SalesClass sale = new SalesClass(s[1],temp,Integer.parseInt(s[2]));
+            //bakilacak
+            SalesClass sale = new SalesClass(s[1],temp,Double.parseDouble(s[2]), "11/11/2011");
+            
             AccountingSystem.getInstance().addSale(sale);
             UpdateMe();
             temp++;

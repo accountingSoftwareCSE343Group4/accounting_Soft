@@ -32,6 +32,8 @@ public class SalesClass implements Income{
         catch(ParseException e){
             e.printStackTrace();
         }
+        
+       
 
     }
     public Date getSaleDate(){

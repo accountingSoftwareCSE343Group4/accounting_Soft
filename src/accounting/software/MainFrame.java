@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         temp();
          
         
-        CreateReport createReport = new CreateReport();
+       
          
         
         
@@ -197,8 +197,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         
 
-        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
-         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
+       // AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
+         //AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
           //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
         //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
           //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));

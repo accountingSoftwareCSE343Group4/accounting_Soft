@@ -260,7 +260,7 @@ public class AccountingSystem {
         return jsonObject;
     }
 
-    public void generateJson() {
+    public void generateJson() throws JSONException {
 
         jsonObject.put("Personel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
 

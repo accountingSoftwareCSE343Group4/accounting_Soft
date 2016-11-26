@@ -38,7 +38,7 @@ public class JsonParser {
 
         Personnel person = new Personnel();
         Fuel fuel = new Fuel();
-        SalesClass sales = new SalesClass("", 0, 0);
+        SalesClass sales = new SalesClass("", 0, 0.0, "11/11/2011");
 
         try {
             fileReader = new FileReader("json.txt");
@@ -74,7 +74,7 @@ public class JsonParser {
             for (int i = 0; i < jsonArr.length(); ++i) {
                 sales.setID(jsonArr.getJSONObject(i).getInt("ID"));
                 sales.setDescription(jsonArr.getJSONObject(i).getString("Description"));
-                sales.setPrice(jsonArr.getJSONObject(i).getInt("Price"));
+                sales.setPrice((double)jsonArr.getJSONObject(i).getInt("Price"));
                 //yorum
             }
 
@@ -95,7 +95,7 @@ public class JsonParser {
         return allList;
     }
 
-    public Object JSONEncode(List<Object> objList) {
+    public Object JSONEncode(List<Object> objList) throws JSONException {
         JSONArray personnelArr = new JSONArray();
         JSONArray fuelArray = new JSONArray();
         JSONObject salesObj = new JSONObject();
