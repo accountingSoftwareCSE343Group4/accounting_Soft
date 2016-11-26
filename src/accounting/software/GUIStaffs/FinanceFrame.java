@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software.GUIStaffs;
 
 import accounting.software.AccountingSystem;
@@ -11,10 +6,8 @@ import accounting.software.SalesClass;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
-import javax.swing.AbstractListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.ListModel;
 
 /**
  *
@@ -369,42 +362,58 @@ public class FinanceFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_DeleteOutcomeButActionPerformed
 
     private void DeleteIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton2.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/deleteButton2.png");
+
         DeleteIncomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteIncomeButMouseEntered
 
     private void AddIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("../images/addButton2.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/addButton2.png");
+
         AddIncomeBut.setIcon(img);
     }//GEN-LAST:event_AddIncomeButMouseEntered
 
     private void AddOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("../images/addButton2.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/addButton2.png");
+
         AddOutcomeBut.setIcon(img);
     }//GEN-LAST:event_AddOutcomeButMouseEntered
 
     private void DeleteOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton2.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/deleteButton2.png");
+
         DeleteOutcomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteOutcomeButMouseEntered
 
     private void AddIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("../images/addButton.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/addButton.png");
+
         AddIncomeBut.setIcon(img);
     }//GEN-LAST:event_AddIncomeButMouseExited
 
     private void DeleteIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/deleteButton.png");
+
         DeleteIncomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteIncomeButMouseExited
 
     private void AddOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("../images/addButton.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/addButton.png");
+
         AddOutcomeBut.setIcon(img);
     }//GEN-LAST:event_AddOutcomeButMouseExited
 
     private void DeleteOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseExited
-        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton.png"));
+
+        Icon img = new ImageIcon("src/accounting/software/images/deleteButton.png");
+
         DeleteOutcomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteOutcomeButMouseExited
     

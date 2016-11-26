@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software.GUIStaffs;
 
 import accounting.software.AccountingSystem;
-import static java.lang.System.exit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-
 
 /**
  *
@@ -28,7 +20,7 @@ public class DieselDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        this.getContentPane().setBackground(jLabel1.getBackground());
+      //  this.getContentPane().setBackground(jLabel1.getBackground());
        
         
         this.setLocationRelativeTo(MainFrame.mainFrame);
@@ -113,7 +105,6 @@ public class DieselDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(176, 190, 197));
 
-        jPanel1.setBackground(new java.awt.Color(176, 190, 197));
         jPanel1.setLayout(new java.awt.GridLayout(3, 2));
 
         jLabel1.setBackground(new java.awt.Color(176, 190, 197));

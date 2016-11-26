@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software;
 
 import accounting.software.GUIStaffs.ExpensePanel;
-import accounting.software.GUIStaffs.PersonnelPanel;
 import accounting.software.GUIStaffs.IncomePanel;
+import accounting.software.GUIStaffs.PersonnelPanel;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
