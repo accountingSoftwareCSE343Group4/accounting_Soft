@@ -31,7 +31,7 @@ public class OtherExpense implements Expenses{
         this.name = name;
         this.Desc = Desc;
         this.amount = amount;
-        this.date = new Date();
+        //date = new Date();
         ID = inp;
         try{
             this.date = dateFormat.parse(date);
