@@ -11,17 +11,17 @@ package accounting.software;
  */
 public interface Expenses {
         /**
-     * Miktarı return eder
+     * Return to Expense
      * @return 
      */
     Double getExpense();
     /**
-     * Income Adını Return eder
+     * Return to Expense Name
      * @return 
      */
     String getName();
     /**
-     * Descrition return eder
+     * Return to Description
      * @return 
      */
     String getDescription();
