@@ -53,7 +53,7 @@ public class AccountingSystem {
 
     /**
      *
-     * @return
+     * @return instance
      */
     public static AccountingSystem getInstance() {
         return INSTANCE;
@@ -62,7 +62,7 @@ public class AccountingSystem {
     /**
      *
      * @param index
-     * @return
+     * @return saleClass object
      */
     public SalesClass getSale(int index) {
         if (index >= salesclassList.size()) {
@@ -74,7 +74,7 @@ public class AccountingSystem {
     /**
      *
      * @param index
-     * @return
+     * @return Person object
      */
     public Personnel getPerson(int index) {
         if (index >= personnelList.size()) {
@@ -87,7 +87,7 @@ public class AccountingSystem {
     /**
      *
      * @param saleID
-     * @return
+     * @return Sale object
      */
     public SalesClass getSaleById(int saleID) {
 
@@ -103,7 +103,7 @@ public class AccountingSystem {
     /**
      *
      * @param personId
-     * @return
+     * @return person object
      */
     public Personnel getPersonById(int personId) {
 
@@ -119,20 +119,7 @@ public class AccountingSystem {
     /**
      *
      * @param index
-     * @return
-     */
-    public SalesClass getSales(int index) {
-        if (index >= salesclassList.size()) {
-            return null;
-        }
-
-        return salesclassList.get(index);
-    }
-
-    /**
-     *
-     * @param index
-     * @return
+     * @return fuel object
      */
     public Fuel getFuel(int index) {
         if (index >= fuelList.size()) {
@@ -143,8 +130,8 @@ public class AccountingSystem {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return sales list size
      */
     public int getSalesListSize() {
         return salesclassList.size();
@@ -152,7 +139,7 @@ public class AccountingSystem {
 
     /**
      *
-     * @return
+     * @return personnel list size
      */
     public int getPersonnelSize() {
         return personnelList.size();
@@ -160,7 +147,7 @@ public class AccountingSystem {
 
     /**
      *
-     * @return
+     * @return fuel list size
      */
     public int getFuelSize() {
         return fuelList.size();
@@ -436,7 +423,7 @@ public class AccountingSystem {
 
         //create document
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream("AccountingSpftwareReport.pdf"));
+        PdfWriter.getInstance(document, new FileOutputStream("AccountingSoftwareReport.pdf"));
         document.open();
         Paragraph preface = new Paragraph();
                 
