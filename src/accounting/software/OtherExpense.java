@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package accounting.software;
+import java.text.ParseException; // for date format
+import java.text.SimpleDateFormat; // for date format
+import java.util.Date; 
 
 /**
  *
@@ -13,6 +16,8 @@ public class OtherExpense implements Expenses{
     private String name;
     private String Desc;
     private Double amount;
+    private Date date;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format : 21/11/2016
     private static int inp=0;
 
     /**
@@ -21,13 +26,36 @@ public class OtherExpense implements Expenses{
      * @param Desc
      * @param amount
      */
-    public OtherExpense(String name, String Desc, Double amount) {
+    public OtherExpense(String name, String Desc, Double amount, String date) {
         this.name = name;
         this.Desc = Desc;
         this.amount = amount;
+        this.date = new Date();
+        try{
+            this.date = dateFormat.parse(date);
+        }
+        catch(ParseException e){
+            e.printStackTrace();
+        }
         ++inp;
     }
-    
+    /*
+     * @return Date
+    */
+    public Date getDate(){
+        return date;
+    }
+    /*
+     * @param date
+     */
+    public void setDate(String date){
+        try{
+            this.date = dateFormat.parse(date);
+        }
+        catch(ParseException e){
+            e.printStackTrace();
+        }        
+    }
     /**
      *
      * @return
