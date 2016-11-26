@@ -39,6 +39,9 @@ public class OtherExpense implements Expenses{
         }
         ++inp;
     }
+    public Double getAmount(){
+        return amount;
+    }
     /*
      * @return Date
     */

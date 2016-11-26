@@ -446,7 +446,24 @@ public class AccountingSystem {
             }
         }
     }
-    
+    /**
+     * determines the profit
+     * @return double
+     */
+    public double getPropit(){
+        double totalPropit =0.0;
+        for(int i = 0; i < salesclassList.size() ; i++){
+            totalPropit += salesclassList.get(i).getPrice();
+        }
+        for(int i = 0; i < fuelList.size() ; i++){
+            totalPropit += fuelList.get(i).getSalePrice();
+            totalPropit -= fuelList.get(i).getBuyingPrice();
+        }
+        for(int i = 0; i < otherExpenseList.size(); i++){
+            totalPropit -= otherExpenseList.get(i).getAmount();
+        }
+        return totalPropit;
+    }
     // For PDF File 
     /* 
      * this report has information of fuel ,personel , incomes , expenses and assets  
