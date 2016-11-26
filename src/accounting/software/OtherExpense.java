@@ -17,6 +17,7 @@ public class OtherExpense implements Expenses{
     private String Desc;
     private Double amount;
     private Date date;
+    private int ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); // format : 21/11/2016
     private static int inp=0;
 
@@ -31,6 +32,7 @@ public class OtherExpense implements Expenses{
         this.Desc = Desc;
         this.amount = amount;
         this.date = new Date();
+        ID = inp;
         try{
             this.date = dateFormat.parse(date);
         }
@@ -64,8 +66,10 @@ public class OtherExpense implements Expenses{
      * @return
      */
     public int getID(){
-        return inp;
+        return ID;
     }
+    
+   
     
     @Override
     public Double getExpense() {
