@@ -20,7 +20,7 @@ public class Personnel implements Expenses{
     private double sskBonus;
 
     /**
-     *
+     * Create Personnel Object
      * @param name
      * @param id
      * @param lastName
@@ -42,7 +42,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * Create Personnel Object by id
      * @param id
      */
     public Personnel(int id) {
@@ -50,34 +50,36 @@ public class Personnel implements Expenses{
     }
     
     /**
-     *
+     * Create Personnel Object default
      */
     public Personnel(){
         this.id = -1;
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return id
      */
     public int getId() {
         return id;
     }
 
     /**
-     *
+     * Set personnel id
      * @param id
      */
     public void setId(int id) {
         this.id = id;
     }
-
+    /**
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * Set Personnel name
      * @param name
      */
     public void setName(String name) {
@@ -86,14 +88,14 @@ public class Personnel implements Expenses{
 
     /**
      *
-     * @return
+     * @return lastName
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     *
+     * Set Personnel Surname
      * @param lastName
      */
     public void setLastName(String lastName) {
@@ -101,15 +103,15 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return address
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     *
+     * Set Personnel address
      * @param address
      */
     public void setAddress(String address) {
@@ -117,7 +119,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * 
      * @return
      */
     public String getPhoneNumber() {
@@ -190,4 +192,8 @@ public class Personnel implements Expenses{
         return "Employee_Expense";
     }
 
+    @Override
+    public String toString(){
+        return "Personnel{" + "Id=" + id + ", Name="+ name + " ,Sur Name=" +lastName+ "}";
+    }
 }
