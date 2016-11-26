@@ -27,12 +27,8 @@ public class AccountingSystem {
     // Lists of Classes
     private List<Personnel> personnelList = new ArrayList();
     private List<Fuel> fuelList = new ArrayList();
-
-    /**
-     *
-     */
-    public List<BillAndTax> billsTaxes = new ArrayList<BillAndTax>(); //deneme
     private List<SalesClass> salesclassList = new ArrayList();
+    private List<OtherExpense> otherExpenseList = new ArrayList();
     
 
     // For Gui
@@ -48,7 +44,8 @@ public class AccountingSystem {
 
     private AccountingSystem() {
     }
-
+    
+    
     /**
      *
      * @return instance
@@ -56,7 +53,16 @@ public class AccountingSystem {
     public static AccountingSystem getInstance() {
         return INSTANCE;
     }
-
+    /**
+     * @param index
+     * @return OtherExpense object
+     */
+    public OtherExpense getOtherExpense(int index){
+        if(index >= otherExpenseList.size()){
+            return null;
+        }
+        return otherExpenseList.get(index);
+    }
     /**
      *
      * @param index
@@ -126,7 +132,13 @@ public class AccountingSystem {
 
         return fuelList.get(index);
     }
-
+    /**
+     * 
+     * @return otherExpenseListt list size
+     */
+    public int getOtherExpenseSize(){
+        return otherExpenseList.size();
+    }
     /**
      * 
      * @return sales list size
@@ -150,7 +162,20 @@ public class AccountingSystem {
     public int getFuelSize() {
         return fuelList.size();
     }
-
+    /**
+     * @param newOtherExpense
+     */
+    public void addOtherExpense(OtherExpense newOtherExpense){
+        boolean duplicate = false;
+        for(int i = 0; i < otherExpenseList.size(); i++){
+            if(otherExpenseList.get(i).getDate() == newOtherExpense.getDate() &&
+               otherExpenseList.get(i).getDescription() == newOtherExpense.getDescription() )
+                duplicate = true;
+        }
+        if(!duplicate){
+            otherExpenseList.add(newOtherExpense);
+        }
+    }
     /**
      *
      * @param newSale
@@ -182,7 +207,19 @@ public class AccountingSystem {
             personnelList.add(newPerson);
         }
     }
-
+    /**
+     * 
+     * @param date
+     * @param desc 
+     */
+    public void removeOtherExpense(Date date,String desc){
+        for(int i = 0; i < otherExpenseList.size(); i++){
+            if(otherExpenseList.get(i).getDescription() == desc &&
+               otherExpenseList.get(i).getDate() == date){
+                otherExpenseList.remove(i);
+            }
+        }
+    }
     /**
      *
      * @param id
