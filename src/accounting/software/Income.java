@@ -12,17 +12,17 @@ package accounting.software;
 public interface Income {
     
         /**
-     * Miktarı return eder
+     * Return to Incomes
      * @return 
      */
     Double getIncome();
     /**
-     * Income Adını Return eder
+     * Return to Income Name
      * @return 
      */
     String getName();
     /**
-     * Descrition return eder
+     * Return to Description
      * @return 
      */
     String getDescription();
