@@ -239,11 +239,11 @@ public class AccountingSystem {
         }
     }
     /*
-     * @return system date    
+     * @return String : system date with format(dd/MM/yyyy )    
      */
     public String systemDate(){
         Date systemDate = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String date = df.format(systemDate);
         return date;
     }
@@ -415,6 +415,10 @@ public class AccountingSystem {
     }
     
     // For PDF File 
+    /* 
+     * this report has information of fuel ,personel , incomes , expenses and assets  
+     * @throws DocumentException , IOException
+    */
     public static void createReport()throws DocumentException, IOException{
 
         Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,Font.BOLD);
@@ -509,6 +513,10 @@ public class AccountingSystem {
             tableIncomes.addCell(priceSale);
         }
         document.add(tableIncomes);
+        
+        Paragraph assetsTitle = new Paragraph();
+        assetsTitle.add(new Paragraph("                   ASSETS",subFont));
+        document.add(assetsTitle);
         
         //////////////////////////////////////////////////
         document.close();
