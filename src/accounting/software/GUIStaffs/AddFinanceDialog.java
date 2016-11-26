@@ -47,6 +47,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
         });
         
         this.setLocationRelativeTo(null);
+        this.setTitle("Add New Item");
     }
 
     /**
@@ -198,22 +199,30 @@ public class AddFinanceDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
+
         cancelButton.setIcon(img);
     }//GEN-LAST:event_cancelButtonMouseEntered
 
     private void cancelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/exit.png");
+
         cancelButton.setIcon(img);
     }//GEN-LAST:event_cancelButtonMouseExited
 
     private void okButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
+
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseEntered
 
     private void okButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
+
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseExited
     

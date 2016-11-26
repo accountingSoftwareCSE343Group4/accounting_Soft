@@ -199,8 +199,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         leftPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         leftPane.setPreferredSize(new java.awt.Dimension(548, 430));
 
-
-        incomePanel.setPreferredSize(new java.awt.Dimension(530, 450));
+        incomePanel.setPreferredSize(new java.awt.Dimension(530, 350));
         incomePanel.setRequestFocusEnabled(false);
         incomePanel.setVerifyInputWhenFocusTarget(false);
 
@@ -208,7 +207,6 @@ public class FinanceFrame extends javax.swing.JPanel {
         incomePanel.setLayout(incomePanelLayout);
         incomePanelLayout.setHorizontalGroup(
             incomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addGap(0, 530, Short.MAX_VALUE)
         );
         incomePanelLayout.setVerticalGroup(
@@ -220,7 +218,7 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         rightPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        outcomePanel.setPreferredSize(new java.awt.Dimension(530, 450));
+        outcomePanel.setPreferredSize(new java.awt.Dimension(530, 350));
         outcomePanel.setRequestFocusEnabled(false);
         outcomePanel.setVerifyInputWhenFocusTarget(false);
 
@@ -364,42 +362,58 @@ public class FinanceFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_DeleteOutcomeButActionPerformed
 
     private void DeleteIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/deleteButton2.png");
+
         DeleteIncomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteIncomeButMouseEntered
 
     private void AddIncomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/addButton2.png");
+
         AddIncomeBut.setIcon(img);
     }//GEN-LAST:event_AddIncomeButMouseEntered
 
     private void AddOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/addButton2.png");
+
         AddOutcomeBut.setIcon(img);
     }//GEN-LAST:event_AddOutcomeButMouseEntered
 
     private void DeleteOutcomeButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/deleteButton2.png");
+
         DeleteOutcomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteOutcomeButMouseEntered
 
     private void AddIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddIncomeButMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/addButton.png");
+
         AddIncomeBut.setIcon(img);
     }//GEN-LAST:event_AddIncomeButMouseExited
 
     private void DeleteIncomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteIncomeButMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/deleteButton.png");
+
         DeleteIncomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteIncomeButMouseExited
 
     private void AddOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddOutcomeButMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/addButton.png");
+
         AddOutcomeBut.setIcon(img);
     }//GEN-LAST:event_AddOutcomeButMouseExited
 
     private void DeleteOutcomeButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOutcomeButMouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/deleteButton.png");
+
         DeleteOutcomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteOutcomeButMouseExited
     

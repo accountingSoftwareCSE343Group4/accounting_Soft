@@ -37,7 +37,6 @@ public class PasswordFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
-        setPreferredSize(new java.awt.Dimension(400, 225));
         setResizable(false);
 
         jLayeredPane1.setBackground(new java.awt.Color(176, 190, 197));
@@ -153,22 +152,30 @@ public class PasswordFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
+
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
+
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
+
                 jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/exit.png");
+
                 jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseExited
 

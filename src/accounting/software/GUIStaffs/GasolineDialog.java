@@ -213,22 +213,30 @@ public class GasolineDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
+
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
+
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
+
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+
         Icon img = new ImageIcon("src/accounting/software/images/exit.png");
+
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
 
