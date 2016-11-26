@@ -6,7 +6,9 @@
 package accounting.software;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.json.*;
 
@@ -80,9 +82,10 @@ public class JsonParser {
 
             jsonArr = jsonObj.getJSONArray("Sales");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                sales.setID(jsonArr.getJSONObject(i).getInt("ID"));
-                sales.setDescription(jsonArr.getJSONObject(i).getString("Description"));
-                sales.setPrice((double)jsonArr.getJSONObject(i).getInt("Price"));
+                sales.setID(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("ID"), getEncString())));
+                sales.setDescription(crypto.decrypt(jsonArr.getJSONObject(i).getString("Description"), getEncString()));
+                sales.setPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Price"), getEncString())));
+                sales.setSaleDate(crypto.decrypt(jsonArr.getJSONObject(i).getString("SaleDate"), getEncString()));
                 //yorum
             }
 
@@ -113,7 +116,6 @@ public class JsonParser {
         JSONArray personnelArr = new JSONArray();
         JSONArray fuelArray = new JSONArray();
         JSONObject salesObj = new JSONObject();
-        JSONObject billAndTaxObj = new JSONObject();
 
         for (Object obj : objList) {
             if (obj instanceof Personnel) {
@@ -136,14 +138,11 @@ public class JsonParser {
                 jo2.put("SalePrice", crypto.encrypt(Double.toString(((Fuel) obj).getSalePrice()),getEncString()));
                 jo2.put("Tax", crypto.encrypt(Double.toString(((Fuel) obj).getTax()),getEncString()));
                 fuelArray.put(jo2);
-            } else if (obj instanceof BillAndTax) {
-                //billAndTaxObj.put("PersonnelExp", ((BillAndTax) obj).getPersonelExpenses(personnelList));
-                billAndTaxObj.put("GeneralExp", ((BillAndTax) obj).getExpenses());
-                billAndTaxObj.put("FuelExp", ((BillAndTax) obj).getFuelExpenses());
             } else if (obj instanceof SalesClass) {
-                salesObj.put("Description", ((SalesClass) obj).getDescription());
-                salesObj.put("ID", ((SalesClass) obj).getID());
-                salesObj.put("Price", ((SalesClass) obj).getPrice());
+                salesObj.put("Description",crypto.encrypt(((SalesClass)obj).getDescription(), getEncString()));
+                salesObj.put("ID", crypto.encrypt(Integer.toString(((SalesClass)obj).getID()), getEncString()));
+                salesObj.put("Price", crypto.encrypt(Double.toString(((SalesClass)obj).getPrice()), getEncString()));
+                salesObj.put("SaleDate", crypto.encrypt((((SalesClass)obj).getSaleDate().toString()), getEncString()));
 
             } else {
                 System.out.println("Error: object is not instance of Personal class");
@@ -154,9 +153,7 @@ public class JsonParser {
             if (objList.get(0) instanceof Personnel) {
                 return personnelArr;
             } else if (objList.get(0) instanceof Fuel) {
-                return fuelArray;
-            } else if (objList.get(0) instanceof BillAndTax) {
-                return billAndTaxObj;
+                return fuelArray; 
             } else if (objList.get(0) instanceof SalesClass) {
                 return salesObj;
             } else {

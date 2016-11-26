@@ -416,8 +416,6 @@ public class AccountingSystem {
         jsonObject.put("Personel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
 
         jsonObject.put("Fuels", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) fuelList));
-        
-//        jsonObject.put("BillAndTax", (JSONObject)jsonParser.JSONEncode((List<Object>) (Object) billAndTaxList));
 
 //        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesclassList));
 
