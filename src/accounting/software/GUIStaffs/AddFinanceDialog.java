@@ -52,6 +52,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
         });
         
         this.setLocationRelativeTo(null);
+        this.setTitle("Add New Item");
     }
 
     /**

@@ -55,7 +55,7 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
         
         
         this.setLocationRelativeTo(null);
-        
+        this.setTitle("Add New Personnel");
     }
 
     /**

@@ -19,7 +19,10 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
     //Add Button Dialog
     AddPersonnelDialog addDialog = new AddPersonnelDialog(MainFrame.mainFrame, true);
-
+    
+    //
+    AreUSureDelete sureDialog = new AreUSureDelete(MainFrame.mainFrame, true);
+    
     private boolean edit = false;
 
     /**
@@ -27,6 +30,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
      */
     public PersonnelFrame() {
         initComponents();
+        editWarning.setVisible(false);
     }
 
     /**
@@ -59,6 +63,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         JobField = new javax.swing.JTextField();
         Logo = new javax.swing.JLabel();
+        editWarning = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(176, 190, 197));
         setPreferredSize(new java.awt.Dimension(1149, 580));
@@ -206,18 +211,12 @@ public class PersonnelFrame extends javax.swing.JPanel {
             }
         });
 
+        editWarning.setText("Edit Mode");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(609, Short.MAX_VALUE)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,14 +242,30 @@ public class PersonnelFrame extends javax.swing.JPanel {
                             .addComponent(salaryTextBox)
                             .addComponent(JobField, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(selectPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(selectPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(320, 320, 320)
+                        .addComponent(editWarning)))
+                .addContainerGap(376, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(selectPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(selectPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editWarning)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -292,7 +307,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
@@ -347,7 +362,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             Icon img = new ImageIcon(getClass().getResource("../images/editButton2.png"));
             editButton.setIcon(img);
         }
-        
+        editWarning.setVisible(edit);
         if (edit) {
             idTextBox.setEditable(true);
             nameTextBox.setEditable(true);
@@ -436,9 +451,14 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         Personnel person = AccountingSystem.getInstance().getPerson(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
-        //dialog sor
         
-        selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
+        AreUSureDelete.Info.setText(person.toString());
+        sureDialog.setVisible(true);
+        if(sureDialog.getReturnStatus() == sureDialog.RET_OK)
+        {
+            AccountingSystem.getInstance().removePerson(person.getId());
+            selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
+        }
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseEntered
@@ -490,6 +510,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
     private javax.swing.JButton addButton;
     private javax.swing.JTextField addressField;
     private javax.swing.JButton editButton;
+    private javax.swing.JLabel editWarning;
     private javax.swing.JTextField idTextBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
