@@ -5,7 +5,17 @@
  */
 package accounting.software;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.json.*;
 
@@ -21,6 +31,7 @@ public class AccountingSystem {
     private List<Fuel> fuelList = new ArrayList();
     public List<BillAndTax> billsTaxes = new ArrayList<BillAndTax>(); //deneme
     private List<SalesClass> salesclassList = new ArrayList();
+    
 
     // For Gui
     private List<PersonnelPanel> personnelPanelList = new ArrayList();
@@ -282,6 +293,104 @@ public class AccountingSystem {
                 }
             }
         }
+    }
+    
+    // For PDF File 
+    public static void createPdfFile()throws DocumentException, IOException{
+        Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,Font.BOLD);
+        Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,Font.BOLD);
+        Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.BOLD);
+
+        //create document
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("AccountingSpftwareReport.pdf"));
+        document.open();
+        Paragraph preface = new Paragraph();
+                
+        // big header
+        preface.add(new Paragraph("             Report Of Accounting System", catFont));        
+        // Report Date
+        preface.add(new Paragraph(
+                                  "                              Date : " 
+                                          + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                smallBold));
+        
+        document.add(preface);
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Paragraph(" "));
+        document.add(paragraph);
+        // Table for fuel 
+        Paragraph fuelTitle = new Paragraph();
+        fuelTitle.add(new Paragraph("                   FUEL",subFont));
+        document.add(fuelTitle);
+        document.add(paragraph);
+        PdfPTable tableFuel = new PdfPTable(2);
+        for(int i= 0; i < 3 ; i++){
+            tableFuel.addCell("DIESEL");
+            tableFuel.addCell("");
+            tableFuel.addCell("Available  Amount(lt)");
+            tableFuel.addCell("");
+            tableFuel.addCell("Purchase Price(TL)");
+            tableFuel.addCell("");
+            tableFuel.addCell("Current Price(TL)");
+            tableFuel.addCell("");
+        }
+        document.add(tableFuel);
+        ///////////////////////////////////////////////
+        document.add(paragraph);
+        //Table for Personel
+        Paragraph personnelTitle = new Paragraph();
+        personnelTitle.add(new Paragraph("                   PERSONNEL",subFont));
+        document.add(personnelTitle);
+        document.add(paragraph);
+        
+        PdfPTable tablePersonel = new PdfPTable(5);
+        tablePersonel.addCell("NAME");
+        tablePersonel.addCell("LASTNAME");
+        tablePersonel.addCell("JOB");
+        tablePersonel.addCell("SALARY");
+        tablePersonel.addCell("SSK PRIM");
+        for(int i= 0; i < INSTANCE.getPersonnelSize() ; i++){
+            tablePersonel.addCell(INSTANCE.personnelList.get(i).getName());
+            tablePersonel.addCell(INSTANCE.personnelList.get(i).getLastName());
+            tablePersonel.addCell(INSTANCE.personnelList.get(i).getJop());
+            String salary = ""+(INSTANCE.personnelList.get(i).getSalary());
+            tablePersonel.addCell(salary);
+            String prim = ""+INSTANCE.personnelList.get(i).getSskBonus();
+            tablePersonel.addCell(prim);
+        }
+        document.add(tablePersonel);
+       
+        ////////////////////////////////////////////////
+        document.add(paragraph);
+        //Table for Expenses
+        Paragraph expensesTitle = new Paragraph();
+        expensesTitle.add(new Paragraph("                   EXPENSES",subFont));
+        document.add(expensesTitle);
+        document.add(paragraph);
+        
+        PdfPTable tableExpenses = new PdfPTable(2);
+        for(int i=0; i<5 ; i++){
+            tableExpenses.addCell("Description(TL)");
+            tableExpenses.addCell("");
+        }
+        document.add(tableExpenses);
+        //////////////////////////////////////////////////
+        document.add(paragraph);
+        //Table for Exepenses
+        Paragraph incomeTitle = new Paragraph();
+        incomeTitle.add(new Paragraph("                   INCOMES",subFont));
+        document.add(incomeTitle);
+        document.add(paragraph);
+        PdfPTable tableIncomes = new PdfPTable(2);
+        for(int i=0; i<2 ; i++){
+            tableIncomes.addCell("Description(TL)");
+            tableIncomes.addCell("");
+        }
+        document.add(tableIncomes);
+        
+        //////////////////////////////////////////////////
+        document.close();
     }
 
 }

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author zozge
  */
 public class SalesClassTest {
-    
+ /*   
     public SalesClassTest() {
     }
     
@@ -43,8 +43,8 @@ public class SalesClassTest {
     @Test
     public void testGetDescription() {
         System.out.println("getDescription");
-        SalesClass instance = null;
-        String expResult = "";
+        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        String expResult = "Sales of Market";
         String result = instance.getDescription();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -57,9 +57,10 @@ public class SalesClassTest {
     @Test
     public void testSetDescription() {
         System.out.println("setDescription");
-        String description = "";
-        SalesClass instance = null;
-        instance.setDescription(description);
+        String description = "Gasoline";
+        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        instance.setDescription("Gasoline");
+        assertEquals(description, instance.getDescription());
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -97,9 +98,9 @@ public class SalesClassTest {
     @Test
     public void testGetPrice() {
         System.out.println("getPrice");
-        SalesClass instance = null;
-        int expResult = 0;
-        int result = instance.getPrice();
+        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        Double expResult = 0;
+        Double result = instance.getPrice();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -117,5 +118,5 @@ public class SalesClassTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+  */  
 }
