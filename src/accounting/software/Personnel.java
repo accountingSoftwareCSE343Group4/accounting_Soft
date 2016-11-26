@@ -74,6 +74,7 @@ public class Personnel implements Expenses{
     /**
      * @return name
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -127,7 +128,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * Set Personnel Phone Number
      * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
@@ -143,7 +144,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * Set Personnel Salary
      * @param salary
      */
     public void setSalary(double salary) {
@@ -159,7 +160,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * Set 
      * @param jop
      */
     public void setJop(String jop) {
@@ -167,7 +168,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * 
      * @return
      */
     public double getSskBonus() {
@@ -175,13 +176,15 @@ public class Personnel implements Expenses{
     }
 
     /**
-     *
+     * Set Personnel sskBonus
      * @param sskbonus
      */
     public void setSskBonus(double sskbonus) {
         this.sskBonus = sskbonus;
     }
-    
+    /**
+     * @return personnel expense
+     */
     @Override
     public Double getExpense() {
         return getSalary() + getSskBonus();
@@ -191,7 +194,10 @@ public class Personnel implements Expenses{
     public String getDescription() {
         return "Employee_Expense";
     }
-
+    
+    /*
+    * @return Personnel information
+    */
     @Override
     public String toString(){
         return "Personnel{" + "Id=" + id + ", Name="+ name + " ,Sur Name=" +lastName+ "}";
