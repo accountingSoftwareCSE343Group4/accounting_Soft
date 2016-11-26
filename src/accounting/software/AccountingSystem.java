@@ -251,6 +251,9 @@ public class AccountingSystem {
             }
         }
     }
+    /*
+     * @return system date    
+     */
     public String systemDate(){
         Date systemDate = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
