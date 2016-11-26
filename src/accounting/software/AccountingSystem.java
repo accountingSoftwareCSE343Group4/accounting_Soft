@@ -5,7 +5,6 @@
  */
 package accounting.software;
 
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -377,15 +376,16 @@ public class AccountingSystem {
         document.add(tableExpenses);
         //////////////////////////////////////////////////
         document.add(paragraph);
-        //Table for Exepenses
+        //Table for Incomes
         Paragraph incomeTitle = new Paragraph();
         incomeTitle.add(new Paragraph("                   INCOMES",subFont));
         document.add(incomeTitle);
         document.add(paragraph);
         PdfPTable tableIncomes = new PdfPTable(2);
-        for(int i=0; i<2 ; i++){
-            tableIncomes.addCell("Description(TL)");
-            tableIncomes.addCell("");
+        for(int i=0; i<INSTANCE.getSalesListSize() ; i++){
+            tableIncomes.addCell(INSTANCE.salesclassList.get(i).getDescription() +"(TL)");
+            String priceSale = ""+ INSTANCE.salesclassList.get(i).getPrice();
+            tableIncomes.addCell(priceSale);
         }
         document.add(tableIncomes);
         
