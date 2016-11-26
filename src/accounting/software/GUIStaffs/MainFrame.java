@@ -188,11 +188,11 @@ public class MainFrame extends javax.swing.JFrame {
         //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
         //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
         //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
-        financeframe.others.add(new OtherExpense("RENT ", " ", 50000.0));
-        financeframe.others.add(new OtherExpense("CLEANING TAX", " ", 50000.0));
-        financeframe.others.add(new OtherExpense("ELECTRICT ", " ", 50000.0));
-        financeframe.others.add(new OtherExpense("WATER ", " ", 50000.0));
-        financeframe.others.add(new OtherExpense("NATURAL GAS ", " ", 50000.0));
+        financeframe.others.add(new OtherExpense("RENT ", " ", 50000.0,java.time.LocalDate.now().toString()));
+        financeframe.others.add(new OtherExpense("CLEANING TAX", " ", 50000.0,java.time.LocalDate.now().toString()));
+        financeframe.others.add(new OtherExpense("ELECTRICT ", " ", 50000.0,java.time.LocalDate.now().toString()));
+        financeframe.others.add(new OtherExpense("WATER ", " ", 50000.0,java.time.LocalDate.now().toString()));
+        financeframe.others.add(new OtherExpense("NATURAL GAS ", " ", 50000.0,java.time.LocalDate.now().toString()));
 
         updatePersonelPannel();
         updateFuels();

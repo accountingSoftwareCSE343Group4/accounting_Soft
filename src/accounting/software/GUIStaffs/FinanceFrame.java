@@ -4,6 +4,7 @@ import accounting.software.AccountingSystem;
 import accounting.software.OtherExpense;
 import accounting.software.SalesClass;
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.Icon;
@@ -333,7 +334,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             String[] s = new String[3];
             s = addDialog.GetValues();
             
-            OtherExpense other = new OtherExpense(s[0],s[1], Double.parseDouble(s[2]));
+            OtherExpense other = new OtherExpense(s[0],s[1], Double.parseDouble(s[2]),java.time.LocalDate.now().toString());
             others.add(other);
             giderler.add(s[0] + "_" + s[1]);
             giderIDs.add(other.getID());
