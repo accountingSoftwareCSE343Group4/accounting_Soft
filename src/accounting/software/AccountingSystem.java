@@ -296,7 +296,7 @@ public class AccountingSystem {
     }
     
     // For PDF File 
-    public static void createPdfFile()throws DocumentException, IOException{
+    public static void createReport()throws DocumentException, IOException{
         Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,Font.BOLD);
         Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,Font.BOLD);
         Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.BOLD);
