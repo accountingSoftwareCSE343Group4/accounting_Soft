@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package accounting.software;
+package accounting.software.GUIStaffs;
 
-import static java.lang.System.exit;
+import accounting.software.AccountingSystem;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-
 
 /**
  *
@@ -27,7 +20,7 @@ public class DieselDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        this.getContentPane().setBackground(jLabel1.getBackground());
+      //  this.getContentPane().setBackground(jLabel1.getBackground());
        
         
         this.setLocationRelativeTo(MainFrame.mainFrame);
@@ -112,7 +105,6 @@ public class DieselDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(176, 190, 197));
 
-        jPanel1.setBackground(new java.awt.Color(176, 190, 197));
         jPanel1.setLayout(new java.awt.GridLayout(3, 2));
 
         jLabel1.setBackground(new java.awt.Color(176, 190, 197));
@@ -158,13 +150,11 @@ public class DieselDialog extends javax.swing.JDialog {
             }
         });
 
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/enter.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 42));
-
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
@@ -190,7 +180,6 @@ public class DieselDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))

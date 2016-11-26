@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package accounting.software;
+package accounting.software.GUIStaffs;
 
-import static java.lang.System.exit;
+import accounting.software.AccountingSystem;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 
 /**
@@ -27,7 +21,7 @@ public class GasolineDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        this.getContentPane().setBackground(jLabel1.getBackground());
+       // this.getContentPane().setBackground(jLabel1.getBackground());
        
         
         this.setLocationRelativeTo(MainFrame.mainFrame);
@@ -112,7 +106,6 @@ public class GasolineDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(176, 190, 197));
 
-        jPanel1.setBackground(new java.awt.Color(176, 190, 197));
         jPanel1.setLayout(new java.awt.GridLayout(3, 2));
 
         jLabel1.setBackground(new java.awt.Color(176, 190, 197));
@@ -220,22 +213,22 @@ public class GasolineDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/enter2.png"));
+        Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/enter.png"));
+        Icon img = new ImageIcon("src/accounting/software/images/enter.png");
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/exit2.png"));
+        Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/exit.png"));
+        Icon img = new ImageIcon("src/accounting/software/images/exit.png");
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
 
