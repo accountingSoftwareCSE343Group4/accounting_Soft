@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software;
-
-
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -16,24 +9,22 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Main Frame class.
  * @author Furkan
  */
 public class MainFrame extends javax.swing.JFrame {
 
     /**
-     *
+     * This frame
      */
     public static MainFrame mainFrame;
+    
     private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
     private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
     private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
-    
     private FinanceFrame financeframe = new FinanceFrame();
     private PersonnelFrame persframe = new PersonnelFrame();
-
     private static Font newFont;
-
     private boolean sumOpen = true;
     private boolean personnelOpen = false;
     private boolean financeOpen = false;
@@ -46,45 +37,35 @@ public class MainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
-        sumTab.setIcon(img);
-        
-        mainFrame = this;
+        SummaryTab.setIcon(img);
 
+        mainFrame = this;
 
         this.add(persframe);
         persframe.setVisible(false);
-        
+
         temp();
-         
-        
-       
-         
-        
-        
-       
-        
     }
 
     private void updatePersonelPannel() {
-        
-        jPanel7.removeAll();
-        
+
+        jPanelAddPersonnel.removeAll();
+
         int bound = 0;
-        
-        for(int i=0; i< AccountingSystem.getInstance().getPersonnelSize(); ++i){
-           
+
+        for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {
+
             Personnel personnel = AccountingSystem.getInstance().getPerson(i);
-            
-           PersonnelPanel temp = new PersonnelPanel(personnel.getName()+ " " + personnel.getLastName() + " (" + personnel.getJop() + ")", personnel.getSalary(), personnel.getId());
-           
-         //  AccountingSystem.getInstance().addPersonnelPanel(temp);
-            
-            jPanel7.add(temp);
+
+            PersonnelPanel temp = new PersonnelPanel(personnel.getName() + " " + personnel.getLastName() + " (" + personnel.getJop() + ")", personnel.getSalary(), personnel.getId());
+
+            //  AccountingSystem.getInstance().addPersonnelPanel(temp);
+            jPanelAddPersonnel.add(temp);
             temp.setBounds(0, bound, 283, 60);
-            
+
             bound += 80;
         }
-        
+
         this.revalidate();
         this.repaint();
 
@@ -92,136 +73,126 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateExpensesPannel() {
 
-        jPanel4.removeAll();
-        
+        jPanelAddExpenses.removeAll();
+
         int bound = 0;
-        
-        for(int i=0; i< financeframe.others.size(); ++i){
-           
+
+        for (int i = 0; i < financeframe.others.size(); ++i) {
+
             OtherExpense expense = financeframe.others.get(i);
-            
-           ExpensePanel temp = new ExpensePanel(expense.getName() + " (TL) = " + expense.getExpense(), expense.getID());
-           
-           //add accounting system panel
+
+            ExpensePanel temp = new ExpensePanel(expense.getName() + " (TL) = " + expense.getExpense(), expense.getID());
+
+            //add accounting system panel
 //           AccountingSystem.getInstance().addExpensePanel(temp);
 //            
-            jPanel4.add(temp);
-           temp.setBounds(0, bound, 320, 40);
-            
+            jPanelAddExpenses.add(temp);
+            temp.setBounds(0, bound, 320, 40);
+
             bound += 40;
-           
+
         }
-        
+
         this.revalidate();
         this.repaint();
-        
-        
+
     }
 
     private void updateIncomesPannel() {
-        
-        jPanel8.removeAll();
-        
+
+        jPanelAddIncomes.removeAll();
+
         int bound = 0;
-        
-        for(int i=0; i< AccountingSystem.getInstance().getSalesListSize(); ++i){
-           
+
+        for (int i = 0; i < AccountingSystem.getInstance().getSalesListSize(); ++i) {
+
             SalesClass sale = AccountingSystem.getInstance().getSale(i);
-            
-           IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
-           
-           //add accounting system panel
-        //   AccountingSystem.getInstance().addIncomePanel(temp);
-            
-            jPanel8.add(temp);
+
+            IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
+
+            //add accounting system panel
+            //   AccountingSystem.getInstance().addIncomePanel(temp);
+            jPanelAddIncomes.add(temp);
             temp.setBounds(0, bound, 320, 40);
-            
+
             bound += 40;
-           
+
         }
-        
+
         this.revalidate();
         this.repaint();
-        
 
     }
-    
+
     /**
      *
      */
-    public void updateFuels(){
-        
-        jLabel5.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
-        jLabel7.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
-        jLabel8.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(0).getSalePrice());
-        
-        jLabel9.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getFuelAmount());
-        jLabel10.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
-        jLabel11.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(1).getSalePrice());
-        
-        jLabel12.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getFuelAmount());
-        jLabel13.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
-        jLabel14.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(2).getSalePrice());
-        
+    public void updateFuels() {
+
+        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
+        jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
+        jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(0).getSalePrice());
+
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getFuelAmount());
+        jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
+        jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(1).getSalePrice());
+
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getFuelAmount());
+        jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
+        jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(2).getSalePrice());
+
         System.err.println(AccountingSystem.getInstance().getFuelSize());;
     }
-    
-    private void temp(){
-        
-        
-        
+
+    private void temp() {
+
         AccountingSystem.getInstance().addPerson(new Personnel(0));
-         AccountingSystem.getInstance().getPerson(0).setName("FURKAN");
-         AccountingSystem.getInstance().getPerson(0).setLastName("ERDÖL");
-         AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
-         AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
-         
-         AccountingSystem.getInstance().addPerson(new Personnel(1));
-         AccountingSystem.getInstance().getPerson(1).setName("Emre");
-         AccountingSystem.getInstance().getPerson(1).setLastName("Bayram");
-         AccountingSystem.getInstance().getPerson(1).setJop("CLEANER");
-         AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
-         
-         AccountingSystem.getInstance().addPerson(new Personnel(2));
-         AccountingSystem.getInstance().getPerson(2).setName("Şahin");
-         AccountingSystem.getInstance().getPerson(2).setLastName("Eğilmez");
-         AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
-         AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
-         
-         AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
+        AccountingSystem.getInstance().getPerson(0).setName("FURKAN");
+        AccountingSystem.getInstance().getPerson(0).setLastName("ERDÖL");
+        AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
+        AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
+
+        AccountingSystem.getInstance().addPerson(new Personnel(1));
+        AccountingSystem.getInstance().getPerson(1).setName("Emre");
+        AccountingSystem.getInstance().getPerson(1).setLastName("Bayram");
+        AccountingSystem.getInstance().getPerson(1).setJop("CLEANER");
+        AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
+
+        AccountingSystem.getInstance().addPerson(new Personnel(2));
+        AccountingSystem.getInstance().getPerson(2).setName("Şahin");
+        AccountingSystem.getInstance().getPerson(2).setLastName("Eğilmez");
+        AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
+        AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
+
+        AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
         AccountingSystem.getInstance().addFuel(new Fuel("GASOLINE", 20.0, 21.1));
         AccountingSystem.getInstance().addFuel(new Fuel("LPG", 20.0, 21.1));
-         
+
         AccountingSystem.getInstance().getFuel(0).setBuyingPrice(5.0);
         AccountingSystem.getInstance().getFuel(0).setSalePrice(5.2);
-        
+
         AccountingSystem.getInstance().getFuel(1).setBuyingPrice(5.1);
         AccountingSystem.getInstance().getFuel(1).setSalePrice(5.3);
-        
+
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(5.4);
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
-        
-        
 
-       // AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
-         //AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
-          //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
+        // AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
+        //AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
+        //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
         //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
-          //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+        financeframe.others.add(new OtherExpense("RENT ", " ", 50000.0));
+        financeframe.others.add(new OtherExpense("CLEANING TAX", " ", 50000.0));
+        financeframe.others.add(new OtherExpense("ELECTRICT ", " ", 50000.0));
+        financeframe.others.add(new OtherExpense("WATER ", " ", 50000.0));
+        financeframe.others.add(new OtherExpense("NATURAL GAS ", " ", 50000.0));
 
-        financeframe.others.add(new OtherExpense("RENT " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("CLEANING TAX" ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("ELECTRICT " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("WATER " ," ", 50000.0));
-        financeframe.others.add(new OtherExpense("NATURAL GAS " ," ", 50000.0));
-        
         updatePersonelPannel();
         updateFuels();
         updateIncomesPannel();
         updateExpensesPannel();
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,65 +203,65 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        sumTab = new javax.swing.JLabel();
+        jLayeredPaneTopMenu = new javax.swing.JLayeredPane();
+        SummaryTab = new javax.swing.JLabel();
         PersonnelTab = new javax.swing.JLabel();
-        FInanceTab = new javax.swing.JLabel();
-        sumPane = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
-        ReportBut = new javax.swing.JButton();
-        DieselBut = new javax.swing.JButton();
-        GasolineBut = new javax.swing.JButton();
-        LpgBut = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        ExpensesBut = new javax.swing.JButton();
-        IncomesBut = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel8 = new javax.swing.JPanel();
+        FinanceTab = new javax.swing.JLabel();
+        jLayeredPaneSummary = new javax.swing.JLayeredPane();
+        jPanelGasoline = new javax.swing.JPanel();
+        ReportButton = new javax.swing.JButton();
+        DieselButton = new javax.swing.JButton();
+        GasolineButton = new javax.swing.JButton();
+        LpgButton = new javax.swing.JButton();
+        jLabelDieselAvailableAmount = new javax.swing.JLabel();
+        jLabelDieselPurchasePrice = new javax.swing.JLabel();
+        jLabelDieselCurrentPrice = new javax.swing.JLabel();
+        jLabelGasolineAvailableAmount = new javax.swing.JLabel();
+        jLabelGasolinePurchasePrice = new javax.swing.JLabel();
+        jLabelGasolineCurrentPrice = new javax.swing.JLabel();
+        jLabelLpgAvailableAmount = new javax.swing.JLabel();
+        jLabelLpgPurchasePrice = new javax.swing.JLabel();
+        jLabelLpgCurrentPrice = new javax.swing.JLabel();
+        jPanelPersonnel = new javax.swing.JPanel();
+        jScrollPanePersonnel = new javax.swing.JScrollPane();
+        jPanelAddPersonnel = new javax.swing.JPanel();
+        jPanelExpensesAndIncomes = new javax.swing.JPanel();
+        ExpensesButton = new javax.swing.JButton();
+        IncomesButton = new javax.swing.JButton();
+        jScrollPaneExpenses = new javax.swing.JScrollPane();
+        jPanelAddExpenses = new javax.swing.JPanel();
+        jScrollPaneIncomes = new javax.swing.JScrollPane();
+        jPanelAddIncomes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
         setResizable(false);
 
-        jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jLayeredPane1.setAlignmentX(0.0F);
-        jLayeredPane1.setAlignmentY(0.0F);
-        jLayeredPane1.setOpaque(true);
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1149, 70));
-        jLayeredPane1.setLayout(new java.awt.GridLayout(1, 0));
+        jLayeredPaneTopMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jLayeredPaneTopMenu.setAlignmentX(0.0F);
+        jLayeredPaneTopMenu.setAlignmentY(0.0F);
+        jLayeredPaneTopMenu.setOpaque(true);
+        jLayeredPaneTopMenu.setPreferredSize(new java.awt.Dimension(1149, 70));
+        jLayeredPaneTopMenu.setLayout(new java.awt.GridLayout(1, 0));
 
-        sumTab.setBackground(new java.awt.Color(51, 153, 0));
-        sumTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 7.png"))); // NOI18N
-        sumTab.setAlignmentY(0.0F);
-        sumTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        sumTab.setMaximumSize(new java.awt.Dimension(383, 72));
-        sumTab.setMinimumSize(new java.awt.Dimension(383, 72));
-        sumTab.addMouseListener(new java.awt.event.MouseAdapter() {
+        SummaryTab.setBackground(new java.awt.Color(51, 153, 0));
+        SummaryTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 7.png"))); // NOI18N
+        SummaryTab.setAlignmentY(0.0F);
+        SummaryTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SummaryTab.setMaximumSize(new java.awt.Dimension(383, 72));
+        SummaryTab.setMinimumSize(new java.awt.Dimension(383, 72));
+        SummaryTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sumTabMouseClicked(evt);
+                SummaryTabMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                sumTabMouseExited(evt);
+                SummaryTabMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sumTabMouseEntered(evt);
+                SummaryTabMouseEntered(evt);
             }
         });
-        jLayeredPane1.add(sumTab);
+        jLayeredPaneTopMenu.add(SummaryTab);
 
         PersonnelTab.setBackground(new java.awt.Color(51, 153, 0));
         PersonnelTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 20.png"))); // NOI18N
@@ -310,355 +281,355 @@ public class MainFrame extends javax.swing.JFrame {
                 PersonnelTabMouseEntered(evt);
             }
         });
-        jLayeredPane1.add(PersonnelTab);
+        jLayeredPaneTopMenu.add(PersonnelTab);
 
-        FInanceTab.setBackground(new java.awt.Color(51, 153, 0));
-        FInanceTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 8.png"))); // NOI18N
-        FInanceTab.setAlignmentY(0.0F);
-        FInanceTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        FInanceTab.setMaximumSize(new java.awt.Dimension(383, 72));
-        FInanceTab.setMinimumSize(new java.awt.Dimension(383, 72));
-        FInanceTab.setPreferredSize(new java.awt.Dimension(383, 70));
-        FInanceTab.addMouseListener(new java.awt.event.MouseAdapter() {
+        FinanceTab.setBackground(new java.awt.Color(51, 153, 0));
+        FinanceTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 8.png"))); // NOI18N
+        FinanceTab.setAlignmentY(0.0F);
+        FinanceTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FinanceTab.setMaximumSize(new java.awt.Dimension(383, 72));
+        FinanceTab.setMinimumSize(new java.awt.Dimension(383, 72));
+        FinanceTab.setPreferredSize(new java.awt.Dimension(383, 70));
+        FinanceTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FInanceTabMouseClicked(evt);
+                FinanceTabMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                FInanceTabMouseExited(evt);
+                FinanceTabMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                FInanceTabMouseEntered(evt);
+                FinanceTabMouseEntered(evt);
             }
         });
-        jLayeredPane1.add(FInanceTab);
+        jLayeredPaneTopMenu.add(FinanceTab);
 
-        getContentPane().add(jLayeredPane1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jLayeredPaneTopMenu, java.awt.BorderLayout.PAGE_START);
 
-        sumPane.setLayout(new java.awt.GridLayout(1, 0));
+        jLayeredPaneSummary.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setBackground(new java.awt.Color(176, 190, 197));
-        jPanel1.setPreferredSize(new java.awt.Dimension(383, 580));
+        jPanelGasoline.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelGasoline.setPreferredSize(new java.awt.Dimension(383, 580));
 
-        ReportBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 9.png"))); // NOI18N
-        ReportBut.setBorderPainted(false);
-        ReportBut.setContentAreaFilled(false);
-        ReportBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ReportBut.setEnabled(false);
-        ReportBut.setPreferredSize(new java.awt.Dimension(245, 52));
-        ReportBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        ReportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 9.png"))); // NOI18N
+        ReportButton.setBorderPainted(false);
+        ReportButton.setContentAreaFilled(false);
+        ReportButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ReportButton.setEnabled(false);
+        ReportButton.setPreferredSize(new java.awt.Dimension(245, 52));
+        ReportButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ReportButMouseExited(evt);
+                ReportButtonMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ReportButMouseEntered(evt);
+                ReportButtonMouseEntered(evt);
             }
         });
 
-        DieselBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 12.png"))); // NOI18N
-        DieselBut.setBorderPainted(false);
-        DieselBut.setContentAreaFilled(false);
-        DieselBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DieselBut.setPreferredSize(new java.awt.Dimension(122, 32));
-        DieselBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        DieselButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 12.png"))); // NOI18N
+        DieselButton.setBorderPainted(false);
+        DieselButton.setContentAreaFilled(false);
+        DieselButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DieselButton.setPreferredSize(new java.awt.Dimension(122, 32));
+        DieselButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                DieselButMouseEntered(evt);
+                DieselButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                DieselButMouseExited(evt);
+                DieselButtonMouseExited(evt);
             }
         });
-        DieselBut.addActionListener(new java.awt.event.ActionListener() {
+        DieselButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DieselButActionPerformed(evt);
+                DieselButtonActionPerformed(evt);
             }
         });
 
-        GasolineBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 13.png"))); // NOI18N
-        GasolineBut.setBorderPainted(false);
-        GasolineBut.setContentAreaFilled(false);
-        GasolineBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        GasolineBut.setPreferredSize(new java.awt.Dimension(122, 32));
-        GasolineBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        GasolineButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 13.png"))); // NOI18N
+        GasolineButton.setBorderPainted(false);
+        GasolineButton.setContentAreaFilled(false);
+        GasolineButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        GasolineButton.setPreferredSize(new java.awt.Dimension(122, 32));
+        GasolineButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GasolineButMouseEntered(evt);
+                GasolineButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                GasolineButMouseExited(evt);
+                GasolineButtonMouseExited(evt);
             }
         });
-        GasolineBut.addActionListener(new java.awt.event.ActionListener() {
+        GasolineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GasolineButActionPerformed(evt);
+                GasolineButtonActionPerformed(evt);
             }
         });
 
-        LpgBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 14.png"))); // NOI18N
-        LpgBut.setBorderPainted(false);
-        LpgBut.setContentAreaFilled(false);
-        LpgBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LpgBut.setPreferredSize(new java.awt.Dimension(122, 32));
-        LpgBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        LpgButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 14.png"))); // NOI18N
+        LpgButton.setBorderPainted(false);
+        LpgButton.setContentAreaFilled(false);
+        LpgButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LpgButton.setPreferredSize(new java.awt.Dimension(122, 32));
+        LpgButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                LpgButMouseEntered(evt);
+                LpgButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                LpgButMouseExited(evt);
+                LpgButtonMouseExited(evt);
             }
         });
-        LpgBut.addActionListener(new java.awt.event.ActionListener() {
+        LpgButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LpgButActionPerformed(evt);
+                LpgButtonActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelDieselAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("PURCHASE PRICE(TL)        =  5 ");
+        jLabelDieselPurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDieselPurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("CURRENT PRICE (LT)         = 5.2");
+        jLabelDieselCurrentPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDieselCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelGasolineAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("PURCHASE PRICE(TL)        =  5 ");
+        jLabelGasolinePurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelGasolinePurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("CURRENT PRICE (LT)         = 5.2");
+        jLabelGasolineCurrentPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelGasolineCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelLpgAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("PURCHASE PRICE(TL)        =  5 ");
+        jLabelLpgPurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelLpgPurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("CURRENT PRICE (LT)         = 5.2");
+        jLabelLpgCurrentPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelLpgCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelGasolineLayout = new javax.swing.GroupLayout(jPanelGasoline);
+        jPanelGasoline.setLayout(jPanelGasolineLayout);
+        jPanelGasolineLayout.setHorizontalGroup(
+            jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGasolineLayout.createSequentialGroup()
+                .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelGasolineLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GasolineButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DieselButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LpgButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelGasolineLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelGasolineAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                            .addComponent(jLabelLpgAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelDieselAvailableAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelDieselPurchasePrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelDieselCurrentPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelGasolinePurchasePrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelGasolineCurrentPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelLpgPurchasePrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelLpgCurrentPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelGasolineLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanelGasolineLayout.setVerticalGroup(
+            jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGasolineLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(DieselBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DieselButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelDieselAvailableAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(jLabelDieselPurchasePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(jLabelDieselCurrentPrice)
                 .addGap(30, 30, 30)
-                .addComponent(GasolineBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GasolineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelGasolineAvailableAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(jLabelGasolinePurchasePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(jLabelGasolineCurrentPrice)
                 .addGap(30, 30, 30)
-                .addComponent(LpgBut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LpgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelLpgAvailableAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(jLabelLpgPurchasePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
+                .addComponent(jLabelLpgCurrentPrice)
                 .addGap(62, 62, 62)
-                .addComponent(ReportBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
-        sumPane.add(jPanel1);
+        jLayeredPaneSummary.add(jPanelGasoline);
 
-        jPanel2.setBackground(new java.awt.Color(176, 190, 197));
-        jPanel2.setPreferredSize(new java.awt.Dimension(383, 580));
+        jPanelPersonnel.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelPersonnel.setPreferredSize(new java.awt.Dimension(383, 580));
 
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(283, 100));
+        jScrollPanePersonnel.setBorder(null);
+        jScrollPanePersonnel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPanePersonnel.setPreferredSize(new java.awt.Dimension(283, 100));
 
-        jPanel7.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelAddPersonnel.setBackground(new java.awt.Color(176, 190, 197));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelAddPersonnelLayout = new javax.swing.GroupLayout(jPanelAddPersonnel);
+        jPanelAddPersonnel.setLayout(jPanelAddPersonnelLayout);
+        jPanelAddPersonnelLayout.setHorizontalGroup(
+            jPanelAddPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 284, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelAddPersonnelLayout.setVerticalGroup(
+            jPanelAddPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 464, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(jPanel7);
+        jScrollPanePersonnel.setViewportView(jPanelAddPersonnel);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelPersonnelLayout = new javax.swing.GroupLayout(jPanelPersonnel);
+        jPanelPersonnel.setLayout(jPanelPersonnelLayout);
+        jPanelPersonnelLayout.setHorizontalGroup(
+            jPanelPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPersonnelLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPanePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        jPanelPersonnelLayout.setVerticalGroup(
+            jPanelPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPersonnelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPanePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96))
         );
 
-        sumPane.add(jPanel2);
+        jLayeredPaneSummary.add(jPanelPersonnel);
 
-        jPanel3.setBackground(new java.awt.Color(176, 190, 197));
-        jPanel3.setPreferredSize(new java.awt.Dimension(383, 580));
+        jPanelExpensesAndIncomes.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelExpensesAndIncomes.setPreferredSize(new java.awt.Dimension(383, 580));
 
-        ExpensesBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 39.png"))); // NOI18N
-        ExpensesBut.setBorderPainted(false);
-        ExpensesBut.setContentAreaFilled(false);
-        ExpensesBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ExpensesBut.setPreferredSize(new java.awt.Dimension(122, 32));
-        ExpensesBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        ExpensesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 39.png"))); // NOI18N
+        ExpensesButton.setBorderPainted(false);
+        ExpensesButton.setContentAreaFilled(false);
+        ExpensesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExpensesButton.setPreferredSize(new java.awt.Dimension(122, 32));
+        ExpensesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ExpensesButMouseEntered(evt);
+                ExpensesButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ExpensesButMouseExited(evt);
+                ExpensesButtonMouseExited(evt);
             }
         });
 
-        IncomesBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 40.png"))); // NOI18N
-        IncomesBut.setBorderPainted(false);
-        IncomesBut.setContentAreaFilled(false);
-        IncomesBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        IncomesBut.setPreferredSize(new java.awt.Dimension(122, 32));
-        IncomesBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        IncomesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/Asset 40.png"))); // NOI18N
+        IncomesButton.setBorderPainted(false);
+        IncomesButton.setContentAreaFilled(false);
+        IncomesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        IncomesButton.setPreferredSize(new java.awt.Dimension(122, 32));
+        IncomesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                IncomesButMouseEntered(evt);
+                IncomesButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                IncomesButMouseExited(evt);
+                IncomesButtonMouseExited(evt);
             }
         });
 
-        jScrollPane1.setBorder(null);
+        jScrollPaneExpenses.setBorder(null);
 
-        jPanel4.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelAddExpenses.setBackground(new java.awt.Color(176, 190, 197));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelAddExpensesLayout = new javax.swing.GroupLayout(jPanelAddExpenses);
+        jPanelAddExpenses.setLayout(jPanelAddExpensesLayout);
+        jPanelAddExpensesLayout.setHorizontalGroup(
+            jPanelAddExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 345, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelAddExpensesLayout.setVerticalGroup(
+            jPanelAddExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 243, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jPanel4);
+        jScrollPaneExpenses.setViewportView(jPanelAddExpenses);
 
-        jScrollPane3.setBorder(null);
+        jScrollPaneIncomes.setBorder(null);
 
-        jPanel8.setBackground(new java.awt.Color(176, 190, 197));
+        jPanelAddIncomes.setBackground(new java.awt.Color(176, 190, 197));
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelAddIncomesLayout = new javax.swing.GroupLayout(jPanelAddIncomes);
+        jPanelAddIncomes.setLayout(jPanelAddIncomesLayout);
+        jPanelAddIncomesLayout.setHorizontalGroup(
+            jPanelAddIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 345, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelAddIncomesLayout.setVerticalGroup(
+            jPanelAddIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 187, Short.MAX_VALUE)
         );
 
-        jScrollPane3.setViewportView(jPanel8);
+        jScrollPaneIncomes.setViewportView(jPanelAddIncomes);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelExpensesAndIncomesLayout = new javax.swing.GroupLayout(jPanelExpensesAndIncomes);
+        jPanelExpensesAndIncomes.setLayout(jPanelExpensesAndIncomesLayout);
+        jPanelExpensesAndIncomesLayout.setHorizontalGroup(
+            jPanelExpensesAndIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelExpensesAndIncomesLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelExpensesAndIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
+                        .addGroup(jPanelExpensesAndIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IncomesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ExpensesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
+                        .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
+                        .addComponent(jScrollPaneIncomes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        jPanelExpensesAndIncomesLayout.setVerticalGroup(
+            jPanelExpensesAndIncomesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(ExpensesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ExpensesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(IncomesBut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(IncomesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneIncomes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
-        sumPane.add(jPanel3);
+        jLayeredPaneSummary.add(jPanelExpensesAndIncomes);
 
-        getContentPane().add(sumPane, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jLayeredPaneSummary, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sumTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseEntered
+    private void SummaryTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
-        sumTab.setIcon(img);
-    }//GEN-LAST:event_sumTabMouseEntered
+        SummaryTab.setIcon(img);
+    }//GEN-LAST:event_SummaryTabMouseEntered
 
-    private void sumTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseExited
+    private void SummaryTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseExited
         if (!sumOpen) {
             Icon img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
-            sumTab.setIcon(img);
+            SummaryTab.setIcon(img);
         }
 
-    }//GEN-LAST:event_sumTabMouseExited
+    }//GEN-LAST:event_SummaryTabMouseExited
 
     private void PersonnelTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
@@ -673,119 +644,111 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_PersonnelTabMouseExited
 
-    private void FInanceTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseEntered
+    private void FinanceTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
-        FInanceTab.setIcon(img);
-    }//GEN-LAST:event_FInanceTabMouseEntered
+        FinanceTab.setIcon(img);
+    }//GEN-LAST:event_FinanceTabMouseEntered
 
-    private void FInanceTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseExited
+    private void FinanceTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseExited
         if (!financeOpen) {
             Icon img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
-            FInanceTab.setIcon(img);
+            FinanceTab.setIcon(img);
         }
 
-    }//GEN-LAST:event_FInanceTabMouseExited
+    }//GEN-LAST:event_FinanceTabMouseExited
 
-    private void ReportButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButMouseEntered
+    private void ReportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 29.png"));
-        ReportBut.setIcon(img);
-    }//GEN-LAST:event_ReportButMouseEntered
+        ReportButton.setIcon(img);
+    }//GEN-LAST:event_ReportButtonMouseEntered
 
-    private void ReportButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButMouseExited
+    private void ReportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 9.png"));
-        ReportBut.setIcon(img);
-    }//GEN-LAST:event_ReportButMouseExited
+        ReportButton.setIcon(img);
+    }//GEN-LAST:event_ReportButtonMouseExited
 
-    private void DieselButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButMouseEntered
+    private void DieselButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 30.png"));
-        DieselBut.setIcon(img);
-    }//GEN-LAST:event_DieselButMouseEntered
+        DieselButton.setIcon(img);
+    }//GEN-LAST:event_DieselButtonMouseEntered
 
-    private void DieselButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButMouseExited
+    private void DieselButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 12.png"));
-        DieselBut.setIcon(img);
-    }//GEN-LAST:event_DieselButMouseExited
+        DieselButton.setIcon(img);
+    }//GEN-LAST:event_DieselButtonMouseExited
 
-    private void GasolineButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButMouseEntered
+    private void GasolineButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 32.png"));
-        GasolineBut.setIcon(img);
-    }//GEN-LAST:event_GasolineButMouseEntered
+        GasolineButton.setIcon(img);
+    }//GEN-LAST:event_GasolineButtonMouseEntered
 
-    private void GasolineButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButMouseExited
+    private void GasolineButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 13.png"));
-        GasolineBut.setIcon(img);
-    }//GEN-LAST:event_GasolineButMouseExited
+        GasolineButton.setIcon(img);
+    }//GEN-LAST:event_GasolineButtonMouseExited
 
-    private void LpgButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButMouseEntered
+    private void LpgButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 33.png"));
-        LpgBut.setIcon(img);
-    }//GEN-LAST:event_LpgButMouseEntered
+        LpgButton.setIcon(img);
+    }//GEN-LAST:event_LpgButtonMouseEntered
 
-    private void LpgButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButMouseExited
+    private void LpgButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 14.png"));
-        LpgBut.setIcon(img);
-    }//GEN-LAST:event_LpgButMouseExited
+        LpgButton.setIcon(img);
+    }//GEN-LAST:event_LpgButtonMouseExited
 
-    private void ExpensesButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButMouseEntered
+    private void ExpensesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 41.png"));
-        ExpensesBut.setIcon(img);
-    }//GEN-LAST:event_ExpensesButMouseEntered
+        ExpensesButton.setIcon(img);
+    }//GEN-LAST:event_ExpensesButtonMouseEntered
 
-    private void ExpensesButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButMouseExited
+    private void ExpensesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 39.png"));
-        ExpensesBut.setIcon(img);
-    }//GEN-LAST:event_ExpensesButMouseExited
+        ExpensesButton.setIcon(img);
+    }//GEN-LAST:event_ExpensesButtonMouseExited
 
-    private void IncomesButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButMouseEntered
+    private void IncomesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButtonMouseEntered
         Icon img = new ImageIcon(getClass().getResource("images/Asset 42.png"));
-        IncomesBut.setIcon(img);
-    }//GEN-LAST:event_IncomesButMouseEntered
+        IncomesButton.setIcon(img);
+    }//GEN-LAST:event_IncomesButtonMouseEntered
 
-    private void IncomesButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButMouseExited
+    private void IncomesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButtonMouseExited
         Icon img = new ImageIcon(getClass().getResource("images/Asset 40.png"));
-        IncomesBut.setIcon(img);
-    }//GEN-LAST:event_IncomesButMouseExited
+        IncomesButton.setIcon(img);
+    }//GEN-LAST:event_IncomesButtonMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
 
+        Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
+        PersonnelTab.setIcon(img);
+        personnelOpen = true;
 
-      
+        sumOpen = false;
 
-            Icon img = new ImageIcon(getClass().getResource("images/Asset 24.png"));
-            PersonnelTab.setIcon(img);
-            personnelOpen = true;
+        financeOpen = false;
 
-            sumOpen = false;
+        img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
+        SummaryTab.setIcon(img);
 
-            financeOpen = false;
+        img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
+        FinanceTab.setIcon(img);
 
-            img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
-            sumTab.setIcon(img);
+        if (financeframe.isVisible()) {
+            jLayeredPaneSummary.setVisible(true);
+            this.remove(financeframe);
+        }
 
-            img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
-            FInanceTab.setIcon(img);
-
-           
-
-                        
-            if(financeframe.isVisible())
-            {
-                sumPane.setVisible(true);
-                this.remove(financeframe);
-            }
-
-
-            sumPane.setVisible(false);
-            this.add(persframe);
-            persframe.setVisible(true);
-           persframe.updateMe();
+        jLayeredPaneSummary.setVisible(false);
+        this.add(persframe);
+        persframe.setVisible(true);
+        persframe.updateMe();
     }//GEN-LAST:event_PersonnelTabMouseClicked
 
-    private void sumTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumTabMouseClicked
-        if (!sumPane.isVisible()) {
+    private void SummaryTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseClicked
+        if (!jLayeredPaneSummary.isVisible()) {
 
             Icon img = new ImageIcon(getClass().getResource("images/Asset 22.png"));
-            sumTab.setIcon(img);
+            SummaryTab.setIcon(img);
 
             sumOpen = true;
             personnelOpen = false;
@@ -795,68 +758,64 @@ public class MainFrame extends javax.swing.JFrame {
             PersonnelTab.setIcon(img);
 
             img = new ImageIcon(getClass().getResource("images/Asset 8.png"));
-            FInanceTab.setIcon(img);
+            FinanceTab.setIcon(img);
 
             persframe.setVisible(false);
             financeframe.setVisible(false);
-            sumPane.setVisible(true);
+            jLayeredPaneSummary.setVisible(true);
         }
-        
+
         updatePersonelPannel();
         updateFuels();
         updateIncomesPannel();
         updateExpensesPannel();
-        
-    }//GEN-LAST:event_sumTabMouseClicked
 
-    private void FInanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FInanceTabMouseClicked
+    }//GEN-LAST:event_SummaryTabMouseClicked
 
+    private void FinanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseClicked
 
         Icon img = new ImageIcon(getClass().getResource("images/Asset 27.png"));
-        FInanceTab.setIcon(img);
+        FinanceTab.setIcon(img);
 
         financeOpen = true;
         sumOpen = false;
         personnelOpen = false;
 
         img = new ImageIcon(getClass().getResource("images/Asset 7.png"));
-        sumTab.setIcon(img);
+        SummaryTab.setIcon(img);
 
         img = new ImageIcon(getClass().getResource("images/Asset 20.png"));
         PersonnelTab.setIcon(img);
 
-       
-
-        if(persframe.isVisible())
-        {
-            sumPane.setVisible(true);
+        if (persframe.isVisible()) {
+            jLayeredPaneSummary.setVisible(true);
             this.remove(persframe);
         }
-        sumPane.setVisible(false);
-         this.add(financeframe);
-         financeframe.setVisible(true);
+        jLayeredPaneSummary.setVisible(false);
+        this.add(financeframe);
+        financeframe.setVisible(true);
 
-         financeframe.UpdateMe();
-    }//GEN-LAST:event_FInanceTabMouseClicked
+        financeframe.UpdateMe();
+    }//GEN-LAST:event_FinanceTabMouseClicked
 
-    private void DieselButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButActionPerformed
-        
+    private void DieselButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DieselButtonActionPerformed
+
         dieselDialog.setGui();
-        
+
         dieselDialog.setVisible(true);
-    }//GEN-LAST:event_DieselButActionPerformed
+    }//GEN-LAST:event_DieselButtonActionPerformed
 
-    private void GasolineButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GasolineButActionPerformed
+    private void GasolineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GasolineButtonActionPerformed
         gasolineDialog.setGui();
-        
-        gasolineDialog.setVisible(true);
-    }//GEN-LAST:event_GasolineButActionPerformed
 
-    private void LpgButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LpgButActionPerformed
+        gasolineDialog.setVisible(true);
+    }//GEN-LAST:event_GasolineButtonActionPerformed
+
+    private void LpgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LpgButtonActionPerformed
         lpgDialog.setGui();
-        
+
         lpgDialog.setVisible(true);
-    }//GEN-LAST:event_LpgButActionPerformed
+    }//GEN-LAST:event_LpgButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -904,34 +863,34 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DieselBut;
-    private javax.swing.JButton ExpensesBut;
-    private javax.swing.JLabel FInanceTab;
-    private javax.swing.JButton GasolineBut;
-    private javax.swing.JButton IncomesBut;
-    private javax.swing.JButton LpgBut;
+    private javax.swing.JButton DieselButton;
+    private javax.swing.JButton ExpensesButton;
+    private javax.swing.JLabel FinanceTab;
+    private javax.swing.JButton GasolineButton;
+    private javax.swing.JButton IncomesButton;
+    private javax.swing.JButton LpgButton;
     private javax.swing.JLabel PersonnelTab;
-    private javax.swing.JButton ReportBut;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLayeredPane sumPane;
-    private javax.swing.JLabel sumTab;
+    private javax.swing.JButton ReportButton;
+    private javax.swing.JLabel SummaryTab;
+    private javax.swing.JLabel jLabelDieselAvailableAmount;
+    private javax.swing.JLabel jLabelDieselCurrentPrice;
+    private javax.swing.JLabel jLabelDieselPurchasePrice;
+    private javax.swing.JLabel jLabelGasolineAvailableAmount;
+    private javax.swing.JLabel jLabelGasolineCurrentPrice;
+    private javax.swing.JLabel jLabelGasolinePurchasePrice;
+    private javax.swing.JLabel jLabelLpgAvailableAmount;
+    private javax.swing.JLabel jLabelLpgCurrentPrice;
+    private javax.swing.JLabel jLabelLpgPurchasePrice;
+    private javax.swing.JLayeredPane jLayeredPaneSummary;
+    private javax.swing.JLayeredPane jLayeredPaneTopMenu;
+    private javax.swing.JPanel jPanelAddExpenses;
+    private javax.swing.JPanel jPanelAddIncomes;
+    private javax.swing.JPanel jPanelAddPersonnel;
+    private javax.swing.JPanel jPanelExpensesAndIncomes;
+    private javax.swing.JPanel jPanelGasoline;
+    private javax.swing.JPanel jPanelPersonnel;
+    private javax.swing.JScrollPane jScrollPaneExpenses;
+    private javax.swing.JScrollPane jScrollPaneIncomes;
+    private javax.swing.JScrollPane jScrollPanePersonnel;
     // End of variables declaration//GEN-END:variables
 }
