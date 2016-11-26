@@ -5,25 +5,25 @@ package accounting.software;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.ParseException; // for date format
+import java.text.SimpleDateFormat; // for date format
+import java.util.Date; 
 
 /**
  *
- * @author zozge
+ * @author zubeyde ozge yilmaz
  */
 public class SalesClass implements Income{
-    String description;
-    int ID;
-    Double price;
+    private String description;
+    private int ID;
+    private Double price;
     private Date saleDate;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format is 21/11/2016
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format : 21/11/2016
 
     /**
      *
-     * @param description
-     * @param ID
+     * @param description 
+     * @param ID 
      * @param price
      * @param date
      */
@@ -38,14 +38,11 @@ public class SalesClass implements Income{
         catch(ParseException e){
             e.printStackTrace();
         }
-        
-       
-
     }
 
     /**
      *
-     * @return
+     * @return Date
      */
     public Date getSaleDate(){
         return saleDate;
@@ -79,7 +76,7 @@ public class SalesClass implements Income{
 
     /**
      *
-     * @return
+     * @return 
      */
     public int getID() {
         return ID;
@@ -95,7 +92,7 @@ public class SalesClass implements Income{
 
     /**
      *
-     * @return
+     * @return Double
      */
     public Double getPrice() {
         return price;
@@ -121,6 +118,7 @@ public class SalesClass implements Income{
     
     @Override
     public String toString(){
-        return "Date = " + dateFormat.format(saleDate) + " Description = " + description + " price = " + price ;
+        return "ID = " + ID + "Date = " + dateFormat.format(saleDate) + 
+                " Description = " + description + " Price = " + price ;
     }
 }
