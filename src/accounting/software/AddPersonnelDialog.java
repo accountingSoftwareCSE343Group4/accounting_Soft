@@ -33,6 +33,8 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AddPersonnelDialog
+     * @param parent
+     * @param modal
      */
     public AddPersonnelDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -358,6 +360,11 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
             }
         });
     }
+
+    /**
+     *
+     * @return
+     */
     public String[] GetValues(){
         String[] values = new String[8];
         values[0] = ID.getText();

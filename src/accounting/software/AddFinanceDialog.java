@@ -33,6 +33,8 @@ public class AddFinanceDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AddFinanceDialog
+     * @param parent
+     * @param modal
      */
     public AddFinanceDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -225,6 +227,11 @@ public class AddFinanceDialog extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
+
+    /**
+     *
+     * @return
+     */
     public String[] GetValues(){
         String[] Values = new String[3];
         Values[0] = NameField.getText();

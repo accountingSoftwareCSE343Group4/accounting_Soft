@@ -17,6 +17,9 @@ public class PersonnelPanel extends javax.swing.JPanel {
     
     /**
      * Creates new form PersonnelPanel
+     * @param personName
+     * @param personSalary
+     * @param personID
      */
     public PersonnelPanel(String personName, double personSalary, int personID) {
         initComponents();
@@ -27,6 +30,10 @@ public class PersonnelPanel extends javax.swing.JPanel {
 
     }
     
+    /**
+     *
+     * @return
+     */
     public int getPersonnelPanelID(){
         return panelID;
     }

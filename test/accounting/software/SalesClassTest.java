@@ -40,6 +40,11 @@ public class SalesClassTest {
     /**
      * Test of getDescription method, of class SalesClass.
      */
+
+    /**
+     *
+     */
+
     @Test
     public void testGetDescription() {
         System.out.println("getDescription");
@@ -99,7 +104,7 @@ public class SalesClassTest {
     public void testGetPrice() {
         System.out.println("getPrice");
         SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
-        Double expResult = 0;
+        Double expResult = 0.0;
         Double result = instance.getPrice();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -114,9 +119,9 @@ public class SalesClassTest {
         System.out.println("setPrice");
         int price = 0;
         SalesClass instance = null;
-        instance.setPrice(price);
+        instance.setPrice((double)price);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-  */  
+  
 }

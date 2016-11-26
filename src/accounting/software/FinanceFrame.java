@@ -19,6 +19,9 @@ import javax.swing.ListModel;
  */
 public class FinanceFrame extends javax.swing.JPanel {
 
+    /**
+     *
+     */
     public ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
     
     //lists   
@@ -41,6 +44,9 @@ public class FinanceFrame extends javax.swing.JPanel {
     }
     static int temp = 10;
     
+    /**
+     *
+     */
     public void UpdateMe(){
         outcomePanel.removeAll();
         incomePanel.removeAll();

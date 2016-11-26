@@ -30,6 +30,8 @@ public class EditFinanceDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form EditFinanceDialog
+     * @param parent
+     * @param modal
      */
     public EditFinanceDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

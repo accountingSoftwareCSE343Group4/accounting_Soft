@@ -31,8 +31,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+/**
+ *
+ * @author Furkan
+ */
 public class Printer implements Printable, ActionListener {
     private String file="";
+
+    /**
+     *
+     * @param filename
+     */
     public Printer(String filename) {
         file=filename;
     }

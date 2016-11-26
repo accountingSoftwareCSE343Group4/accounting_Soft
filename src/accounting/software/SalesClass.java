@@ -20,7 +20,13 @@ public class SalesClass implements Income{
     private Date saleDate;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format is 21/11/2016
 
-
+    /**
+     *
+     * @param description
+     * @param ID
+     * @param price
+     * @param date
+     */
     public SalesClass(String description, int ID, Double price,String date) {
         this.description = description;
         this.ID = ID;
@@ -36,10 +42,19 @@ public class SalesClass implements Income{
        
 
     }
+
+    /**
+     *
+     * @return
+     */
     public Date getSaleDate(){
         return saleDate;
     }
     
+    /**
+     *
+     * @param date
+     */
     public void setSaleDate(String date){
         try{
             this.saleDate = dateFormat.parse(date);
@@ -54,22 +69,42 @@ public class SalesClass implements Income{
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getID() {
         return ID;
     }
 
+    /**
+     *
+     * @param ID
+     */
     public void setID(int ID) {
         this.ID = ID;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(Double price) {
         this.price = price;
     } 

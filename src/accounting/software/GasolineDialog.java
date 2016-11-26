@@ -20,6 +20,8 @@ public class GasolineDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DieselDialog
+     * @param parent
+     * @param modal
      */
     public GasolineDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -35,12 +37,19 @@ public class GasolineDialog extends javax.swing.JDialog {
         
     }
     
+    /**
+     *
+     */
     public void setGui(){
         jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(1).getFuelAmount()));
         jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(1).getBuyingPrice()));
         jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(1).getSalePrice()));
     }
     
+    /**
+     *
+     * @return
+     */
     public String checkInputValidity() {
         if(jTextField1.getText().isEmpty()){
             return "Available amount cannot be empty!";

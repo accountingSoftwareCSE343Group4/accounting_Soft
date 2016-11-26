@@ -21,6 +21,9 @@ import javax.swing.ImageIcon;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public static MainFrame mainFrame;
     private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
     private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
@@ -143,6 +146,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     }
     
+    /**
+     *
+     */
     public void updateFuels(){
         
         jLabel5.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
