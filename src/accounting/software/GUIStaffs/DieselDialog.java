@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package accounting.software;
+package accounting.software.GUIStaffs;
 
+import accounting.software.AccountingSystem;
 import static java.lang.System.exit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -158,13 +159,11 @@ public class DieselDialog extends javax.swing.JDialog {
             }
         });
 
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/enter.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 42));
-
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
@@ -190,7 +189,6 @@ public class DieselDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -223,22 +221,22 @@ public class DieselDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/enter2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/enter2.png"));
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/enter.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/enter.png"));
                 jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/exit2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/exit2.png"));
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/exit.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/exit.png"));
                 jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
 

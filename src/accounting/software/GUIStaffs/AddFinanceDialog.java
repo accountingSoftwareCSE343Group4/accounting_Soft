@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package accounting.software;
+package accounting.software.GUIStaffs;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -203,22 +203,22 @@ public class AddFinanceDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/exit2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/exit2.png"));
         cancelButton.setIcon(img);
     }//GEN-LAST:event_cancelButtonMouseEntered
 
     private void cancelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/exit.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/exit.png"));
         cancelButton.setIcon(img);
     }//GEN-LAST:event_cancelButtonMouseExited
 
     private void okButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/enter2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/enter2.png"));
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseEntered
 
     private void okButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/enter.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/enter.png"));
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseExited
     

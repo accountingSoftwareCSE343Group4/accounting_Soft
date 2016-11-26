@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package accounting.software;
+package accounting.software.GUIStaffs;
 
+import accounting.software.AccountingSystem;
+import accounting.software.Personnel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -145,11 +147,11 @@ public class PersonnelFrame extends javax.swing.JPanel {
         editButton.setContentAreaFilled(false);
         editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editButtonMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 editButtonMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editButtonMouseEntered(evt);
             }
         });
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,11 +164,11 @@ public class PersonnelFrame extends javax.swing.JPanel {
         removeButton.setContentAreaFilled(false);
         removeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                removeButtonMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 removeButtonMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeButtonMouseEntered(evt);
             }
         });
         removeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +251,6 @@ public class PersonnelFrame extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(selectPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -340,10 +341,10 @@ public class PersonnelFrame extends javax.swing.JPanel {
         
                 
         if (edit) {
-            Icon img = new ImageIcon(getClass().getResource("images/doneButton2.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/doneButton2.png"));
             editButton.setIcon(img);
         } else {
-            Icon img = new ImageIcon(getClass().getResource("images/editButton2.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/editButton2.png"));
             editButton.setIcon(img);
         }
         
@@ -434,28 +435,28 @@ public class PersonnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_JobFieldActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        Personnel person = AccountingSystem.getInstance().getPerson(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
+        //dialog sor
         
-        AccountingSystem.getInstance().removePerson(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
         selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
-
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/addButton2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/addButton2.png"));
         addButton.setIcon(img);
     }//GEN-LAST:event_addButtonMouseEntered
 
     private void addButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/addButton.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/addButton.png"));
         addButton.setIcon(img);
     }//GEN-LAST:event_addButtonMouseExited
 
     private void editButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseEntered
         if (edit) {
-            Icon img = new ImageIcon(getClass().getResource("images/doneButton2.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/doneButton2.png"));
             editButton.setIcon(img);
         } else {
-            Icon img = new ImageIcon(getClass().getResource("images/editButton2.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/editButton2.png"));
             editButton.setIcon(img);
         }
 
@@ -463,22 +464,22 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
     private void editButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMouseExited
         if (edit) {
-            Icon img = new ImageIcon(getClass().getResource("images/doneButton.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/doneButton.png"));
             editButton.setIcon(img);
         } else {
-            Icon img = new ImageIcon(getClass().getResource("images/editButton.png"));
+            Icon img = new ImageIcon(getClass().getResource("../images/editButton.png"));
             editButton.setIcon(img);
         }
 
     }//GEN-LAST:event_editButtonMouseExited
 
     private void removeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseEntered
-        Icon img = new ImageIcon(getClass().getResource("images/deleteButton2.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton2.png"));
         removeButton.setIcon(img);
     }//GEN-LAST:event_removeButtonMouseEntered
 
     private void removeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseExited
-        Icon img = new ImageIcon(getClass().getResource("images/deleteButton.png"));
+        Icon img = new ImageIcon(getClass().getResource("../images/deleteButton.png"));
         removeButton.setIcon(img);
     }//GEN-LAST:event_removeButtonMouseExited
 

@@ -5,6 +5,9 @@
  */
 package accounting.software;
 
+import accounting.software.GUIStaffs.ExpensePanel;
+import accounting.software.GUIStaffs.PersonnelPanel;
+import accounting.software.GUIStaffs.IncomePanel;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
