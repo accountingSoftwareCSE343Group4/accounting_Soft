@@ -14,6 +14,8 @@ public class IncomePanelFinance extends javax.swing.JPanel {
     private Income inc;
     /**
      * Creates new form gelir
+     * @param inc
+     * @param Y
      */
     public IncomePanelFinance(Income inc,int Y) {
         initComponents();
@@ -23,6 +25,10 @@ public class IncomePanelFinance extends javax.swing.JPanel {
         jLabel2.setText(inc.getDescription());
         setBounds(0, Y, 500, 50);
     }
+
+    /**
+     *
+     */
     public IncomePanelFinance(){
         initComponents();
     }
@@ -81,15 +87,26 @@ public class IncomePanelFinance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    /**
+     *
+     * @param text
+     */
     public void setTextName(String text){
         name.setText(text);
     }
     
+    /**
+     *
+     * @param text
+     */
     public void setAmount(String text){
         amount.setText(text);
     }
     
+    /**
+     *
+     * @param text
+     */
     public void setDesc(String text){
         jLabel2.setText(text);
     }

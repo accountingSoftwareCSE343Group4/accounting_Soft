@@ -14,6 +14,8 @@ public class ExpensePanel extends javax.swing.JPanel {
     private int expenseID;
     /**
      * Creates new form expensePanel
+     * @param expense
+     * @param newID
      */
     public ExpensePanel(String expense, int newID) {
         initComponents();
@@ -22,6 +24,10 @@ public class ExpensePanel extends javax.swing.JPanel {
         expenseID = newID;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getExpensePanelID(){
         return expenseID;
     }

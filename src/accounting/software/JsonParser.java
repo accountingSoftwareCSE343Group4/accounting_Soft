@@ -19,10 +19,18 @@ public class JsonParser {
     private Crypto crypto = new Crypto();
     private static final String encString = "enc";
 
+    /**
+     *
+     * @return
+     */
     public String getEncString() {
         return encString;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<List<Object>> JSONDecode() {
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -38,7 +46,7 @@ public class JsonParser {
 
         Personnel person = new Personnel();
         Fuel fuel = new Fuel();
-        SalesClass sales = new SalesClass("", 0, 0);
+        SalesClass sales = new SalesClass("", 0, 0.0, "11/11/2011");
 
         try {
             fileReader = new FileReader("json.txt");
@@ -74,7 +82,7 @@ public class JsonParser {
             for (int i = 0; i < jsonArr.length(); ++i) {
                 sales.setID(jsonArr.getJSONObject(i).getInt("ID"));
                 sales.setDescription(jsonArr.getJSONObject(i).getString("Description"));
-                sales.setPrice(jsonArr.getJSONObject(i).getInt("Price"));
+                sales.setPrice((double)jsonArr.getJSONObject(i).getInt("Price"));
                 //yorum
             }
 
@@ -95,7 +103,13 @@ public class JsonParser {
         return allList;
     }
 
-    public Object JSONEncode(List<Object> objList) {
+    /**
+     *
+     * @param objList
+     * @return
+     * @throws JSONException
+     */
+    public Object JSONEncode(List<Object> objList) throws JSONException {
         JSONArray personnelArr = new JSONArray();
         JSONArray fuelArray = new JSONArray();
         JSONObject salesObj = new JSONObject();
@@ -153,6 +167,10 @@ public class JsonParser {
         }
     }
 
+    /**
+     *
+     * @param jsonObj
+     */
     public void writeJsonToFile(JSONObject jsonObj) {
         BufferedWriter writer;
         System.out.println("write: "+ jsonObj.toString());

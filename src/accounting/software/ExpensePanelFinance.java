@@ -13,6 +13,8 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
     Expenses exp;
     /**
      * Creates new form gider
+     * @param expe
+     * @param Y
      */
     public ExpensePanelFinance(Expenses expe, int Y) {
         initComponents();
@@ -23,6 +25,9 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
         setBounds(0, Y, 500, 50);
     }
     
+    /**
+     *
+     */
     public ExpensePanelFinance(){
         initComponents();
     }
@@ -75,14 +80,26 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * @param text
+     */
     public void setTextName(String text){
         Name.setText(text);
     }
     
+    /**
+     *
+     * @param text
+     */
     public void setAmount(String text){
         amount.setText(text);
     }
     
+    /**
+     *
+     * @param text
+     */
     public void setDesc(String text){
         desc.setText(text);
     }

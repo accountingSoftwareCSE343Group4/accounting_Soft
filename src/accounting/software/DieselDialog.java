@@ -20,6 +20,8 @@ public class DieselDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DieselDialog
+     * @param parent
+     * @param modal
      */
     public DieselDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -35,12 +37,19 @@ public class DieselDialog extends javax.swing.JDialog {
         
     }
     
+    /**
+     *
+     */
     public void setGui(){
         jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getFuelAmount()));
         jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getBuyingPrice()));
         jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getSalePrice()));
     }
     
+    /**
+     *
+     * @return
+     */
     public String checkInputValidity() {
         if(jTextField1.getText().isEmpty()){
             return "Available amount cannot be empty!";
@@ -201,7 +210,7 @@ public class DieselDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
 
         // TODO add your handling code here:
     }                                           

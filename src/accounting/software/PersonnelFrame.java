@@ -309,6 +309,9 @@ public class PersonnelFrame extends javax.swing.JPanel {
         return null;
     }
 
+    /**
+     *
+     */
     public void updateMe() {
         selectPersonnel.removeAllItems();
         for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {

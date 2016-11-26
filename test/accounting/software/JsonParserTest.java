@@ -8,6 +8,7 @@ package accounting.software;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,21 +23,36 @@ import static org.junit.Assert.*;
  */
 public class JsonParserTest {
 
+    /**
+     *
+     */
     public JsonParserTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -54,9 +70,10 @@ public class JsonParserTest {
 
     /**
      * Test of JSONEncode method, of class MyJsonParser.
+     * @throws org.json.JSONException
      */
     @Test
-    public void testJSONEncode() {
+    public void testJSONEncode() throws JSONException {
         System.out.println("JSONEncode");
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();

@@ -38,6 +38,12 @@ public class Crypto {
         return cipher;
     }
 
+    /**
+     *
+     * @param dataToEncrypt
+     * @param secretKey
+     * @return
+     */
     public String encrypt(final String dataToEncrypt, final String secretKey) {
         String encryptedData = null;
         try {
@@ -54,6 +60,12 @@ public class Crypto {
         return encryptedData;
     }
 
+    /**
+     *
+     * @param encryptedData
+     * @param secretKey
+     * @return
+     */
     public String decrypt(final String encryptedData, final String secretKey) {
         String decryptedData = null;
         try {

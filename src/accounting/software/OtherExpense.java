@@ -15,6 +15,12 @@ public class OtherExpense implements Expenses{
     private Double amount;
     private static int inp=0;
 
+    /**
+     *
+     * @param name
+     * @param Desc
+     * @param amount
+     */
     public OtherExpense(String name, String Desc, Double amount) {
         this.name = name;
         this.Desc = Desc;
@@ -22,6 +28,10 @@ public class OtherExpense implements Expenses{
         ++inp;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getID(){
         return inp;
     }

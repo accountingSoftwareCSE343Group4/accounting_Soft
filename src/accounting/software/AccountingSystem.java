@@ -28,6 +28,10 @@ public class AccountingSystem {
     // Lists of Classes
     private List<Personnel> personnelList = new ArrayList();
     private List<Fuel> fuelList = new ArrayList();
+
+    /**
+     *
+     */
     public List<BillAndTax> billsTaxes = new ArrayList<BillAndTax>(); //deneme
     private List<SalesClass> salesclassList = new ArrayList();
     
@@ -46,10 +50,19 @@ public class AccountingSystem {
     private AccountingSystem() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static AccountingSystem getInstance() {
         return INSTANCE;
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public SalesClass getSale(int index) {
         if (index >= salesclassList.size()) {
             return null;
@@ -57,6 +70,11 @@ public class AccountingSystem {
         return salesclassList.get(index);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Personnel getPerson(int index) {
         if (index >= personnelList.size()) {
             return null;
@@ -65,6 +83,11 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @param saleID
+     * @return
+     */
     public SalesClass getSaleById(int saleID) {
 
         for (int i = 0; i < salesclassList.size(); ++i) {
@@ -76,6 +99,11 @@ public class AccountingSystem {
         return null;
     }
 
+    /**
+     *
+     * @param personId
+     * @return
+     */
     public Personnel getPersonById(int personId) {
 
         for (int i = 0; i < personnelList.size(); ++i) {
@@ -87,6 +115,11 @@ public class AccountingSystem {
         return null;
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public SalesClass getSales(int index) {
         if (index >= salesclassList.size()) {
             return null;
@@ -95,6 +128,11 @@ public class AccountingSystem {
         return salesclassList.get(index);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Fuel getFuel(int index) {
         if (index >= fuelList.size()) {
             return null;
@@ -103,18 +141,34 @@ public class AccountingSystem {
         return fuelList.get(index);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSalesListSize() {
         return salesclassList.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPersonnelSize() {
         return personnelList.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getFuelSize() {
         return fuelList.size();
     }
 
+    /**
+     *
+     * @param newSale
+     */
     public void addSale(SalesClass newSale) {
         boolean duplicate = false;
         for (int i = 0; i < salesclassList.size(); ++i) {
@@ -127,6 +181,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param newPerson
+     */
     public void addPerson(Personnel newPerson) {
         boolean duplicate = false;
         for (int i = 0; i < personnelList.size(); ++i) {
@@ -139,6 +197,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param id
+     */
     public void removeSale(int id) {
         for (int i = 0; i < salesclassList.size(); ++i) {
             if (salesclassList.get(i).getID() == id) {
@@ -148,6 +210,10 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @param id
+     */
     public void removePerson(int id) {
         for (int i = 0; i < personnelList.size(); ++i) {
             if (personnelList.get(i).getId() == id) {
@@ -157,6 +223,10 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @param newFuel
+     */
     public void addFuel(Fuel newFuel) {
         boolean duplicate = false;
         for (int i = 0; i < fuelList.size(); ++i) {
@@ -169,6 +239,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param fuelType
+     */
     public void removeFuel(String fuelType) {
         for (int i = 0; i < fuelList.size(); ++i) {
             if (fuelList.get(i).getFuelType().equals(fuelType)) {
@@ -177,6 +251,11 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public PersonnelPanel getPersonnelPanel(int index) {
         if (index >= personnelPanelList.size()) {
             return null;
@@ -184,6 +263,10 @@ public class AccountingSystem {
         return personnelPanelList.get(index);
     }
 
+    /**
+     *
+     * @param newPersonnelPanel
+     */
     public void addPersonnelPanel(PersonnelPanel newPersonnelPanel) {
         boolean duplicate = false;
         for (int i = 0; i < personnelPanelList.size(); ++i) {
@@ -196,6 +279,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param index
+     */
     public void removePersonnelPanel(int index) {
         for (int i = 0; i < personnelPanelList.size(); ++i) {
             personnelPanelList.remove(i);
@@ -203,6 +290,11 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public IncomePanel getIncomePanel(int index) {
         if (index >= incomePanelList.size()) {
             return null;
@@ -210,6 +302,10 @@ public class AccountingSystem {
         return incomePanelList.get(index);
     }
 
+    /**
+     *
+     * @param newIncomePanel
+     */
     public void addIncomePanel(IncomePanel newIncomePanel) {
         boolean duplicate = false;
         for (int i = 0; i < incomePanelList.size(); ++i) {
@@ -222,6 +318,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param index
+     */
     public void removeIncomePanel(int index) {
         for (int i = 0; i < incomePanelList.size(); ++i) {
             incomePanelList.remove(i);
@@ -229,6 +329,11 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public ExpensePanel getExpensePanel(int index) {
         if (index >= expensePanelList.size()) {
             return null;
@@ -236,6 +341,10 @@ public class AccountingSystem {
         return expensePanelList.get(index);
     }
 
+    /**
+     *
+     * @param newExpensePanel
+     */
     public void addExpensePanel(ExpensePanel newExpensePanel) {
         boolean duplicate = false;
         for (int i = 0; i < expensePanelList.size(); ++i) {
@@ -248,6 +357,10 @@ public class AccountingSystem {
         }
     }
 
+    /**
+     *
+     * @param index
+     */
     public void removeExpensePanel(int index) {
         for (int i = 0; i < expensePanelList.size(); ++i) {
             expensePanelList.remove(i);
@@ -255,11 +368,19 @@ public class AccountingSystem {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public JSONObject getJsonObject() {
         return jsonObject;
     }
 
-    public void generateJson() {
+    /**
+     *
+     * @throws JSONException
+     */
+    public void generateJson() throws JSONException {
 
         jsonObject.put("Personel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
 
@@ -274,6 +395,9 @@ public class AccountingSystem {
         jsonParser.writeJsonToFile(jsonObject);
     }
 
+    /**
+     *
+     */
     public void readToJson() {
         List<List<Object>> allList = new ArrayList();
 
@@ -296,6 +420,7 @@ public class AccountingSystem {
     
     // For PDF File 
     public static void createReport()throws DocumentException, IOException{
+
         Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,Font.BOLD);
         Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,Font.BOLD);
         Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.BOLD);

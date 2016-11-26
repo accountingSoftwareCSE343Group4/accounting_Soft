@@ -19,6 +19,9 @@ import javax.swing.ListModel;
  */
 public class FinanceFrame extends javax.swing.JPanel {
 
+    /**
+     *
+     */
     public ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
     
     //lists   
@@ -41,6 +44,9 @@ public class FinanceFrame extends javax.swing.JPanel {
     }
     static int temp = 10;
     
+    /**
+     *
+     */
     public void UpdateMe(){
         outcomePanel.removeAll();
         incomePanel.removeAll();
@@ -291,7 +297,9 @@ public class FinanceFrame extends javax.swing.JPanel {
             String[] s = new String[3];
             s = addDialog.GetValues();
             
-            SalesClass sale = new SalesClass(s[1],temp,Integer.parseInt(s[2]));
+            //bakilacak
+            SalesClass sale = new SalesClass(s[1],temp,Double.parseDouble(s[2]), "11/11/2011");
+            
             AccountingSystem.getInstance().addSale(sale);
             UpdateMe();
             temp++;

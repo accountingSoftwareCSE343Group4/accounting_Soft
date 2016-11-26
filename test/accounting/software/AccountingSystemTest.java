@@ -20,21 +20,36 @@ import static org.junit.Assert.*;
  */
 public class AccountingSystemTest {
     
+    /**
+     *
+     */
     public AccountingSystemTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -234,6 +249,7 @@ public class AccountingSystemTest {
 
     /**
      * Test of generateJson method, of class AccountingSystem.
+     * @throws org.json.JSONException
      */
     @Test
     public void testGenerateJson() throws JSONException {
