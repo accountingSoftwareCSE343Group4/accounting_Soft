@@ -417,7 +417,9 @@ public class AccountingSystem {
 
         jsonObject.put("Fuels", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) fuelList));
 
-//        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesclassList));
+        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesclassList));
+        
+        jsonObject.put("OtherExpense", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
 
         System.out.println(jsonObject.toString());
 
@@ -434,11 +436,13 @@ public class AccountingSystem {
             if (anyList instanceof ArrayList) {
                 for (Object obj : anyList) {
                     if (obj instanceof Personnel) {
-
+                        personnelList.add((Personnel) obj);
                     } else if (obj instanceof Fuel) {
-
+                        fuelList.add((Fuel) obj);
                     } else if (obj instanceof SalesClass) {
-
+                        salesclassList.add((SalesClass) obj);
+                    } else if (obj instanceof OtherExpense) {
+                       otherExpenseList.add((OtherExpense) obj);
                     } else {
                         System.err.println("Unknown class type");
                     }

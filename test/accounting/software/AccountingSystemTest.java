@@ -262,7 +262,7 @@ public class AccountingSystemTest {
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();
         Fuel fuel = new Fuel();
-        
+        SalesClass sale = new SalesClass();
         
         person.setId(121044029);
         person.setName("Gurol");
@@ -288,10 +288,18 @@ public class AccountingSystemTest {
         fuel.setSalePrice(4.5);
         fuel.setTax(121);
         
+        sale.setDescription("motorin");
+        sale.setID(120121);
+        sale.setPrice(50.00);
+        sale.setSaleDate("26/12/2016");
         
         acSystem.addPerson(person);
         acSystem.addPerson(person2);
         acSystem.addFuel(fuel);
+        acSystem.addSale(sale);
+        acSystem.addSale(new SalesClass("benzin", 102012, 20.00, "26/12/2016"));
+        acSystem.addOtherExpense(new OtherExpense("su", "fatura", 123.45, "27/12/2016"));
+        acSystem.addOtherExpense(new OtherExpense("elektrik", "fatura", 250.00, "27/12/2016"));
         
         
         acSystem.generateJson();
