@@ -46,6 +46,8 @@ public class AreUSureDelete extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
+        this.setLocationRelativeTo(null);
+        this.setTitle("Are You Sure");
     }
 
     /**
