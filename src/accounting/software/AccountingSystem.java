@@ -455,7 +455,7 @@ public class AccountingSystem {
      * determines the profit
      * @return double
      */
-  /*  public double getPropit(){
+    public double getPropit(){
         double totalPropit =0.0;
         for(int i = 0; i < salesclassList.size() ; i++){
             
@@ -469,7 +469,7 @@ public class AccountingSystem {
             totalPropit -= otherExpenseList.get(i).getAmount();
         }
         return totalPropit;
-    }*/
+    }
     /**
      * 
      * @return guncel fiyata erisilemediyse 0.0 
@@ -603,9 +603,9 @@ public class AccountingSystem {
         document.add(paragraph);
         
         PdfPTable tableExpenses = new PdfPTable(2);
-        for(int i=0; i<5 ; i++){
-            tableExpenses.addCell("Description(TL)");
-            tableExpenses.addCell("");
+        for(int i=0; i<INSTANCE.otherExpenseList.size() ; i++){
+            tableExpenses.addCell(INSTANCE.otherExpenseList.get(i).getDescription()+"(TL)");
+            tableExpenses.addCell(""+INSTANCE.otherExpenseList.get(i).getAmount());
         }
         document.add(tableExpenses);
         //////////////////////////////////////////////////
@@ -624,7 +624,9 @@ public class AccountingSystem {
         document.add(tableIncomes);
         
         Paragraph assetsTitle = new Paragraph();
-        assetsTitle.add(new Paragraph("                   ASSETS",subFont));
+        assetsTitle.add(new Paragraph("                   ASSETS:",subFont));
+        double assets = INSTANCE.calculateAssets();
+        paragraph.add(""+assets);
         document.add(assetsTitle);
         
         //////////////////////////////////////////////////
