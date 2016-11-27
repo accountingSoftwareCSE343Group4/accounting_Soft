@@ -17,6 +17,7 @@ public class OtherExpense implements Expenses{
     private String Desc;
     private Double amount;
     private Date date;
+    private int ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format : 21/11/2016
     private static int inp=0;
 
@@ -26,18 +27,22 @@ public class OtherExpense implements Expenses{
      * @param Desc
      * @param amount
      */
-    public OtherExpense(String name, String Desc, Double amount, String date) {
+    public OtherExpense(String name, String Desc, Double amount, String eDate) {
         this.name = name;
         this.Desc = Desc;
         this.amount = amount;
-        this.date = new Date();
+        date = new Date();
+        ID = inp;
         try{
-            this.date = dateFormat.parse(date);
+            this.date = dateFormat.parse(eDate);
         }
         catch(ParseException e){
             e.printStackTrace();
         }
         ++inp;
+    }
+    public Double getAmount(){
+        return amount;
     }
     /*
      * @return Date
@@ -61,8 +66,10 @@ public class OtherExpense implements Expenses{
      * @return
      */
     public int getID(){
-        return inp;
+        return ID;
     }
+    
+   
     
     @Override
     public Double getExpense() {

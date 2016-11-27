@@ -16,19 +16,37 @@ import java.security.NoSuchAlgorithmException;
 /**
  * This class provides methods to encrypt and decrypt data.
  *
- * @author Şahin Eğilmez , Stephane Moreau
+ * @author Şahin Eğilmez
  */
 public class Crypto {
-
+    
     private final String initialVector = "0123456789123456"; // This has to be 16 characters
-
+    /**
+     * 
+     * @param input word to be encypted
+     * @return encrypted word
+     * @throws NoSuchAlgorithmException
+     * 
+     * This method encyrypted for md5 32-bit encyptyng algorithm
+     */
     private static String md5(final String input) throws NoSuchAlgorithmException {
         final MessageDigest md = MessageDigest.getInstance("MD5");
         final byte[] messageDigest = md.digest(input.getBytes());
         final BigInteger number = new BigInteger(1, messageDigest);
         return String.format("%032x", number);
     }
-
+    /**
+     * 
+     * @param mode encrypted mode
+     * @param secretKey key to be used
+     * @return Cipher for encrypt-descrypt method
+     * @throws NoSuchAlgorithmException 
+     * @throws NoSuchPaddingException
+     * @throws InvalidKeyException
+     * @throws InvalidAlgorithmParameterException 
+     * 
+     * This method create Cipher for encrypt and descrypt
+     */
     private Cipher initCipher(final int mode, final String secretKey)
             throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
         final SecretKeySpec skeySpec = new SecretKeySpec(md5(secretKey).getBytes(), "AES");
@@ -40,9 +58,11 @@ public class Crypto {
 
     /**
      *
-     * @param dataToEncrypt
-     * @param secretKey
-     * @return
+     * @param dataToEncrypt Word to be encrypted
+     * @param secretKey key to be used
+     * @return encypted word
+     * 
+     * This method encypt to word by secretKey
      */
     public String encrypt(final String dataToEncrypt, final String secretKey) {
         String encryptedData = null;
@@ -62,9 +82,11 @@ public class Crypto {
 
     /**
      *
-     * @param encryptedData
-     * @param secretKey
-     * @return
+     * @param encryptedData Word to be decrypted
+     * @param secretKey key to be used
+     * @return decrypted word
+     * 
+     * This method decryot to word by secretKey
      */
     public String decrypt(final String encryptedData, final String secretKey) {
         String decryptedData = null;

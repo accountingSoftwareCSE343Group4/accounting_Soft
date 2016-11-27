@@ -69,3 +69,6 @@ hs_err_pid*
 !json-20160810-javadoc.jar
 !json-20160810-sources.jar
 !json-20160810.jar
+!readme.txt
+!local_policy.jar
+!US_export_policy.jar

@@ -255,6 +255,7 @@ public class AccountingSystemTest {
     public void testGenerateJson() throws JSONException {
         System.out.println("generateJson");
         AccountingSystem acSystem = AccountingSystem.getInstance();
+        AccountingSystem acSystem2 = AccountingSystem.getInstance();
         
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -262,7 +263,6 @@ public class AccountingSystemTest {
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();
         Fuel fuel = new Fuel();
-        
         
         person.setId(121044029);
         person.setName("Gurol");
@@ -292,9 +292,21 @@ public class AccountingSystemTest {
         acSystem.addPerson(person);
         acSystem.addPerson(person2);
         acSystem.addFuel(fuel);
+        acSystem.addSale(new SalesClass("benzin", 102012, 20.00, "26/12/2016"));
+        acSystem.addOtherExpense(new OtherExpense("su", "fatura", 123.45, "27/12/2016"));
+        acSystem.addOtherExpense(new OtherExpense("elektrik", "fatura", 250.00, "27/12/2016"));
         
         
         acSystem.generateJson();
+        
+        acSystem2.readToJson();
+        
+        assertEquals(acSystem.getPerson(0), acSystem2.getPerson(0));
+        assertEquals(acSystem.getPerson(1), acSystem2.getPerson(1));
+        assertEquals(acSystem.getSale(0), acSystem2.getSale(0));
+        assertEquals(acSystem.getFuel(0), acSystem2.getFuel(0));
+        assertEquals(acSystem.getOtherExpense(0), acSystem2.getOtherExpense(0));
+        
         
         //System.out.println(acSystem.getJsonObject());
     }
