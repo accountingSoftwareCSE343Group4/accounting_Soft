@@ -454,16 +454,18 @@ public class AccountingSystem {
     /**
      * determines the profit
      * @return double
+     *         
      */
     public double getPropit(){
         double totalPropit =0.0;
         for(int i = 0; i < salesclassList.size() ; i++){
             
-            totalPropit += salesclassList.get(i).getPrice();
+            totalPropit += salesclassList.get(i).getIncome();
         }
         for(int i = 0; i < fuelList.size() ; i++){
-            totalPropit += fuelList.get(i).getSalePrice();
-            totalPropit -= fuelList.get(i).getBuyingPrice();
+            totalPropit += fuelList.get(i).getIncome();
+            totalPropit -= fuelList.get(i).getExpense();
+            totalPropit -= fuelList.get(i).getTax();
         }
         for(int i = 0; i < otherExpenseList.size(); i++){
             totalPropit -= otherExpenseList.get(i).getAmount();
