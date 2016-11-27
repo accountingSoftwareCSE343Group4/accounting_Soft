@@ -215,8 +215,8 @@ public class AccountingSystem {
      */
     public void removeOtherExpense(Date date,String desc){
         for(int i = 0; i < otherExpenseList.size(); i++){
-            if(otherExpenseList.get(i).getDescription() == desc &&
-               otherExpenseList.get(i).getDate() == date){
+            if(otherExpenseList.get(i).getDescription().equals(desc) &&
+               otherExpenseList.get(i).getDate().equals(date) ){
                 otherExpenseList.remove(i);
             }
         }
@@ -456,21 +456,21 @@ public class AccountingSystem {
      * @return double
      *         
      */
-    public double getPropit(){
-        double totalPropit =0.0;
+    public double getProfit(){
+        double totalProfit =0.0;
         for(int i = 0; i < salesclassList.size() ; i++){
             
-            totalPropit += salesclassList.get(i).getIncome();
+            totalProfit += salesclassList.get(i).getIncome();
         }
         for(int i = 0; i < fuelList.size() ; i++){
-            totalPropit += fuelList.get(i).getIncome();
-            totalPropit -= fuelList.get(i).getExpense();
-            totalPropit -= fuelList.get(i).getTax();
+            totalProfit += fuelList.get(i).getIncome();
+            totalProfit -= fuelList.get(i).getExpense();
+            totalProfit -= fuelList.get(i).getTax();
         }
         for(int i = 0; i < otherExpenseList.size(); i++){
-            totalPropit -= otherExpenseList.get(i).getAmount();
+            totalProfit -= otherExpenseList.get(i).getAmount();
         }
-        return totalPropit;
+        return totalProfit;
     }
     /**
      * 
@@ -636,7 +636,7 @@ public class AccountingSystem {
         Paragraph profitTitle = new Paragraph();
         profitTitle.add(new Paragraph("                   PROFIT:",subFont));
         document.add(profitTitle);
-        double profit = INSTANCE.getPropit();
+        double profit = INSTANCE.getProfit();
         paragraph.add(""+profitTitle);
         
         
