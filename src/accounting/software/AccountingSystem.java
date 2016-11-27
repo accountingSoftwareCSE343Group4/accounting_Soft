@@ -1,5 +1,6 @@
 package accounting.software;
 
+import accounting.software.GUIStaffs.DieselDialog;
 import accounting.software.GUIStaffs.ExpensePanel;
 import accounting.software.GUIStaffs.IncomePanel;
 import accounting.software.GUIStaffs.PersonnelPanel;
@@ -503,15 +504,35 @@ public class AccountingSystem {
         document.add(fuelTitle);
         document.add(paragraph);
         PdfPTable tableFuel = new PdfPTable(2);
-        for(int i= 0; i < 3 ; i++){
-            tableFuel.addCell("DIESEL");
+        String gasolineS,dieselS,lpgS;
+         if (TakeDataOnline.getInstance().getStateInternet()) {
+            double gasoline = TakeDataOnline.getInstance().getGasoline();
+            double diesel   = TakeDataOnline.getInstance().getDiesel();
+            double lpg      =TakeDataOnline.getInstance().getLpg();
+            gasolineS = "" + gasoline;
+            dieselS = "" + diesel;
+            lpgS = "" + lpg;
+        } 
+        else {
+            gasolineS = "No Internet Connection";
+            dieselS = "No Internet Connection";
+            lpgS = "No Internet Connection"; 
+             //There is no internet connection. So should show info for user.  
+        }         
+        for(int i= 0; i < INSTANCE.getFuelSize() ; i++){
+            tableFuel.addCell(INSTANCE.getFuel(i).getDescription());
             tableFuel.addCell("");
             tableFuel.addCell("Available  Amount(lt)");
-            tableFuel.addCell("");
+            tableFuel.addCell((""+INSTANCE.getFuel(i).getFuelCapacity()));
             tableFuel.addCell("Purchase Price(TL)");
-            tableFuel.addCell("");
+            tableFuel.addCell(""+INSTANCE.getFuel(i).getBuyingPrice());
             tableFuel.addCell("Current Price(TL)");
-            tableFuel.addCell("");
+            if(INSTANCE.getFuel(i).getDescription().compareTo("Gasoline") == 0)
+                tableFuel.addCell(gasolineS);
+            else if(INSTANCE.getFuel(i).getDescription().compareTo("Diesel") == 0)
+                tableFuel.addCell(dieselS);
+            else
+                tableFuel.addCell(lpgS);
         }
         document.add(tableFuel);
         ///////////////////////////////////////////////
