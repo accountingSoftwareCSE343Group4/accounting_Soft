@@ -604,8 +604,9 @@ public class AccountingSystem {
         document.add(expensesTitle);
         document.add(paragraph);
         
-        PdfPTable tableExpenses = new PdfPTable(2);
+        PdfPTable tableExpenses = new PdfPTable(3);
         for(int i=0; i<INSTANCE.otherExpenseList.size() ; i++){
+            tableExpenses.addCell(INSTANCE.otherExpenseList.get(i).getName());
             tableExpenses.addCell(INSTANCE.otherExpenseList.get(i).getDescription()+"(TL)");
             tableExpenses.addCell(""+INSTANCE.otherExpenseList.get(i).getAmount());
         }
@@ -627,9 +628,18 @@ public class AccountingSystem {
         
         Paragraph assetsTitle = new Paragraph();
         assetsTitle.add(new Paragraph("                   ASSETS:",subFont));
+        document.add(assetsTitle);
         double assets = INSTANCE.calculateAssets();
         paragraph.add(""+assets);
-        document.add(assetsTitle);
+        
+        
+        Paragraph profitTitle = new Paragraph();
+        profitTitle.add(new Paragraph("                   PROFIT:",subFont));
+        document.add(profitTitle);
+        double profit = INSTANCE.getPropit();
+        paragraph.add(""+profitTitle);
+        
+        
         
         //////////////////////////////////////////////////
         document.close();
