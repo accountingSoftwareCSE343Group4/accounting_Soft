@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package accounting.software;
 
 import java.awt.event.*;
@@ -15,28 +11,23 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
-import javax.print.PrintException;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.Sides;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 /**
  *
  * @author Furkan
+ * @author Şahin Eğilmez
  */
 public class Printer implements Printable, ActionListener {
-    private String file="";
+    private String file=""; //pdf file name
 
     /**
      *
@@ -45,7 +36,16 @@ public class Printer implements Printable, ActionListener {
     public Printer(String filename) {
         file=filename;
     }
-    
+    /**
+     * 
+     * @param g Graphic class
+     * @param pf page format
+     * @param page page count
+     * @return 1
+     * @throws PrinterException 
+     * 
+     * This methos print to pdf
+     */
     @Override
     public int print(Graphics g, PageFormat pf, int page) throws
             PrinterException {
@@ -78,7 +78,12 @@ public class Printer implements Printable, ActionListener {
         }
         return 1;
     }
-
+    /**
+     * 
+     * @param e action
+     * 
+     * This method active for Button.OnClick()
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         PrinterJob job = PrinterJob.getPrinterJob();
