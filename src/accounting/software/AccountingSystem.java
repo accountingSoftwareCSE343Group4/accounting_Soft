@@ -455,9 +455,10 @@ public class AccountingSystem {
      * determines the profit
      * @return double
      */
-    public double getPropit(){
+  /*  public double getPropit(){
         double totalPropit =0.0;
         for(int i = 0; i < salesclassList.size() ; i++){
+            
             totalPropit += salesclassList.get(i).getPrice();
         }
         for(int i = 0; i < fuelList.size() ; i++){
@@ -468,6 +469,39 @@ public class AccountingSystem {
             totalPropit -= otherExpenseList.get(i).getAmount();
         }
         return totalPropit;
+    }*/
+    /**
+     * 
+     * @return guncel fiyata erisilemediyse 0.0 
+     *         guncel fiyat * (fuelCapacity - fuelAmount ) 
+     *         sahip olunan yakıttan o gun fiyatiyla sahip olunacak servet 
+     */
+    public double calculateAssets(){
+        double assets = 0.0;
+        double gasolineCurrentPrice, dieselCurrentPrice,lpgCurrentPrice;
+        try{
+            if (TakeDataOnline.getInstance().getStateInternet()) {
+                gasolineCurrentPrice = TakeDataOnline.getInstance().getGasoline();
+                dieselCurrentPrice   = TakeDataOnline.getInstance().getDiesel();
+                lpgCurrentPrice      = TakeDataOnline.getInstance().getLpg();
+            } 
+            else {
+                return 0.0; 
+             //There is no internet connection. So should show info for user.  
+            } 
+            for(int i = 0; i < fuelList.size(); i++){
+                if(fuelList.get(i).getDescription().compareTo("Gasoline") == 0)
+                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount())* gasolineCurrentPrice );
+                else if(fuelList.get(i).getDescription().compareTo("Diesel") == 0)
+                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount())* dieselCurrentPrice );
+                else
+                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount())* lpgCurrentPrice );
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return assets;
     }
     // For PDF File 
     /* 
@@ -505,7 +539,7 @@ public class AccountingSystem {
         document.add(paragraph);
         PdfPTable tableFuel = new PdfPTable(2);
         String gasolineS,dieselS,lpgS;
-         if (TakeDataOnline.getInstance().getStateInternet()) {
+        if (TakeDataOnline.getInstance().getStateInternet()) {
             double gasoline = TakeDataOnline.getInstance().getGasoline();
             double diesel   = TakeDataOnline.getInstance().getDiesel();
             double lpg      =TakeDataOnline.getInstance().getLpg();
