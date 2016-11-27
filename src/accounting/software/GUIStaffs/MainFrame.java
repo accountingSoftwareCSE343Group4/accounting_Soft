@@ -154,7 +154,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         AccountingSystem.getInstance().addPerson(new Personnel(0));
         AccountingSystem.getInstance().getPerson(0).setName("FURKAN");
-        AccountingSystem.getInstance().getPerson(0).setLastName("ERDÖL");
+        AccountingSystem.getInstance().getPerson(0).setLastName("ERDOL");
         AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
         AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
 
@@ -165,8 +165,8 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
 
         AccountingSystem.getInstance().addPerson(new Personnel(2));
-        AccountingSystem.getInstance().getPerson(2).setName("Þahin");
-        AccountingSystem.getInstance().getPerson(2).setLastName("Eðilmez");
+        AccountingSystem.getInstance().getPerson(2).setName("Sahin");
+        AccountingSystem.getInstance().getPerson(2).setLastName("Egilmez");
         AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
         AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
 

@@ -16,8 +16,11 @@ import javax.swing.ImageIcon;
  */
 public class FinanceFrame extends javax.swing.JPanel {
 
+    //Total Income and Total Outcome
+    private double totalin = 0;
+    private double totalout = 0;
     /**
-     *
+     * Expenses
      */
     public ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
     
@@ -55,6 +58,8 @@ public class FinanceFrame extends javax.swing.JPanel {
         int freeIncomeY = 0;
         for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
         {
+            totalout += AccountingSystem.getInstance().getPerson(i).getSalary() + 
+                    AccountingSystem.getInstance().getPerson(i).getSskBonus();
             ++count_out;
             outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
             freeOutcomeY += 50;
@@ -64,8 +69,10 @@ public class FinanceFrame extends javax.swing.JPanel {
         {
             ++count_in;
             ++count_out;
+            totalout += AccountingSystem.getInstance().getFuel(i).getTax();
             outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getFuel(i), freeOutcomeY));
             freeOutcomeY += 50;
+            totalin += AccountingSystem.getInstance().getFuel(i).getIncome();
             incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getFuel(i), freeIncomeY));
             freeIncomeY += 50;
            
@@ -76,11 +83,13 @@ public class FinanceFrame extends javax.swing.JPanel {
             gelirler.add(AccountingSystem.getInstance().getSale(i).toString());
             gelirIDs.add(AccountingSystem.getInstance().getSale(i).getID());
             ++count_in;
+            totalin += AccountingSystem.getInstance().getSale(i).getPrice();
             incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getSale(i),freeIncomeY));
             freeIncomeY += 50;
         }
         // TODO :
         for(int i = 0; i < others.size(); ++i){
+            totalout += others.get(i).getExpense();
             giderler.add(others.get(i).getName());
             outcomePanel.add(new ExpensePanelFinance(others.get(i), freeOutcomeY));
             ++count_out;
@@ -93,6 +102,8 @@ public class FinanceFrame extends javax.swing.JPanel {
             outcomePanel.setPreferredSize(new Dimension(530, freeOutcomeY + 50));
         this.revalidate();
         this.repaint();
+        totalIncome.setText(Double.toString(totalin));
+        totalOutCome.setText(Double.toString(totalout));
     }
     
     /**
@@ -114,6 +125,10 @@ public class FinanceFrame extends javax.swing.JPanel {
         incomePanel = new javax.swing.JPanel();
         rightPane = new javax.swing.JScrollPane();
         outcomePanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        totalIncome = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        totalOutCome = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(176, 190, 197));
         setPreferredSize(new java.awt.Dimension(1149, 580));
@@ -167,11 +182,11 @@ public class FinanceFrame extends javax.swing.JPanel {
         AddOutcomeBut.setContentAreaFilled(false);
         AddOutcomeBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AddOutcomeBut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AddOutcomeButMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 AddOutcomeButMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AddOutcomeButMouseEntered(evt);
             }
         });
         AddOutcomeBut.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +251,14 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         rightPane.setViewportView(outcomePanel);
 
+        jLabel3.setText("Total :");
+
+        totalIncome.setText("0.00");
+
+        jLabel4.setText("Total :");
+
+        totalOutCome.setText("0.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,14 +277,26 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
-                .addComponent(AddIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(AddIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 194, Short.MAX_VALUE)
+                        .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalIncome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalOutCome)
+                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,14 +309,20 @@ public class FinanceFrame extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(leftPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rightPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(totalIncome)
+                    .addComponent(jLabel4)
+                    .addComponent(totalOutCome))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AddIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(DeleteIncomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(AddOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteOutcomeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -427,8 +468,12 @@ public class FinanceFrame extends javax.swing.JPanel {
     private static javax.swing.JPanel incomePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane leftPane;
     private static javax.swing.JPanel outcomePanel;
     private javax.swing.JScrollPane rightPane;
+    private javax.swing.JLabel totalIncome;
+    private javax.swing.JLabel totalOutCome;
     // End of variables declaration//GEN-END:variables
 }
