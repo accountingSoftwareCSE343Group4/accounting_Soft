@@ -88,10 +88,10 @@ public class FinanceFrame extends javax.swing.JPanel {
             freeIncomeY += 50;
         }
         // TODO :
-        for(int i = 0; i < others.size(); ++i){
-            totalout += others.get(i).getExpense();
-            giderler.add(others.get(i).getName());
-            outcomePanel.add(new ExpensePanelFinance(others.get(i), freeOutcomeY));
+        for(int i = 0; i < AccountingSystem.getInstance().getOtherExpenseSize(); ++i){
+            totalout += AccountingSystem.getInstance().getOtherExpense(i).getExpense();
+            giderler.add(AccountingSystem.getInstance().getOtherExpense(i).getName());
+            outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getOtherExpense(i), freeOutcomeY));
             ++count_out;
             freeOutcomeY += 50;
         }
