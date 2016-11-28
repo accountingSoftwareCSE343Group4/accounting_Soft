@@ -26,7 +26,7 @@ public class JsonParser {
      *
      * @return
      */
-    public List<List<Object>> JSONDecode() {
+    public List<List<Object>> JSONDecode() throws Exception {
         FileReader fileReader;
         BufferedReader bufferedReader;
         String jsonString;
@@ -95,13 +95,11 @@ public class JsonParser {
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("Error: " + e);
+            throw new Exception("FileNotFound");
         } catch (IOException e) {
             System.err.println("Error: " + e);
         } catch (JSONException e) {
             System.err.println("Error Json: " + e);
-        } catch (Exception e) {
-            System.err.println("Undefined error: " + e);
         }
 
         allList.add((List) personnelList);

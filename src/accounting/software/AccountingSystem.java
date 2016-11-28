@@ -10,6 +10,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -453,8 +454,15 @@ public class AccountingSystem {
     /**
      *
      */
-    public void readToJson() {
+    public boolean readToJson() {
         List<List<Object>> allList = new ArrayList();
+
+        try {
+            allList = jsonParser.JSONDecode();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
         for (List<Object> anyList : allList) {
             if (anyList instanceof ArrayList) {
@@ -473,6 +481,7 @@ public class AccountingSystem {
                 }
             }
         }
+        return true;
     }
 
     /**
