@@ -42,7 +42,7 @@ public class JsonParser {
 
         Personnel person = new Personnel();
         Fuel fuel = new Fuel();
-        SalesClass sales = new SalesClass("", 0, 0.0, "11/11/2011");
+        SalesClass sales = new SalesClass("", 0, 0.0, "2011-11-11");
         OtherExpense exp;
 
         try {
@@ -64,10 +64,10 @@ public class JsonParser {
                 personnelList.add(person);
             }
 
-            jsonArr = jsonObj.getJSONArray("Fuel");
+            jsonArr = jsonObj.getJSONArray("Fuels");
             for (int i = 0; i < jsonArr.length(); ++i) {
                 fuel.setBuyingPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("BuyingPrice"), getEncString())));
-                fuel.setFuelAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelAmmount"), getEncString())));
+                fuel.setFuelAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelAmount"), getEncString())));
                 fuel.setFuelCapacity(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelCapacity"), getEncString())));
                 fuel.setFuelType(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelType"), getEncString()));
                 fuel.setSalePrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("SalePrice"), getEncString())));
