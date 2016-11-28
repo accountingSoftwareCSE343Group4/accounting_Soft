@@ -7,6 +7,8 @@ package accounting.software;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,7 +66,11 @@ public class JsonParserTest {
     public void testJSONDecode() {
         System.out.println("JSONDecode");
         JsonParser instance = new JsonParser();
-        instance.JSONDecode();
+        try {
+            instance.JSONDecode();
+        } catch (Exception ex) {
+            Logger.getLogger(JsonParserTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

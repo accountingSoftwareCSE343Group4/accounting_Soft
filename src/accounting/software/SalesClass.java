@@ -3,6 +3,8 @@ package accounting.software;
 import java.text.ParseException; // for date format
 import java.text.SimpleDateFormat; // for date format
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +18,17 @@ public class SalesClass implements Income {
     private Date saleDate;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
 
+    public SalesClass() {
+        this.description = "";
+        this.ID = -1;
+        this.price = 0.0;
+        try {
+            this.saleDate = dateFormat.parse("1111-01-01");
+        } catch (ParseException ex) {
+            Logger.getLogger(SalesClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+  
     /**
      *
      * @param description

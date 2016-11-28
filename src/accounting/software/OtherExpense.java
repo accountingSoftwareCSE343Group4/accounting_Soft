@@ -15,7 +15,7 @@ public class OtherExpense implements Expenses {
     private Double amount;
     private Date date;
     private int ID;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 2016-11-26
     private static int inp = 0;
 
     /**

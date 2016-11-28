@@ -40,10 +40,10 @@ public class JsonParser {
         List<SalesClass> salesList = new ArrayList();
         List<OtherExpense> expList = new ArrayList();
 
-        Personnel person = new Personnel();
-        Fuel fuel = new Fuel();
+        Personnel person = new Personnel("",0, "", "", "", "", 0.0, 0.0);
+        Fuel fuel = new Fuel("", 0.0, 0.0);
         SalesClass sales = new SalesClass("", 0, 0.0, "2011-11-11");
-        OtherExpense exp;
+        OtherExpense expense;
 
         try {
             fileReader = new FileReader("json.txt");
@@ -90,8 +90,8 @@ public class JsonParser {
                 String desc = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Desc"), getEncString());
                 String amo = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Amount"), getEncString());
                 String sdate = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Date"), getEncString());
-                exp = new OtherExpense(name, desc, Double.parseDouble(amo), sdate);
-                expList.add(exp);
+                expense = new OtherExpense(name, desc, Double.parseDouble(amo), sdate);
+                expList.add(expense);
             }
 
         } catch (FileNotFoundException e) {
