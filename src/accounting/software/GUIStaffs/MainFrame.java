@@ -60,15 +60,18 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(persframe);
         persframe.setVisible(false);
 
-        temp();
+         temp();
+//        if (AccountingSystem.getInstance().readToJson()) {
+//
+//        } else {
+//            AccountingSystem.getInstance().generateJson();
+//        }
 
-        
-        if(AccountingSystem.getInstance().readToJson()){
-            
-        }else{
-            AccountingSystem.getInstance().generateJson();
-        }
-        
+        DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
+        GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
+        LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
+        FinanceFrame financeframe = new FinanceFrame();
+        PersonnelFrame persframe = new PersonnelFrame();
 
     }
 
@@ -169,18 +172,18 @@ public class MainFrame extends javax.swing.JFrame {
             lpg
                     = TakeDataOnline.getInstance().getLpg();
         } else {
-           //no internet connection
+            //no internet connection
         }
 
         jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
 
         jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getFuelAmount());
         jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
-        jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(1).getSalePrice());
+        jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + gasoline);
 
         jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getFuelAmount());
         jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
-        jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(2).getSalePrice());
+        jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
 
         System.err.println(AccountingSystem.getInstance().getFuelSize());;
     }
@@ -192,18 +195,24 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getPerson(0).setLastName("ERDOL");
         AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
         AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
+        AccountingSystem.getInstance().getPerson(0).setAddress("İstanbul");
+        AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 44");
 
         AccountingSystem.getInstance().addPerson(new Personnel(1));
         AccountingSystem.getInstance().getPerson(1).setName("Emre");
         AccountingSystem.getInstance().getPerson(1).setLastName("Bayram");
         AccountingSystem.getInstance().getPerson(1).setJop("CLEANER");
         AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
+        AccountingSystem.getInstance().getPerson(0).setAddress("Koaceli");
+        AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 43");
 
         AccountingSystem.getInstance().addPerson(new Personnel(2));
         AccountingSystem.getInstance().getPerson(2).setName("Sahin");
         AccountingSystem.getInstance().getPerson(2).setLastName("Egilmez");
         AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
         AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
+        AccountingSystem.getInstance().getPerson(0).setAddress("İzmit");
+        AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 42");
 
         AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
         AccountingSystem.getInstance().addFuel(new Fuel("GASOLINE", 20.0, 21.1));

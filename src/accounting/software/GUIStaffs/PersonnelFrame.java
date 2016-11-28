@@ -326,11 +326,14 @@ public class PersonnelFrame extends javax.swing.JPanel {
      *
      */
     public void updateMe() {
+        boolean flag = false;
         selectPersonnel.removeAllItems();
         for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {
+            flag = true;
             selectPersonnel.addItem(Integer.toString(AccountingSystem.getInstance().getPerson(i).getId()));
         }
-        selectPersonnel.setSelectedIndex(0);
+        if(flag)
+            selectPersonnel.setSelectedIndex(0);
         Personnel pers = AccountingSystem.getInstance().getPerson(0);
 
         idTextBox.setText(String.valueOf(pers.getId()));
