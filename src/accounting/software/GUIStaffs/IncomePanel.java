@@ -1,6 +1,5 @@
 package accounting.software.GUIStaffs;
 
-    
 /**
  *
  * @author Furkan
@@ -8,24 +7,25 @@ package accounting.software.GUIStaffs;
 public class IncomePanel extends javax.swing.JPanel {
 
     private int incomeID;
-    
+
     /**
      * Creates new form incomePanel
+     *
      * @param income
      * @param newID
      */
     public IncomePanel(String income, int newID) {
         initComponents();
-        
+
         jLabel1.setText(income);
         incomeID = newID;
     }
-    
+
     /**
      *
      * @return
      */
-    public int getIncomePanelID(){
+    public int getIncomePanelID() {
         return incomeID;
     }
 

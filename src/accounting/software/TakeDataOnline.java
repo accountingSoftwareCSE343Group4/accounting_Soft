@@ -1,4 +1,3 @@
-
 package accounting.software;
 
 import java.io.IOException;
@@ -15,17 +14,14 @@ import java.net.SocketException;
  *
  * This class take gasoline, diesel by Aytemiz Petrol and LPG price by İpragaz
  * from internet and use them.
- * 
+ *
  * Class Usage :
  *
- * if (TakeDataOnline.getInstance().getStateInternet()) {
- *      double gasoline = TakeDataOnline.getInstance().getGasoline();
- *      double diesel   = TakeDataOnline.getInstance().getDiesel();
- *      double lpg      =TakeDataOnline.getInstance().getLpg();
- * } 
- * else {
- *      /* There is no internet connection. So should show info for user.  
- * }
+ * if (TakeDataOnline.getInstance().getStateInternet()) { double gasoline =
+ * TakeDataOnline.getInstance().getGasoline(); double diesel =
+ * TakeDataOnline.getInstance().getDiesel(); double lpg
+ * =TakeDataOnline.getInstance().getLpg(); } else { /* There is no internet
+ * connection. So should show info for user. }
  *
  */
 public class TakeDataOnline {

@@ -5,7 +5,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Furkan
@@ -14,73 +13,71 @@ public class LpgDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DieselDialog
+     *
      * @param parent
      * @param modal
      */
     public LpgDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-     //   this.getContentPane().setBackground(jLabel1.getBackground());
-       
-        
+
+        //   this.getContentPane().setBackground(jLabel1.getBackground());
         this.setLocationRelativeTo(MainFrame.mainFrame);
-        
+
         this.setTitle("Configure Lpg");
-        
-        
+
     }
-    
+
     /**
      *
      */
-    public void setGui(){
+    public void setGui() {
         jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getFuelAmount()));
         jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getBuyingPrice()));
         jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getSalePrice()));
     }
-    
+
     /**
      *
      * @return
      */
     public String checkInputValidity() {
-        if(jTextField1.getText().isEmpty()){
+        if (jTextField1.getText().isEmpty()) {
             return "Available amount cannot be empty!";
-        }else {
-            
-            try{
+        } else {
+
+            try {
                 Double.parseDouble(jTextField1.getText());
-            }catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 return "Available amount must be a number!";
             }
-            
+
         }
-        
-        if(jTextField2.getText().isEmpty()){
+
+        if (jTextField2.getText().isEmpty()) {
             return "Purchase price cannot be empty!";
-        }else {
-            
-            try{
+        } else {
+
+            try {
                 Double.parseDouble(jTextField2.getText());
-            }catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 return "Purchase price must be a number!";
             }
-            
+
         }
-        
-        if(jTextField3.getText().isEmpty()){
+
+        if (jTextField3.getText().isEmpty()) {
             return "Current price cannot be empty!";
-        }else {
-            
-            try{
+        } else {
+
+            try {
                 Double.parseDouble(jTextField3.getText());
-            }catch(NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 return "Current price must be a number!";
             }
-            
+
         }
-        
+
         return "";
     }
 
@@ -200,13 +197,11 @@ public class LpgDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
 
         // TODO add your handling code here:
-    }                                           
+    }
 
-     
-    
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.setVisible(false);
@@ -216,49 +211,48 @@ public class LpgDialog extends javax.swing.JDialog {
 
         Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
 
-                jButton1.setIcon(img);
+        jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
 
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
 
-                jButton1.setIcon(img);
+        jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
 
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
 
-                jButton3.setIcon(img);
+        jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
 
         Icon img = new ImageIcon("src/accounting/software/images/exit.png");
 
-                jButton3.setIcon(img);
+        jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         String error = checkInputValidity();
-        
+
         if (!error.isEmpty()) {
             JOptionPane.showMessageDialog(this, error);
             return;
         }
-        
+
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
         AccountingSystem.getInstance().getFuel(2).setSalePrice(Double.parseDouble(jTextField3.getText()));
         AccountingSystem.getInstance().getFuel(2).setFuelAmount(Double.parseDouble(jTextField1.getText()));
-        
-       MainFrame.mainFrame.updateFuels();
-       
-       this.setVisible(false);
-       
-       
-        
+
+        MainFrame.mainFrame.updateFuels();
+
+        this.setVisible(false);
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

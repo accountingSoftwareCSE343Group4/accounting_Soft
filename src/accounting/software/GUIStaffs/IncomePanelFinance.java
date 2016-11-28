@@ -7,14 +7,16 @@ import accounting.software.Income;
  * @author emre
  */
 public class IncomePanelFinance extends javax.swing.JPanel {
-    
+
     private Income inc;
+
     /**
      * Creates new form gelir
+     *
      * @param inc
      * @param Y
      */
-    public IncomePanelFinance(Income inc,int Y) {
+    public IncomePanelFinance(Income inc, int Y) {
         initComponents();
         this.inc = inc;
         name.setText(inc.getName());
@@ -26,7 +28,7 @@ public class IncomePanelFinance extends javax.swing.JPanel {
     /**
      *
      */
-    public IncomePanelFinance(){
+    public IncomePanelFinance() {
         initComponents();
     }
 
@@ -88,23 +90,23 @@ public class IncomePanelFinance extends javax.swing.JPanel {
      *
      * @param text
      */
-    public void setTextName(String text){
+    public void setTextName(String text) {
         name.setText(text);
     }
-    
+
     /**
      *
      * @param text
      */
-    public void setAmount(String text){
+    public void setAmount(String text) {
         amount.setText(text);
     }
-    
+
     /**
      *
      * @param text
      */
-    public void setDesc(String text){
+    public void setDesc(String text) {
         jLabel2.setText(text);
     }
 

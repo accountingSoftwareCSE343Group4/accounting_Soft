@@ -10,19 +10,25 @@ package accounting.software;
  * @author Arif Dogru
  */
 public interface Expenses {
-        /**
+
+    /**
      * Return to Expense
-     * @return 
+     *
+     * @return
      */
     Double getExpense();
+
     /**
      * Return to Expense Name
-     * @return 
+     *
+     * @return
      */
     String getName();
+
     /**
      * Return to Description
-     * @return 
+     *
+     * @return
      */
     String getDescription();
 

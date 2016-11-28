@@ -25,6 +25,7 @@ public class EditFinanceDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form EditFinanceDialog
+     *
      * @param parent
      * @param modal
      */
@@ -42,7 +43,7 @@ public class EditFinanceDialog extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -140,7 +141,7 @@ public class EditFinanceDialog extends javax.swing.JDialog {
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);

@@ -5,16 +5,20 @@ import accounting.software.Fuel;
 import accounting.software.OtherExpense;
 import accounting.software.Personnel;
 import accounting.software.SalesClass;
+import com.itextpdf.text.DocumentException;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
  * Main Frame class.
+ *
  * @author Furkan
  */
 public class MainFrame extends javax.swing.JFrame {
@@ -23,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
      * This frame
      */
     public static MainFrame mainFrame;
-    
+
     private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
     private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
     private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
@@ -188,11 +192,11 @@ public class MainFrame extends javax.swing.JFrame {
         //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
         //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
         //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
-        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("RENT ", " ", 50000.0,java.time.LocalDate.now().toString()));
-        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("CLEANING TAX", " ", 50000.0,java.time.LocalDate.now().toString()));
-        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("ELECTRICT ", " ", 50000.0,java.time.LocalDate.now().toString()));
-        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("WATER ", " ", 50000.0,java.time.LocalDate.now().toString()));
-        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("NATURAL GAS ", " ", 50000.0,java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("RENT ", " ", 50000.0, java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("CLEANING TAX", " ", 50000.0, java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("ELECTRICT ", " ", 50000.0, java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("WATER ", " ", 50000.0, java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addOtherExpense(new OtherExpense("NATURAL GAS ", " ", 50000.0, java.time.LocalDate.now().toString()));
 
         updatePersonelPannel();
         updateFuels();
@@ -320,14 +324,18 @@ public class MainFrame extends javax.swing.JFrame {
         ReportButton.setBorderPainted(false);
         ReportButton.setContentAreaFilled(false);
         ReportButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ReportButton.setEnabled(false);
         ReportButton.setPreferredSize(new java.awt.Dimension(245, 52));
         ReportButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ReportButtonMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ReportButtonMouseExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ReportButtonMouseEntered(evt);
+        });
+        ReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportButtonActionPerformed(evt);
             }
         });
 
@@ -761,7 +769,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
 
-
         Icon img = new ImageIcon("src/accounting/software/images/Asset 24.png");
 
         PersonnelTab.setIcon(img);
@@ -770,7 +777,6 @@ public class MainFrame extends javax.swing.JFrame {
         sumOpen = false;
 
         financeOpen = false;
-
 
         img = new ImageIcon("src/accounting/software/images/Asset 7.png");
         SummaryTab.setIcon(img);
@@ -793,7 +799,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void SummaryTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseClicked
         if (!jLayeredPaneSummary.isVisible()) {
 
-
             Icon img = new ImageIcon("src/accounting/software/images/Asset 22.png");
 
             SummaryTab.setIcon(img);
@@ -801,7 +806,6 @@ public class MainFrame extends javax.swing.JFrame {
             sumOpen = true;
             personnelOpen = false;
             financeOpen = false;
-
 
             img = new ImageIcon("src/accounting/software/images/Asset 20.png");
             PersonnelTab.setIcon(img);
@@ -824,7 +828,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void FinanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseClicked
 
-
         Icon img = new ImageIcon("src/accounting/software/images/Asset 27.png");
 
         FinanceTab.setIcon(img);
@@ -832,7 +835,6 @@ public class MainFrame extends javax.swing.JFrame {
         financeOpen = true;
         sumOpen = false;
         personnelOpen = false;
-
 
         img = new ImageIcon("src/accounting/software/images/Asset 7.png");
         SummaryTab.setIcon(img);
@@ -870,6 +872,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         lpgDialog.setVisible(true);
     }//GEN-LAST:event_LpgButtonActionPerformed
+
+    private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
+        try {
+            AccountingSystem.createReport();
+        } catch (DocumentException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReportButtonActionPerformed
 
     /**
      * @param args the command line arguments

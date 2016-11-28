@@ -7,9 +7,12 @@ import accounting.software.Expenses;
  * @author emre
  */
 public class ExpensePanelFinance extends javax.swing.JPanel {
+
     Expenses exp;
+
     /**
      * Creates new form gider
+     *
      * @param expe
      * @param Y
      */
@@ -21,11 +24,11 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
         desc.setText(exp.getDescription());
         setBounds(0, Y, 500, 50);
     }
-    
+
     /**
      *
      */
-    public ExpensePanelFinance(){
+    public ExpensePanelFinance() {
         initComponents();
     }
 
@@ -81,23 +84,23 @@ public class ExpensePanelFinance extends javax.swing.JPanel {
      *
      * @param text
      */
-    public void setTextName(String text){
+    public void setTextName(String text) {
         Name.setText(text);
     }
-    
+
     /**
      *
      * @param text
      */
-    public void setAmount(String text){
+    public void setAmount(String text) {
         amount.setText(text);
     }
-    
+
     /**
      *
      * @param text
      */
-    public void setDesc(String text){
+    public void setDesc(String text) {
         desc.setText(text);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

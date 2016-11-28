@@ -28,6 +28,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AddFinanceDialog
+     *
      * @param parent
      * @param modal
      */
@@ -45,7 +46,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
-        
+
         this.setLocationRelativeTo(null);
         this.setTitle("Add New Item");
     }
@@ -178,12 +179,11 @@ public class AddFinanceDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        try{
+        try {
             Integer.parseInt(AmountField.getText());
             doClose(RET_OK);
-        }
-        catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -225,7 +225,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
 
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseExited
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -236,7 +236,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
      *
      * @return
      */
-    public String[] GetValues(){
+    public String[] GetValues() {
         String[] Values = new String[3];
         Values[0] = NameField.getText();
         Values[1] = DescripField.getText();

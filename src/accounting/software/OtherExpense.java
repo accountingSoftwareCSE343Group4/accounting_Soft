@@ -1,25 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software;
+
 import java.text.ParseException; // for date format
 import java.text.SimpleDateFormat; // for date format
-import java.util.Date; 
+import java.util.Date;
 
 /**
  *
  * @author emre
  */
-public class OtherExpense implements Expenses{
+public class OtherExpense implements Expenses {
+
     private String name;
     private String Desc;
     private Double amount;
     private Date date;
     private int ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
-    private static int inp=0;
+    private static int inp = 0;
 
     /**
      *
@@ -33,47 +30,47 @@ public class OtherExpense implements Expenses{
         this.amount = amount;
         date = new Date();
         ID = inp;
-        try{
+        try {
             this.date = dateFormat.parse(eDate);
-        }
-        catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         ++inp;
     }
-    public Double getAmount(){
+
+    public Double getAmount() {
         return amount;
     }
+
     /*
      * @return Date
-    */
-    public Date getDate(){
+     */
+    public Date getDate() {
         return date;
     }
+
     /*
      * @param date
      */
-    public void setDate(String date){
-        try{
+    public void setDate(String date) {
+        try {
             this.date = dateFormat.parse(date);
-        }
-        catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
-        }        
+        }
     }
+
     /**
      *
      * @return
      */
-    public int getID(){
+    public int getID() {
         return ID;
     }
-    
-   
-    
+
     @Override
     public Double getExpense() {
-       return amount;
+        return amount;
     }
 
     @Override
@@ -85,5 +82,5 @@ public class OtherExpense implements Expenses{
     public String getDescription() {
         return Desc;
     }
-    
+
 }

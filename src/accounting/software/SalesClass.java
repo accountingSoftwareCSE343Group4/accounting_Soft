@@ -1,19 +1,15 @@
 package accounting.software;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.text.ParseException; // for date format
 import java.text.SimpleDateFormat; // for date format
-import java.util.Date; 
+import java.util.Date;
 
 /**
  *
  * @author zubeyde ozge yilmaz
  */
-public class SalesClass implements Income{
+public class SalesClass implements Income {
+
     private String description;
     private int ID;
     private Double price;
@@ -22,20 +18,19 @@ public class SalesClass implements Income{
 
     /**
      *
-     * @param description 
-     * @param ID 
+     * @param description
+     * @param ID
      * @param price
      * @param date
      */
-    public SalesClass(String description, int ID, Double price,String date) {
+    public SalesClass(String description, int ID, Double price, String date) {
         this.description = description;
         this.ID = ID;
         this.price = price;
         saleDate = new Date();
-        try{
+        try {
             this.saleDate = dateFormat.parse(date);
-        }
-        catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -44,21 +39,20 @@ public class SalesClass implements Income{
      *
      * @return Date
      */
-    public Date getSaleDate(){
+    public Date getSaleDate() {
         return saleDate;
     }
-    
+
     /**
      *
      * @param date
      */
-    public void setSaleDate(String date){
-        try{
+    public void setSaleDate(String date) {
+        try {
             this.saleDate = dateFormat.parse(date);
-        }
-        catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
-        }        
+        }
     }
 
     @Override
@@ -76,7 +70,7 @@ public class SalesClass implements Income{
 
     /**
      *
-     * @return 
+     * @return
      */
     public int getID() {
         return ID;
@@ -104,7 +98,7 @@ public class SalesClass implements Income{
      */
     public void setPrice(Double price) {
         this.price = price;
-    } 
+    }
 
     @Override
     public Double getIncome() {
@@ -115,10 +109,10 @@ public class SalesClass implements Income{
     public String getName() {
         return "Sale";
     }
-    
+
     @Override
-    public String toString(){
-        return "ID = " + ID + "Date = " + dateFormat.format(saleDate) + 
-                " Description = " + description + " Price = " + price ;
+    public String toString() {
+        return "ID = " + ID + "Date = " + dateFormat.format(saleDate)
+                + " Description = " + description + " Price = " + price;
     }
 }

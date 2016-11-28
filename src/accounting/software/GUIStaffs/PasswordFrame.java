@@ -16,7 +16,7 @@ public class PasswordFrame extends javax.swing.JFrame {
     public PasswordFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         //jPasswordField1.setText(" ");
     }
 
@@ -144,16 +144,16 @@ public class PasswordFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String a = new String(jPasswordField1.getPassword());
-        
-        if(a.equals("123")){
+
+        if (a.equals("123")) {
             this.setVisible(false);
             new MainFrame().setVisible(true);
         }
-        
+
         Icon img = new ImageIcon("src/accounting/software/images/x.png");
 
         jLabel2.setIcon(img);
-      
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -164,42 +164,42 @@ public class PasswordFrame extends javax.swing.JFrame {
 
         Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
 
-                jButton1.setIcon(img);
+        jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
 
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
 
-                jButton1.setIcon(img);
+        jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
 
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
 
-                jButton2.setIcon(img);
+        jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
 
         Icon img = new ImageIcon("src/accounting/software/images/exit.png");
 
-                jButton2.setIcon(img);
+        jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-          String a = new String(jPasswordField1.getPassword());
-        
-        if(a.equals("123")){
+        String a = new String(jPasswordField1.getPassword());
+
+        if (a.equals("123")) {
             this.setVisible(false);
             new MainFrame().setVisible(true);
         }
-        
+
         Icon img = new ImageIcon("src/accounting/software/images/x.png");
 
         jLabel2.setIcon(img);
-        
+
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**

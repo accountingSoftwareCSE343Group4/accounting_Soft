@@ -1,7 +1,5 @@
 package accounting.software.GUIStaffs;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Furkan
@@ -9,27 +7,28 @@ import java.util.ArrayList;
 public class PersonnelPanel extends javax.swing.JPanel {
 
     private int panelID;
-    
+
     /**
      * Creates new form PersonnelPanel
+     *
      * @param personName
      * @param personSalary
      * @param personID
      */
     public PersonnelPanel(String personName, double personSalary, int personID) {
         initComponents();
-        
+
         this.jButton1.setText(personName);
         this.jLabel1.setText("SALARY (TL) = " + personSalary);
         this.panelID = personID;
 
     }
-    
+
     /**
      *
      * @return
      */
-    public int getPersonnelPanelID(){
+    public int getPersonnelPanelID() {
         return panelID;
     }
 

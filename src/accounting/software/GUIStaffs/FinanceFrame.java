@@ -23,18 +23,18 @@ public class FinanceFrame extends javax.swing.JPanel {
      * Expenses
      */
     public ArrayList<OtherExpense> others = new ArrayList<OtherExpense>();
-    
+
     //lists   
     private Vector<String> giderler = new Vector<String>();
     private Vector<String> gelirler = new Vector<String>();
     private Vector<Integer> gelirIDs = new Vector<Integer>();
     private Vector<Integer> giderIDs = new Vector<Integer>();
-    
+
     //Dialogs
     AddFinanceDialog addDialog = new AddFinanceDialog(MainFrame.mainFrame, true);
-    EditFinanceDialog editDialog  = new EditFinanceDialog(MainFrame.mainFrame, true);
+    EditFinanceDialog editDialog = new EditFinanceDialog(MainFrame.mainFrame, true);
     DeleteFinanceDialog deleteDialog = new DeleteFinanceDialog(MainFrame.mainFrame, true);
-    
+
     /**
      * Creates new form FinanceFrame
      */
@@ -43,30 +43,28 @@ public class FinanceFrame extends javax.swing.JPanel {
         UpdateMe();
     }
     static int temp = 10;
-    
+
     /**
      *
      */
-    public void UpdateMe(){
+    public void UpdateMe() {
         outcomePanel.removeAll();
         incomePanel.removeAll();
         gelirler.clear();
         giderler.clear();
-        
-        int count_in = 0 , count_out = 0;
+
+        int count_in = 0, count_out = 0;
         int freeOutcomeY = 0;
         int freeIncomeY = 0;
-        for(int i = 0 ; i < AccountingSystem.getInstance().getPersonnelSize(); ++i )
-        {
-            totalout += AccountingSystem.getInstance().getPerson(i).getSalary() + 
-                    AccountingSystem.getInstance().getPerson(i).getSskBonus();
+        for (int i = 0; i < AccountingSystem.getInstance().getPersonnelSize(); ++i) {
+            totalout += AccountingSystem.getInstance().getPerson(i).getSalary()
+                    + AccountingSystem.getInstance().getPerson(i).getSskBonus();
             ++count_out;
-            outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getPerson(i) , freeOutcomeY));
+            outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getPerson(i), freeOutcomeY));
             freeOutcomeY += 50;
         }
-        
-        for(int i = 0 ; i < AccountingSystem.getInstance().getFuelSize(); ++i )
-        {
+
+        for (int i = 0; i < AccountingSystem.getInstance().getFuelSize(); ++i) {
             ++count_in;
             ++count_out;
             totalout += AccountingSystem.getInstance().getFuel(i).getTax();
@@ -75,38 +73,39 @@ public class FinanceFrame extends javax.swing.JPanel {
             totalin += AccountingSystem.getInstance().getFuel(i).getIncome();
             incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getFuel(i), freeIncomeY));
             freeIncomeY += 50;
-           
+
         }
-       
-        for(int i = 0 ; i < AccountingSystem.getInstance().getSalesListSize(); ++i )
-        {
+
+        for (int i = 0; i < AccountingSystem.getInstance().getSalesListSize(); ++i) {
             gelirler.add(AccountingSystem.getInstance().getSale(i).toString());
             gelirIDs.add(AccountingSystem.getInstance().getSale(i).getID());
             ++count_in;
             totalin += AccountingSystem.getInstance().getSale(i).getPrice();
-            incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getSale(i),freeIncomeY));
+            incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getSale(i), freeIncomeY));
             freeIncomeY += 50;
         }
         // TODO :
-        for(int i = 0; i < AccountingSystem.getInstance().getOtherExpenseSize(); ++i){
+        for (int i = 0; i < AccountingSystem.getInstance().getOtherExpenseSize(); ++i) {
             totalout += AccountingSystem.getInstance().getOtherExpense(i).getExpense();
-            giderler.add(AccountingSystem.getInstance().getOtherExpense(i).getName() +" "+
-                    AccountingSystem.getInstance().getOtherExpense(i).getDate().toString());
+            giderler.add(AccountingSystem.getInstance().getOtherExpense(i).getName() + " "
+                    + AccountingSystem.getInstance().getOtherExpense(i).getDate().toString());
             outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getOtherExpense(i), freeOutcomeY));
             ++count_out;
             freeOutcomeY += 50;
         }
-        
-        if(count_in*50 >= 450)
+
+        if (count_in * 50 >= 450) {
             incomePanel.setPreferredSize(new Dimension(530, freeIncomeY + 50));
-        if(count_out*50 >= 450)
+        }
+        if (count_out * 50 >= 450) {
             outcomePanel.setPreferredSize(new Dimension(530, freeOutcomeY + 50));
+        }
         this.revalidate();
         this.repaint();
         totalIncome.setText(Double.toString(totalin));
         totalOutCome.setText(Double.toString(totalout));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,33 +328,33 @@ public class FinanceFrame extends javax.swing.JPanel {
 
     private void AddIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIncomeButActionPerformed
         addDialog.setVisible(true);
-        
-        if(addDialog.getReturnStatus() == AddFinanceDialog.RET_OK){
+
+        if (addDialog.getReturnStatus() == AddFinanceDialog.RET_OK) {
             String[] s = new String[3];
             s = addDialog.GetValues();
-            
+
             //bakilacak
-            SalesClass sale = new SalesClass(s[1],temp,Double.parseDouble(s[2]), "11/11/2011");
-            
+            SalesClass sale = new SalesClass(s[1], temp, Double.parseDouble(s[2]), "11/11/2011");
+
             AccountingSystem.getInstance().addSale(sale);
             UpdateMe();
             temp++;
         }
     }//GEN-LAST:event_AddIncomeButActionPerformed
 
-    
+
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        
+
     }//GEN-LAST:event_formFocusGained
 
     private void DeleteIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteIncomeButActionPerformed
         deleteDialog.setItems(gelirler);
         deleteDialog.setVisible(true);
-        
-        if(deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK){
+
+        if (deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK) {
             String delete = deleteDialog.getSelecteditem();
-            for(int i = 0; i < gelirler.size(); ++i){
-                if(delete.equals(gelirler.get(i))){
+            for (int i = 0; i < gelirler.size(); ++i) {
+                if (delete.equals(gelirler.get(i))) {
                     AccountingSystem.getInstance().removeSale(gelirIDs.elementAt(i));
                     gelirler.remove(i);
                     gelirIDs.remove(i);
@@ -363,20 +362,18 @@ public class FinanceFrame extends javax.swing.JPanel {
             }
             UpdateMe();
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_DeleteIncomeButActionPerformed
 
     private void AddOutcomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddOutcomeButActionPerformed
         addDialog.setVisible(true);
-        
-        if(addDialog.getReturnStatus() == AddFinanceDialog.RET_OK){
+
+        if (addDialog.getReturnStatus() == AddFinanceDialog.RET_OK) {
             String[] s = new String[3];
             s = addDialog.GetValues();
-            
-            OtherExpense other = new OtherExpense(s[0],s[1], Double.parseDouble(s[2]),java.time.LocalDate.now().toString());
+
+            OtherExpense other = new OtherExpense(s[0], s[1], Double.parseDouble(s[2]), java.time.LocalDate.now().toString());
             AccountingSystem.getInstance().addOtherExpense(other);
             giderler.add(s[0] + "_" + s[1]);
             giderIDs.add(other.getID());
@@ -388,20 +385,20 @@ public class FinanceFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_AddOutcomeButActionPerformed
 
     /**
-     * TODO : Delete action is Not completed 
-     * Delete Outcome Button 
-     * @param evt 
+     * TODO : Delete action is Not completed Delete Outcome Button
+     *
+     * @param evt
      */
     private void DeleteOutcomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteOutcomeButActionPerformed
         deleteDialog.setItems(giderler);
         deleteDialog.setVisible(true);
-        
-        if(deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK){
+
+        if (deleteDialog.getReturnStatus() == DeleteFinanceDialog.RET_OK) {
             String delete = deleteDialog.getSelecteditem();
-            for(int i = 0; i < giderler.size(); ++i){
-                if(delete.equals(giderler.get(i))){
+            for (int i = 0; i < giderler.size(); ++i) {
+                if (delete.equals(giderler.get(i))) {
                     String s[] = delete.split(" ");
-               //     AccountingSystem.getInstance().removeOtherExpense(new Date);
+                    //     AccountingSystem.getInstance().removeOtherExpense(new Date);
                     giderler.remove(i);
                     giderIDs.remove(i);
                 }
@@ -465,7 +462,7 @@ public class FinanceFrame extends javax.swing.JPanel {
 
         DeleteOutcomeBut.setIcon(img);
     }//GEN-LAST:event_DeleteOutcomeButMouseExited
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddIncomeBut;

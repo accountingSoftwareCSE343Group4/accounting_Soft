@@ -1,15 +1,11 @@
-
 package accounting.software;
 
 import java.awt.event.*;
 import java.awt.print.*;
-
-
 import java.awt.Graphics;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-
 import java.io.FileInputStream;
 import javax.print.Doc;
 import javax.print.DocFlavor;
@@ -27,23 +23,25 @@ import javax.print.attribute.standard.Sides;
  * @author Şahin Eğilmez
  */
 public class Printer implements Printable, ActionListener {
-    private String file=""; //pdf file name
+
+    private String file = ""; //pdf file name
 
     /**
      *
      * @param filename
      */
     public Printer(String filename) {
-        file=filename;
+        file = filename;
     }
+
     /**
-     * 
+     *
      * @param g Graphic class
      * @param pf page format
      * @param page page count
      * @return 1
-     * @throws PrinterException 
-     * 
+     * @throws PrinterException
+     *
      * This methos print to pdf
      */
     @Override
@@ -72,16 +70,17 @@ public class Printer implements Printable, ActionListener {
             Doc pdfDoc = new SimpleDoc(fis, DocFlavor.INPUT_STREAM.AUTOSENSE, null);
             DocPrintJob printJob = myService.createPrintJob();
             printJob.print(pdfDoc, new HashPrintRequestAttributeSet());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new PrinterException("File Not Found!");
         }
         return 1;
     }
+
     /**
-     * 
+     *
      * @param e action
-     * 
+     *
      * This method active for Button.OnClick()
      */
     @Override

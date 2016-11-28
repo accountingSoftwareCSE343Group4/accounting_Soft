@@ -28,6 +28,7 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DeleteFinanceDialog
+     *
      * @param parent
      * @param modal
      */
@@ -45,7 +46,7 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
-        
+
         this.setLocationRelativeTo(null);
         this.setTitle("Delete Item");
     }
@@ -160,9 +161,10 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
      *
      * @return
      */
-    public String getSelecteditem(){
+    public String getSelecteditem() {
         return items.getSelectedValue();
     }
+
     /**
      * Closes the dialog
      */
@@ -198,18 +200,18 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
         cancelButton.setIcon(img);
 
     }//GEN-LAST:event_cancelButtonMouseExited
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
     }
-    
+
     /**
      *
      * @param arr
      */
-    public void setItems(String[] arr){
+    public void setItems(String[] arr) {
         items.setListData(arr);
     }
 
@@ -217,9 +219,10 @@ public class DeleteFinanceDialog extends javax.swing.JDialog {
      *
      * @param arr
      */
-    public void setItems(Vector arr){
+    public void setItems(Vector arr) {
         items.setListData(arr);
     }
+
     /**
      * @param args the command line arguments
      */

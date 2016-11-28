@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accounting.software;
 
 /**
  *
  * @author Arif Dogru
  */
-public class Personnel implements Expenses{
+public class Personnel implements Expenses {
+
     private int id;
     private String name;
     private String lastName;
@@ -21,6 +17,7 @@ public class Personnel implements Expenses{
 
     /**
      * Create Personnel Object
+     *
      * @param name
      * @param id
      * @param lastName
@@ -43,21 +40,22 @@ public class Personnel implements Expenses{
 
     /**
      * Create Personnel Object by id
+     *
      * @param id
      */
     public Personnel(int id) {
         this.id = id;
     }
-    
+
     /**
      * Create Personnel Object default
      */
-    public Personnel(){
+    public Personnel() {
         this.id = -1;
     }
 
     /**
-     * 
+     *
      * @return id
      */
     public int getId() {
@@ -66,11 +64,13 @@ public class Personnel implements Expenses{
 
     /**
      * Set personnel id
+     *
      * @param id
      */
     public void setId(int id) {
         this.id = id;
     }
+
     /**
      * @return name
      */
@@ -81,6 +81,7 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel name
+     *
      * @param name
      */
     public void setName(String name) {
@@ -97,6 +98,7 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel Surname
+     *
      * @param lastName
      */
     public void setLastName(String lastName) {
@@ -104,7 +106,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     * 
+     *
      * @return address
      */
     public String getAddress() {
@@ -113,6 +115,7 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel address
+     *
      * @param address
      */
     public void setAddress(String address) {
@@ -120,7 +123,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getPhoneNumber() {
@@ -129,6 +132,7 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel Phone Number
+     *
      * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
@@ -145,6 +149,7 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel Salary
+     *
      * @param salary
      */
     public void setSalary(double salary) {
@@ -160,7 +165,8 @@ public class Personnel implements Expenses{
     }
 
     /**
-     * Set 
+     * Set
+     *
      * @param jop
      */
     public void setJop(String jop) {
@@ -168,7 +174,7 @@ public class Personnel implements Expenses{
     }
 
     /**
-     * 
+     *
      * @return
      */
     public double getSskBonus() {
@@ -177,11 +183,13 @@ public class Personnel implements Expenses{
 
     /**
      * Set Personnel sskBonus
+     *
      * @param sskbonus
      */
     public void setSskBonus(double sskbonus) {
         this.sskBonus = sskbonus;
     }
+
     /**
      * @return personnel expense
      */
@@ -194,12 +202,12 @@ public class Personnel implements Expenses{
     public String getDescription() {
         return "Employee_Expense";
     }
-    
+
     /*
     * @return Personnel information
-    */
+     */
     @Override
-    public String toString(){
-        return "Personnel{" + "Id=" + id + ", Name="+ name + " ,Sur Name=" +lastName+ "}";
+    public String toString() {
+        return "Personnel{" + "Id=" + id + ", Name=" + name + " ,Sur Name=" + lastName + "}";
     }
 }

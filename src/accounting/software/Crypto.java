@@ -19,14 +19,15 @@ import java.security.NoSuchAlgorithmException;
  * @author Şahin Eğilmez
  */
 public class Crypto {
-    
+
     private final String initialVector = "0123456789123456"; // This has to be 16 characters
+
     /**
-     * 
+     *
      * @param input word to be encypted
      * @return encrypted word
      * @throws NoSuchAlgorithmException
-     * 
+     *
      * This method encyrypted for md5 32-bit encyptyng algorithm
      */
     private static String md5(final String input) throws NoSuchAlgorithmException {
@@ -35,16 +36,17 @@ public class Crypto {
         final BigInteger number = new BigInteger(1, messageDigest);
         return String.format("%032x", number);
     }
+
     /**
-     * 
+     *
      * @param mode encrypted mode
      * @param secretKey key to be used
      * @return Cipher for encrypt-descrypt method
-     * @throws NoSuchAlgorithmException 
+     * @throws NoSuchAlgorithmException
      * @throws NoSuchPaddingException
      * @throws InvalidKeyException
-     * @throws InvalidAlgorithmParameterException 
-     * 
+     * @throws InvalidAlgorithmParameterException
+     *
      * This method create Cipher for encrypt and descrypt
      */
     private Cipher initCipher(final int mode, final String secretKey)
@@ -61,7 +63,7 @@ public class Crypto {
      * @param dataToEncrypt Word to be encrypted
      * @param secretKey key to be used
      * @return encypted word
-     * 
+     *
      * This method encypt to word by secretKey
      */
     public String encrypt(final String dataToEncrypt, final String secretKey) {
@@ -85,7 +87,7 @@ public class Crypto {
      * @param encryptedData Word to be decrypted
      * @param secretKey key to be used
      * @return decrypted word
-     * 
+     *
      * This method decryot to word by secretKey
      */
     public String decrypt(final String encryptedData, final String secretKey) {

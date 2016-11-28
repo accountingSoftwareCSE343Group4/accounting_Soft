@@ -28,15 +28,16 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AddPersonnelDialog
+     *
      * @param parent
      * @param modal
      */
     public AddPersonnelDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         this.getContentPane().setBackground(jLabel1.getBackground());
-        
+
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -47,8 +48,7 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
-        
-        
+
         this.setLocationRelativeTo(null);
         this.setTitle("Add New Personnel");
     }
@@ -252,17 +252,16 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        try{
+        try {
             Integer.parseInt(ID.getText());
             Integer.parseInt(PhoneNumber.getText());
             Double.parseDouble(Salary.getText());
             Double.parseDouble(SSK.getText());
             doClose(RET_OK);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
         }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error !!",JOptionPane.ERROR_MESSAGE);
-        }
-        
+
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -287,7 +286,7 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
     private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseEntered
 
         Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
-        
+
         cancelButton.setIcon(img);
     }//GEN-LAST:event_cancelButtonMouseEntered
 
@@ -308,14 +307,14 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
     private void okButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseExited
 
         Icon img = new ImageIcon("src/accounting/software/images/enter.png");
-        
+
         okButton.setIcon(img);
     }//GEN-LAST:event_okButtonMouseExited
 
     private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameActionPerformed
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -368,7 +367,7 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
      *
      * @return
      */
-    public String[] GetValues(){
+    public String[] GetValues() {
         String[] values = new String[8];
         values[0] = ID.getText();
         values[1] = Name.getText();

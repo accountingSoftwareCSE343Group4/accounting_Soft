@@ -7,23 +7,25 @@ package accounting.software.GUIStaffs;
 public class ExpensePanel extends javax.swing.JPanel {
 
     private int expenseID;
+
     /**
      * Creates new form expensePanel
+     *
      * @param expense
      * @param newID
      */
     public ExpensePanel(String expense, int newID) {
         initComponents();
-        
+
         jLabel1.setText(expense);
         expenseID = newID;
     }
-    
+
     /**
      *
      * @return
      */
-    public int getExpensePanelID(){
+    public int getExpensePanelID() {
         return expenseID;
     }
 

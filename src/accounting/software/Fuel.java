@@ -4,40 +4,40 @@ package accounting.software;
  *
  * @author Ahmet Alperen Bulut
  */
-public class Fuel implements Expenses,Income{
+public class Fuel implements Expenses, Income {
 
- private String fuelType;
- private double fuelCapacity;
- private double  fuelAmount;
- private double buyingPrice;
- private double salePrice;
- private double tax;
- 
+    private String fuelType;
+    private double fuelCapacity;
+    private double fuelAmount;
+    private double buyingPrice;
+    private double salePrice;
+    private double tax;
+
     /**
      *
      */
-    public Fuel(){
-    this.fuelType= " ";
-    this.fuelCapacity=0;
-    this.fuelAmount=0;
-    this.buyingPrice=0;
-    this.salePrice=0;
-    this.tax=0;
- }
- 
+    public Fuel() {
+        this.fuelType = " ";
+        this.fuelCapacity = 0;
+        this.fuelAmount = 0;
+        this.buyingPrice = 0;
+        this.salePrice = 0;
+        this.tax = 0;
+    }
+
     /**
      *
      * @param fuelType
      * @param fuelCapacity
      * @param fuelAmount
      */
-    public  Fuel(String fuelType,double fuelCapacity,double fuelAmount){
-     
-    this.fuelCapacity=fuelCapacity;
-    this.fuelAmount=fuelAmount;
-    this.fuelType=fuelType;
- 
- }
+    public Fuel(String fuelType, double fuelCapacity, double fuelAmount) {
+
+        this.fuelCapacity = fuelCapacity;
+        this.fuelAmount = fuelAmount;
+        this.fuelType = fuelType;
+
+    }
 
     /**
      *
@@ -139,10 +139,10 @@ public class Fuel implements Expenses,Income{
     public String toString() {
         return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
     }
-    
+
     @Override
     public Double getExpense() {
-        return getBuyingPrice()*fuelAmount;
+        return getBuyingPrice() * fuelAmount;
     }
 
     @Override
@@ -157,7 +157,7 @@ public class Fuel implements Expenses,Income{
 
     @Override
     public Double getIncome() {
-        return getSalePrice()*fuelAmount;
+        return getSalePrice() * fuelAmount;
     }
 
 }

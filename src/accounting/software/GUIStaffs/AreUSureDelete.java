@@ -1,11 +1,5 @@
 package accounting.software.GUIStaffs;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -19,7 +13,7 @@ import javax.swing.KeyStroke;
  * @author emre
  */
 public class AreUSureDelete extends javax.swing.JDialog {
-    
+
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -151,7 +145,7 @@ public class AreUSureDelete extends javax.swing.JDialog {
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
-    
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
