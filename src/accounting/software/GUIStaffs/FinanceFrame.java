@@ -54,6 +54,8 @@ public class FinanceFrame extends javax.swing.JPanel {
         incomePanel.removeAll();
         gelirler.clear();
         giderler.clear();
+        totalin = 0;
+        totalout = 0;
 
         int count_in = 0, count_out = 0;
         int freeOutcomeY = 0;
@@ -89,6 +91,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         // TODO :
         for (int i = 0; i < AccountingSystem.getInstance().getOtherExpenseSize(); ++i) {
             totalout += AccountingSystem.getInstance().getOtherExpense(i).getExpense();
+            giderIDs.add(AccountingSystem.getInstance().getOtherExpense(i).getID());
             giderler.add(AccountingSystem.getInstance().getOtherExpense(i).getName() + " "
                     + AccountingSystem.getInstance().getOtherExpense(i).getDate().toString());
             outcomePanel.add(new ExpensePanelFinance(AccountingSystem.getInstance().getOtherExpense(i), freeOutcomeY));
@@ -336,7 +339,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             s = addDialog.GetValues();
 
             //bakilacak
-            SalesClass sale = new SalesClass(s[1], temp, Double.parseDouble(s[2]), "11/11/2011");
+            SalesClass sale = new SalesClass(s[1], temp, Double.parseDouble(s[2]), java.time.LocalDate.now().toString());
 
             AccountingSystem.getInstance().addSale(sale);
             UpdateMe();
@@ -397,7 +400,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             String delete = deleteDialog.getSelecteditem();
             for (int i = 0; i < giderler.size(); ++i) {
                 if (delete.equals(giderler.get(i))) {
-                    AccountingSystem.getInstance().removeOtherExpense(Integer.parseInt(giderler.get(i)));
+                    AccountingSystem.getInstance().removeOtherExpense(giderIDs.get(i));
                     giderler.remove(i);
                     giderIDs.remove(i);
                 }
