@@ -1,6 +1,9 @@
 package accounting.software.GUIStaffs;
 
 import accounting.software.AccountingSystem;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -240,7 +243,11 @@ public class DieselDialog extends javax.swing.JDialog {
         AccountingSystem.getInstance().getFuel(0).setSalePrice(Double.parseDouble(jTextField3.getText()));
         AccountingSystem.getInstance().getFuel(0).setFuelAmount(Double.parseDouble(jTextField1.getText()));
 
-        MainFrame.mainFrame.updateFuels();
+        try {
+            MainFrame.mainFrame.updateFuels();
+        } catch (IOException ex) {
+            Logger.getLogger(DieselDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         this.setVisible(false);
 

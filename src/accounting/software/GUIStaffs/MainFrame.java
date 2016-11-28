@@ -4,11 +4,15 @@ import accounting.software.AccountingSystem;
 import accounting.software.Fuel;
 import accounting.software.OtherExpense;
 import accounting.software.Personnel;
+import accounting.software.Printer;
 import accounting.software.SalesClass;
+import accounting.software.TakeDataOnline;
 import com.itextpdf.text.DocumentException;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.awt.print.PageFormat;
+import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -38,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
     private boolean personnelOpen = false;
     private boolean financeOpen = false;
 
+    private Printer printer = new Printer("AccountingSoftwareReport.pdf");
+
     /**
      * Creates new form MainFrame
      */
@@ -55,10 +61,15 @@ public class MainFrame extends javax.swing.JFrame {
         persframe.setVisible(false);
 
         temp();
+
         
-        AccountingSystem.getInstance().generateJson();
-        //AccountingSystem.getInstance().readToJson();
+        if(AccountingSystem.getInstance().readToJson()){
+            
+        }else{
+            AccountingSystem.getInstance().generateJson();
+        }
         
+
     }
 
     private void updatePersonelPannel() {
@@ -141,11 +152,27 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      *
      */
-    public void updateFuels() {
+    public void updateFuels() throws IOException {
 
         jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
         jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
-        jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + AccountingSystem.getInstance().getFuel(0).getSalePrice());
+
+        double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
+        double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
+        double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
+
+        if (TakeDataOnline.getInstance().getStateInternet()) {
+            gasoline
+                    = TakeDataOnline.getInstance().getGasoline();
+            diesel
+                    = TakeDataOnline.getInstance().getDiesel();
+            lpg
+                    = TakeDataOnline.getInstance().getLpg();
+        } else {
+           //no internet connection
+        }
+
+        jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
 
         jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getFuelAmount());
         jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
@@ -191,7 +218,7 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(5.4);
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
 
-         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, new Double("5200"), java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, new Double("5200"), java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, new Double("5200"), java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("RENT ", " ", 50000.0, java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("CLEANING TAX", " ", 50000.0, java.time.LocalDate.now().toString()));
@@ -200,7 +227,11 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("NATURAL GAS ", " ", 50000.0, java.time.LocalDate.now().toString()));
 
         updatePersonelPannel();
-        updateFuels();
+        try {
+            updateFuels();
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         updateIncomesPannel();
         updateExpensesPannel();
     }
@@ -821,7 +852,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         updatePersonelPannel();
-        updateFuels();
+        try {
+            updateFuels();
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         updateIncomesPannel();
         updateExpensesPannel();
 
@@ -882,6 +917,9 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        printer.actionPerformed(evt);
+
     }//GEN-LAST:event_ReportButtonActionPerformed
 
     /**
