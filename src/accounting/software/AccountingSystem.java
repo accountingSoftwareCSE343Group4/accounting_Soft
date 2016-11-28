@@ -120,7 +120,7 @@ public class AccountingSystem {
 
         return null;
     }
-
+    
     /**
      *
      * @param index
@@ -240,8 +240,8 @@ public class AccountingSystem {
         }
 
     }
-
-    /**
+    
+        /**
      *
      * @param id
      */
@@ -249,6 +249,20 @@ public class AccountingSystem {
         for (int i = 0; i < personnelList.size(); ++i) {
             if (personnelList.get(i).getId() == id) {
                 personnelList.remove(i);
+            }
+        }
+
+    }
+
+
+    /**
+     *
+     * @param id
+     */
+    public void removeOtherExpense(int id) {
+        for (int i = 0; i < otherExpenseList.size(); ++i) {
+            if (otherExpenseList.get(i).getID() == id) {
+                otherExpenseList.remove(i);
             }
         }
 

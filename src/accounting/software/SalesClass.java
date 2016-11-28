@@ -14,7 +14,7 @@ public class SalesClass implements Income {
     private int ID;
     private Double price;
     private Date saleDate;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // format : 21/11/2016
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
 
     /**
      *

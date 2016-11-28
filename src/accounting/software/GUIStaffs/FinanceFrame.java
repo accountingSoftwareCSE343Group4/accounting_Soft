@@ -397,8 +397,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             String delete = deleteDialog.getSelecteditem();
             for (int i = 0; i < giderler.size(); ++i) {
                 if (delete.equals(giderler.get(i))) {
-                    String s[] = delete.split(" ");
-                    //     AccountingSystem.getInstance().removeOtherExpense(new Date);
+                    AccountingSystem.getInstance().removeOtherExpense(Integer.parseInt(giderler.get(i)));
                     giderler.remove(i);
                     giderIDs.remove(i);
                 }
