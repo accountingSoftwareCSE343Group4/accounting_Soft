@@ -4,6 +4,8 @@ import accounting.software.AccountingSystem;
 import accounting.software.OtherExpense;
 import accounting.software.SalesClass;
 import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -375,10 +377,8 @@ public class FinanceFrame extends javax.swing.JPanel {
 
             OtherExpense other = new OtherExpense(s[0], s[1], Double.parseDouble(s[2]), java.time.LocalDate.now().toString());
             AccountingSystem.getInstance().addOtherExpense(other);
-            giderler.add(s[0] + "_" + s[1]);
+            giderler.add(s[0] + " " + s[1]);
             giderIDs.add(other.getID());
-            //SalesClass sale = new SalesClass(s[1],temp,Integer.parseInt(s[2]));
-            //AccountingSystem.getInstance().addSale(sale);
             UpdateMe();
         }
 
