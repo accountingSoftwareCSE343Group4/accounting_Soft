@@ -27,31 +27,42 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel1" max="32767" attributes="0"/>
-                              <Component id="jLabel7" pref="203" max="32767" attributes="0"/>
-                              <Component id="jLabel8" pref="203" max="32767" attributes="0"/>
-                              <Component id="jLabel9" pref="203" max="32767" attributes="0"/>
-                              <Component id="jLabel10" pref="203" max="32767" attributes="0"/>
-                              <Component id="jLabel11" pref="203" max="32767" attributes="0"/>
-                              <Component id="jLabel12" pref="203" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel1" max="32767" attributes="0"/>
+                                  <Component id="jLabel7" max="32767" attributes="0"/>
+                                  <Component id="jLabel8" max="32767" attributes="0"/>
+                                  <Component id="jLabel9" max="32767" attributes="0"/>
+                                  <Component id="jLabel10" max="32767" attributes="0"/>
+                                  <Component id="jLabel11" max="32767" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" pref="203" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="nameTextBox" max="32767" attributes="0"/>
+                              <Component id="surnameTextBox" max="32767" attributes="0"/>
+                              <Component id="phoneTextBox" max="32767" attributes="0"/>
+                              <Component id="addressField" max="32767" attributes="0"/>
+                              <Component id="idTextBox" alignment="0" max="32767" attributes="0"/>
+                              <Component id="sskPrimTextBox" alignment="0" max="32767" attributes="0"/>
+                              <Component id="salaryTextBox" alignment="0" max="32767" attributes="0"/>
+                              <Component id="JobField" min="-2" pref="260" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="Logo" min="-2" pref="230" max="-2" attributes="0"/>
+                          <EmptySpace pref="336" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="nameTextBox" max="32767" attributes="0"/>
-                          <Component id="surnameTextBox" max="32767" attributes="0"/>
-                          <Component id="phoneTextBox" max="32767" attributes="0"/>
-                          <Component id="addressField" max="32767" attributes="0"/>
-                          <Component id="idTextBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="sskPrimTextBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="salaryTextBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JobField" min="-2" pref="260" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="565" max="-2" attributes="0"/>
+                          <Component id="addButton" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="editButton" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="removeButton" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="Logo" min="-2" pref="230" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="selectPersonnel" min="-2" pref="203" max="-2" attributes="0"/>
@@ -59,16 +70,7 @@
                       <Component id="editWarning" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="376" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="addButton" min="-2" pref="160" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="editButton" min="-2" pref="160" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="removeButton" min="-2" pref="160" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,6 +87,7 @@
                       <Component id="editWarning" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -138,7 +141,7 @@
                   <Component id="editButton" min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="removeButton" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -334,8 +337,8 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseExited"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editButtonMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editButtonActionPerformed"/>
       </Events>
     </Component>
@@ -350,8 +353,8 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeButtonMouseExited"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeButtonMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeButtonMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeButtonActionPerformed"/>
       </Events>
     </Component>
@@ -376,7 +379,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Job                           :"/>
+        <Property name="text" type="java.lang.String" value="Job                   :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="JobField">

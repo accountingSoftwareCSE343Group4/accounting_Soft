@@ -55,6 +55,10 @@ public class MainFrame extends javax.swing.JFrame {
         persframe.setVisible(false);
 
         temp();
+        
+        AccountingSystem.getInstance().generateJson();
+        //AccountingSystem.getInstance().readToJson();
+        
     }
 
     private void updatePersonelPannel() {
@@ -87,9 +91,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         int bound = 0;
 
-        for (int i = 0; i < financeframe.others.size(); ++i) {
+        for (int i = 0; i < AccountingSystem.getInstance().getOtherExpenseSize(); ++i) {
 
-            OtherExpense expense = financeframe.others.get(i);
+            OtherExpense expense = AccountingSystem.getInstance().getOtherExpense(i);
 
             ExpensePanel temp = new ExpensePanel(expense.getName() + " (TL) = " + expense.getExpense(), expense.getID());
 
@@ -187,11 +191,8 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(5.4);
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
 
-        // AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, 5200));
-        //AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, 5200));
-        //AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 2, 5200));
-        //   AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 3, 5200));
-        //  AccountingSystem.getInstance().addSale(new SalesClass("Sale of market", 4, 5200));
+         AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, new Double("5200"), java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, new Double("5200"), java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("RENT ", " ", 50000.0, java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("CLEANING TAX", " ", 50000.0, java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("ELECTRICT ", " ", 50000.0, java.time.LocalDate.now().toString()));
