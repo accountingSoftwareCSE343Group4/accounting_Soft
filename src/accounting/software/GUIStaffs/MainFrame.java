@@ -61,18 +61,13 @@ public class MainFrame extends javax.swing.JFrame {
         persframe.setVisible(false);
 
 //         temp();
-        if (AccountingSystem.getInstance().readToJson()) {
-
-        } else {
-            AccountingSystem.getInstance().generateJson();
-        }
+        if (AccountingSystem.getInstance().readToJson()) {}
 
         DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
         GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
         LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
         FinanceFrame financeframe = new FinanceFrame();
         PersonnelFrame persframe = new PersonnelFrame();
-        AccountingSystem.getInstance().generateJson();
     }
 
     private void updatePersonelPannel() {

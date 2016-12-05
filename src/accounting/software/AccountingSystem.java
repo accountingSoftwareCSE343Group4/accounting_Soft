@@ -474,7 +474,7 @@ public class AccountingSystem {
         try {
             allList = jsonParser.JSONDecode();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Dosya açılamadı: " + e);
             return false;
         }
 
