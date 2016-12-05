@@ -81,6 +81,14 @@ public class Fuel implements Expenses, Income {
         return tax;
     }
 
+    public String getPurchasedDate() {
+        return PurchasedDate;
+    }
+
+    public void setPurchasedDate(String PurchasedDate) {
+        this.PurchasedDate = PurchasedDate;
+    }
+
     /**
      *
      * @param fuelType
