@@ -54,33 +54,35 @@ public class JsonParser {
 
             jsonArr = jsonObj.getJSONArray("Personel");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                person.setId(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("ID"), getEncString())));
-                person.setName(crypto.decrypt(jsonArr.getJSONObject(i).getString("Name"), getEncString()));
-                person.setLastName(crypto.decrypt(jsonArr.getJSONObject(i).getString("LastName"), getEncString()));
-                person.setAddress(crypto.decrypt(jsonArr.getJSONObject(i).getString("Address"), getEncString()));
-                person.setPhoneNumber(crypto.decrypt(jsonArr.getJSONObject(i).getString("PhoneNumber"), getEncString()));
-                person.setJop(crypto.decrypt(jsonArr.getJSONObject(i).getString("Jop"), getEncString()));
-                person.setSalary(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Salary"), getEncString())));
+                person.setId(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_ID"), getEncString())));
+                person.setName(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Name"), getEncString()));
+                person.setLastName(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_LastName"), getEncString()));
+                person.setAddress(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Address"), getEncString()));
+                person.setPhoneNumber(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_PhoneNumber"), getEncString()));
+                person.setJop(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Jop"), getEncString()));
+                person.setSalary(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Salary"), getEncString())));
+                person.setSskBonus(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_SSKBonus"), getEncString())));
                 personnelList.add(person);
             }
 
             jsonArr = jsonObj.getJSONArray("Fuels");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                fuel.setBuyingPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("BuyingPrice"), getEncString())));
-                fuel.setFuelAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelAmount"), getEncString())));
-                fuel.setFuelCapacity(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelCapacity"), getEncString())));
-                fuel.setFuelType(crypto.decrypt(jsonArr.getJSONObject(i).getString("FuelType"), getEncString()));
-                fuel.setSalePrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("SalePrice"), getEncString())));
-                fuel.setTax(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Tax"), getEncString())));
+                fuel.setFuelType(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_FuelType"), getEncString()));
+                fuel.setBuyingAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_BuyingAmount"), getEncString())));
+                fuel.setSaleAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_SaleAmount"), getEncString())));
+                fuel.setBuyingPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_BuyingPrice"), getEncString())));
+                fuel.setSalePrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_SalePrice"), getEncString())));
+                fuel.setTax(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_Tax"), getEncString())));
+                fuel.setPurchasedDate(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_PurchasedDate"), getEncString()));
                 fuelList.add(fuel);
             }
 
             jsonArr = jsonObj.getJSONArray("Sales");
             for (int i = 0; i < jsonArr.length(); ++i) {
-                sales.setID(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("ID"), getEncString())));
-                sales.setDescription(crypto.decrypt(jsonArr.getJSONObject(i).getString("Description"), getEncString()));
-                sales.setPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("Price"), getEncString())));
-                sales.setSaleDate(crypto.decrypt(jsonArr.getJSONObject(i).getString("SaleDate"), getEncString()));
+                sales.setID(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_ID"), getEncString())));
+                sales.setDescription(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_Description"), getEncString()));
+                sales.setPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_Price"), getEncString())));
+                sales.setSaleDate(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_SaleDate"), getEncString()));
                 salesList.add(sales);
             }
 
@@ -124,29 +126,30 @@ public class JsonParser {
         for (Object obj : objList) {
             if (obj instanceof Personnel) {
                 JSONObject jo = new JSONObject();
-                jo.put("ID", crypto.encrypt(Integer.toString(((Personnel) obj).getId()), getEncString()));
-                jo.put("Name", crypto.encrypt(((Personnel) obj).getName(), getEncString()));
-                jo.put("LastName", crypto.encrypt(((Personnel) obj).getLastName(), getEncString()));
-                jo.put("Address", crypto.encrypt(((Personnel) obj).getAddress(), getEncString()));
-                jo.put("PhoneNumber", crypto.encrypt(((Personnel) obj).getPhoneNumber(), getEncString()));
-                jo.put("Jop", crypto.encrypt(((Personnel) obj).getJop(), getEncString()));
-                jo.put("Salary", crypto.encrypt(Double.toString(((Personnel) obj).getSalary()), getEncString()));
-                jo.put("SSKBonus", crypto.encrypt(Double.toString(((Personnel) obj).getSskBonus()), getEncString()));
+                jo.put("P_ID", crypto.encrypt(Integer.toString(((Personnel) obj).getId()), getEncString()));
+                jo.put("P_Name", crypto.encrypt(((Personnel) obj).getName(), getEncString()));
+                jo.put("P_LastName", crypto.encrypt(((Personnel) obj).getLastName(), getEncString()));
+                jo.put("P_Address", crypto.encrypt(((Personnel) obj).getAddress(), getEncString()));
+                jo.put("P_PhoneNumber", crypto.encrypt(((Personnel) obj).getPhoneNumber(), getEncString()));
+                jo.put("P_Jop", crypto.encrypt(((Personnel) obj).getJop(), getEncString()));
+                jo.put("P_Salary", crypto.encrypt(Double.toString(((Personnel) obj).getSalary()), getEncString()));
+                jo.put("P_SSKBonus", crypto.encrypt(Double.toString(((Personnel) obj).getSskBonus()), getEncString()));
                 personnelArr.put(jo);
             } else if (obj instanceof Fuel) {
                 JSONObject jo = new JSONObject();
-                jo.put("FuelType", crypto.encrypt(((Fuel) obj).getFuelType(), getEncString()));
-                jo.put("FuelCapacity", crypto.encrypt(Double.toString(((Fuel) obj).getFuelCapacity()), getEncString()));
-                jo.put("FuelAmount", crypto.encrypt(Double.toString(((Fuel) obj).getFuelAmount()), getEncString()));
-                jo.put("BuyingPrice", crypto.encrypt(Double.toString(((Fuel) obj).getBuyingPrice()), getEncString()));
-                jo.put("SalePrice", crypto.encrypt(Double.toString(((Fuel) obj).getSalePrice()), getEncString()));
-                jo.put("Tax", crypto.encrypt(Double.toString(((Fuel) obj).getTax()), getEncString()));
+                jo.put("F_FuelType", crypto.encrypt(((Fuel) obj).getFuelType(), getEncString()));
+                jo.put("F_BuyingAmount", crypto.encrypt(Double.toString(((Fuel) obj).getBuyingAmount()), getEncString()));
+                jo.put("F_SaleAmount", crypto.encrypt(Double.toString(((Fuel) obj).getSaleAmount()), getEncString()));
+                jo.put("F_BuyingPrice", crypto.encrypt(Double.toString(((Fuel) obj).getBuyingPrice()), getEncString()));
+                jo.put("F_SalePrice", crypto.encrypt(Double.toString(((Fuel) obj).getSalePrice()), getEncString()));
+                jo.put("F_Tax", crypto.encrypt(Double.toString(((Fuel) obj).getTax()), getEncString()));
+                jo.put("F_PurchasedDate", crypto.decrypt(((Fuel) obj).getPurchasedDate(), getEncString()));
                 fuelArray.put(jo);
             } else if (obj instanceof SalesClass) {
-                salesObj.put("Description", crypto.encrypt(((SalesClass) obj).getDescription(), getEncString()));
-                salesObj.put("ID", crypto.encrypt(Integer.toString(((SalesClass) obj).getID()), getEncString()));
-                salesObj.put("Price", crypto.encrypt(Double.toString(((SalesClass) obj).getPrice()), getEncString()));
-                salesObj.put("SaleDate", crypto.encrypt((((SalesClass) obj).getSaleDate().toString()), getEncString()));
+                salesObj.put("S_Description", crypto.encrypt(((SalesClass) obj).getDescription(), getEncString()));
+                salesObj.put("S_ID", crypto.encrypt(Integer.toString(((SalesClass) obj).getID()), getEncString()));
+                salesObj.put("S_Price", crypto.encrypt(Double.toString(((SalesClass) obj).getPrice()), getEncString()));
+                salesObj.put("S_SaleDate", crypto.encrypt((((SalesClass) obj).getSaleDate().toString()), getEncString()));
 
             } else if (obj instanceof OtherExpense) {
                 salesObj.put("O_Name", crypto.encrypt(((OtherExpense) obj).getName(), getEncString()));
