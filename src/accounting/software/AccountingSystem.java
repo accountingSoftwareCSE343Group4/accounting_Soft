@@ -274,19 +274,16 @@ public class AccountingSystem {
      * @param newFuel
      */
     public void addFuel(Fuel newFuel) {
-        boolean duplicate = false;
-        for (int i = 0; i < fuelList.size(); ++i) {
-            if (fuelList.get(i).getFuelType().equals(newFuel.getFuelType())) {
-                duplicate = true;
-            }
-        }
-        if (!duplicate) {
-            fuelList.add(newFuel);
-        }
+       for(int i=0;i<fuelList.size();++i){
+           if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
+               fuelList.remove(i);
+           }
+       }
+       fuelList.add(newFuel);
     }
 
     /**
-     *
+     *Kullanmayınız biten petrol türü otomatik olarak silinir..
      * @param fuelType
      */
     public void removeFuel(String fuelType) {
@@ -296,7 +293,24 @@ public class AccountingSystem {
             }
         }
     }
-
+    public void saleFuel(String fuelType,double saleAmount){
+         for(int i=0;i<fuelList.size();++i){
+           if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
+               fuelList.remove(i);
+           }
+       }
+        for(int i=0;i<fuelList.size();++i){
+            if(fuelList.get(i).getName().equals(fuelType)){
+               if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())>=saleAmount){
+                   fuelList.get(i).setSaleAmount(fuelList.get(i).getSaleAmount()+saleAmount);
+                   break;
+               }
+               else
+                   saleAmount=saleAmount-fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount();
+                   fuelList.get(i).setSaleAmount(fuelList.get(i).getBuyingAmount());
+            }
+        }
+    }
     /*
      * @return String : system date with format(dd/MM/yyyy )    
      */

@@ -1,5 +1,8 @@
 package accounting.software;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Ahmet Alperen Bulut
@@ -7,23 +10,14 @@ package accounting.software;
 public class Fuel implements Expenses, Income {
 
     private String fuelType;
-    private double fuelCapacity;
-    private double fuelAmount;
+    private double buyingAmount;
+    private double saleAmount;
     private double buyingPrice;
     private double salePrice;
     private double tax;
-
-    /**
-     *
-     */
-    public Fuel() {
-        this.fuelType = " ";
-        this.fuelCapacity = 0;
-        this.fuelAmount = 0;
-        this.buyingPrice = 0;
-        this.salePrice = 0;
-        this.tax = 0;
-    }
+    private String PurchasedDate;
+    
+ 
 
     /**
      *
@@ -31,12 +25,12 @@ public class Fuel implements Expenses, Income {
      * @param fuelCapacity
      * @param fuelAmount
      */
-    public Fuel(String fuelType, double fuelCapacity, double fuelAmount) {
+    public Fuel(String fuelType, double buyingAmount,double buyingPrice) {
 
-        this.fuelCapacity = fuelCapacity;
-        this.fuelAmount = fuelAmount;
+        this.buyingAmount = buyingAmount;
+        this.buyingPrice= buyingPrice;
         this.fuelType = fuelType;
-
+        this.PurchasedDate=systemDate();
     }
 
     /**
@@ -47,20 +41,20 @@ public class Fuel implements Expenses, Income {
         return fuelType;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getFuelCapacity() {
-        return fuelCapacity;
+    public double getBuyingAmount() {
+        return buyingAmount;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getFuelAmount() {
-        return fuelAmount;
+    public void setBuyingAmount(double buyingAmount) {
+        this.buyingAmount = buyingAmount;
+    }
+
+    public double getSaleAmount() {
+        return saleAmount;
+    }
+
+    public void setSaleAmount(double saleAmount) {
+        this.saleAmount = saleAmount;
     }
 
     /**
@@ -78,7 +72,7 @@ public class Fuel implements Expenses, Income {
     public double getSalePrice() {
         return salePrice;
     }
-
+  
     /**
      *
      * @return
@@ -97,22 +91,6 @@ public class Fuel implements Expenses, Income {
 
     /**
      *
-     * @param fuelCapacity
-     */
-    public void setFuelCapacity(double fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
-    }
-
-    /**
-     *
-     * @param fuelAmount
-     */
-    public void setFuelAmount(double fuelAmount) {
-        this.fuelAmount = fuelAmount;
-    }
-
-    /**
-     *
      * @param buyingPrice
      */
     public void setBuyingPrice(double buyingPrice) {
@@ -127,6 +105,12 @@ public class Fuel implements Expenses, Income {
         this.salePrice = salePrice;
     }
 
+     private String systemDate() {
+        Date systemDate = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String date = df.format(systemDate);
+        return date;
+    }
     /**
      *
      * @param tax
@@ -137,12 +121,14 @@ public class Fuel implements Expenses, Income {
 
     @Override
     public String toString() {
-        return "Fuel{" + "fuelType=" + fuelType + ", fuelCapacity=" + fuelCapacity + ", fuelAmount=" + fuelAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + '}';
+        return "Fuel{" + "fuelType=" + fuelType + ", buyingAmount=" + buyingAmount + ", saleAmount=" + saleAmount + ", buyingPrice=" + buyingPrice + ", salePrice=" + salePrice + ", tax=" + tax + ", PurchasedDate=" + PurchasedDate + '}';
     }
+
+   
 
     @Override
     public Double getExpense() {
-        return getBuyingPrice() * fuelAmount;
+        return getBuyingPrice() * buyingAmount;
     }
 
     @Override
@@ -157,7 +143,7 @@ public class Fuel implements Expenses, Income {
 
     @Override
     public Double getIncome() {
-        return getSalePrice() * fuelAmount;
+        return getSalePrice() * saleAmount;
     }
 
 }
