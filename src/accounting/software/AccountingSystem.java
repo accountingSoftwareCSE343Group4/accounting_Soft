@@ -523,8 +523,8 @@ public class AccountingSystem {
 
     /**
      *
-     * @return guncel fiyata erisilemediyse 0.0 guncel fiyat * (fuelCapacity -
-     * fuelAmount ) sahip olunan yakıttan o gun fiyatiyla sahip olunacak servet
+     * @return guncel fiyata erisilemediyse 0.0 guncel fiyat * (fuelBuyingAmount -
+     * fuelSalesAmount ) sahip olunan yakıttan o gun fiyatiyla sahip olunacak servet
      */
     public double calculateAssets() {
         double assets = 0.0;
@@ -540,11 +540,11 @@ public class AccountingSystem {
             }
             for (int i = 0; i < fuelList.size(); i++) {
                 if (fuelList.get(i).getDescription().compareTo("Gasoline") == 0) {
-                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount()) * gasolineCurrentPrice);
+                    assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * gasolineCurrentPrice);
                 } else if (fuelList.get(i).getDescription().compareTo("Diesel") == 0) {
-                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount()) * dieselCurrentPrice);
+                    assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * dieselCurrentPrice);
                 } else {
-                    assets += ((fuelList.get(i).getFuelCapacity() - fuelList.get(i).getFuelAmount()) * lpgCurrentPrice);
+                    assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * lpgCurrentPrice);
                 }
             }
         } catch (Exception e) {
