@@ -38,7 +38,7 @@ public class SalesClassTest {
     }
 
     /**
-     * Test of getDescription method, of class SalesClass.
+     * Test of getDescription method, of class Sales.
      */
 
     /**
@@ -48,7 +48,7 @@ public class SalesClassTest {
     @Test
     public void testGetDescription() {
         System.out.println("getDescription");
-        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        Sales instance = new Sales("Sales of Market", 1, 500.0, "24/11/2016");
         String expResult = "Sales of Market";
         String result = instance.getDescription();
         assertEquals(expResult, result);
@@ -57,13 +57,13 @@ public class SalesClassTest {
     }
 
     /**
-     * Test of setDescription method, of class SalesClass.
+     * Test of setDescription method, of class Sales.
      */
     @Test
     public void testSetDescription() {
         System.out.println("setDescription");
         String description = "Gasoline";
-        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        Sales instance = new Sales("Sales of Market", 1, 500.0, "24/11/2016");
         instance.setDescription("Gasoline");
         assertEquals(description, instance.getDescription());
         // TODO review the generated test code and remove the default call to fail.
@@ -71,12 +71,12 @@ public class SalesClassTest {
     }
 
     /**
-     * Test of getID method, of class SalesClass.
+     * Test of getID method, of class Sales.
      */
     @Test
     public void testGetID() {
         System.out.println("getID");
-        SalesClass instance = null;
+        Sales instance = null;
         int expResult = 0;
         int result = instance.getID();
         assertEquals(expResult, result);
@@ -85,25 +85,25 @@ public class SalesClassTest {
     }
 
     /**
-     * Test of setID method, of class SalesClass.
+     * Test of setID method, of class Sales.
      */
     @Test
     public void testSetID() {
         System.out.println("setID");
         int ID = 0;
-        SalesClass instance = null;
+        Sales instance = null;
         instance.setID(ID);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getPrice method, of class SalesClass.
+     * Test of getPrice method, of class Sales.
      */
     @Test
     public void testGetPrice() {
         System.out.println("getPrice");
-        SalesClass instance = new SalesClass("Sales of Market", 1, 500.0, "24/11/2016");
+        Sales instance = new Sales("Sales of Market", 1, 500.0, "24/11/2016");
         Double expResult = 0.0;
         Double result = instance.getPrice();
         assertEquals(expResult, result);
@@ -112,13 +112,13 @@ public class SalesClassTest {
     }
 
     /**
-     * Test of setPrice method, of class SalesClass.
+     * Test of setPrice method, of class Sales.
      */
     @Test
     public void testSetPrice() {
         System.out.println("setPrice");
         int price = 0;
-        SalesClass instance = null;
+        Sales instance = null;
         instance.setPrice((double)price);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

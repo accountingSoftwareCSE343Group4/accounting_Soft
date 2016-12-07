@@ -37,12 +37,12 @@ public class JsonParser {
 
         List<Personnel> personnelList = new ArrayList();
         List<Fuel> fuelList = new ArrayList();
-        List<SalesClass> salesList = new ArrayList();
+        List<Sales> salesList = new ArrayList();
         List<OtherExpense> expList = new ArrayList();
 
         Personnel person = new Personnel("",0, "", "", "", "", 0.0, 0.0);
         Fuel fuel = new Fuel("", 0.0, 0.0);
-        SalesClass sales = new SalesClass("", 0, 0.0, "2011-11-11");
+        Sales sales = new Sales("", 0, 0.0, "2011-11-11");
         OtherExpense expense;
 
         try {
@@ -145,11 +145,11 @@ public class JsonParser {
                 jo.put("F_Tax", crypto.encrypt(Double.toString(((Fuel) obj).getTax()), getEncString()));
                 jo.put("F_PurchasedDate", crypto.decrypt(((Fuel) obj).getPurchasedDate(), getEncString()));
                 fuelArray.put(jo);
-            } else if (obj instanceof SalesClass) {
-                salesObj.put("S_Description", crypto.encrypt(((SalesClass) obj).getDescription(), getEncString()));
-                salesObj.put("S_ID", crypto.encrypt(Integer.toString(((SalesClass) obj).getID()), getEncString()));
-                salesObj.put("S_Price", crypto.encrypt(Double.toString(((SalesClass) obj).getPrice()), getEncString()));
-                salesObj.put("S_SaleDate", crypto.encrypt((((SalesClass) obj).getSaleDate().toString()), getEncString()));
+            } else if (obj instanceof Sales) {
+                salesObj.put("S_Description", crypto.encrypt(((Sales) obj).getDescription(), getEncString()));
+                salesObj.put("S_ID", crypto.encrypt(Integer.toString(((Sales) obj).getID()), getEncString()));
+                salesObj.put("S_Price", crypto.encrypt(Double.toString(((Sales) obj).getPrice()), getEncString()));
+                salesObj.put("S_SaleDate", crypto.encrypt((((Sales) obj).getSaleDate().toString()), getEncString()));
 
             } else if (obj instanceof OtherExpense) {
                 salesObj.put("O_Name", crypto.encrypt(((OtherExpense) obj).getName(), getEncString()));
@@ -166,7 +166,7 @@ public class JsonParser {
                 return personnelArr;
             } else if (objList.get(0) instanceof Fuel) {
                 return fuelArray;
-            } else if (objList.get(0) instanceof SalesClass) {
+            } else if (objList.get(0) instanceof Sales) {
                 return salesObj;
             } else {
                 return null;

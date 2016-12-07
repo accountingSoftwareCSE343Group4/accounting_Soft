@@ -29,7 +29,7 @@ public class AccountingSystem {
     // Lists of Classes
     private List<Personnel> personnelList = new ArrayList();
     private List<Fuel> fuelList = new ArrayList();
-    private List<SalesClass> salesclassList = new ArrayList();
+    private List<Sales> salesclassList = new ArrayList();
     private List<OtherExpense> otherExpenseList = new ArrayList();
 
     // For Gui
@@ -70,7 +70,7 @@ public class AccountingSystem {
      * @param index
      * @return saleClass object
      */
-    public SalesClass getSale(int index) {
+    public Sales getSale(int index) {
         if (index >= salesclassList.size()) {
             return null;
         }
@@ -95,7 +95,7 @@ public class AccountingSystem {
      * @param saleID
      * @return Sale object
      */
-    public SalesClass getSaleById(int saleID) {
+    public Sales getSaleById(int saleID) {
 
         for (int i = 0; i < salesclassList.size(); ++i) {
             if (salesclassList.get(i).getID() == saleID) {
@@ -187,7 +187,7 @@ public class AccountingSystem {
      *
      * @param newSale
      */
-    public void addSale(SalesClass newSale) {
+    public void addSale(Sales newSale) {
         boolean duplicate = false;
         for (int i = 0; i < salesclassList.size(); ++i) {
             if (salesclassList.get(i).getID() == newSale.getID()) {
@@ -485,8 +485,8 @@ public class AccountingSystem {
                         personnelList.add((Personnel) obj);
                     } else if (obj instanceof Fuel) {
                         fuelList.add((Fuel) obj);
-                    } else if (obj instanceof SalesClass) {
-                        salesclassList.add((SalesClass) obj);
+                    } else if (obj instanceof Sales) {
+                        salesclassList.add((Sales) obj);
                     } else if (obj instanceof OtherExpense) {
                         otherExpenseList.add((OtherExpense) obj);
                     } else {

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  *
  * @author zubeyde ozge yilmaz
  */
-public class SalesClass implements Income {
+public class Sales implements Income {
 
     private String description;
     private int ID;
@@ -18,14 +18,14 @@ public class SalesClass implements Income {
     private Date saleDate;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
 
-    public SalesClass() {
+    public Sales() {
         this.description = "";
         this.ID = -1;
         this.price = 0.0;
         try {
             this.saleDate = dateFormat.parse("1111-01-01");
         } catch (ParseException ex) {
-            Logger.getLogger(SalesClass.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
   
@@ -36,7 +36,7 @@ public class SalesClass implements Income {
      * @param price
      * @param date
      */
-    public SalesClass(String description, int ID, Double price, String date) {
+    public Sales(String description, int ID, Double price, String date) {
         this.description = description;
         this.ID = ID;
         this.price = price;

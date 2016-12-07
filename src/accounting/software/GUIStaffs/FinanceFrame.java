@@ -2,7 +2,7 @@ package accounting.software.GUIStaffs;
 
 import accounting.software.AccountingSystem;
 import accounting.software.OtherExpense;
-import accounting.software.SalesClass;
+import accounting.software.Sales;
 import java.awt.Dimension;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -339,7 +339,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             s = addDialog.GetValues();
 
             //bakilacak
-            SalesClass sale = new SalesClass(s[1], temp, Double.parseDouble(s[2]), java.time.LocalDate.now().toString());
+            Sales sale = new Sales(s[1], temp, Double.parseDouble(s[2]), java.time.LocalDate.now().toString());
 
             AccountingSystem.getInstance().addSale(sale);
             UpdateMe();

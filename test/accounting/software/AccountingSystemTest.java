@@ -292,7 +292,7 @@ public class AccountingSystemTest {
         acSystem.addPerson(person);
         acSystem.addPerson(person2);
         acSystem.addFuel(fuel);
-        acSystem.addSale(new SalesClass("benzin", 102012, 20.00, "2016-12-26"));
+        acSystem.addSale(new Sales("benzin", 102012, 20.00, "2016-12-26"));
         acSystem.addOtherExpense(new OtherExpense("su", "fatura", 123.45, "2016-12-27"));
         acSystem.addOtherExpense(new OtherExpense("elektrik", "fatura", 250.00, "2016-12-27"));
         

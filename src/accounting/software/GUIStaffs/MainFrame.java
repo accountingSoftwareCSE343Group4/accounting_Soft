@@ -5,7 +5,7 @@ import accounting.software.Fuel;
 import accounting.software.OtherExpense;
 import accounting.software.Personnel;
 import accounting.software.Printer;
-import accounting.software.SalesClass;
+import accounting.software.Sales;
 import accounting.software.TakeDataOnline;
 import com.itextpdf.text.DocumentException;
 import java.awt.Font;
@@ -129,7 +129,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         for (int i = 0; i < AccountingSystem.getInstance().getSalesListSize(); ++i) {
 
-            SalesClass sale = AccountingSystem.getInstance().getSale(i);
+            Sales sale = AccountingSystem.getInstance().getSale(i);
 
             IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
 
@@ -222,8 +222,8 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(5.4);
         AccountingSystem.getInstance().getFuel(2).setSalePrice(5.5);
 
-        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF MARKET", 0, new Double("5200"), java.time.LocalDate.now().toString()));
-        AccountingSystem.getInstance().addSale(new SalesClass("SALE OF FUEL", 1, new Double("5200"), java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addSale(new Sales("SALE OF MARKET", 0, new Double("5200"), java.time.LocalDate.now().toString()));
+        AccountingSystem.getInstance().addSale(new Sales("SALE OF FUEL", 1, new Double("5200"), java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("RENT ", " ", 50000.0, java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("CLEANING TAX", " ", 50000.0, java.time.LocalDate.now().toString()));
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("ELECTRICT ", " ", 50000.0, java.time.LocalDate.now().toString()));
