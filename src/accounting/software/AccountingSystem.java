@@ -602,11 +602,12 @@ public class AccountingSystem {
             lpgS = "No Internet Connection";
             //There is no internet connection. So should show info for user.  
         }
+
         for (int i = 0; i < INSTANCE.getFuelSize(); i++) {
             tableFuel.addCell(INSTANCE.getFuel(i).getDescription());
             tableFuel.addCell("");
             tableFuel.addCell("Available  Amount(lt)");
-            tableFuel.addCell(("" + INSTANCE.getFuel(i).getFuelCapacity()));
+            tableFuel.addCell(("" + INSTANCE.getFuel(i).getBuyingAmount()));
             tableFuel.addCell("Purchase Price(TL)");
             tableFuel.addCell("" + INSTANCE.getFuel(i).getBuyingPrice());
             tableFuel.addCell("Current Price(TL)");
