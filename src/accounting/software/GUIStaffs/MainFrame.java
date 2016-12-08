@@ -152,7 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public void updateFuels() throws IOException {
 
-        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
+       // jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
         jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
 
         double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();

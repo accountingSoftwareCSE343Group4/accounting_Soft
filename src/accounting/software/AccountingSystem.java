@@ -29,7 +29,7 @@ public class AccountingSystem {
     // Lists of Classes
     private List<Personnel> personnelList = new ArrayList();
     private List<Fuel> fuelList = new ArrayList();
-    private List<Sales> salesclassList = new ArrayList();
+    private List<Sales> salesList = new ArrayList();
     private List<OtherExpense> otherExpenseList = new ArrayList();
 
     // For Gui
@@ -71,10 +71,10 @@ public class AccountingSystem {
      * @return saleClass object
      */
     public Sales getSale(int index) {
-        if (index >= salesclassList.size()) {
+        if (index >= salesList.size()) {
             return null;
         }
-        return salesclassList.get(index);
+        return salesList.get(index);
     }
 
     /**
@@ -97,9 +97,9 @@ public class AccountingSystem {
      */
     public Sales getSaleById(int saleID) {
 
-        for (int i = 0; i < salesclassList.size(); ++i) {
-            if (salesclassList.get(i).getID() == saleID) {
-                return salesclassList.get(i);
+        for (int i = 0; i < salesList.size(); ++i) {
+            if (salesList.get(i).getID() == saleID) {
+                return salesList.get(i);
             }
         }
 
@@ -148,7 +148,7 @@ public class AccountingSystem {
      * @return sales list size
      */
     public int getSalesListSize() {
-        return salesclassList.size();
+        return salesList.size();
     }
 
     /**
@@ -189,13 +189,13 @@ public class AccountingSystem {
      */
     public void addSale(Sales newSale) {
         boolean duplicate = false;
-        for (int i = 0; i < salesclassList.size(); ++i) {
-            if (salesclassList.get(i).getID() == newSale.getID()) {
+        for (int i = 0; i < salesList.size(); ++i) {
+            if (salesList.get(i).getID() == newSale.getID()) {
                 duplicate = true;
             }
         }
         if (!duplicate) {
-            salesclassList.add(newSale);
+            salesList.add(newSale);
         }
     }
 
@@ -234,9 +234,9 @@ public class AccountingSystem {
      * @param id
      */
     public void removeSale(int id) {
-        for (int i = 0; i < salesclassList.size(); ++i) {
-            if (salesclassList.get(i).getID() == id) {
-                salesclassList.remove(i);
+        for (int i = 0; i < salesList.size(); ++i) {
+            if (salesList.get(i).getID() == id) {
+                salesList.remove(i);
             }
         }
 
@@ -293,6 +293,7 @@ public class AccountingSystem {
             }
         }
     }
+    
     public void saleFuel(String fuelType,double saleAmount){
          for(int i=0;i<fuelList.size();++i){
            if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
@@ -456,7 +457,7 @@ public class AccountingSystem {
 
         jsonObject.put("Fuels", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) fuelList));
 
-        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesclassList));
+        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesList));
 
         jsonObject.put("OtherExpense", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
 
@@ -486,7 +487,7 @@ public class AccountingSystem {
                     } else if (obj instanceof Fuel) {
                         fuelList.add((Fuel) obj);
                     } else if (obj instanceof Sales) {
-                        salesclassList.add((Sales) obj);
+                        salesList.add((Sales) obj);
                     } else if (obj instanceof OtherExpense) {
                         otherExpenseList.add((OtherExpense) obj);
                     } else {
@@ -506,9 +507,9 @@ public class AccountingSystem {
      */
     public double getProfit() {
         double totalProfit = 0.0;
-        for (int i = 0; i < salesclassList.size(); i++) {
+        for (int i = 0; i < salesList.size(); i++) {
 
-            totalProfit += salesclassList.get(i).getIncome();
+            totalProfit += salesList.get(i).getIncome();
         }
         for (int i = 0; i < fuelList.size(); i++) {
             totalProfit += fuelList.get(i).getIncome();
@@ -669,8 +670,8 @@ public class AccountingSystem {
         document.add(paragraph);
         PdfPTable tableIncomes = new PdfPTable(2);
         for (int i = 0; i < INSTANCE.getSalesListSize(); i++) {
-            tableIncomes.addCell(INSTANCE.salesclassList.get(i).getDescription() + "(TL)");
-            String priceSale = "" + INSTANCE.salesclassList.get(i).getPrice();
+            tableIncomes.addCell(INSTANCE.salesList.get(i).getDescription() + "(TL)");
+            String priceSale = "" + INSTANCE.salesList.get(i).getPrice();
             tableIncomes.addCell(priceSale);
         }
         document.add(tableIncomes);
