@@ -507,18 +507,23 @@ public class AccountingSystem {
      */
     public double getProfit() {
         double totalProfit = 0.0;
-        for (int i = 0; i < salesList.size(); i++) {
-
-            totalProfit += salesList.get(i).getIncome();
+        
+        for(Sales salesObj : salesList){
+            if(salesObj.getDescription().equals("LPG") || 
+                    salesObj.getDescription().equals("GASOLINE") ||
+                    salesObj.getDescription().equals("DIESEL")){
+                for(Fuel fuelObj : fuelList){
+                    totalProfit += (fuelObj.getSalePrice() - fuelObj.getBuyingPrice()) * fuelObj.getSaleAmount();
+                }
+            }else {
+                totalProfit += salesObj.getPrice();
+            }
         }
-        for (int i = 0; i < fuelList.size(); i++) {
-            totalProfit += fuelList.get(i).getIncome();
-            totalProfit -= fuelList.get(i).getExpense();
-            totalProfit -= fuelList.get(i).getTax();
+        
+        for(OtherExpense expObj : otherExpenseList){
+            totalProfit -= expObj.getExpense();
         }
-        for (int i = 0; i < otherExpenseList.size(); i++) {
-            totalProfit -= otherExpenseList.get(i).getAmount();
-        }
+        
         return totalProfit;
     }
 

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class Sales implements Income {
 
-    private String description;
+    private String description; //LPG, GASOLINE, DIESEL, MARKET bunun disinda desc girmeyin
     private int ID;
     private Double price;
     private Date saleDate;
