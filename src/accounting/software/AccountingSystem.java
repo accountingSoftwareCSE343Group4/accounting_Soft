@@ -274,11 +274,7 @@ public class AccountingSystem {
      * @param newFuel
      */
     public void addFuel(Fuel newFuel) {
-       for(int i=0;i<fuelList.size();++i){
-           if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
-               fuelList.remove(i);
-           }
-       }
+     
        fuelList.add(newFuel);
     }
 
@@ -286,31 +282,43 @@ public class AccountingSystem {
      *Kullanmayınız biten petrol türü otomatik olarak silinir..
      * @param fuelType
      */
-    public void removeFuel(String fuelType) {
+    public boolean removeAllFuel(String fuelType) {
+        boolean returnValue=false;
         for (int i = 0; i < fuelList.size(); ++i) {
             if (fuelList.get(i).getFuelType().equals(fuelType)) {
                 fuelList.remove(i);
+                returnValue=true;
             }
         }
+        return returnValue;
     }
-    
-    public void saleFuel(String fuelType,double saleAmount){
-         for(int i=0;i<fuelList.size();++i){
-           if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
-               fuelList.remove(i);
+    public boolean removeFuel(){
+        boolean returnValue=false;
+             for(int i=0;i<fuelList.size();++i){
+               if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())==0){
+                 fuelList.remove(i);
+                 returnValue=true;
            }
        }
+               return returnValue;
+    }
+    public boolean saleFuel(String fuelType,double saleAmount){
+         boolean returnValue=false;
         for(int i=0;i<fuelList.size();++i){
-            if(fuelList.get(i).getName().equals(fuelType)){
+            if(fuelList.get(i).getName().equals(fuelType) && saleAmount>0.0){
                if((fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount())>=saleAmount){
                    fuelList.get(i).setSaleAmount(fuelList.get(i).getSaleAmount()+saleAmount);
+                   returnValue=true;
                    break;
                }
-               else
-                   saleAmount=saleAmount-fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount();
+               else{
+                   saleAmount=saleAmount-(fuelList.get(i).getBuyingAmount()-fuelList.get(i).getSaleAmount());
                    fuelList.get(i).setSaleAmount(fuelList.get(i).getBuyingAmount());
+                   returnValue=true;
+               }
             }
         }
+         return returnValue;
     }
     /*
      * @return String : system date with format(dd/MM/yyyy )    
