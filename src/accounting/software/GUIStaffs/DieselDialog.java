@@ -35,7 +35,7 @@ public class DieselDialog extends javax.swing.JDialog {
      *
      */
     public void setGui() {
-        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getFuelAmount()));
+        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getBuyingAmount()));
         jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getBuyingPrice()));
         jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(0).getSalePrice()));
     }
@@ -241,7 +241,7 @@ public class DieselDialog extends javax.swing.JDialog {
 
         AccountingSystem.getInstance().getFuel(0).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
         AccountingSystem.getInstance().getFuel(0).setSalePrice(Double.parseDouble(jTextField3.getText()));
-        AccountingSystem.getInstance().getFuel(0).setFuelAmount(Double.parseDouble(jTextField1.getText()));
+        AccountingSystem.getInstance().getFuel(0).setBuyingAmount(Double.parseDouble(jTextField1.getText()));
 
         try {
             MainFrame.mainFrame.updateFuels();

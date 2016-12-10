@@ -35,7 +35,7 @@ public class LpgDialog extends javax.swing.JDialog {
      *
      */
     public void setGui() {
-        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getFuelAmount()));
+        jTextField1.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getBuyingAmount()));
         jTextField2.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getBuyingPrice()));
         jTextField3.setText(String.valueOf(AccountingSystem.getInstance().getFuel(2).getSalePrice()));
     }
@@ -249,7 +249,7 @@ public class LpgDialog extends javax.swing.JDialog {
 
         AccountingSystem.getInstance().getFuel(2).setBuyingPrice(Double.parseDouble(jTextField2.getText()));
         AccountingSystem.getInstance().getFuel(2).setSalePrice(Double.parseDouble(jTextField3.getText()));
-        AccountingSystem.getInstance().getFuel(2).setFuelAmount(Double.parseDouble(jTextField1.getText()));
+        AccountingSystem.getInstance().getFuel(2).setBuyingAmount(Double.parseDouble(jTextField1.getText()));
 
         try {
             MainFrame.mainFrame.updateFuels();

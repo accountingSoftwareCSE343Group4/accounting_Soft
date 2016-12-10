@@ -172,11 +172,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
 
-        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getFuelAmount());
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getBuyingAmount());
         jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
         jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + gasoline);
 
-        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getFuelAmount());
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getBuyingAmount());
         jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
         jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
 
