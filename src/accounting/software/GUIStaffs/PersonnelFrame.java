@@ -351,58 +351,51 @@ public class PersonnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_selectPersonnelActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        
+        Personnel pers = null;
+        Icon img;
         edit = !edit;
-        
-                
-        if (edit) {
 
-            Icon img = new ImageIcon("src/accounting/software/images/doneButton2.png");
-            editButton.setIcon(img);
-        } else {
-            Icon img = new ImageIcon("src/accounting/software/images/editButton2.png");
-
-            editButton.setIcon(img);
-        }
-        editWarning.setVisible(edit);
         if (edit) {
-            idTextBox.setEditable(true);
-            nameTextBox.setEditable(true);
-            surnameTextBox.setEditable(true);
-            phoneTextBox.setEditable(true);
-            addressField.setEditable(true);
-            sskPrimTextBox.setEditable(true);
-            salaryTextBox.setEditable(true);
-            JobField.setEditable(true);
+            img = new ImageIcon("src/accounting/software/images/doneButton2.png");
         } else {
-            JobField.setEditable(false);
-            idTextBox.setEditable(false);
-            nameTextBox.setEditable(false);
-            surnameTextBox.setEditable(false);
-            phoneTextBox.setEditable(false);
-            addressField.setEditable(false);
-            sskPrimTextBox.setEditable(false);
-            salaryTextBox.setEditable(false);
-            
+            img = new ImageIcon("src/accounting/software/images/editButton2.png");
             String id = (String) selectPersonnel.getSelectedItem();
-
-            Personnel pers = findinList(Integer.parseInt(id));
-            if (pers == null) {
-                return;
-            }
-            try {
-
-                pers.setId(Integer.parseInt(idTextBox.getText()));
-                pers.setAddress(addressField.getText());
-                pers.setLastName(surnameTextBox.getText());
-                pers.setName(nameTextBox.getText());
-                pers.setPhoneNumber(phoneTextBox.getText());
-                pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
-                pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
+            if(id != null)
+            {
+                pers = findinList(Integer.parseInt(id));
+                if (pers == null){
+                    edit = !edit;
+                    img = new ImageIcon("src/accounting/software/images/editButton2.png");
+                    editWarning.setText("You Can not edit none Personnel");
+                }
+                else 
+                    editWarning.setText("Edit Mode");
             }
         }
+        
+        idTextBox.setEditable(edit);
+        nameTextBox.setEditable(edit);
+        surnameTextBox.setEditable(edit);
+        phoneTextBox.setEditable(edit);
+        addressField.setEditable(edit);
+        sskPrimTextBox.setEditable(edit);
+        salaryTextBox.setEditable(edit);
+        JobField.setEditable(edit);
+
+        editButton.setIcon(img);
+        editWarning.setVisible(edit);
+
+        try {
+            pers.setId(Integer.parseInt(idTextBox.getText()));
+            pers.setAddress(addressField.getText());
+            pers.setLastName(surnameTextBox.getText());
+            pers.setName(nameTextBox.getText());
+            pers.setPhoneNumber(phoneTextBox.getText());
+            pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
+            pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void nameTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextBoxActionPerformed
