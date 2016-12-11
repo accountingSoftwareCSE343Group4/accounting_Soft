@@ -151,7 +151,9 @@ public class AreUSureDelete extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
-
+    public void SetText(String text){
+        Info.setText(text);
+    }
     /**
      * @param args the command line arguments
      */
@@ -195,7 +197,7 @@ public class AreUSureDelete extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel Info;
+    public javax.swing.JLabel Info;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okButton;
