@@ -461,15 +461,15 @@ public class AccountingSystem {
      */
     public void generateJson() throws JSONException {
 
-        jsonObject.put("Personel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
+        jsonObject.put("Personnel", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) personnelList));
 
         jsonObject.put("Fuels", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) fuelList));
 
-        jsonObject.put("Sales", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) salesList));
+        jsonObject.put("Sales", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) salesList));
 
-        jsonObject.put("OtherExpense", (JSONObject) jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
+        jsonObject.put("OtherExpense", (JSONArray) jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
 
-        System.out.println(jsonObject.toString());
+        //System.out.println(jsonObject.toString());
 
         jsonParser.writeJsonToFile(jsonObject);
     }
