@@ -60,8 +60,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(persframe);
         persframe.setVisible(false);
 
-//         temp();
-        if (AccountingSystem.getInstance().readToJson()) {}
+         temp();
+      //  if (AccountingSystem.getInstance().readToJson()) {}
 
         DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
         GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
@@ -82,7 +82,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             PersonnelPanel temp = new PersonnelPanel(personnel.getName() + " " + personnel.getLastName() + " (" + personnel.getJop() + ")", personnel.getSalary(), personnel.getId());
 
-            //  AccountingSystem.getInstance().addPersonnelPanel(temp);
             jPanelAddPersonnel.add(temp);
             temp.setBounds(0, bound, 283, 60);
 
@@ -106,9 +105,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             ExpensePanel temp = new ExpensePanel(expense.getName() + " (TL) = " + expense.getExpense(), expense.getID());
 
-            //add accounting system panel
-//           AccountingSystem.getInstance().addExpensePanel(temp);
-//            
             jPanelAddExpenses.add(temp);
             temp.setBounds(0, bound, 320, 40);
 
@@ -133,8 +129,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             IncomePanel temp = new IncomePanel(sale.getDescription() + " (TL) = " + sale.getPrice(), sale.getID());
 
-            //add accounting system panel
-            //   AccountingSystem.getInstance().addIncomePanel(temp);
             jPanelAddIncomes.add(temp);
             temp.setBounds(0, bound, 320, 40);
 
