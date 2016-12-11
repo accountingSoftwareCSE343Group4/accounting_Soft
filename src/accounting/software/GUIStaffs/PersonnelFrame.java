@@ -371,7 +371,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             
             if(id != null)
             {
-                pers = findinList(Integer.parseInt(id));
+                
                 editWarning.setText("Edit Mode");
             }
             else{
@@ -380,9 +380,10 @@ public class PersonnelFrame extends javax.swing.JPanel {
                 return;
             }
         } else {
+            pers = findinList(Integer.parseInt(id));
             img = new ImageIcon("src/accounting/software/images/doneButton2.png");
         }
-        edit = !edit;
+        edit = !edit;   
         idTextBox.setEditable(edit);
         nameTextBox.setEditable(edit);
         surnameTextBox.setEditable(edit);
@@ -406,6 +407,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             pers.setPhoneNumber(phoneTextBox.getText());
             pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
             pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
+            updateMe();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
         }        
