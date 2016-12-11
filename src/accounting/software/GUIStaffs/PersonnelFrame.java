@@ -334,6 +334,8 @@ public class PersonnelFrame extends javax.swing.JPanel {
         }
         if(flag)
             selectPersonnel.setSelectedIndex(0);
+        else 
+            return;
         Personnel pers = AccountingSystem.getInstance().getPerson(0);
 
         idTextBox.setText(String.valueOf(pers.getId()));
@@ -353,26 +355,26 @@ public class PersonnelFrame extends javax.swing.JPanel {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         Personnel pers = null;
         Icon img;
-        edit = !edit;
-
+        String id = (String) selectPersonnel.getSelectedItem();
+        
         if (edit) {
-            img = new ImageIcon("src/accounting/software/images/doneButton2.png");
-        } else {
             img = new ImageIcon("src/accounting/software/images/editButton2.png");
-            String id = (String) selectPersonnel.getSelectedItem();
+            
             if(id != null)
             {
                 pers = findinList(Integer.parseInt(id));
-                if (pers == null){
-                    edit = !edit;
-                    img = new ImageIcon("src/accounting/software/images/editButton2.png");
-                    editWarning.setText("You Can not edit none Personnel");
-                }
-                else 
-                    editWarning.setText("Edit Mode");
+                editWarning.setText("Edit Mode");
             }
+            else{
+                img = new ImageIcon("src/accounting/software/images/editButton2.png");
+                editWarning.setText("You Can not edit none Personnel");
+                editWarning.setVisible(true);
+                return;
+            }
+        } else {
+            img = new ImageIcon("src/accounting/software/images/doneButton2.png");
         }
-        
+        edit = !edit;
         idTextBox.setEditable(edit);
         nameTextBox.setEditable(edit);
         surnameTextBox.setEditable(edit);
@@ -384,6 +386,9 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
         editButton.setIcon(img);
         editWarning.setVisible(edit);
+        if(edit){
+            return;
+        }
 
         try {
             pers.setId(Integer.parseInt(idTextBox.getText()));

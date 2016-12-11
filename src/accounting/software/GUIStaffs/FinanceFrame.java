@@ -471,13 +471,13 @@ public class FinanceFrame extends javax.swing.JPanel {
     private javax.swing.JButton AddOutcomeBut;
     private javax.swing.JButton DeleteIncomeBut;
     private javax.swing.JButton DeleteOutcomeBut;
-    private static javax.swing.JPanel incomePanel;
+    private javax.swing.JPanel incomePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane leftPane;
-    private static javax.swing.JPanel outcomePanel;
+    private javax.swing.JPanel outcomePanel;
     private javax.swing.JScrollPane rightPane;
     private javax.swing.JLabel totalIncome;
     private javax.swing.JLabel totalOutCome;
