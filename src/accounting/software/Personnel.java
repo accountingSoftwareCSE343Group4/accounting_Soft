@@ -45,6 +45,13 @@ public class Personnel implements Expenses {
      */
     public Personnel(int id) {
         this.id = id;
+        this.name = "";
+        this.lastName = "";
+        this.address = "";
+        this.phoneNumber = "";
+        this.job = "";
+        this.salary = 0.0;
+        this.sskBonus = 0.0;
     }
 
     /**

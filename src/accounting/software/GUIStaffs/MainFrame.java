@@ -60,8 +60,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(persframe);
         persframe.setVisible(false);
 
-         temp();
-      //  if (AccountingSystem.getInstance().readToJson()) {}
+       //  temp();
+        //  AccountingSystem.getInstance().generateJson();
+        if (AccountingSystem.getInstance().readToJson()) {   }
 
         DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
         GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
@@ -146,7 +147,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public void updateFuels() throws IOException {
 
-       // jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
+        // jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
         jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
 
         double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
@@ -225,11 +226,11 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addOtherExpense(new OtherExpense("NATURAL GAS ", " ", 50000.0, java.time.LocalDate.now().toString()));
 
         updatePersonelPannel();
-        try {
-            updateFuels();
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            updateFuels();
+//        } catch (IOException ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         updateIncomesPannel();
         updateExpensesPannel();
     }
@@ -850,11 +851,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         updatePersonelPannel();
-        try {
-            updateFuels();
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            updateFuels();
+//        } catch (IOException ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         updateIncomesPannel();
         updateExpensesPannel();
 

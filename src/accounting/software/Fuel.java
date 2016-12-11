@@ -31,6 +31,9 @@ public class Fuel implements Expenses, Income {
         this.buyingPrice= buyingPrice;
         this.fuelType = fuelType;
         this.PurchasedDate=systemDate();
+        this.saleAmount = 0.0;
+        this.salePrice = 0.0;
+        this.tax = 0.0;
     }
 
     /**
