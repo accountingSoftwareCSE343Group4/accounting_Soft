@@ -21,10 +21,6 @@ public class JsonParser {
     
     private JSONArray jsonArr;
     private JSONObject jsonObj;
-    private Personnel person = new Personnel();
-    private Fuel fuel = new Fuel("", 0.0, 0.0);
-    private Sales sales = new Sales();
-    private OtherExpense expense;
     
     /**
      *
@@ -86,6 +82,7 @@ public class JsonParser {
         try{
             jsonArr = jsonObj.getJSONArray("Personnel");
             for (int i = 0; i < jsonArr.length(); ++i) {
+                Personnel person = new Personnel();
                 person.setId(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_ID"), getEncString())));
                 person.setName(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Name"), getEncString()));
                 person.setLastName(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_LastName"), getEncString()));
@@ -106,6 +103,7 @@ public class JsonParser {
         try{
             jsonArr = jsonObj.getJSONArray("Fuels");
             for (int i = 0; i < jsonArr.length(); ++i) {
+                Fuel fuel = new Fuel("", 0.0, 0.0);
                 fuel.setFuelType(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_FuelType"), getEncString()));
                 fuel.setBuyingAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_BuyingAmount"), getEncString())));
                 fuel.setSaleAmount(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("F_SaleAmount"), getEncString())));
@@ -126,6 +124,7 @@ public class JsonParser {
         try{
             jsonArr = jsonObj.getJSONArray("Sales");
             for (int i = 0; i < jsonArr.length(); ++i) {
+                Sales sales = new Sales();
                 sales.setID(Integer.parseInt(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_ID"), getEncString())));
                 sales.setDescription(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_Description"), getEncString()));
                 sales.setPrice(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("S_Price"), getEncString())));
@@ -143,6 +142,7 @@ public class JsonParser {
         try{
             jsonArr = jsonObj.getJSONArray("OtherExpense");
             for (int i = 0; i < jsonArr.length(); ++i) {
+                OtherExpense expense;
                 String name = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Name"), getEncString());
                 String desc = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Desc"), getEncString());
                 String amo = crypto.decrypt(jsonArr.getJSONObject(i).getString("O_Amount"), getEncString());
@@ -162,7 +162,7 @@ public class JsonParser {
      * @return
      * @throws JSONException
      */
-    public Object JSONEncode(List<Object> objList) throws JSONException {
+    public JSONArray JSONEncode(List<Object> objList) throws JSONException {
         JSONArray personnelArr = new JSONArray();
         JSONArray fuelArray = new JSONArray();
         JSONArray salesObj = new JSONArray();
