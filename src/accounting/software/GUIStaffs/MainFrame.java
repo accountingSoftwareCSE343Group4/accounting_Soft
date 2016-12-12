@@ -60,9 +60,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(persframe);
         persframe.setVisible(false);
 
-       //  temp();
+         temp();
         //  AccountingSystem.getInstance().generateJson();
-        if (AccountingSystem.getInstance().readToJson()) {   }
+       // if (AccountingSystem.getInstance().readToJson()) {   }
 
         DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
         GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
@@ -167,11 +167,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
 
-        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(1).getBuyingAmount());
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(1).getBuyingAmount());
         jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
         jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + gasoline);
 
-        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(2).getBuyingAmount());
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(2).getBuyingAmount());
         jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
         jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
 
@@ -428,7 +428,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabelDieselAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)   = 20");
 
         jLabelDieselPurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDieselPurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
@@ -437,7 +437,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelDieselCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
         jLabelGasolineAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)   = 20");
 
         jLabelGasolinePurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelGasolinePurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
@@ -446,7 +446,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelGasolineCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
         jLabelLpgAvailableAmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT) = 20");
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)   = 20");
 
         jLabelLpgPurchasePrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelLpgPurchasePrice.setText("PURCHASE PRICE(TL)        =  5 ");
