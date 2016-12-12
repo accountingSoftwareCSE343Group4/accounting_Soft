@@ -3,6 +3,8 @@ package accounting.software;
 import java.text.ParseException; // for date format
 import java.text.SimpleDateFormat; // for date format
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,8 +34,9 @@ public class OtherExpense implements Expenses {
         ID = inp;
         try {
             this.date = dateFormat.parse(eDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        }
+        catch (ParseException ex) {
+            Logger.getLogger(OtherExpense.class.getName()).log(Level.SEVERE, null, ex);
         }
         ++inp;
     }
