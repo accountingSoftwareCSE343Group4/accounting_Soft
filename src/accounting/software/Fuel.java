@@ -118,7 +118,7 @@ public class Fuel implements Expenses, Income {
 
      private String systemDate() {
         Date systemDate = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String date = df.format(systemDate);
         return date;
     }
