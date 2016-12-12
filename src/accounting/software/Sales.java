@@ -43,8 +43,9 @@ public class Sales implements Income {
         saleDate = new Date();
         try {
             this.saleDate = dateFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        }
+        catch (ParseException ex) {
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -63,8 +64,9 @@ public class Sales implements Income {
     public void setSaleDate(String date) {
         try {
             this.saleDate = dateFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        }
+        catch (ParseException ex) {
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
