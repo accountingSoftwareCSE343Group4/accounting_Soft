@@ -174,7 +174,7 @@ public class Personnel implements Expenses {
      *
      * @return
      */
-    public String getJop() {
+    public String getJob() {
         return job;
     }
 
@@ -183,7 +183,7 @@ public class Personnel implements Expenses {
      *
      * @param jop
      */
-    public void setJop(String jop) {
+    public void setJob(String jop) {
         this.job = jop;
     }
 

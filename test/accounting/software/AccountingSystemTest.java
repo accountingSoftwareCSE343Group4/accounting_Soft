@@ -267,7 +267,7 @@ public class AccountingSystemTest {
         person.setId(121044029);
         person.setName("Gurol");
         person.setLastName("CAY");
-        person.setJop("çöpçü");
+        person.setJob("çöpçü");
         person.setAddress("kiptas 2.etap");
         person.setPhoneNumber("05422387568");
         person.setSalary(1000);
@@ -276,7 +276,7 @@ public class AccountingSystemTest {
         person2.setId(121044030);
         person2.setName("Alper");
         person2.setLastName("MULAYIM");
-        person2.setJop("pompacı");
+        person2.setJob("pompacı");
         person2.setAddress("yurt");
         person2.setPhoneNumber("05422387569");
         person2.setSalary(1001);

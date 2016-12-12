@@ -96,7 +96,7 @@ public class JsonParserTest {
         person.setLastName("CAY");
         person.setAddress("kiptas 2.etap");
         person.setPhoneNumber("05422387568");
-        person.setJop("Pompacı");
+        person.setJob("Pompacı");
         person.setSalary(1000);
         person.setSskBonus(300);
 
@@ -105,7 +105,7 @@ public class JsonParserTest {
         person2.setLastName("MULAYIM");
         person2.setAddress("yurt");
         person2.setPhoneNumber("05422387569");
-        person2.setJop("Pompacı");
+        person2.setJob("Pompacı");
         person2.setSalary(1001);
         person2.setSskBonus(301);
 

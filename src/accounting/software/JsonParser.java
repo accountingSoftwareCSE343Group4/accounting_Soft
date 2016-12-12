@@ -88,7 +88,7 @@ public class JsonParser {
                 person.setLastName(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_LastName"), getEncString()));
                 person.setAddress(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Address"), getEncString()));
                 person.setPhoneNumber(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_PhoneNumber"), getEncString()));
-                person.setJop(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Jop"), getEncString()));
+                person.setJob(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Jop"), getEncString()));
                 person.setSalary(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_Salary"), getEncString())));
                 person.setSskBonus(Double.parseDouble(crypto.decrypt(jsonArr.getJSONObject(i).getString("P_SSKBonus"), getEncString())));
                 personnelList.add(person);
@@ -211,7 +211,7 @@ public class JsonParser {
         jo.put("P_Address", crypto.encrypt(temp.equals("") ? " " : temp, getEncString()));
         temp = obj.getPhoneNumber();
         jo.put("P_PhoneNumber", crypto.encrypt(temp.equals("") ? " " : temp, getEncString()));
-        temp = obj.getJop();
+        temp = obj.getJob();
         jo.put("P_Jop", crypto.encrypt(temp.equals("") ? " " : temp, getEncString()));
         temp = Double.toString(obj.getSalary());
         jo.put("P_Salary", crypto.encrypt(temp.equals("") ? " " : temp, getEncString()));

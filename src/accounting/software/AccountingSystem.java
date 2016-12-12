@@ -651,7 +651,7 @@ public class AccountingSystem {
         for (int i = 0; i < INSTANCE.getPersonnelSize(); i++) {
             tablePersonel.addCell(INSTANCE.personnelList.get(i).getName());
             tablePersonel.addCell(INSTANCE.personnelList.get(i).getLastName());
-            tablePersonel.addCell(INSTANCE.personnelList.get(i).getJop());
+            tablePersonel.addCell(INSTANCE.personnelList.get(i).getJob());
             String salary = "" + (INSTANCE.personnelList.get(i).getSalary());
             tablePersonel.addCell(salary);
             String prim = "" + INSTANCE.personnelList.get(i).getSskBonus();

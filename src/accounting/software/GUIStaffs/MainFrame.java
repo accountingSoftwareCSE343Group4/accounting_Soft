@@ -90,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             Personnel personnel = AccountingSystem.getInstance().getPerson(i);
 
-            PersonnelPanel temp = new PersonnelPanel(personnel.getName() + " " + personnel.getLastName() + " (" + personnel.getJop() + ")", personnel.getSalary(), personnel.getId());
+            PersonnelPanel temp = new PersonnelPanel(personnel.getName() + " " + personnel.getLastName() + " (" + personnel.getJob() + ")", personnel.getSalary(), personnel.getId());
 
             jPanelAddPersonnel.add(temp);
             temp.setBounds(0, bound, 283, 60);
@@ -190,7 +190,7 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addPerson(new Personnel(0));
         AccountingSystem.getInstance().getPerson(0).setName("FURKAN");
         AccountingSystem.getInstance().getPerson(0).setLastName("ERDOL");
-        AccountingSystem.getInstance().getPerson(0).setJop("FUEL SALES STAFF");
+        AccountingSystem.getInstance().getPerson(0).setJob("FUEL SALES STAFF");
         AccountingSystem.getInstance().getPerson(0).setSalary(12.5);
         AccountingSystem.getInstance().getPerson(0).setAddress("İstanbul");
         AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 44");
@@ -198,7 +198,7 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addPerson(new Personnel(1));
         AccountingSystem.getInstance().getPerson(1).setName("Emre");
         AccountingSystem.getInstance().getPerson(1).setLastName("Bayram");
-        AccountingSystem.getInstance().getPerson(1).setJop("CLEANER");
+        AccountingSystem.getInstance().getPerson(1).setJob("CLEANER");
         AccountingSystem.getInstance().getPerson(1).setSalary(12.5);
         AccountingSystem.getInstance().getPerson(0).setAddress("Koaceli");
         AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 43");
@@ -206,7 +206,7 @@ public class MainFrame extends javax.swing.JFrame {
         AccountingSystem.getInstance().addPerson(new Personnel(2));
         AccountingSystem.getInstance().getPerson(2).setName("Sahin");
         AccountingSystem.getInstance().getPerson(2).setLastName("Egilmez");
-        AccountingSystem.getInstance().getPerson(2).setJop("MARKET CASHIER");
+        AccountingSystem.getInstance().getPerson(2).setJob("MARKET CASHIER");
         AccountingSystem.getInstance().getPerson(2).setSalary(12.5);
         AccountingSystem.getInstance().getPerson(0).setAddress("İzmit");
         AccountingSystem.getInstance().getPerson(0).setPhoneNumber("+90 544 444 44 42");

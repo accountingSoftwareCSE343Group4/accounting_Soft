@@ -354,7 +354,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
         addressField.setText(pers.getAddress());
         sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
         salaryTextBox.setText(Double.toString(pers.getSalary()));
-        JobField.setText(pers.getJop());
+        JobField.setText(pers.getJob());
     }
     private void selectPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPersonnelActionPerformed
         // TODO add your handling code here:
@@ -427,7 +427,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             pers.setLastName(Values[2]);
             pers.setPhoneNumber(Values[3]);
             pers.setAddress(Values[4]);
-            pers.setJop(Values[5]);
+            pers.setJob(Values[5]);
             pers.setSalary(Double.parseDouble(Values[6]));
             pers.setSskBonus(Double.parseDouble(Values[7]));
             selectPersonnel.addItem(Values[0]);
@@ -453,7 +453,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
         addressField.setText(pers.getAddress());
         sskPrimTextBox.setText(String.valueOf(pers.getSskBonus()));
         salaryTextBox.setText(Double.toString(pers.getSalary()));
-        JobField.setText(pers.getJop());
+        JobField.setText(pers.getJob());
     }//GEN-LAST:event_selectPersonnelİtemStateChanged
 
     private void JobFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JobFieldActionPerformed
