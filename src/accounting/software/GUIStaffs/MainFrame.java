@@ -8,6 +8,7 @@ import accounting.software.Printer;
 import accounting.software.Sales;
 import accounting.software.TakeDataOnline;
 import com.itextpdf.text.DocumentException;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -42,6 +43,8 @@ public class MainFrame extends javax.swing.JFrame {
     private boolean personnelOpen = false;
     private boolean financeOpen = false;
 
+    MyThread updateFuelThread = new MyThread();
+
     private Printer printer = new Printer("AccountingSoftwareReport.pdf");
 
     /**
@@ -60,15 +63,21 @@ public class MainFrame extends javax.swing.JFrame {
         this.add(persframe);
         persframe.setVisible(false);
 
-         temp();
+        //  temp();
         //  AccountingSystem.getInstance().generateJson();
-       // if (AccountingSystem.getInstance().readToJson()) {   }
+        if (AccountingSystem.getInstance().readToJson()) {
+        }
 
         DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
         GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
         LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
         FinanceFrame financeframe = new FinanceFrame();
         PersonnelFrame persframe = new PersonnelFrame();
+
+        updatePersonelPannel();
+        updateExpensesPannel();
+        updateIncomesPannel();
+        updateFuelThread.start();
     }
 
     private void updatePersonelPannel() {
@@ -147,9 +156,6 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public void updateFuels() throws IOException {
 
-        // jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)     = " + AccountingSystem.getInstance().getFuel(0).getFuelAmount());
-        jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
-
         double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
         double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
@@ -164,7 +170,8 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             //no internet connection
         }
-
+        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(0).getBuyingAmount());
+        jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
         jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
 
         jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(1).getBuyingAmount());
@@ -231,6 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        updateFuelThread.start();
         updateIncomesPannel();
         updateExpensesPannel();
     }
@@ -277,6 +285,11 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLayeredPaneTopMenu.setBackground(new java.awt.Color(0, 0, 0));
         jLayeredPaneTopMenu.setAlignmentX(0.0F);
@@ -856,6 +869,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        updateFuelThread.start();
         updateIncomesPannel();
         updateExpensesPannel();
 
@@ -909,6 +923,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LpgButtonActionPerformed
 
     private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
+
         try {
             AccountingSystem.createReport();
         } catch (DocumentException ex) {
@@ -918,8 +933,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         printer.actionPerformed(evt);
-
     }//GEN-LAST:event_ReportButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        AccountingSystem.getInstance().generateJson();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -964,6 +982,18 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+    }
+
+    public class MyThread extends Thread {
+
+        public void run() {
+            try {
+                updateFuels();
+            } catch (IOException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("MyThread running");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
