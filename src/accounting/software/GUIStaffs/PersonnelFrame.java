@@ -334,6 +334,17 @@ public class PersonnelFrame extends javax.swing.JPanel {
         }
         if(flag)
             selectPersonnel.setSelectedIndex(0);
+        else{
+            idTextBox.setText("");
+            nameTextBox.setText("");
+            surnameTextBox.setText("");
+            phoneTextBox.setText("");
+            addressField.setText("");
+            sskPrimTextBox.setText("");
+            salaryTextBox.setText("");
+            JobField.setText("");
+            return;
+        }
         Personnel pers = AccountingSystem.getInstance().getPerson(0);
 
         idTextBox.setText(String.valueOf(pers.getId()));
@@ -353,26 +364,26 @@ public class PersonnelFrame extends javax.swing.JPanel {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         Personnel pers = null;
         Icon img;
-        edit = !edit;
-
-        if (edit) {
-            img = new ImageIcon("src/accounting/software/images/doneButton2.png");
-        } else {
+        String id = (String) selectPersonnel.getSelectedItem();
+        
+        if (!edit) {
             img = new ImageIcon("src/accounting/software/images/editButton2.png");
-            String id = (String) selectPersonnel.getSelectedItem();
+            
             if(id != null)
             {
-                pers = findinList(Integer.parseInt(id));
-                if (pers == null){
-                    edit = !edit;
-                    img = new ImageIcon("src/accounting/software/images/editButton2.png");
-                    editWarning.setText("You Can not edit none Personnel");
-                }
-                else 
-                    editWarning.setText("Edit Mode");
+                
+                editWarning.setText("Edit Mode");
             }
+            else{
+                editWarning.setText("You Can not edit none Personnel");
+                editWarning.setVisible(true);
+                return;
+            }
+        } else {
+            pers = findinList(Integer.parseInt(id));
+            img = new ImageIcon("src/accounting/software/images/doneButton2.png");
         }
-        
+        edit = !edit;   
         idTextBox.setEditable(edit);
         nameTextBox.setEditable(edit);
         surnameTextBox.setEditable(edit);
@@ -384,6 +395,9 @@ public class PersonnelFrame extends javax.swing.JPanel {
 
         editButton.setIcon(img);
         editWarning.setVisible(edit);
+        if(edit){
+            return;
+        }
 
         try {
             pers.setId(Integer.parseInt(idTextBox.getText()));
@@ -393,6 +407,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             pers.setPhoneNumber(phoneTextBox.getText());
             pers.setSalary(Double.parseDouble(salaryTextBox.getText()));
             pers.setSskBonus(Double.parseDouble(sskPrimTextBox.getText()));
+            updateMe();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);
         }        
@@ -417,6 +432,7 @@ public class PersonnelFrame extends javax.swing.JPanel {
             pers.setSskBonus(Double.parseDouble(Values[7]));
             selectPersonnel.addItem(Values[0]);
             AccountingSystem.getInstance().addPerson(pers);
+            updateMe();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -445,15 +461,23 @@ public class PersonnelFrame extends javax.swing.JPanel {
     }//GEN-LAST:event_JobFieldActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        Personnel person = AccountingSystem.getInstance().getPerson(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
-        
-        AreUSureDelete.Info.setText(person.toString());
+        Personnel person;
+        try{
+            person = AccountingSystem.getInstance().getPersonById(Integer.parseInt((String) selectPersonnel.getSelectedItem()));
+        }
+        catch(Exception ex){
+            sureDialog.SetText("You Cannot Delete None person");
+            sureDialog.setVisible(true);
+            return;
+        }
+        sureDialog.SetText(person.toString());
         sureDialog.setVisible(true);
-        if(sureDialog.getReturnStatus() == sureDialog.RET_OK)
+        if(sureDialog.getReturnStatus() == sureDialog.RET_OK && person != null)
         {
             AccountingSystem.getInstance().removePerson(person.getId());
             selectPersonnel.removeItem(selectPersonnel.getSelectedItem());
         }
+        updateMe();
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseEntered
