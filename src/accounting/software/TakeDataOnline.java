@@ -28,8 +28,7 @@ import java.util.logging.Logger;
  */
 public class TakeDataOnline {
 
-    private final String urlPetrol = "http://www.aytemiz.com.tr/faaliyet-alanlari-hizmetler/"
-            + "istasyonlar-hakkinda/akaryakit-ve-pompa-fiyatlari/yakit-fiyatlari";
+    private final String urlPetrol = "http://www.lukoil.com.tr/PompaFiyatlari";
     private final String urlLpg = "http://www.ipragaz.com.tr/otogaz-pompa-fiyatlari."
             + "asp?Sehir=%DDST./ANADOLU";
     private Double gasoline;  //gasoline price
@@ -68,7 +67,7 @@ public class TakeDataOnline {
     /**
      *
      */
-    public void urlParser()  {
+    public void urlParser() {
         URL site2 = null;
         try {
             site2 = new URL(urlLpg);
@@ -94,9 +93,7 @@ public class TakeDataOnline {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        /* Close this block because aytemiz.com is closed.
-        
+
         URL site = null;
         try {
             site = new URL(urlPetrol);
@@ -109,7 +106,7 @@ public class TakeDataOnline {
             String inputLine;
             String[] blocks = null;
             while ((inputLine = in.readLine()) != null) {
-                if (inputLine.contains("İstanbul / Anadolu")) {
+                if (inputLine.contains("<td>ISTANBUL_ANA</td>")) {
                     String block = null;
                     for (int k = 0; k < 5; k++) {
                         if ((inputLine = in.readLine()) != null) {
@@ -121,17 +118,14 @@ public class TakeDataOnline {
                 }
 
             }
-            blocks[2] = blocks[2].replace(",", ".");
-            setGasoline(Double.parseDouble(blocks[2]));
-            blocks[6] = blocks[6].replace(",", ".");
-            setDiesel(Double.parseDouble(blocks[6]));
+            setGasoline(Double.parseDouble(blocks[1]));;
+            setDiesel(Double.parseDouble(blocks[5]));
             site.openStream().close();
             in.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        */
 
     }
 
@@ -174,7 +168,7 @@ public class TakeDataOnline {
      *
      * @return if internet connection acceptable ,return true. Else false
      */
-    public boolean getStateInternet()  {
+    public boolean getStateInternet() {
         try {
             try {
                 URL url = new URL("http://www.google.com");//Test by google
