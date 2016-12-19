@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,20 +62,47 @@ public class TakeDataOnline {
 
     private static final TakeDataOnline INSTANCE = new TakeDataOnline();
 
-    private TakeDataOnline() {
+    public TakeDataOnline() {
     }
 
     /**
      *
-     * @throws MalformedURLException
-     * @throws IOException input otput
-     * @throws SocketException No interenet connection
-     *
-     * This method parse urlPetrol and urlLpg website. And set gasoline,diesel,
-     * LPG price.
      */
-    private void urlParser() throws MalformedURLException, IOException, SocketException {
-        URL site = new URL(urlPetrol);
+    public void urlParser()  {
+        URL site2 = null;
+        try {
+            site2 = new URL(urlLpg);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(TakeDataOnline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(site2.openStream()))) {
+            String inputLine;
+            String[] blocks = null;
+            while ((inputLine = in.readLine()) != null) {
+                if (inputLine.contains("<p><span  class=\"tl\">")) {
+                    blocks = inputLine.split("<p><span  class=\"tl\">|</span> / Litre</p>");
+                    break;
+                }
+            }
+            blocks[1] = blocks[1].replace(",", ".");
+            setLpg(Double.parseDouble(blocks[1]));
+            site2.openStream().close();
+            in.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        /* Close this block because aytemiz.com is closed.
+        
+        URL site = null;
+        try {
+            site = new URL(urlPetrol);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(TakeDataOnline.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(site.openStream()))) {
@@ -99,30 +128,10 @@ public class TakeDataOnline {
             site.openStream().close();
             in.close();
 
-        } catch (SocketException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        URL site2 = new URL(urlLpg);
-
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(site2.openStream()))) {
-            String inputLine;
-            String[] blocks = null;
-            while ((inputLine = in.readLine()) != null) {
-                if (inputLine.contains("<p><span  class=\"tl\">")) {
-                    blocks = inputLine.split("<p><span  class=\"tl\">|</span> / Litre</p>");
-                    break;
-                }
-            }
-            blocks[1] = blocks[1].replace(",", ".");
-            setLpg(Double.parseDouble(blocks[1]));
-            site2.openStream().close();
-            in.close();
-
-        } catch (SocketException ex) {
-            ex.printStackTrace();
-        }
+        */
 
     }
 
@@ -133,11 +142,7 @@ public class TakeDataOnline {
      * You should use instance method
      */
     public static TakeDataOnline getInstance() {
-        try {
-            INSTANCE.urlParser();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        INSTANCE.urlParser();
         return INSTANCE;
     }
 
@@ -168,12 +173,8 @@ public class TakeDataOnline {
     /**
      *
      * @return if internet connection acceptable ,return true. Else false
-     * @throws IOException
-     *
-     * This method must use before using instance, because if internet
-     * connection not open, not taking data naturally.
      */
-    public boolean getStateInternet() throws IOException {
+    public boolean getStateInternet()  {
         try {
             try {
                 URL url = new URL("http://www.google.com");//Test by google
