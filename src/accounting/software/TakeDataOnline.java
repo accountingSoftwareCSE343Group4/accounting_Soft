@@ -1,12 +1,10 @@
 package accounting.software;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Şahin Eğilmez
  *
- * This class take gasoline, diesel by Aytemiz Petrol and LPG price by İpragaz
+ * This class take gasoline, diesel by Lukoil Petrol and LPG price by İpragaz
  * from internet and use them.
  *
  * Class Usage :
