@@ -150,7 +150,7 @@ public class PasswordFrame extends javax.swing.JFrame {
             new MainFrame().setVisible(true);
         }
 
-        Icon img = new ImageIcon("src/accounting/software/images/x.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/x.png"));
 
         jLabel2.setIcon(img);
 
@@ -162,28 +162,28 @@ public class PasswordFrame extends javax.swing.JFrame {
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
 
-        Icon img = new ImageIcon("src/accounting/software/images/enter2.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/enter2.png"));
 
         jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
 
-        Icon img = new ImageIcon("src/accounting/software/images/enter.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/enter.png"));
 
         jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
 
-        Icon img = new ImageIcon("src/accounting/software/images/exit2.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/exit2.png"));
 
         jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
 
-        Icon img = new ImageIcon("src/accounting/software/images/exit.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/exit.png"));
 
         jButton2.setIcon(img);
     }//GEN-LAST:event_jButton2MouseExited
@@ -196,7 +196,7 @@ public class PasswordFrame extends javax.swing.JFrame {
             new MainFrame().setVisible(true);
         }
 
-        Icon img = new ImageIcon("src/accounting/software/images/x.png");
+        Icon img = new ImageIcon(getClass().getResource("../images/x.png"));
 
         jLabel2.setIcon(img);
 
