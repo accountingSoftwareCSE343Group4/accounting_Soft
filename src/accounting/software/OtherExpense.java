@@ -15,7 +15,7 @@ public class OtherExpense implements Expenses {
     private String name;
     private String Desc;
     private Double amount;
-    private Date date;
+    private String date;
     private int ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 2016-11-26
     private static int inp = 0;
@@ -30,14 +30,10 @@ public class OtherExpense implements Expenses {
         this.name = name;
         this.Desc = Desc;
         this.amount = amount;
-        date = new Date();
+        date = systemDate();
         ID = inp;
-        try {
-            this.date = dateFormat.parse(eDate);
-        }
-        catch (ParseException ex) {
-            Logger.getLogger(OtherExpense.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.date = eDate;
+        
         ++inp;
     }
 
@@ -48,7 +44,7 @@ public class OtherExpense implements Expenses {
     /*
      * @return Date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -56,13 +52,15 @@ public class OtherExpense implements Expenses {
      * @param date
      */
     public void setDate(String date) {
-        try {
-            this.date = dateFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.date = date;
     }
-
+    
+    private String systemDate() {
+        Date systemDate = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date = df.format(systemDate);
+        return date;
+    }
     /**
      *
      * @return

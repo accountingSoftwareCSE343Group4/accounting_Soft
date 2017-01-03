@@ -251,11 +251,7 @@ public class GasolineDialog extends javax.swing.JDialog {
         AccountingSystem.getInstance().getFuel(1).setSalePrice(Double.parseDouble(jTextField3.getText()));
         AccountingSystem.getInstance().getFuel(1).setBuyingAmount(Double.parseDouble(jTextField1.getText()));
 
-        try {
-            MainFrame.mainFrame.updateFuels();
-        } catch (IOException ex) {
-            Logger.getLogger(GasolineDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        MainFrame.mainFrame.updateFuelsOffline();
 
         this.setVisible(false);
 

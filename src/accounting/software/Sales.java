@@ -15,7 +15,7 @@ public class Sales implements Income {
     private String description; //LPG, GASOLINE, DIESEL, MARKET bunun disinda desc girmeyin
     private int ID;
     private Double price;
-    private Date saleDate;
+    private String saleDate;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // format : 21/11/2016
 
     public Sales() {
@@ -23,8 +23,8 @@ public class Sales implements Income {
         this.ID = -1;
         this.price = 0.0;
         try {
-            this.saleDate = dateFormat.parse("1111-01-01");
-        } catch (ParseException ex) {
+            this.saleDate = systemDate();
+        } catch (Exception ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -40,20 +40,26 @@ public class Sales implements Income {
         this.description = description;
         this.ID = ID;
         this.price = price;
-        saleDate = new Date();
+        saleDate = systemDate();
         try {
-            this.saleDate = dateFormat.parse(date);
+            this.saleDate = date;
         }
-        catch (ParseException ex) {
+        catch (Exception ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    private String systemDate() {
+        Date systemDate = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date = df.format(systemDate);
+        return date;
+    }
     /**
      *
      * @return Date
      */
-    public Date getSaleDate() {
+    public String getSaleDate() {
         return saleDate;
     }
 
@@ -63,9 +69,9 @@ public class Sales implements Income {
      */
     public void setSaleDate(String date) {
         try {
-            this.saleDate = dateFormat.parse(date);
+            this.saleDate = date;
         }
-        catch (ParseException ex) {
+        catch (Exception ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -127,7 +133,7 @@ public class Sales implements Income {
 
     @Override
     public String toString() {
-        return "ID = " + ID + "Date = " + dateFormat.format(saleDate)
+        return "ID = " + ID + "Date = " + saleDate
                 + " Description = " + description + " Price = " + price;
     }
 }

@@ -74,10 +74,23 @@ public class MainFrame extends javax.swing.JFrame {
         FinanceFrame financeframe = new FinanceFrame();
         PersonnelFrame persframe = new PersonnelFrame();
 
+        if (AccountingSystem.getInstance().getFuel(0) == null) {
+            AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
+        }
+        if (AccountingSystem.getInstance().getFuel(1) == null) {
+            AccountingSystem.getInstance().addFuel(new Fuel("GASOLINE", 20.0, 21.1));
+
+        }
+        if (AccountingSystem.getInstance().getFuel(2) == null) {
+            AccountingSystem.getInstance().addFuel(new Fuel("LPG", 20.0, 21.1));
+        }
+
+        updateFuelsOffline();
         updatePersonelPannel();
         updateExpensesPannel();
         updateIncomesPannel();
         updateFuelThread.start();
+
     }
 
     private void updatePersonelPannel() {
@@ -161,12 +174,14 @@ public class MainFrame extends javax.swing.JFrame {
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
 
         if (TakeDataOnline.getInstance().getStateInternet()) {
-            gasoline
-                    = TakeDataOnline.getInstance().getGasoline();
-            diesel
-                    = TakeDataOnline.getInstance().getDiesel();
-            lpg
-                    = TakeDataOnline.getInstance().getLpg();
+            gasoline = TakeDataOnline.getInstance().getGasoline();
+            AccountingSystem.getInstance().getFuel(0).setSalePrice(gasoline);
+
+            diesel = TakeDataOnline.getInstance().getDiesel();
+            AccountingSystem.getInstance().getFuel(1).setSalePrice(diesel);
+
+            lpg = TakeDataOnline.getInstance().getLpg();
+            AccountingSystem.getInstance().getFuel(2).setSalePrice(lpg);
         } else {
             //no internet connection
         }
@@ -183,6 +198,24 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
 
         System.err.println(AccountingSystem.getInstance().getFuelSize());;
+    }
+
+    public void updateFuelsOffline() {
+        double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
+        double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
+        double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
+
+        jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(0).getBuyingAmount());
+        jLabelDieselPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(0).getBuyingPrice());
+        jLabelDieselCurrentPrice.setText("CURRENT PRICE (TL)            = " + diesel);
+
+        jLabelGasolineAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(1).getBuyingAmount());
+        jLabelGasolinePurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(1).getBuyingPrice());
+        jLabelGasolineCurrentPrice.setText("CURRENT PRICE (TL)            = " + gasoline);
+
+        jLabelLpgAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(2).getBuyingAmount());
+        jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
+        jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
     }
 
     private void temp() {
@@ -238,7 +271,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        updateFuelThread.start();
+  
         updateIncomesPannel();
         updateExpensesPannel();
     }
@@ -863,15 +896,9 @@ public class MainFrame extends javax.swing.JFrame {
             jLayeredPaneSummary.setVisible(true);
         }
 
-        updatePersonelPannel();
-//        try {
-//            updateFuels();
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        updateFuelThread.start();
         updateIncomesPannel();
         updateExpensesPannel();
+        updatePersonelPannel();
 
     }//GEN-LAST:event_SummaryTabMouseClicked
 
@@ -987,13 +1014,18 @@ public class MainFrame extends javax.swing.JFrame {
     public class MyThread extends Thread {
 
         public void run() {
-            try {
+           
+             try {
                 updateFuels();
             } catch (IOException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             System.out.println("MyThread running");
         }
+        
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
