@@ -251,11 +251,7 @@ public class LpgDialog extends javax.swing.JDialog {
         AccountingSystem.getInstance().getFuel(2).setSalePrice(Double.parseDouble(jTextField3.getText()));
         AccountingSystem.getInstance().getFuel(2).setBuyingAmount(Double.parseDouble(jTextField1.getText()));
 
-        try {
-            MainFrame.mainFrame.updateFuels();
-        } catch (IOException ex) {
-            Logger.getLogger(LpgDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        MainFrame.mainFrame.updateFuelsOffline();
 
         this.setVisible(false);
 
