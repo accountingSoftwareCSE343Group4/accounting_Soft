@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 22.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 22.png"));
 
         SummaryTab.setIcon(img);
 
@@ -678,7 +678,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void SummaryTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 22.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 22.png"));
 
         SummaryTab.setIcon(img);
     }//GEN-LAST:event_SummaryTabMouseEntered
@@ -686,7 +686,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void SummaryTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseExited
         if (!sumOpen) {
 
-            Icon img = new ImageIcon(getClass().getResource("../images/Asset 7.png"));
+            Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 7.png"));
 
             SummaryTab.setIcon(img);
         }
@@ -695,7 +695,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void PersonnelTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 24.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 24.png"));
 
         PersonnelTab.setIcon(img);
     }//GEN-LAST:event_PersonnelTabMouseEntered
@@ -703,7 +703,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void PersonnelTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseExited
         if (!personnelOpen) {
 
-            Icon img = new ImageIcon(getClass().getResource("../images/Asset 20.png"));
+            Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 20.png"));
 
             PersonnelTab.setIcon(img);
         }
@@ -712,7 +712,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void FinanceTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 27.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 27.png"));
 
         FinanceTab.setIcon(img);
     }//GEN-LAST:event_FinanceTabMouseEntered
@@ -720,7 +720,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void FinanceTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseExited
         if (!financeOpen) {
 
-            Icon img = new ImageIcon(getClass().getResource("../images/Asset 8.png"));
+            Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 8.png"));
 
             FinanceTab.setIcon(img);
         }
@@ -729,91 +729,91 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void ReportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 29.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 29.png"));
 
         ReportButton.setIcon(img);
     }//GEN-LAST:event_ReportButtonMouseEntered
 
     private void ReportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 9.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 9.png"));
 
         ReportButton.setIcon(img);
     }//GEN-LAST:event_ReportButtonMouseExited
 
     private void DieselButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 30.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 30.png"));
 
         DieselButton.setIcon(img);
     }//GEN-LAST:event_DieselButtonMouseEntered
 
     private void DieselButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DieselButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 12.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 12.png"));
 
         DieselButton.setIcon(img);
     }//GEN-LAST:event_DieselButtonMouseExited
 
     private void GasolineButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 32.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 32.png"));
 
         GasolineButton.setIcon(img);
     }//GEN-LAST:event_GasolineButtonMouseEntered
 
     private void GasolineButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GasolineButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 13.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 13.png"));
 
         GasolineButton.setIcon(img);
     }//GEN-LAST:event_GasolineButtonMouseExited
 
     private void LpgButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 33.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 33.png"));
 
         LpgButton.setIcon(img);
     }//GEN-LAST:event_LpgButtonMouseEntered
 
     private void LpgButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LpgButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 14.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 14.png"));
 
         LpgButton.setIcon(img);
     }//GEN-LAST:event_LpgButtonMouseExited
 
     private void ExpensesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 41.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 41.png"));
 
         ExpensesButton.setIcon(img);
     }//GEN-LAST:event_ExpensesButtonMouseEntered
 
     private void ExpensesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensesButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 39.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 39.png"));
 
         ExpensesButton.setIcon(img);
     }//GEN-LAST:event_ExpensesButtonMouseExited
 
     private void IncomesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButtonMouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 42.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 42.png"));
 
         IncomesButton.setIcon(img);
     }//GEN-LAST:event_IncomesButtonMouseEntered
 
     private void IncomesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomesButtonMouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 40.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 40.png"));
 
         IncomesButton.setIcon(img);
     }//GEN-LAST:event_IncomesButtonMouseExited
 
     private void PersonnelTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PersonnelTabMouseClicked
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 24.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 24.png"));
 
         PersonnelTab.setIcon(img);
         personnelOpen = true;
@@ -822,10 +822,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         financeOpen = false;
 
-        img = new ImageIcon(getClass().getResource("../images/Asset 7.png"));
+        img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 7.png"));
         SummaryTab.setIcon(img);
 
-        img = new ImageIcon(getClass().getResource("../images/Asset 8.png"));
+        img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 8.png"));
 
         FinanceTab.setIcon(img);
 
@@ -843,7 +843,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void SummaryTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SummaryTabMouseClicked
         if (!jLayeredPaneSummary.isVisible()) {
 
-            Icon img = new ImageIcon(getClass().getResource("../images/Asset 22.png"));
+            Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 22.png"));
 
             SummaryTab.setIcon(img);
 
@@ -851,10 +851,10 @@ public class MainFrame extends javax.swing.JFrame {
             personnelOpen = false;
             financeOpen = false;
 
-            img = new ImageIcon(getClass().getResource("../images/Asset 20.png"));
+            img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 20.png"));
             PersonnelTab.setIcon(img);
 
-            img = new ImageIcon(getClass().getResource("../images/Asset 8.png"));
+            img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 8.png"));
 
             FinanceTab.setIcon(img);
 
@@ -877,7 +877,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void FinanceTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceTabMouseClicked
 
-        Icon img = new ImageIcon(getClass().getResource("../images/Asset 27.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 27.png"));
 
         FinanceTab.setIcon(img);
 
@@ -885,10 +885,10 @@ public class MainFrame extends javax.swing.JFrame {
         sumOpen = false;
         personnelOpen = false;
 
-        img = new ImageIcon(getClass().getResource("../images/Asset 7.png"));
+        img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 7.png"));
         SummaryTab.setIcon(img);
 
-        img = new ImageIcon(getClass().getResource("../images/Asset 20.png"));
+        img = new ImageIcon(getClass().getResource("/accounting/software/images/Asset 20.png"));
 
         PersonnelTab.setIcon(img);
 

@@ -212,28 +212,28 @@ public class LpgDialog extends javax.swing.JDialog {
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/enter2.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/enter2.png"));
 
         jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/enter.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/enter.png"));
 
         jButton1.setIcon(img);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
 
-        Icon img = new ImageIcon(getClass().getResource("../images/exit2.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/exit2.png"));
 
         jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
 
-        Icon img = new ImageIcon(getClass().getResource("../images/exit.png"));
+        Icon img = new ImageIcon(getClass().getResource("/accounting/software/images/exit.png"));
 
         jButton3.setIcon(img);
     }//GEN-LAST:event_jButton3MouseExited
