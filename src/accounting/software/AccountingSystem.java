@@ -203,7 +203,7 @@ public class AccountingSystem {
      *
      * @param newPerson
      */
-    public void addPerson(Personnel newPerson) {
+    public boolean addPerson(Personnel newPerson) {
         boolean duplicate = false;
         for (int i = 0; i < personnelList.size(); ++i) {
             if (personnelList.get(i).getId() == newPerson.getId()) {
@@ -213,6 +213,7 @@ public class AccountingSystem {
         if (!duplicate) {
             personnelList.add(newPerson);
         }
+        return !duplicate;
     }
 
     /**

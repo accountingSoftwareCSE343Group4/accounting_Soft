@@ -421,7 +421,8 @@ public class PersonnelFrame extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Personnel pers = new Personnel();
         addDialog.setVisible(true);
-        if (addDialog.getReturnStatus() == AddPersonnelDialog.RET_OK) {
+        boolean done = false;
+        do{
             String Values[] = addDialog.GetValues();
             pers.setId(Integer.parseInt(Values[0]));
             pers.setName(Values[1]);
@@ -432,9 +433,17 @@ public class PersonnelFrame extends javax.swing.JPanel {
             pers.setSalary(Double.parseDouble(Values[6]));
             pers.setSskBonus(Double.parseDouble(Values[7]));
             selectPersonnel.addItem(Values[0]);
-            AccountingSystem.getInstance().addPerson(pers);
-            updateMe();
-        }
+            if(AccountingSystem.getInstance().addPerson(pers))
+            {
+                done = true;
+                updateMe();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "It Is Already Have ! \n"
+                        + "So, It didn't added . ");
+                addDialog.setVisible(true);
+            }
+        }while(addDialog.getReturnStatus() == AddPersonnelDialog.RET_OK && !done); 
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void selectPersonnelİtemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectPersonnelİtemStateChanged
