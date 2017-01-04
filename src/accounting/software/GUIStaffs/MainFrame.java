@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  * Main Frame class.
@@ -174,6 +175,8 @@ public class MainFrame extends javax.swing.JFrame {
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
 
         if (TakeDataOnline.getInstance().getStateInternet()) {
+            JOptionPane.showMessageDialog(this,"Oil prices Updating Online ... "
+                    + "Please Be Patient :) ");
             gasoline = TakeDataOnline.getInstance().getGasoline();
             AccountingSystem.getInstance().getFuel(0).setSalePrice(gasoline);
 
@@ -182,7 +185,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             lpg = TakeDataOnline.getInstance().getLpg();
             AccountingSystem.getInstance().getFuel(2).setSalePrice(lpg);
+            
+            JOptionPane.showMessageDialog(this,"Oil prices Updated Online Succesfully ");
         } else {
+            JOptionPane.showMessageDialog(this,"There is No Internet Connection\n"
+                    + "It Uses previous values Or Default ");
             //no internet connection
         }
         jLabelDieselAvailableAmount.setText("AVAILABLE AMOUNT (LT)      = " + AccountingSystem.getInstance().getFuel(0).getBuyingAmount());
@@ -1020,8 +1027,6 @@ public class MainFrame extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            System.out.println("MyThread running");
         }
         
         
