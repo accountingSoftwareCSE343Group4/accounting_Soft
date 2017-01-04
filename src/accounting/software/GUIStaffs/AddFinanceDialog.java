@@ -180,7 +180,7 @@ public class AddFinanceDialog extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try {
-            Integer.parseInt(AmountField.getText());
+            Double.parseDouble(AmountField.getText());
             doClose(RET_OK);
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error !!", JOptionPane.ERROR_MESSAGE);

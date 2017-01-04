@@ -470,7 +470,7 @@ public class AccountingSystem {
 
         jsonObject.put("OtherExpense", jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
 
-        //System.out.println(jsonObject.toString());
+        System.out.println(jsonObject.toString());
 
         jsonParser.writeJsonToFile(jsonObject);
     }
