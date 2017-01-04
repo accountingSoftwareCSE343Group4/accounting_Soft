@@ -33,9 +33,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public static MainFrame mainFrame;
 
-    private DieselDialog dieselDialog = new DieselDialog(this, rootPaneCheckingEnabled);
-    private GasolineDialog gasolineDialog = new GasolineDialog(this, rootPaneCheckingEnabled);
-    private LpgDialog lpgDialog = new LpgDialog(this, rootPaneCheckingEnabled);
+    private DieselDialog dieselDialog = new DieselDialog(this, true);
+    private GasolineDialog gasolineDialog = new GasolineDialog(this, true);
+    private LpgDialog lpgDialog = new LpgDialog(this, true);
     private FinanceFrame financeframe = new FinanceFrame();
     private PersonnelFrame persframe = new PersonnelFrame();
     private static Font newFont;
