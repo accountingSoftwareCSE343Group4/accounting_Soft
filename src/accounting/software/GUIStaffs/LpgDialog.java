@@ -130,6 +130,11 @@ public class LpgDialog extends javax.swing.JDialog {
         jPanel1.add(jLabel3);
 
         jTextField3.setText("3");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField3);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/exit.png"))); // NOI18N
@@ -257,6 +262,10 @@ public class LpgDialog extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

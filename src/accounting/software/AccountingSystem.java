@@ -10,6 +10,8 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -470,7 +472,9 @@ public class AccountingSystem {
 
         jsonObject.put("OtherExpense", jsonParser.JSONEncode((List<Object>) (Object) otherExpenseList));
 
+
         System.out.println(jsonObject.toString());
+
 
         jsonParser.writeJsonToFile(jsonObject);
     }
@@ -516,23 +520,17 @@ public class AccountingSystem {
      */
     public double getProfit() {
         double totalProfit = 0.0;
-        
         for(Sales salesObj : salesList){
-            if(salesObj.getDescription().equals("LPG") || 
-                    salesObj.getDescription().equals("GASOLINE") ||
-                    salesObj.getDescription().equals("DIESEL")){
-                for(Fuel fuelObj : fuelList){
-                    totalProfit += (fuelObj.getSalePrice() - fuelObj.getBuyingPrice()) * fuelObj.getSaleAmount();
-                }
-            }else {
+            
                 totalProfit += salesObj.getPrice();
-            }
         }
         
         for(OtherExpense expObj : otherExpenseList){
             totalProfit -= expObj.getExpense();
         }
-        
+        for(Personnel personObj : personnelList){
+            totalProfit -= personObj.getExpense();
+        }
         return totalProfit;
     }
 
@@ -554,9 +552,9 @@ public class AccountingSystem {
                 //There is no internet connection. So should show info for user.  
             }
             for (int i = 0; i < fuelList.size(); i++) {
-                if (fuelList.get(i).getDescription().compareTo("Gasoline") == 0) {
+                if (fuelList.get(i).getFuelType().compareTo("GASOLINE") == 0) {
                     assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * gasolineCurrentPrice);
-                } else if (fuelList.get(i).getDescription().compareTo("Diesel") == 0) {
+                } else if (fuelList.get(i).getFuelType().compareTo("DIESEL") == 0) {
                     assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * dieselCurrentPrice);
                 } else {
                     assets += ((fuelList.get(i).getBuyingAmount()- fuelList.get(i).getSaleAmount()) * lpgCurrentPrice);
@@ -619,19 +617,25 @@ public class AccountingSystem {
         }
 
         for (int i = 0; i < INSTANCE.getFuelSize(); i++) {
-            tableFuel.addCell(INSTANCE.getFuel(i).getDescription());
+            tableFuel.addCell(INSTANCE.getFuel(i).getFuelType());
             tableFuel.addCell("");
             tableFuel.addCell("Available  Amount(lt)");
             tableFuel.addCell(("" + INSTANCE.getFuel(i).getBuyingAmount()));
             tableFuel.addCell("Purchase Price(TL)");
             tableFuel.addCell("" + INSTANCE.getFuel(i).getBuyingPrice());
             tableFuel.addCell("Current Price(TL)");
-            if (INSTANCE.getFuel(i).getDescription().compareTo("Gasoline") == 0) {
+            if (INSTANCE.getFuel(i).getFuelType().equals("GASOLINE")) {
+                
                 tableFuel.addCell(gasolineS);
-            } else if (INSTANCE.getFuel(i).getDescription().compareTo("Diesel") == 0) {
+                
+            } else if (INSTANCE.getFuel(i).getFuelType().equals("DIESEL") ) {
+                
                 tableFuel.addCell(dieselS);
+                
             } else {
+                
                 tableFuel.addCell(lpgS);
+                
             }
         }
         document.add(tableFuel);
@@ -690,20 +694,27 @@ public class AccountingSystem {
         }
         document.add(tableIncomes);
 
+        // ASSETS
+        Double assets = INSTANCE.calculateAssets();
         Paragraph assetsTitle = new Paragraph();
-        assetsTitle.add(new Paragraph("                   ASSETS:", subFont));
+        assetsTitle.add(new Paragraph("                   ASSETS:  "+assets.toString(),subFont));
         document.add(assetsTitle);
-        double assets = INSTANCE.calculateAssets();
-        paragraph.add("" + assets);
-
+        
+        // PROFIT
+        Double profit = INSTANCE.getProfit();
         Paragraph profitTitle = new Paragraph();
-        profitTitle.add(new Paragraph("                   PROFIT:", subFont));
+        profitTitle.add(new Paragraph("                   PROFIT:  "+profit.toString(), subFont));
         document.add(profitTitle);
-        double profit = INSTANCE.getProfit();
-        paragraph.add("" + profitTitle);
-
         //////////////////////////////////////////////////
         document.close();
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File("AccountingSoftwareReport.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for PDFs
+                System.out.println(" Pdf Can not Open");
+            }
+}
     }
-
 }
