@@ -543,11 +543,13 @@ public class AccountingSystem {
     public double calculateAssets() {
         double assets = 0.0;
         double gasolineCurrentPrice, dieselCurrentPrice, lpgCurrentPrice;
+        TakeDataOnline prices = new TakeDataOnline();
+        prices.urlParser();
         try {
-            if (TakeDataOnline.getInstance().getStateInternet()) {
-                gasolineCurrentPrice = TakeDataOnline.getInstance().getGasoline();
-                dieselCurrentPrice = TakeDataOnline.getInstance().getDiesel();
-                lpgCurrentPrice = TakeDataOnline.getInstance().getLpg();
+            if (prices.getStateInternet()) {
+                gasolineCurrentPrice = prices.getGasoline();
+                dieselCurrentPrice = prices.getDiesel();
+                lpgCurrentPrice = prices.getLpg();
             } else {
                 return 0.0;
                 //There is no internet connection. So should show info for user.  
@@ -603,10 +605,12 @@ public class AccountingSystem {
         document.add(paragraph);
         PdfPTable tableFuel = new PdfPTable(2);
         String gasolineS, dieselS, lpgS;
-        if (TakeDataOnline.getInstance().getStateInternet()) {
-            double gasoline = TakeDataOnline.getInstance().getGasoline();
-            double diesel = TakeDataOnline.getInstance().getDiesel();
-            double lpg = TakeDataOnline.getInstance().getLpg();
+        TakeDataOnline prices = new TakeDataOnline();
+        prices.urlParser();
+        if (prices.getStateInternet()) {
+            double gasoline = prices.getGasoline();
+            double diesel = prices.getDiesel();
+            double lpg = prices.getLpg();
             gasolineS = "" + gasoline;
             dieselS = "" + diesel;
             lpgS = "" + lpg;

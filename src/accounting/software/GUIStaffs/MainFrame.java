@@ -173,17 +173,18 @@ public class MainFrame extends javax.swing.JFrame {
         double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
         double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
-
-        if (TakeDataOnline.getInstance().getStateInternet()) {
+        TakeDataOnline prices =new TakeDataOnline();
+        prices.urlParser();
+        if (prices.getStateInternet()) {
             JOptionPane.showMessageDialog(this,"Oil prices Updating Online ... "
                     + "Please Be Patient :) ");
-            gasoline = TakeDataOnline.getInstance().getGasoline();
+            gasoline = prices.getGasoline();
             AccountingSystem.getInstance().getFuel(0).setSalePrice(gasoline);
 
-            diesel = TakeDataOnline.getInstance().getDiesel();
+            diesel = prices.getDiesel();
             AccountingSystem.getInstance().getFuel(1).setSalePrice(diesel);
 
-            lpg = TakeDataOnline.getInstance().getLpg();
+            lpg = prices.getLpg();
             AccountingSystem.getInstance().getFuel(2).setSalePrice(lpg);
             
             JOptionPane.showMessageDialog(this,"Oil prices Updated Online Succesfully ");
