@@ -44,7 +44,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         initComponents();
         UpdateMe();
     }
-    static int temp = 10;
+    static int temp = 11;
 
     /**
      *
@@ -85,6 +85,7 @@ public class FinanceFrame extends javax.swing.JPanel {
             gelirIDs.add(AccountingSystem.getInstance().getSale(i).getID());
             ++count_in;
             totalin += AccountingSystem.getInstance().getSale(i).getPrice();
+            temp = AccountingSystem.getInstance().getSale(i).getID();
             incomePanel.add(new IncomePanelFinance(AccountingSystem.getInstance().getSale(i), freeIncomeY));
             freeIncomeY += 50;
         }
@@ -105,6 +106,7 @@ public class FinanceFrame extends javax.swing.JPanel {
         if (count_out * 50 >= 450) {
             outcomePanel.setPreferredSize(new Dimension(530, freeOutcomeY + 50));
         }
+        temp++;
         this.revalidate();
         this.repaint();
         totalIncome.setText(Double.toString(totalin));
@@ -333,9 +335,9 @@ public class FinanceFrame extends javax.swing.JPanel {
 
     private void AddIncomeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddIncomeButActionPerformed
         addDialog.setVisible(true);
-
+        
         if (addDialog.getReturnStatus() == AddFinanceDialog.RET_OK) {
-            String[] s = new String[3];
+            String[] s;
             s = addDialog.GetValues();
 
             //bakilacak
