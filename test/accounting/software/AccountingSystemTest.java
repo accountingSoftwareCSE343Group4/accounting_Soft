@@ -262,7 +262,7 @@ public class AccountingSystemTest {
         
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();
-        Fuel fuel = new Fuel();
+        Fuel fuel = new Fuel("Gasoline", 0, 0);
         
         person.setId(121044029);
         person.setName("Gurol");
@@ -283,8 +283,6 @@ public class AccountingSystemTest {
         person2.setSskBonus(301);
         
         fuel.setFuelType("benzin");
-        fuel.setFuelCapacity(255.8);
-        fuel.setFuelAmount(16.7);
         fuel.setSalePrice(4.5);
         fuel.setTax(121);
         
