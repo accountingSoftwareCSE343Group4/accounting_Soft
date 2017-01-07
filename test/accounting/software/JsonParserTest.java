@@ -83,7 +83,7 @@ public class JsonParserTest {
         System.out.println("JSONEncode");
         Personnel person = new Personnel();
         Personnel person2 = new Personnel();
-        Fuel fuel = new Fuel();
+        Fuel fuel = new Fuel("Gasoline", 0, 0);
 
         List<Personnel> personnelList = new ArrayList<Personnel>();
         List<Fuel> fuelList = new ArrayList<Fuel>();
@@ -110,8 +110,6 @@ public class JsonParserTest {
         person2.setSskBonus(301);
 
         fuel.setFuelType("benzin");
-        fuel.setFuelCapacity(255.8);
-        fuel.setFuelAmount(16.7);
         fuel.setSalePrice(4.5);
         fuel.setTax(121);
 

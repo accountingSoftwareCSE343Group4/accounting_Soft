@@ -9,9 +9,11 @@ import accounting.software.Sales;
 import accounting.software.TakeDataOnline;
 import com.itextpdf.text.DocumentException;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.io.File;
@@ -48,6 +50,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private Printer printer = new Printer("AccountingSoftwareReport.pdf");
 
+    private final int UPDATE_FUELS = 5;
+    private final int CREATE_REPORT = 6;
+    public int request = 0;
+
     /**
      * Creates new form MainFrame
      */
@@ -76,14 +82,14 @@ public class MainFrame extends javax.swing.JFrame {
         PersonnelFrame persframe = new PersonnelFrame();
 
         if (AccountingSystem.getInstance().getFuel(0) == null) {
-            AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 20.0, 21.1));
+            AccountingSystem.getInstance().addFuel(new Fuel("DIESEL", 0.0, 0.0));
         }
         if (AccountingSystem.getInstance().getFuel(1) == null) {
-            AccountingSystem.getInstance().addFuel(new Fuel("GASOLINE", 20.0, 21.1));
+            AccountingSystem.getInstance().addFuel(new Fuel("GASOLINE", 0.0, 0.0));
 
         }
         if (AccountingSystem.getInstance().getFuel(2) == null) {
-            AccountingSystem.getInstance().addFuel(new Fuel("LPG", 20.0, 21.1));
+            AccountingSystem.getInstance().addFuel(new Fuel("LPG", 0.0, 0.0));
         }
 
         updateFuelsOffline();
@@ -136,6 +142,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         }
 
+        if (bound > (jPanelAddExpenses.getHeight() - 40)) {
+            jPanelAddExpenses.setPreferredSize(new Dimension(jPanelAddExpenses.getWidth(), bound));
+        } else if (bound < 201) {
+            jPanelAddExpenses.setPreferredSize(new Dimension(345, 256));
+        }
+
         this.revalidate();
         this.repaint();
 
@@ -160,6 +172,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         }
 
+        if (bound > (jPanelAddIncomes.getHeight() - 40)) {
+            jPanelAddIncomes.setPreferredSize(new Dimension(jPanelAddIncomes.getWidth(), bound));
+        } else if (bound < 161) {
+            jPanelAddIncomes.setPreferredSize(new Dimension(345, 165));
+        }
+
         this.revalidate();
         this.repaint();
 
@@ -173,22 +191,23 @@ public class MainFrame extends javax.swing.JFrame {
         double gasoline = AccountingSystem.getInstance().getFuel(1).getSalePrice();
         double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
+        TakeDataOnline prices = new TakeDataOnline();
+        prices.urlParser();
+        if (prices.getStateInternet()) {
+//            JOptionPane.showMessageDialog(this, "Oil prices Updating Online ... "
+//                    + "Please Be Patient :) ");
+            gasoline = prices.getDiesel();
+            AccountingSystem.getInstance().getFuel(0).setSalePrice(diesel);
 
-        if (TakeDataOnline.getInstance().getStateInternet()) {
-            JOptionPane.showMessageDialog(this,"Oil prices Updating Online ... "
-                    + "Please Be Patient :) ");
-            gasoline = TakeDataOnline.getInstance().getGasoline();
-            AccountingSystem.getInstance().getFuel(0).setSalePrice(gasoline);
+            diesel = prices.getGasoline();
+            AccountingSystem.getInstance().getFuel(1).setSalePrice(gasoline);
 
-            diesel = TakeDataOnline.getInstance().getDiesel();
-            AccountingSystem.getInstance().getFuel(1).setSalePrice(diesel);
-
-            lpg = TakeDataOnline.getInstance().getLpg();
+            lpg = prices.getLpg();
             AccountingSystem.getInstance().getFuel(2).setSalePrice(lpg);
-            
-            JOptionPane.showMessageDialog(this,"Oil prices Updated Online Succesfully ");
+
+            JOptionPane.showMessageDialog(this, "Oil prices Updated Online Succesfully!");
         } else {
-            JOptionPane.showMessageDialog(this,"There is No Internet Connection\n"
+            JOptionPane.showMessageDialog(this, "There is No Internet Connection\n"
                     + "It Uses previous values Or Default ");
             //no internet connection
         }
@@ -204,7 +223,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelLpgPurchasePrice.setText("PURCHASE PRICE (TL)          = " + AccountingSystem.getInstance().getFuel(2).getBuyingPrice());
         jLabelLpgCurrentPrice.setText("CURRENT PRICE (TL)            = " + lpg);
 
-        System.err.println(AccountingSystem.getInstance().getFuelSize());;
+        //System.err.println(AccountingSystem.getInstance().getFuelSize());;
     }
 
     public void updateFuelsOffline() {
@@ -278,7 +297,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-  
+
         updateIncomesPannel();
         updateExpensesPannel();
     }
@@ -311,6 +330,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelLpgAvailableAmount = new javax.swing.JLabel();
         jLabelLpgPurchasePrice = new javax.swing.JLabel();
         jLabelLpgCurrentPrice = new javax.swing.JLabel();
+        refreshButton = new javax.swing.JButton();
         jPanelPersonnel = new javax.swing.JPanel();
         jScrollPanePersonnel = new javax.swing.JScrollPane();
         jPanelAddPersonnel = new javax.swing.JPanel();
@@ -348,11 +368,11 @@ public class MainFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SummaryTabMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SummaryTabMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SummaryTabMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SummaryTabMouseExited(evt);
             }
         });
         jLayeredPaneTopMenu.add(SummaryTab);
@@ -507,6 +527,17 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelLpgCurrentPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelLpgCurrentPrice.setText("CURRENT PRICE (LT)         = 5.2");
 
+        refreshButton.setBackground(new java.awt.Color(176, 190, 197));
+        refreshButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/accounting/software/images/updateButton.png"))); // NOI18N
+        refreshButton.setBorderPainted(false);
+        refreshButton.setContentAreaFilled(false);
+        refreshButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelGasolineLayout = new javax.swing.GroupLayout(jPanelGasoline);
         jPanelGasoline.setLayout(jPanelGasolineLayout);
         jPanelGasolineLayout.setHorizontalGroup(
@@ -514,7 +545,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanelGasolineLayout.createSequentialGroup()
                 .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelGasolineLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
+                        .addGap(27, 27, 27)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
                         .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(GasolineButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DieselButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -539,8 +572,10 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelGasolineLayout.setVerticalGroup(
             jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGasolineLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(DieselButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanelGasolineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DieselButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelDieselAvailableAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -557,7 +592,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabelGasolineCurrentPrice)
                 .addGap(30, 30, 30)
                 .addComponent(LpgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLpgAvailableAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLpgPurchasePrice)
@@ -643,6 +678,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jScrollPaneExpenses.setBorder(null);
+        jScrollPaneExpenses.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanelAddExpenses.setBackground(new java.awt.Color(176, 190, 197));
 
@@ -654,7 +690,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanelAddExpensesLayout.setVerticalGroup(
             jPanelAddExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
+            .addGap(0, 256, Short.MAX_VALUE)
         );
 
         jScrollPaneExpenses.setViewportView(jPanelAddExpenses);
@@ -689,7 +725,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(ExpensesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(127, 127, 127))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
-                        .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExpensesAndIncomesLayout.createSequentialGroup()
                         .addComponent(jScrollPaneIncomes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -701,7 +737,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(ExpensesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IncomesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -959,7 +995,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
 
         try {
+            ReportButton.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             AccountingSystem.createReport();
+            ReportButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         } catch (DocumentException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -972,6 +1010,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         AccountingSystem.getInstance().generateJson();
     }//GEN-LAST:event_formWindowClosing
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        request = UPDATE_FUELS;
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1021,15 +1063,35 @@ public class MainFrame extends javax.swing.JFrame {
     public class MyThread extends Thread {
 
         public void run() {
-           
-             try {
-                updateFuels();
-            } catch (IOException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+
+            while (true) {
+
+                if (request == UPDATE_FUELS) {
+                    try {
+                        MainFrame.mainFrame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                        refreshButton.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                        updateFuels();
+                        MainFrame.mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        refreshButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    request = 0;
+                }
+                try {
+                    sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (request == CREATE_REPORT) {
+                    //if necessary
+                    request = 0;
+                }
             }
+
         }
-        
-        
 
     }
 
@@ -1063,5 +1125,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneExpenses;
     private javax.swing.JScrollPane jScrollPaneIncomes;
     private javax.swing.JScrollPane jScrollPanePersonnel;
+    private javax.swing.JButton refreshButton;
     // End of variables declaration//GEN-END:variables
 }

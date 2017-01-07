@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -542,11 +543,13 @@ public class AccountingSystem {
     public double calculateAssets() {
         double assets = 0.0;
         double gasolineCurrentPrice, dieselCurrentPrice, lpgCurrentPrice;
+        TakeDataOnline prices = new TakeDataOnline();
+        prices.urlParser();
         try {
-            if (TakeDataOnline.getInstance().getStateInternet()) {
-                gasolineCurrentPrice = TakeDataOnline.getInstance().getGasoline();
-                dieselCurrentPrice = TakeDataOnline.getInstance().getDiesel();
-                lpgCurrentPrice = TakeDataOnline.getInstance().getLpg();
+            if (prices.getStateInternet()) {
+                gasolineCurrentPrice = prices.getGasoline();
+                dieselCurrentPrice = prices.getDiesel();
+                lpgCurrentPrice = prices.getLpg();
             } else {
                 return 0.0;
                 //There is no internet connection. So should show info for user.  
@@ -602,10 +605,12 @@ public class AccountingSystem {
         document.add(paragraph);
         PdfPTable tableFuel = new PdfPTable(2);
         String gasolineS, dieselS, lpgS;
-        if (TakeDataOnline.getInstance().getStateInternet()) {
-            double gasoline = TakeDataOnline.getInstance().getGasoline();
-            double diesel = TakeDataOnline.getInstance().getDiesel();
-            double lpg = TakeDataOnline.getInstance().getLpg();
+        TakeDataOnline prices = new TakeDataOnline();
+        prices.urlParser();
+        if (prices.getStateInternet()) {
+            double gasoline = prices.getGasoline();
+            double diesel = prices.getDiesel();
+            double lpg = prices.getLpg();
             gasolineS = "" + gasoline;
             dieselS = "" + diesel;
             lpgS = "" + lpg;
@@ -695,18 +700,20 @@ public class AccountingSystem {
         document.add(tableIncomes);
 
         // ASSETS
-        Double assets = INSTANCE.calculateAssets();
+        DecimalFormat df2 = new DecimalFormat(".##");
+        double assets = INSTANCE.calculateAssets();
         Paragraph assetsTitle = new Paragraph();
-        assetsTitle.add(new Paragraph("                   ASSETS:  "+assets.toString(),subFont));
+        assetsTitle.add(new Paragraph("                   ASSETS:  "+df2.format(assets) ,subFont));
         document.add(assetsTitle);
         
         // PROFIT
-        Double profit = INSTANCE.getProfit();
+        double profit = INSTANCE.getProfit();
+        
         Paragraph profitTitle = new Paragraph();
-        profitTitle.add(new Paragraph("                   PROFIT:  "+profit.toString(), subFont));
+        profitTitle.add(new Paragraph("                   PROFIT:  "+df2.format(profit), subFont));
         document.add(profitTitle);
-        //////////////////////////////////////////////////
         document.close();
+        //////////////////////////////////////////////////
         if (Desktop.isDesktopSupported()) {
             try {
                 File myFile = new File("AccountingSoftwareReport.pdf");
