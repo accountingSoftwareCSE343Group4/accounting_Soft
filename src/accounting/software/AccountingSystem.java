@@ -544,9 +544,10 @@ public class AccountingSystem {
         double assets = 0.0;
         double gasolineCurrentPrice, dieselCurrentPrice, lpgCurrentPrice;
         TakeDataOnline prices = new TakeDataOnline();
-        prices.urlParser();
+        
         try {
             if (prices.getStateInternet()) {
+                prices.urlParser();
                 gasolineCurrentPrice = prices.getGasoline();
                 dieselCurrentPrice = prices.getDiesel();
                 lpgCurrentPrice = prices.getLpg();
@@ -606,8 +607,9 @@ public class AccountingSystem {
         PdfPTable tableFuel = new PdfPTable(2);
         String gasolineS, dieselS, lpgS;
         TakeDataOnline prices = new TakeDataOnline();
-        prices.urlParser();
+        
         if (prices.getStateInternet()) {
+            prices.urlParser();
             double gasoline = prices.getGasoline();
             double diesel = prices.getDiesel();
             double lpg = prices.getLpg();
