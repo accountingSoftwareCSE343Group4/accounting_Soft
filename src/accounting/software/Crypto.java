@@ -1,17 +1,16 @@
 package accounting.software;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
+import java.io.UnsupportedEncodingException;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Base64;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 
 /**
  * This class provides methods to encrypt and decrypt data.
@@ -20,90 +19,61 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Crypto {
 
-    private final String initialVector = "0123456789123456"; // This has to be 16 characters
+    private static SecretKeySpec specKey; //special key for criptography
+    private static byte[] key; // key for system UTF-8
 
     /**
-     *
-     * @param input word to be encypted
-     * @return encrypted word
-     * @throws NoSuchAlgorithmException
-     *
-     * This method encyrypted for md5 32-bit encyptyng algorithm
+     * 
+     * @param myKey initilazition to key
      */
-    private static String md5(final String input) throws NoSuchAlgorithmException {
-        final MessageDigest md = MessageDigest.getInstance("MD5");
-        final byte[] messageDigest = md.digest(input.getBytes());
-        final BigInteger number = new BigInteger(1, messageDigest);
-        return String.format("%032x", number);
-    }
-
-    /**
-     *
-     * @param mode encrypted mode
-     * @param secretKey key to be used
-     * @return Cipher for encrypt-descrypt method
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchPaddingException
-     * @throws InvalidKeyException
-     * @throws InvalidAlgorithmParameterException
-     *
-     * This method create Cipher for encrypt and descrypt
-     */
-    private Cipher initCipher(final int mode, final String secretKey)
-            throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
-        final SecretKeySpec skeySpec = new SecretKeySpec(md5(secretKey).getBytes(), "AES");
-        final IvParameterSpec initialVectorString = new IvParameterSpec(initialVector.getBytes());
-        final Cipher cipher = Cipher.getInstance("AES/CFB8/NoPadding");
-        cipher.init(mode, skeySpec, initialVectorString);
-        return cipher;
-    }
-
-    /**
-     *
-     * @param dataToEncrypt Word to be encrypted
-     * @param secretKey key to be used
-     * @return encypted word
-     *
-     * This method encypt to word by secretKey
-     */
-    public String encrypt(final String dataToEncrypt, final String secretKey) {
-        String encryptedData = null;
+    public static void initKey(String myKey) {
+        MessageDigest sha = null;
         try {
-            // Initialize the cipher
-            final Cipher cipher = initCipher(Cipher.ENCRYPT_MODE, secretKey);
-            // Encrypt the data
-            final byte[] encryptedByteArray = cipher.doFinal(dataToEncrypt.getBytes());
-            // Encode using Base64
-            encryptedData = (new BASE64Encoder()).encode(encryptedByteArray);
-        } catch (Exception e) {
-            System.err.println("Problem encrypting the data");
+            key = myKey.getBytes("UTF-8");
+            sha = MessageDigest.getInstance("SHA-1");
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16);
+            specKey = new SecretKeySpec(key, "AES");
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return encryptedData;
     }
-
     /**
-     *
-     * @param encryptedData Word to be decrypted
-     * @param secretKey key to be used
+     * this method encypt to string for secretKey of user 
+     * @param strToEncrypt word for wanted encrypting
+     * @param secretKey special key
+     * @return  encipted word
+     */
+    public static String encrypt(String strToEncrypt, String secretKey) {
+        try {
+            initKey(secretKey);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, specKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException 
+                | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+    
+    /**
+     * this method decrypt to string for secretKey of user
+     * @param strToDecrypt  word for wanted decrypting
+     * @param secretKey special key
      * @return decrypted word
-     *
-     * This method decryot to word by secretKey
      */
-    public String decrypt(final String encryptedData, final String secretKey) {
-        String decryptedData = null;
+    public static String decrypt(String strToDecrypt, String secretKey) {
         try {
-            // Initialize the cipher
-            final Cipher cipher = initCipher(Cipher.DECRYPT_MODE, secretKey);
-            // Decode using Base64
-            final byte[] encryptedByteArray = (new BASE64Decoder()).decodeBuffer(encryptedData);
-            // Decrypt the data
-            final byte[] decryptedByteArray = cipher.doFinal(encryptedByteArray);
-            decryptedData = new String(decryptedByteArray, "UTF8");
-        } catch (Exception e) {
-            System.err.println("Problem decrypting the data");
-            e.printStackTrace();
+            initKey(secretKey);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, specKey);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
+                | IllegalBlockSizeException | BadPaddingException e) {
+            System.out.println("Error while decrypting: " + e.toString());
         }
-        return decryptedData;
+        return null;
     }
+
 }
