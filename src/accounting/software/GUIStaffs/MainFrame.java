@@ -196,10 +196,10 @@ public class MainFrame extends javax.swing.JFrame {
         if (prices.getStateInternet()) {
 //            JOptionPane.showMessageDialog(this, "Oil prices Updating Online ... "
 //                    + "Please Be Patient :) ");
-            gasoline = prices.getDiesel();
+            diesel = prices.getDiesel();
             AccountingSystem.getInstance().getFuel(0).setSalePrice(diesel);
 
-            diesel = prices.getGasoline();
+            gasoline = prices.getGasoline();
             AccountingSystem.getInstance().getFuel(1).setSalePrice(gasoline);
 
             lpg = prices.getLpg();
