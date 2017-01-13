@@ -254,7 +254,7 @@ public class AddPersonnelDialog extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try {
             Integer.parseInt(ID.getText());
-            Integer.parseInt(PhoneNumber.getText());
+            //Integer.parseInt(PhoneNumber.getText());
             Double.parseDouble(Salary.getText());
             Double.parseDouble(SSK.getText());
             doClose(RET_OK);

@@ -117,6 +117,12 @@ public class MainFrame extends javax.swing.JFrame {
 
             bound += 80;
         }
+        
+        if (bound > (jPanelAddPersonnel.getHeight() - 80)) {
+            jPanelAddPersonnel.setPreferredSize(new Dimension(jPanelAddPersonnel.getWidth(), bound));
+        } else if (bound < 541) {
+            jPanelAddPersonnel.setPreferredSize(new Dimension(284, 464));
+        }
 
         this.revalidate();
         this.repaint();
@@ -623,7 +629,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanelAddPersonnelLayout.setVerticalGroup(
             jPanelAddPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
 
         jScrollPanePersonnel.setViewportView(jPanelAddPersonnel);
@@ -639,10 +645,10 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanelPersonnelLayout.setVerticalGroup(
             jPanelPersonnelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPersonnelLayout.createSequentialGroup()
+            .addGroup(jPanelPersonnelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPanePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addComponent(jScrollPanePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jLayeredPaneSummary.add(jPanelPersonnel);

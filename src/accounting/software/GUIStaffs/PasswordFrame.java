@@ -10,6 +10,11 @@ import javax.swing.ImageIcon;
  */
 public class PasswordFrame extends javax.swing.JFrame {
 
+    /*
+     * User password
+    */
+    private final String password = "urazhoca";
+    
     /**
      * Creates new form PasswordFrame
      */
@@ -191,7 +196,7 @@ public class PasswordFrame extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         String a = new String(jPasswordField1.getPassword());
 
-        if (a.equals("123")) {
+        if (a.equals(password)) {
             this.setVisible(false);
             new MainFrame().setVisible(true);
         }
