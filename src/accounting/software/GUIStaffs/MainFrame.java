@@ -58,6 +58,17 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
+        File theDir = new File("AccountingSoftware");
+
+        // if the directory does not exist, create it
+        if (!theDir.exists()) {
+            try {
+                theDir.mkdir();
+            } catch (SecurityException se) {
+                //handle it
+            }
+        }
+
         initComponents();
         setLocationRelativeTo(null);
 
@@ -117,7 +128,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             bound += 80;
         }
-        
+
         if (bound > (jPanelAddPersonnel.getHeight() - 80)) {
             jPanelAddPersonnel.setPreferredSize(new Dimension(jPanelAddPersonnel.getWidth(), bound));
         } else if (bound < 541) {
@@ -198,7 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
         double diesel = AccountingSystem.getInstance().getFuel(0).getSalePrice();
         double lpg = AccountingSystem.getInstance().getFuel(2).getSalePrice();
         TakeDataOnline prices = new TakeDataOnline();
-        
+
         if (prices.getStateInternet()) {
 //            JOptionPane.showMessageDialog(this, "Oil prices Updating Online ... "
 //                    + "Please Be Patient :) ");

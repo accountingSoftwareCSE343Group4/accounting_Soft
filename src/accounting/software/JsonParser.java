@@ -42,7 +42,7 @@ public class JsonParser {
         List<List<Object>> allList = new ArrayList();
        
         try {
-            fileReader = new FileReader("json.txt");
+            fileReader = new FileReader("AccountingSoftware/json.txt");
             bufferedReader = new BufferedReader(fileReader);
             jsonString = bufferedReader.readLine();
 
@@ -281,7 +281,7 @@ public class JsonParser {
         System.out.println("write: " + jsonObj.toString());
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("json.txt"), "utf-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("AccountingSoftware/json.txt"), "utf-8"));
             writer.write(jsonObj.toString());
             writer.close();
         } catch (Exception e) {

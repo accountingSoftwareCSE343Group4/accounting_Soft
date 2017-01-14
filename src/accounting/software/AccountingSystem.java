@@ -583,7 +583,7 @@ public class AccountingSystem {
 
         //create document
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream("AccountingSoftwareReport.pdf"));
+        PdfWriter.getInstance(document, new FileOutputStream("AccountingSoftware/AccountingSoftwareReport.pdf"));
         document.open();
         Paragraph preface = new Paragraph();
 
@@ -718,7 +718,7 @@ public class AccountingSystem {
         //////////////////////////////////////////////////
         if (Desktop.isDesktopSupported()) {
             try {
-                File myFile = new File("AccountingSoftwareReport.pdf");
+                File myFile = new File("AccountingSoftware/AccountingSoftwareReport.pdf");
                 Desktop.getDesktop().open(myFile);
             } catch (IOException ex) {
                 // no application registered for PDFs
